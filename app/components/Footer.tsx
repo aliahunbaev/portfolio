@@ -75,7 +75,14 @@ export default function Footer() {
                 className="text-sm text-black tracking-widest uppercase"
                 style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
               >
-                Contact
+                Book a Call
+              </a>
+              <a 
+                href="mailto:alizahunbaev@gmail.com"
+                className="text-sm text-black tracking-widest uppercase"
+                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+              >
+                Email
               </a>
             </nav>
           </div>
@@ -89,15 +96,9 @@ export default function Footer() {
               CONNECT
             </h3>
             <div className="flex flex-col space-y-3">
+              
               <a 
-                href="mailto:hello@ahunbaev.com"
-                className="text-sm text-black tracking-widest uppercase"
-                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
-              >
-                Email
-              </a>
-              <a 
-                href="https://instagram.com/ahunbaev"
+                href="https://instagram.com/alizahunbaev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-black tracking-widest uppercase"
@@ -106,13 +107,31 @@ export default function Footer() {
                 Instagram
               </a>
               <a 
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/aliahunbaev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-black tracking-widest uppercase"
                 style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
               >
                 LinkedIn
+              </a>
+              <a 
+                href="https://youtube.com/@ahunbaev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-black tracking-widest uppercase"
+                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+              >
+                YouTube
+              </a>
+              <a 
+                href="https://playfighter.substack.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-black tracking-widest uppercase"
+                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+              >
+                Substack
               </a>
             </div>
           </div>
