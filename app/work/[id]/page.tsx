@@ -157,14 +157,14 @@ export default function ProjectPage() {
           </div>
         </section>
 
-        {/* Introduction Text and Services */}
+        {/* Introduction Text and Metadata */}
         <section className="px-4 pb-16 md:pb-24">
           <div className="mx-auto">
             <div 
               ref={introRef}
               className={`md:scroll-fade-in ${introVisible ? 'visible' : ''}`}
             >
-              <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+              <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
                 {/* Introduction Text */}
                 <div className="flex-1">
                   <p 
@@ -175,25 +175,37 @@ export default function ProjectPage() {
                   </p>
                 </div>
                 
-                {/* Services List */}
-                <div className="md:w-80 flex-shrink-0">
-                  <h3 
-                    className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-4"
-                    style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                  >
-                    SERVICES
-                  </h3>
-                  <ul className="space-y-2">
-                    {project.services.map((service, index) => (
-                      <li 
-                        key={index}
-                        className="text-base md:text-lg text-black"
-                        style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
-                      >
-                        {service}
-                      </li>
-                    ))}
-                  </ul>
+                {/* Metadata: Services & Technologies */}
+                <div className="md:w-80 flex-shrink-0 flex flex-row gap-8 md:flex-col md:gap-6">
+                  {/* Services */}
+                  <div className="flex-1 md:flex-none">
+                    <ul className="space-y-2">
+                      {project.services.map((service, index) => (
+                        <li 
+                          key={index}
+                          className="text-sm md:text-base text-black uppercase tracking-widest"
+                          style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                        >
+                          {service}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Technologies */}
+                  <div className="flex-1 md:flex-none">
+                    <ul className="space-y-2">
+                      {project.technologies.map((tech, index) => (
+                        <li 
+                          key={index}
+                          className="text-sm md:text-base text-gray-400 uppercase tracking-widest"
+                          style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                        >
+                          {tech}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

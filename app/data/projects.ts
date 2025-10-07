@@ -15,6 +15,7 @@ export interface Project {
   images: ProjectImage[];
   year: string;
   services: string[];
+  technologies: string[];
 }
 
 export const projects: Project[] = [
@@ -24,7 +25,7 @@ export const projects: Project[] = [
     subtitle: 'Brand Identity & Web Design',
     headerText: 'A Curated Mood of Triumph.',
     description: 'A bold fitness brand identity system designed for champions who refuse to quit.',
-    introText: 'HARDTOKILL is a premium fitness brand that embodies resilience and unstoppable determination. We crafted a complete brand identity that captures the raw energy and dedication of athletes who push beyond their limits. The visual system combines brutal minimalism with powerful typography to create a presence that commands attention in the competitive fitness space.',
+    introText: 'Hardtokill is a premium fitness brand that embodies resilience and unstoppable determination. We crafted a complete brand identity that captures the raw energy and dedication of athletes who push beyond their limits. The visual system combines brutal minimalism with powerful typography to create a presence that commands attention in the competitive fitness space.',
     coverImage: 'https://picsum.photos/1200/800?random=1',
     images: [
       { url: 'https://picsum.photos/1200/800?random=11', size: 'full' },
@@ -36,7 +37,8 @@ export const projects: Project[] = [
       { url: 'https://picsum.photos/1200/900?random=17', size: 'full', caption: 'Website homepage hero section' },
     ],
     year: '2024',
-    services: ['Brand Identity', 'Web Design', 'Art Direction']
+    services: ['Brand Identity', 'Web Design', 'Art Direction'],
+    technologies: ['Next.js', 'Framer Motion', 'Figma']
   },
   {
     id: 'combat',
@@ -44,7 +46,7 @@ export const projects: Project[] = [
     subtitle: 'E-commerce Platform',
     headerText: 'Precision Meets Performance.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
-    introText: 'COMBAT represents the intersection of brutal sport and refined design. This e-commerce platform was built to showcase premium martial arts equipment with the respect and attention it deserves. Every detail from product photography to checkout flow was designed to feel as precise and intentional as the training these products enable.',
+    introText: 'Combat represents the intersection of brutal sport and refined design. This e-commerce platform was built to showcase premium martial arts equipment with the respect and attention it deserves. Every detail from product photography to checkout flow was designed to feel as precise and intentional as the training these products enable.',
     coverImage: 'https://picsum.photos/1200/800?random=2',
     images: [
       { url: 'https://picsum.photos/1200/800?random=21', size: 'full', caption: 'Homepage featuring seasonal collection' },
@@ -56,7 +58,8 @@ export const projects: Project[] = [
       { url: 'https://picsum.photos/1200/700?random=27', size: 'full' },
     ],
     year: '2024',
-    services: ['E-commerce Design', 'Web Development', 'Photography Direction']
+    services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
+    technologies: ['Shopify', 'Liquid', 'React']
   },
   {
     id: 'hawa-studio',
@@ -64,7 +67,7 @@ export const projects: Project[] = [
     subtitle: 'Creative Studio Website',
     headerText: 'Thoughtful Design, Timeless Impact.',
     description: 'An elegant portfolio website for a creative studio specializing in visual storytelling.',
-    introText: 'HAWA STUDIO needed a digital home that reflected their approach to creative work—thoughtful, refined, and deeply human. We designed a website that puts their projects at center stage while maintaining an elegant restraint that lets the work breathe. The result is a portfolio experience that feels both contemporary and timeless.',
+    introText: 'Hawa Studio needed a digital home that reflected their approach to creative work—thoughtful, refined, and deeply human. We designed a website that puts their projects at center stage while maintaining an elegant restraint that lets the work breathe. The result is a portfolio experience that feels both contemporary and timeless.',
     coverImage: 'https://picsum.photos/1200/800?random=3',
     images: [
       { url: 'https://picsum.photos/1200/900?random=31', size: 'full' },
@@ -75,7 +78,8 @@ export const projects: Project[] = [
       { url: 'https://picsum.photos/400/600?random=36', size: 'third' },
     ],
     year: '2024',
-    services: ['Web Design', 'Development', 'Content Strategy']
+    services: ['Web Design', 'Development', 'Content Strategy'],
+    technologies: ['Webflow', 'Custom CSS', 'GSAP']
   },
   {
     id: 'beau-flaneur',
@@ -83,7 +87,7 @@ export const projects: Project[] = [
     subtitle: 'Fashion Brand Identity',
     headerText: 'Wandering with Purpose.',
     description: 'A sophisticated brand identity for a modern menswear label rooted in timeless elegance.',
-    introText: 'BEAU FLANEUR celebrates the art of wandering with purpose—the modern man who moves through the world with intention and style. We developed a complete brand identity that balances European sophistication with contemporary minimalism. From monogram design to packaging, every touchpoint reinforces the brand\'s commitment to craftsmanship and quiet luxury.',
+    introText: 'Beau Flâneur celebrates the art of wandering with purpose—the modern man who moves through the world with intention and style. We developed a complete brand identity that balances European sophistication with contemporary minimalism. From monogram design to packaging, every touchpoint reinforces the brand\'s commitment to craftsmanship and quiet luxury.',
     coverImage: 'https://picsum.photos/1200/800?random=4',
     images: [
       { url: 'https://picsum.photos/800/1000?random=41', size: 'half' },
@@ -94,7 +98,8 @@ export const projects: Project[] = [
       { url: 'https://picsum.photos/1200/800?random=46', size: 'full', caption: 'Brand guidelines spread' },
     ],
     year: '2024',
-    services: ['Brand Identity', 'Packaging Design', 'Art Direction']
+    services: ['Brand Identity', 'Packaging Design', 'Art Direction'],
+    technologies: ['Figma', 'Adobe Suite', 'Webflow']
   }
 ];
 
@@ -117,4 +122,3 @@ export function getPreviousProject(currentId: string): Project | null {
   }
   return projects[currentIndex - 1];
 }
-

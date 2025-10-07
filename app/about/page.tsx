@@ -3,15 +3,40 @@
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CalEmbed from '../components/CalEmbed';
 
 export default function About() {
   const { ref: textRef, isVisible: textVisible } = useScrollFadeIn();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollFadeIn();
 
   return (
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <section className="px-4 py-20 md:py-0">
+        {/* Header Section */}
+        <section className="px-4 pt-16 pb-4 md:py-10">
+          <div 
+            ref={headerRef}
+            className={`scroll-fade-in ${headerVisible ? 'visible' : ''}`}
+          >
+            <div className="flex flex-col md:flex-row md:gap-4 gap-0">
+              <h1 
+                className="text-2xl md:text-3xl lg:text-4xl text-black font-medium inline tracking-tight"
+                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+              >
+                Hi, I&apos;m Ali.{' '}
+              </h1>
+              <span 
+                className="text-2xl md:text-3xl lg:text-4xl text-gray-400 font-medium inline tracking-tight"
+                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+              >
+                It&apos;s nice to meet you!
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-4 pb-16 md:pb-24">
           <div className="flex flex-col lg:flex-row gap-4 md:gap-4">
             {/* Image */}
             <div className="w-60 lg:w-[40%]">
@@ -52,40 +77,11 @@ export default function About() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="px-4 py-16 md:py-24">
-          <div className="mx-auto">
-            <div className="bg-black rounded-2xl aspect-[4/3] md:aspect-[8/3] md:h-auto flex flex-col justify-center items-center px-6 py-16 md:p-12 text-center">
-              {/* Title */}
-              <h3 
-                className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
-                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
-              >
-                Let&apos;s get to work.
-              </h3>
-
-              {/* Buttons */}
-              <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6 md:justify-center">
-                {/* Primary Button */}
-                <a 
-                  href="https://cal.com/ahunbaev/intro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full md:w-auto md:flex-1 md:max-w-xs bg-white text-black py-3 md:py-2 px-6 rounded-full font-medium text-lg  uppercase flex items-center justify-center"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                >
-                  BOOK A CALL
-                </a>
-
-                {/* Secondary Button */}
-                <button 
-                  className="w-full md:w-auto md:flex-1 md:max-w-xs border-2 border-white text-white py-3 md:py-2 px-6 rounded-full font-medium text-lg  uppercase"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                >
-                  PROJECT FORM
-                </button>
-              </div>
-            </div>
+        {/* Cal CTA Section */}
+        <section className="px-4 pt-16 md:pt-24 pb-4">
+          {/* Cal Embed - Full bleed on mobile, contained on desktop */}
+          <div className="w-screen -ml-4 md:w-full md:ml-0">
+            <CalEmbed />
           </div>
         </section>
       </main>

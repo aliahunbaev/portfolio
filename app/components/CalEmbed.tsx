@@ -22,7 +22,7 @@ export default function CalEmbed() {
 
   return (
     <div 
-      className="w-full px-8 pt-8 pb-4 rounded-2xl"
+      className="w-full px-4 xl:px-60 md:px-8 pt-12 md:pt-20 pb-8 md:pb-10 md:rounded-2xl"
       style={{
         background: '#1e3a5f',
         backgroundImage: `
@@ -33,10 +33,16 @@ export default function CalEmbed() {
         backgroundPosition: 'center center'
       }}
     >
+      <h2 
+        className="text-3xl md:text-4xl text-white font-medium mb-12 tracking-tight text-center"
+        style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+      >
+        Get in touch today.
+      </h2>
       <Cal
         namespace="intro"
         calLink="ahunbaev/intro"
-        style={{ width: "100%", height: "700px" }}
+        style={{ width: "100%", height: "auto" }}
         config={{ layout: "month_view", theme: "light" }}
       />
     </div>
