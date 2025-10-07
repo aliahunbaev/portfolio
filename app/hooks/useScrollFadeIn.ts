@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 
 export function useScrollFadeIn(threshold = 0.1) {
   const [isVisible, setIsVisible] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ref = useRef<any>(null);
 
   useEffect(() => {

@@ -19,7 +19,7 @@ export default function CTASection() {
             className="text-lg md:text-xl text-gray-400 uppercase tracking-widest"
             style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
           >
-            BOOKING PROJECTS FOR {month} &apos;{year}
+            BOOKING PROJECTS FOR {month} '{year}
           </h2>
         </div>
  
@@ -33,7 +33,7 @@ export default function CTASection() {
               className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
               style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
             >
-              Let&apos;s make some magic.
+              Let's make some magic.
             </h3>
 
             {/* Buttons */}

@@ -5,6 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   const [currentTime, setCurrentTime] = useState('');
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const updateTime = () => {
@@ -126,7 +127,7 @@ export default function Footer() {
             className="text-sm text-gray-500 text-center"
             style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
           >
-            &quot;Encourage the Beautiful, for the Useful encourages itself.&quot;
+            Encourage the Beautiful, for the Useful encourages itself.
           </p>
         </div>
       </div>
