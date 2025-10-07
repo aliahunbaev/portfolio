@@ -127,7 +127,7 @@ export default function About() {
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you're building—reach out.
+                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you&apos;re building—reach out.
               </p>
             </div>
           </div>
