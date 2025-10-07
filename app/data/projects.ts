@@ -16,6 +16,7 @@ export interface Project {
   year: string;
   services: string[];
   technologies: string[];
+  websiteUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -38,7 +39,8 @@ export const projects: Project[] = [
     ],
     year: '2024',
     services: ['Brand Identity', 'Web Design', 'Art Direction'],
-    technologies: ['Next.js', 'Framer Motion', 'Figma']
+    technologies: ['Next.js', 'Framer Motion', 'Figma'],
+    websiteUrl: 'https://hardtokill.com'
   },
   {
     id: 'combat',
@@ -59,7 +61,8 @@ export const projects: Project[] = [
     ],
     year: '2024',
     services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
-    technologies: ['Shopify', 'Liquid', 'React']
+    technologies: ['Shopify', 'Liquid', 'React'],
+    websiteUrl: 'https://combat.com'
   },
   {
     id: 'hawa-studio',
@@ -79,7 +82,8 @@ export const projects: Project[] = [
     ],
     year: '2024',
     services: ['Web Design', 'Development', 'Content Strategy'],
-    technologies: ['Webflow', 'Custom CSS', 'GSAP']
+    technologies: ['Webflow', 'Custom CSS', 'GSAP'],
+    websiteUrl: 'https://hawastudio.com'
   },
   {
     id: 'beau-flaneur',
@@ -99,7 +103,8 @@ export const projects: Project[] = [
     ],
     year: '2024',
     services: ['Brand Identity', 'Packaging Design', 'Art Direction'],
-    technologies: ['Figma', 'Adobe Suite', 'Webflow']
+    technologies: ['Figma', 'Adobe Suite', 'Webflow'],
+    websiteUrl: 'https://beauflaneur.com'
   }
 ];
 

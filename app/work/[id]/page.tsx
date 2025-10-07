@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import CalEmbed from '../../components/CalEmbed';
 import { getProjectById, getNextProject, getPreviousProject } from '../../data/projects';
 import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 
@@ -146,66 +147,79 @@ export default function ProjectPage() {
           </div>
         </section>
 
-        {/* Cover Image */}
+        {/* Cover Image and Introduction */}
         <section className="px-4 pb-16 md:pb-24">
-          <div className="w-full aspect-[16/10] overflow-hidden rounded-none">
-            <img 
-              src={project.coverImage}
-              alt={project.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </section>
-
-        {/* Introduction Text and Metadata */}
-        <section className="px-4 pb-16 md:pb-24">
-          <div className="mx-auto">
-            <div 
-              ref={introRef}
-              className={`md:scroll-fade-in ${introVisible ? 'visible' : ''}`}
-            >
-              <div className="flex flex-col md:flex-row items-start gap-8 md:gap-16">
-                {/* Introduction Text */}
-                <div className="flex-1">
-                  <p 
-                    className="text-xl md:text-xl lg:text-2xl text-black leading-relaxed tracking-tight"
-                    style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
-                  >
-                    {project.introText}
-                  </p>
+          <div 
+            ref={introRef}
+            className={`md:scroll-fade-in ${introVisible ? 'visible' : ''} max-w-6xl`}
+          >
+            <div className="flex flex-col lg:flex-row gap-4 md:gap-4">
+              {/* Cover Image */}
+              <div className="w-full lg:w-[70%]">
+                <div className="aspect-[5/3] w-full overflow-hidden rounded-2xl">
+                  <img 
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
+              </div>
+
+                {/* Text Content and Metadata */}
+                <div className="w-full lg:w-[30%] flex flex-col gap-4">
+                  {/* Introduction Text in White Div */}
+                  <div className="bg-white rounded-2xl p-4 md:p-3 flex" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}>
+                    <p 
+                      className="text-sm text-black leading-relaxed tracking-wide"
+                      style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                    >
+                      {project.introText}
+                    </p>
+                  </div>
                 
-                {/* Metadata: Services & Technologies */}
-                <div className="md:w-80 flex-shrink-0 flex flex-row gap-8 md:flex-col md:gap-6">
+                {/* Metadata: Services & Link */}
+                <div className="flex flex-row gap-8 md:gap-12">
                   {/* Services */}
-                  <div className="flex-1 md:flex-none">
-                    <ul className="space-y-2">
+                  <div className="flex-1">
+                    <h4 
+                      className="text-xs text-gray-400 uppercase tracking-widest mb-4"
+                      style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                    >
+                      Services
+                    </h4>
+                    <div className="space-y-2">
                       {project.services.map((service, index) => (
-                        <li 
+                        <div 
                           key={index}
-                          className="text-sm md:text-base text-black uppercase tracking-widest"
-                          style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                          className="text-sm text-black leading-relaxed"
+                          style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
                         >
                           {service}
-                        </li>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
-                  {/* Technologies */}
-                  <div className="flex-1 md:flex-none">
-                    <ul className="space-y-2">
-                      {project.technologies.map((tech, index) => (
-                        <li 
-                          key={index}
-                          className="text-sm md:text-base text-gray-400 uppercase tracking-widest"
-                          style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
-                        >
-                          {tech}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {/* Website Link */}
+                  {project.websiteUrl && (
+                    <div className="flex-1">
+                      <h4 
+                        className="text-xs text-gray-400 uppercase tracking-widest mb-4"
+                        style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                      >
+                        Website
+                      </h4>
+                      <a 
+                        href={project.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-black leading-relaxed underline hover:no-underline inline-block break-all"
+                        style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                      >
+                        {project.websiteUrl.replace(/^https?:\/\//, '')}
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -227,20 +241,27 @@ export default function ProjectPage() {
         </section>
 
         {/* Project Navigation */}
-        <section className="px-4 py-16 md:py-24 border-t border-b border-gray-200">
+        <section className="px-4 py-16 md:py-24">
           <div className="flex flex-row justify-between gap-8">
             {/* Previous Project */}
             {previousProject && (
               <Link 
                 href={`/work/${previousProject.id}`}
-                className="flex-1 group"
+                className="flex-1 group flex items-center gap-2"
               >
-                <p 
-                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-3"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
+                <svg 
+                  width="28" 
+                  height="28" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="black" 
+                  strokeWidth="1.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="flex-shrink-0"
                 >
-                  ← Previous
-                </p>
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
                 <h3 
                   className="text-xl md:text-2xl text-black"
                   style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
@@ -254,60 +275,35 @@ export default function ProjectPage() {
             {nextProject && (
               <Link 
                 href={`/work/${nextProject.id}`}
-                className="flex-1 group text-right"
+                className="flex-1 group flex items-center justify-end gap-2 text-right"
               >
-                <p 
-                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-3"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
-                >
-                  Next →
-                </p>
                 <h3 
                   className="text-xl md:text-2xl text-black"
                   style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
                 >
                   {nextProject.title}
                 </h3>
+                <svg 
+                  width="28" 
+                  height="28" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="black" 
+                  strokeWidth="1.5" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  className="flex-shrink-0"
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
               </Link>
             )}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="px-4 py-16 md:py-24">
-          <div className="mx-auto">
-            <div className="bg-black rounded-2xl aspect-[4/3] md:aspect-[8/3] md:h-auto flex flex-col justify-center items-center px-6 py-16 md:p-12 text-center">
-              {/* Title */}
-              <h3 
-                className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
-                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
-              >
-                Let&apos;s make some magic.
-              </h3>
-
-              {/* Buttons */}
-              <div className="w-full flex flex-col md:flex-row gap-4 md:gap-6 md:justify-center">
-                {/* Primary Button */}
-                <a 
-                  href="https://cal.com/ahunbaev/intro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full md:w-auto md:flex-1 md:max-w-xs bg-white text-black py-3 md:py-2 px-6 rounded-full font-medium text-lg md:text-base uppercase flex items-center justify-center"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                >
-                  BOOK A CALL
-                </a>
-
-                {/* Secondary Button */}
-                <button 
-                  className="w-full md:w-auto md:flex-1 md:max-w-xs border-2 border-white text-white py-3 md:py-2 px-6 rounded-full font-medium text-lg md:text-base uppercase"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                >
-                  PROJECT FORM
-                </button>
-              </div>
-            </div>
-          </div>
+        <section className="pt-16 md:pt-24 lg:px-4">
+          <CalEmbed />
         </section>
       </main>
       <Footer />

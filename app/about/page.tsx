@@ -51,7 +51,7 @@ export default function About() {
 
             {/* Text Content in white div */}
             <div className="w-full lg:w-[60%]">
-              <div className="bg-white rounded-2xl p-6 md:p-4 h-full flex">
+              <div className="bg-white rounded-2xl p-6 md:p-4 h-full flex" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}>
                 <div 
                   ref={textRef}
                   className={`md:scroll-fade-in ${textVisible ? 'visible' : ''} max-w-xl lg:max-w-2xl`}
@@ -78,11 +78,9 @@ export default function About() {
         </section>
 
         {/* Cal CTA Section */}
-        <section className="px-4 pt-16 md:pt-24 pb-4">
-          {/* Cal Embed - Full bleed on mobile, contained on desktop */}
-          <div className="w-screen -ml-4 md:w-full md:ml-0">
-            <CalEmbed />
-          </div>
+        <section className="pt-16 md:pt-24 lg:px-4">
+          {/* Cal Embed - Full bleed on mobile/tablet, contained on desktop */}
+          <CalEmbed />
         </section>
       </main>
       <Footer />

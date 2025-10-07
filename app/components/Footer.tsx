@@ -25,10 +25,10 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="border-t border-gray-200">
+    <footer className="border-t border-gray-200 lg:mt-4">
       <div className="px-4 mx-auto">
         {/* Main Footer Content */}
-        <div className="grid pt-8 grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mb-12">
+        <div className="grid pt-12 md:pt-12 grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mb-12">
           {/* Brand Column */}
           <div>
             <Link href="/" className="text-2xl tracking-tight font-semibold text-black block mb-4" style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}>
@@ -123,7 +123,7 @@ export default function Footer() {
       <div className="border-t border-gray-200">
         <div className="px-4 py-4 flex justify-center items-center">
           <p 
-            className="text-sm text-gray-500 text-center"
+            className="text-xs md:text-sm text-gray-500 text-center"
             style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
           >
             Encourage the Beautiful, for the Useful encourages itself.
