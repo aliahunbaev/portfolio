@@ -55,6 +55,13 @@ export default function ProjectPage() {
   const { ref: titleRef, isVisible: titleVisible } = useScrollFadeIn();
   const { ref: introRef, isVisible: introVisible } = useScrollFadeIn();
 
+  // Set page title
+  useEffect(() => {
+    if (project) {
+      document.title = `${project.title} | Ali Ahunbáev`;
+    }
+  }, [project]);
+
   // Touch handling for swipe gestures
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);

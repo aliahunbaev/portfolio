@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -8,6 +9,10 @@ import CalEmbed from '../components/CalEmbed';
 export default function About() {
   const { ref: textRef, isVisible: textVisible } = useScrollFadeIn();
   const { ref: headerRef, isVisible: headerVisible } = useScrollFadeIn();
+
+  useEffect(() => {
+    document.title = 'About | Ali Ahunbáev';
+  }, []);
 
   return (
     <div className="min-h-screen">
