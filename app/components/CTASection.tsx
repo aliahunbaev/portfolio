@@ -1,6 +1,7 @@
 'use client';
 
 import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
+import CalEmbed from './CalEmbed';
 
 export default function CTASection() {
   const { ref, isVisible } = useScrollFadeIn();
@@ -11,7 +12,7 @@ export default function CTASection() {
   const year = currentDate.getFullYear().toString().slice(-2);
   
   return (
-    <section className="px-6 md:px-8 py-16 md:py-24">
+    <section className="px-4 py-16 md:py-24">
       <div className="mx-auto">
         {/* Section Header */}
         <div className="mb-4 md:mb-6">
@@ -23,17 +24,21 @@ export default function CTASection() {
           </h2>
         </div>
  
- 
+        {/* Cal Embed */}
+        <div className="w-full mb-8">
+          <CalEmbed />
+        </div>
+
         <div className="w-full md:max-w-none mx-auto">
           <div 
             ref={ref}
-            className={`bg-black rounded-2xl aspect-[4/3] md:aspect-[8/3] md:h-auto flex flex-col justify-center items-center px-6 py-16 md:p-12 text-center scroll-fade-in ${isVisible ? 'visible' : ''}`}
+            className={`bg-black rounded-2xl aspect-[4/3] md:aspect-[10/3] md:h-auto flex flex-col justify-center items-center px-6 py-16 md:p-12 text-center scroll-fade-in ${isVisible ? 'visible' : ''}`}
           >
             <h3 
               className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
               style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
             >
-              Let&apos;s make some magic.
+              Let&apos;s get to work.
             </h3>
 
             {/* Buttons */}

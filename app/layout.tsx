@@ -24,7 +24,7 @@ const chivo = Chivo({
 });
 
 export const metadata: Metadata = {
-  title: "AHUNBAEV Portfolio",
+  title: "Ali Ahunbáev",
   description: "Creative portfolio and professional services",
 };
 

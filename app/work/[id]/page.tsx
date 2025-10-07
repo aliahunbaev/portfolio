@@ -123,7 +123,7 @@ export default function ProjectPage() {
       
       <main>
         {/* Header/Hero Section */}
-        <section className="px-6 md:px-8 py-24 md:py-32">
+        <section className="px-4 py-24 md:py-32">
           <div 
             ref={titleRef}
             className={`scroll-fade-in ${titleVisible ? 'visible' : ''}`}
@@ -132,13 +132,13 @@ export default function ProjectPage() {
             <div>
               <h1 
                 className="text-3xl md:text-4xl lg:text-5xl text-black font-medium inline tracking-tight"
-                style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif', fontWeight: 600 }}
+                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
                 {project.title}.{' '}
               </h1>
               <span 
                 className="text-3xl md:text-4xl lg:text-5xl text-gray-400 font-medium inline tracking-tight"
-                style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif', fontWeight: 600 }}
+                style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
                 {project.headerText}
               </span>
@@ -147,7 +147,7 @@ export default function ProjectPage() {
         </section>
 
         {/* Cover Image */}
-        <section className="px-6 md:px-8 pb-16 md:pb-24">
+        <section className="px-4 pb-16 md:pb-24">
           <div className="w-full aspect-[16/10] overflow-hidden rounded-none">
             <img 
               src={project.coverImage}
@@ -158,8 +158,8 @@ export default function ProjectPage() {
         </section>
 
         {/* Introduction Text and Services */}
-        <section className="px-6 md:px-8 pb-16 md:pb-24">
-          <div className="max-w-4xl mx-auto">
+        <section className="px-4 pb-16 md:pb-24">
+          <div className="mx-auto">
             <div 
               ref={introRef}
               className={`md:scroll-fade-in ${introVisible ? 'visible' : ''}`}
@@ -168,8 +168,8 @@ export default function ProjectPage() {
                 {/* Introduction Text */}
                 <div className="flex-1">
                   <p 
-                    className="text-xl md:text-2xl lg:text-3xl text-black leading-relaxed tracking-tight"
-                    style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+                    className="text-xl md:text-xl lg:text-2xl text-black leading-relaxed tracking-tight"
+                    style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
                   >
                     {project.introText}
                   </p>
@@ -201,7 +201,7 @@ export default function ProjectPage() {
         </section>
 
         {/* Image Grid */}
-        <section className="px-6 md:px-8 pb-16 md:pb-24">
+        <section className="px-4 pb-16 md:pb-24">
           <div className="grid grid-cols-12 gap-6 md:gap-8">
             {project.images.map((image, index) => (
               <ProjectImage 
@@ -215,8 +215,8 @@ export default function ProjectPage() {
         </section>
 
         {/* Project Navigation */}
-        <section className="px-6 md:px-8 py-16 md:py-24 border-t border-gray-200">
-          <div className="flex flex-col md:flex-row justify-between gap-8">
+        <section className="px-4 py-16 md:py-24 border-t border-b border-gray-200">
+          <div className="flex flex-row justify-between gap-8">
             {/* Previous Project */}
             {previousProject && (
               <Link 
@@ -224,23 +224,17 @@ export default function ProjectPage() {
                 className="flex-1 group"
               >
                 <p 
-                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-4"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-3"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
                 >
-                  ← PREVIOUS PROJECT
+                  ← Previous
                 </p>
                 <h3 
-                  className="text-2xl md:text-3xl text-black"
+                  className="text-xl md:text-2xl text-black"
                   style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
                 >
                   {previousProject.title}
                 </h3>
-                <p 
-                  className="text-base md:text-lg text-gray-500 mt-2"
-                  style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
-                >
-                  {previousProject.subtitle}
-                </p>
               </Link>
             )}
 
@@ -248,33 +242,27 @@ export default function ProjectPage() {
             {nextProject && (
               <Link 
                 href={`/work/${nextProject.id}`}
-                className="flex-1 group text-left md:text-right"
+                className="flex-1 group text-right"
               >
                 <p 
-                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-4"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest mb-3"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
                 >
-                  NEXT PROJECT →
+                  Next →
                 </p>
                 <h3 
-                  className="text-2xl md:text-3xl text-black"
+                  className="text-xl md:text-2xl text-black"
                   style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
                 >
                   {nextProject.title}
                 </h3>
-                <p 
-                  className="text-base md:text-lg text-gray-500 mt-2"
-                  style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
-                >
-                  {nextProject.subtitle}
-                </p>
               </Link>
             )}
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="px-6 md:px-8 py-16 md:py-24">
+        <section className="px-4 py-16 md:py-24">
           <div className="mx-auto">
             <div className="bg-black rounded-2xl aspect-[4/3] md:aspect-[8/3] md:h-auto flex flex-col justify-center items-center px-6 py-16 md:p-12 text-center">
               {/* Title */}

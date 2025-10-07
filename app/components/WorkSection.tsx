@@ -6,7 +6,7 @@ import { projects } from '../data/projects';
 export default function WorkSection() {
 
   return (
-    <section className="px-6 md:px-8 py-16 md:py-24">
+    <section className="px-4 py-16 md:py-24">
       <div className="mx-auto">
         {/* Section Header */}
         <div className="mb-4 md:mb-6">
@@ -19,7 +19,7 @@ export default function WorkSection() {
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-6">
           {projects.map((project) => {
             return (
               <Link 
@@ -28,7 +28,7 @@ export default function WorkSection() {
                 className="group cursor-pointer"
               >
                 {/* Project Image */}
-                <div className="aspect-[4/3] mb-4 transition-all duration-150 group-hover:rounded-2xl overflow-hidden">
+                <div className="aspect-[3/4] mb-3 rounded-2xl transition-all duration-150 overflow-hidden">
                   <img 
                     src={project.coverImage} 
                     alt={project.title}
@@ -38,7 +38,7 @@ export default function WorkSection() {
                 
                 {/* Project Title */}
                 <h3 
-                  className="text-2xl md:text-3xl text-black tracking-tight mb-2"
+                  className="text-base md:text-lg text-black tracking-tight mb-1"
                   style={{ 
                     fontFamily: 'var(--font-lora), Georgia, serif'
                   }}
@@ -48,8 +48,8 @@ export default function WorkSection() {
                 
                 {/* Project Subtitle */}
                 <p 
-                  className="text-xs md:text-sm text-gray-400 uppercase tracking-widest"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+                  className="text-xs text-gray-400 uppercase tracking-widest"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif' }}
                 >
                   {project.subtitle}
                 </p>
