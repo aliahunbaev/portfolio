@@ -50,7 +50,7 @@ export default function Navbar() {
       <div className="fixed top-0 left-0 right-0 px-4 py-2 z-50">
         <nav 
           className={`bg-white rounded-2xl px-4 py-3 md:px-4 md:py-3 transition-all duration-300 ${
-          isMenuOpen ? 'h-[calc(100vh-2rem)] md:h-auto flex flex-col' : ''
+          isMenuOpen ? 'h-[calc(100dvh-1rem)] md:h-auto flex flex-col overflow-y-auto' : ''
         }`}
           style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}
         >
@@ -118,7 +118,7 @@ export default function Navbar() {
               isMenuOpen ? 'opacity-100 flex' : 'opacity-0 hidden'
             }`}
           >
-            <div className="flex flex-col justify-between items-start flex-1 pr-8 py-4">
+            <div className="flex flex-col justify-between items-start flex-1 pr-8 py-4 pb-8">
               {/* Navigation Links - Centered vertically */}
               <div className="flex flex-col items-start space-y-16 flex-1 justify-center">
                 <Link
