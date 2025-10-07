@@ -35,7 +35,7 @@ export default function About() {
                 className={`text-3xl text-black leading-9 tracking-tight scroll-fade-in ${headerVisible ? 'visible' : ''}`}
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
-                What's up, I'm Ali.
+                What&apos;s up, I&apos;m Ali.
               </h1>
             </div>
           </section>
@@ -48,11 +48,11 @@ export default function About() {
                 className={`md:scroll-fade-in ${textVisible ? 'visible' : ''}`}
               >
               <p className="text-lg md:text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                You've gotten this far and now I consider us friends. It's nice to meet you! I'm a designer and developer who builds digital products that feel good to use and help people move forward. I'm passionate about creating tools that combine beautiful design with real functionality—things people actually want to open every day.
+                You&apos;ve gotten this far and now I consider us friends. It&apos;s nice to meet you! I&apos;m a designer and developer who builds digital products that feel good to use and help people move forward. I&apos;m passionate about creating tools that combine beautiful design with real functionality—things people actually want to open every day.
               </p>
               
               <p className="text-lg md:text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                I'm currently studying Computer Science at NYU while running a freelance practice where I design and build websites for founders, creatives, and small businesses. I specialize in web design, brand identity, and turning ideas into working products using tools like Figma, Webflow, and Next.js.
+                I&apos;m currently studying Computer Science at NYU while running a freelance practice where I design and build websites for founders, creatives, and small businesses. I specialize in web design, brand identity, and turning ideas into working products using tools like Figma, Webflow, and Next.js.
               </p>
               
               <p className="text-lg md:text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
@@ -60,15 +60,15 @@ export default function About() {
               </p>
               
               <p className="text-lg md:text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                Outside of design and code, I'm training as a boxer, writing essays about productivity and creative work, and making videos documenting what I'm learning along the way. I'm obsessed with stories of people who built something from nothing—whether that's a product, a brand, or a life they're proud of.
+                Outside of design and code, I&apos;m training as a boxer, writing essays about productivity and creative work, and making videos documenting what I&apos;m learning along the way. I&apos;m obsessed with stories of people who built something from nothing—whether that&apos;s a product, a brand, or a life they&apos;re proud of.
               </p>
               
               <p className="text-lg md:text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                I'm a big fan of honest work, clear thinking, and people who care about craft. During my free time, you can find me running through Central Park, reading biographies of builders, or working on my next project at a cafe in the city.
+                I&apos;m a big fan of honest work, clear thinking, and people who care about craft. During my free time, you can find me running through Central Park, reading biographies of builders, or working on my next project at a cafe in the city.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you're building—reach out.
+                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you&apos;re building—reach out.
               </p>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function About() {
                 className={`text-3xl lg:text-4xl text-black leading-9 tracking-tight scroll-fade-in ${headerVisible ? 'visible' : ''}`}
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
-                What's up, I'm Ali.
+                What&apos;s up, I&apos;m Ali.
               </h1>
             </div>
 
@@ -107,11 +107,11 @@ export default function About() {
               className={`scroll-fade-in ${textVisible ? 'visible' : ''}`}
             >
               <p className="text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                You've gotten this far and now I consider us friends. It's nice to meet you! I'm a designer and developer who builds digital products that feel good to use and help people move forward. I'm passionate about creating tools that combine beautiful design with real functionality—things people actually want to open every day.
+                You&apos;ve gotten this far and now I consider us friends. It&apos;s nice to meet you! I&apos;m a designer and developer who builds digital products that feel good to use and help people move forward. I&apos;m passionate about creating tools that combine beautiful design with real functionality—things people actually want to open every day.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                I'm currently studying Computer Science at NYU while running a freelance practice where I design and build websites for founders, creatives, and small businesses. I specialize in web design, brand identity, and turning ideas into working products using tools like Figma, Webflow, and Next.js.
+                I&apos;m currently studying Computer Science at NYU while running a freelance practice where I design and build websites for founders, creatives, and small businesses. I specialize in web design, brand identity, and turning ideas into working products using tools like Figma, Webflow, and Next.js.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
@@ -119,15 +119,15 @@ export default function About() {
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                Outside of design and code, I'm training as a boxer, writing essays about productivity and creative work, and making videos documenting what I'm learning along the way. I'm obsessed with stories of people who built something from nothing—whether that's a product, a brand, or a life they're proud of.
+                Outside of design and code, I&apos;m training as a boxer, writing essays about productivity and creative work, and making videos documenting what I&apos;m learning along the way. I&apos;m obsessed with stories of people who built something from nothing—whether that&apos;s a product, a brand, or a life they&apos;re proud of.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed mb-6 " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                I'm a big fan of honest work, clear thinking, and people who care about craft. During my free time, you can find me running through Central Park, reading biographies of builders, or working on my next project at a cafe in the city.
+                I&apos;m a big fan of honest work, clear thinking, and people who care about craft. During my free time, you can find me running through Central Park, reading biographies of builders, or working on my next project at a cafe in the city.
               </p>
               
               <p className="text-lg text-gray-700 leading-relaxed " style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you're building—reach out.
+                Check my Instagram @ahunbaev for work updates and creative process. I also write a newsletter called Playfighter where I share thoughts on productivity, creativity, and design. Thanks for stopping by. If you need a website, want to collaborate, or just want to talk about what you&apos;re building—reach out.
               </p>
             </div>
           </div>
@@ -142,7 +142,7 @@ export default function About() {
                 className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
-                Let's get to work.
+                Let&apos;s get to work.
               </h3>
 
               {/* Buttons */}

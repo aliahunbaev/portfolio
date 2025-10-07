@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,9 +47,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo and subtext */}
           <div className="flex flex-col">
-            <a href="/" className="text-2xl tracking-tighter md:text-3xl font-semibold text-black" style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}>
+            <Link href="/" className="text-2xl tracking-tighter md:text-3xl font-semibold text-black" style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}>
               ahunbáev.com
-            </a>
+            </Link>
             <p className="text-xs tracking-wider md:text-sm text-gray-500 font-sans">
               BROOKLYN, NYC | {currentTime} EST
             </p>
@@ -56,13 +57,13 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
+            <Link
               href="/"
               className="text-lg font-light text-black uppercase tracking-widest"
               style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
             >
               WORK
-            </a>
+            </Link>
             <a
               href="/about"
               className="text-lg font-light text-black uppercase tracking-widest"
@@ -109,14 +110,14 @@ export default function Navbar() {
           <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16 relative bg-white">
             {/* Navigation Links */}
             <div className="flex flex-col items-center pb-44 space-y-8">
-              <a
+              <Link
                 href="/"
                 className="text-4xl md:text-5xl font-light text-black uppercase"
                 style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 WORK
-              </a>
+              </Link>
               <a
                 href="/about"
                 className="text-4xl md:text-5xl font-light text-black uppercase"
