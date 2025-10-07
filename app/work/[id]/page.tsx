@@ -8,6 +8,41 @@ import Footer from '../../components/Footer';
 import { getProjectById, getNextProject, getPreviousProject } from '../../data/projects';
 import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 
+// Component for individual image items
+function ProjectImage({ image, projectTitle, index }: { image: { url: string; caption?: string; size: 'full' | 'two-thirds' | 'half' | 'third' }; projectTitle: string; index: number }) {
+  const { ref, isVisible } = useScrollFadeIn();
+  
+  const sizeClasses = {
+    'full': 'col-span-12',
+    'two-thirds': 'col-span-12 md:col-span-8',
+    'half': 'col-span-12 md:col-span-6',
+    'third': 'col-span-12 md:col-span-4'
+  };
+
+  return (
+    <div 
+      ref={ref}
+      className={`${sizeClasses[image.size]} scroll-fade-in ${isVisible ? 'visible' : ''}`}
+    >
+      <div className="w-full overflow-hidden rounded-none">
+        <img 
+          src={image.url}
+          alt={image.caption || `${projectTitle} image ${index + 1}`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      {image.caption && (
+        <p 
+          className="mt-4 text-sm md:text-base text-gray-500"
+          style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+        >
+          {image.caption}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function ProjectPage() {
   const params = useParams();
   const router = useRouter();
@@ -168,40 +203,14 @@ export default function ProjectPage() {
         {/* Image Grid */}
         <section className="px-6 md:px-8 pb-16 md:pb-24">
           <div className="grid grid-cols-12 gap-6 md:gap-8">
-            {project.images.map((image, index) => {
-              const { ref, isVisible } = useScrollFadeIn();
-              
-              const sizeClasses = {
-                'full': 'col-span-12',
-                'two-thirds': 'col-span-12 md:col-span-8',
-                'half': 'col-span-12 md:col-span-6',
-                'third': 'col-span-12 md:col-span-4'
-              };
-
-              return (
-                <div 
-                  key={index}
-                  ref={ref}
-                  className={`${sizeClasses[image.size]} scroll-fade-in ${isVisible ? 'visible' : ''}`}
-                >
-                  <div className="w-full overflow-hidden rounded-none">
-                    <img 
-                      src={image.url}
-                      alt={image.caption || `${project.title} image ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {image.caption && (
-                    <p 
-                      className="mt-4 text-sm md:text-base text-gray-500"
-                      style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
-                    >
-                      {image.caption}
-                    </p>
-                  )}
-                </div>
-              );
-            })}
+            {project.images.map((image, index) => (
+              <ProjectImage 
+                key={index}
+                image={image}
+                projectTitle={project.title}
+                index={index}
+              />
+            ))}
           </div>
         </section>
 
@@ -273,7 +282,7 @@ export default function ProjectPage() {
                 className="text-4xl md:text-5xl lg:text-6xl text-white mb-12 font-medium"
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
-                Let's make some magic.
+                Let&apos;s make some magic.
               </h3>
 
               {/* Buttons */}
@@ -305,4 +314,3 @@ export default function ProjectPage() {
     </div>
   );
 }
-

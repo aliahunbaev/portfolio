@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
 import { projects } from '../data/projects';
 
 export default function WorkSection() {
@@ -21,8 +20,7 @@ export default function WorkSection() {
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-          {projects.map((project, index) => {
-            const { ref, isVisible } = useScrollFadeIn();
+          {projects.map((project) => {
             return (
               <Link 
                 key={project.id} 
@@ -40,11 +38,9 @@ export default function WorkSection() {
                 
                 {/* Project Title */}
                 <h3 
-                  ref={ref}
-                  className={`text-2xl md:text-3xl text-black tracking-tight scroll-fade-in ${isVisible ? 'visible' : ''} mb-2`}
+                  className="text-2xl md:text-3xl text-black tracking-tight mb-2"
                   style={{ 
-                    fontFamily: 'var(--font-lora), Georgia, serif',
-                    transitionDelay: `${index * 0.1}s`
+                    fontFamily: 'var(--font-lora), Georgia, serif'
                   }}
                 >
                   {project.title}

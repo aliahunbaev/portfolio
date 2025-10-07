@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 export default function Footer() {
   const [currentTime, setCurrentTime] = useState('');
-  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const updateTime = () => {
