@@ -44,25 +44,25 @@ export const projects: Project[] = [
     headerText: 'A Curated Mood of Triumph.',
     description: 'A bold fitness brand identity system designed for champions who refuse to quit.',
     introText: 'Hardtokill is a premium fitness brand that embodies resilience and unstoppable determination. We crafted a complete brand identity that captures the raw energy and dedication of athletes who push beyond their limits. The visual system combines brutal minimalism with powerful typography to create a presence that commands attention in the competitive fitness space.',
-    thumbnail: '/projects/hardtokill/verticalhtk.png',
-    thumbnailHorizontal: '/projects/hardtokill/horizhtk.png',
-    coverImage: '/projects/hardtokill/mainhtk.png',
+    thumbnail: '/projects/hardtokill/verticalhtk.png.webp',
+    thumbnailHorizontal: '/projects/hardtokill/horizhtk.png.webp',
+    coverImage: '/projects/hardtokill/mainhtk.png.webp',
     images: [
-      { url: '/projects/hardtokill/htkhero.png', size: 'full' },
+      { url: '/projects/hardtokill/htkhero.png.webp', size: 'full' },
     ],
     showcaseSections: [
       {
         title: 'RESPONSIVE HERO DESIGN',
         images: [
-          { url: '/projects/hardtokill/htk1.png', caption: 'Desktop Hero View' },
-          { url: '/projects/hardtokill/htk2.png', caption: 'Mobile Experience' },
+          { url: '/projects/hardtokill/htk1.png.webp', caption: 'Desktop Hero View' },
+          { url: '/projects/hardtokill/htk2.png.webp', caption: 'Mobile Experience' },
         ]
       },
       {
         title: 'SHOPIFY INTEGRATION',
         images: [
-          { url: '/projects/hardtokill/htk3.png', caption: 'Product page dynamically pulling content through Shopify\'s product CMS' },
-          { url: '/projects/hardtokill/htk4.png', caption: 'Interview content showing through Shopify\'s blog CMS' },
+          { url: '/projects/hardtokill/htk3.png.webp', caption: 'Product page dynamically pulling content through Shopify\'s product CMS' },
+          { url: '/projects/hardtokill/htk4.png.webp', caption: 'Interview content showing through Shopify\'s blog CMS' },
         ]
       },
       {
@@ -70,9 +70,9 @@ export const projects: Project[] = [
         hasGridBackground: false,
         useGridLayout: true,
         images: [
-          { url: '/projects/hardtokill/htk5.png', caption: 'About Page' },
-          { url: '/projects/hardtokill/htk6.png', caption: 'Mobile Contact' },
-          { url: '/projects/hardtokill/htk7.png', caption: 'Desktop Contact' },
+          { url: '/projects/hardtokill/htk5.png.webp', caption: 'About Page' },
+          { url: '/projects/hardtokill/htk6.png.webp', caption: 'Mobile Contact' },
+          { url: '/projects/hardtokill/htk7.png.webp', caption: 'Desktop Contact' },
         ]
       }
     ],
@@ -88,25 +88,25 @@ export const projects: Project[] = [
     headerText: 'Precision Meets Performance.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
     introText: 'Combat represents the intersection of brutal sport and refined design. This e-commerce platform was built to showcase premium martial arts equipment with the respect and attention it deserves. Every detail from product photography to checkout flow was designed to feel as precise and intentional as the training these products enable.',
-    thumbnail: '/projects/combat/combatvertical.png',
-    thumbnailHorizontal: '/projects/combat/combathorizontal.png',
-    coverImage: '/projects/combat/combathero.png',
+    thumbnail: '/projects/combat/combatvertical.png.webp',
+    thumbnailHorizontal: '/projects/combat/combathorizontal.png.webp',
+    coverImage: '/projects/combat/combathero.png.webp',
     images: [
-      { url: '/projects/combat/combat1.png', size: 'full' },
+      { url: '/projects/combat/combat1.png.webp', size: 'full' },
     ],
     showcaseSections: [
       {
         title: 'CONTENT STRATEGY',
         images: [
-          { url: '/projects/combat/combatjournal.png', urlMobile: '/projects/combat/combatjournal2.png', caption: 'Training Journal' },
-          { url: '/projects/combat/combatarticles.png', caption: 'Article System' },
+          { url: '/projects/combat/combatjournal.png.webp', urlMobile: '/projects/combat/combatjournal2.png.webp', caption: 'Training Journal' },
+          { url: '/projects/combat/combatarticles.png.webp', caption: 'Article System' },
         ]
       },
       {
         title: 'USER EXPERIENCE',
         images: [
           { url: '/projects/combat/library.gif', caption: 'Interactive Library' },
-          { url: '/projects/combat/combatemail.png', caption: 'Email Marketing' },
+          { url: '/projects/combat/combatemail.png.webp', caption: 'Email Marketing' },
         ]
       },
       {
@@ -114,10 +114,10 @@ export const projects: Project[] = [
         hasGridBackground: false,
         useGridLayout: true,
         images: [
-          { url: '/projects/combat/combatg1.png', caption: '' },
-          { url: '/projects/combat/combatg2.png', caption: '' },
-          { url: '/projects/combat/combatg3.png', caption: '' },
-          { url: '/projects/combat/combatg4.png', caption: '' },
+          { url: '/projects/combat/combatg1.png.webp', caption: '' },
+          { url: '/projects/combat/combatg2.png.webp', caption: '' },
+          { url: '/projects/combat/combatg3.png.webp', caption: '' },
+          { url: '/projects/combat/combatg4.png.webp', caption: '' },
         ]
       }
     ],
