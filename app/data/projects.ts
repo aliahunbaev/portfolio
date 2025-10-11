@@ -4,6 +4,19 @@ export interface ProjectImage {
   size: 'full' | 'half' | 'third' | 'two-thirds';
 }
 
+export interface ShowcaseImage {
+  url: string;
+  caption: string;
+  urlMobile?: string; // Different image for mobile/medium screens
+}
+
+export interface ShowcaseSection {
+  title: string;
+  images: ShowcaseImage[];
+  hasGridBackground?: boolean; // Default true
+  useGridLayout?: boolean; // Use grid system instead of flex
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -11,8 +24,12 @@ export interface Project {
   headerText: string;
   description: string;
   introText: string;
-  coverImage: string;
+  thumbnail: string; // For homepage card (vertical aspect on desktop)
+  thumbnailHorizontal?: string; // For homepage card (horizontal aspect on mobile)
+  coverImage: string; // For case study hero
   images: ProjectImage[];
+  showcaseSections?: ShowcaseSection[]; // Multiple showcase sections
+  endImage?: string; // Full-bleed image at the very end
   year: string;
   services: string[];
   technologies: string[];
@@ -27,20 +44,42 @@ export const projects: Project[] = [
     headerText: 'A Curated Mood of Triumph.',
     description: 'A bold fitness brand identity system designed for champions who refuse to quit.',
     introText: 'Hardtokill is a premium fitness brand that embodies resilience and unstoppable determination. We crafted a complete brand identity that captures the raw energy and dedication of athletes who push beyond their limits. The visual system combines brutal minimalism with powerful typography to create a presence that commands attention in the competitive fitness space.',
-    coverImage: 'https://picsum.photos/1200/800?random=1',
+    thumbnail: '/projects/hardtokill/verticalhtk.png',
+    thumbnailHorizontal: '/projects/hardtokill/horizhtk.png',
+    coverImage: '/projects/hardtokill/mainhtk.png',
     images: [
-      { url: 'https://picsum.photos/1200/800?random=11', size: 'full' },
-      { url: 'https://picsum.photos/600/800?random=12', size: 'half', caption: 'Logo iterations exploring strength and movement' },
-      { url: 'https://picsum.photos/600/800?random=13', size: 'half', caption: 'Color palette development' },
-      { url: 'https://picsum.photos/1200/600?random=14', size: 'full' },
-      { url: 'https://picsum.photos/800/600?random=15', size: 'two-thirds' },
-      { url: 'https://picsum.photos/400/600?random=16', size: 'third', caption: 'Mobile app interface' },
-      { url: 'https://picsum.photos/1200/900?random=17', size: 'full', caption: 'Website homepage hero section' },
+      { url: '/projects/hardtokill/htkhero.png', size: 'full' },
+    ],
+    showcaseSections: [
+      {
+        title: 'RESPONSIVE HERO DESIGN',
+        images: [
+          { url: '/projects/hardtokill/htk1.png', caption: 'Desktop Hero View' },
+          { url: '/projects/hardtokill/htk2.png', caption: 'Mobile Experience' },
+        ]
+      },
+      {
+        title: 'SHOPIFY INTEGRATION',
+        images: [
+          { url: '/projects/hardtokill/htk3.png', caption: 'Product page dynamically pulling content through Shopify\'s product CMS' },
+          { url: '/projects/hardtokill/htk4.png', caption: 'Interview content showing through Shopify\'s blog CMS' },
+        ]
+      },
+      {
+        title: 'CURATED SITE PHOTOGRAPHY',
+        hasGridBackground: false,
+        useGridLayout: true,
+        images: [
+          { url: '/projects/hardtokill/htk5.png', caption: 'About Page' },
+          { url: '/projects/hardtokill/htk6.png', caption: 'Mobile Contact' },
+          { url: '/projects/hardtokill/htk7.png', caption: 'Desktop Contact' },
+        ]
+      }
     ],
     year: '2024',
     services: ['Brand Identity', 'Web Design', 'Art Direction'],
     technologies: ['Next.js', 'Framer Motion', 'Figma'],
-    websiteUrl: 'https://hardtokill.com'
+    websiteUrl: 'https://hardtokillclo.com'
   },
   {
     id: 'combat',
@@ -49,15 +88,38 @@ export const projects: Project[] = [
     headerText: 'Precision Meets Performance.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
     introText: 'Combat represents the intersection of brutal sport and refined design. This e-commerce platform was built to showcase premium martial arts equipment with the respect and attention it deserves. Every detail from product photography to checkout flow was designed to feel as precise and intentional as the training these products enable.',
-    coverImage: 'https://picsum.photos/1200/800?random=2',
+    thumbnail: '/projects/combat/combatvertical.png',
+    thumbnailHorizontal: '/projects/combat/combathorizontal.png',
+    coverImage: '/projects/combat/combathero.png',
     images: [
-      { url: 'https://picsum.photos/1200/800?random=21', size: 'full', caption: 'Homepage featuring seasonal collection' },
-      { url: 'https://picsum.photos/800/1000?random=22', size: 'half' },
-      { url: 'https://picsum.photos/800/1000?random=23', size: 'half' },
-      { url: 'https://picsum.photos/400/600?random=24', size: 'third' },
-      { url: 'https://picsum.photos/400/600?random=25', size: 'third', caption: 'Product detail view' },
-      { url: 'https://picsum.photos/400/600?random=26', size: 'third' },
-      { url: 'https://picsum.photos/1200/700?random=27', size: 'full' },
+      { url: '/projects/combat/combat1.png', size: 'full' },
+    ],
+    showcaseSections: [
+      {
+        title: 'CONTENT STRATEGY',
+        images: [
+          { url: '/projects/combat/combatjournal.png', urlMobile: '/projects/combat/combatjournal2.png', caption: 'Training Journal' },
+          { url: '/projects/combat/combatarticles.png', caption: 'Article System' },
+        ]
+      },
+      {
+        title: 'USER EXPERIENCE',
+        images: [
+          { url: '/projects/combat/library.gif', caption: 'Interactive Library' },
+          { url: '/projects/combat/combatemail.png', caption: 'Email Marketing' },
+        ]
+      },
+      {
+        title: 'SOCIAL MEDIA ASSETS',
+        hasGridBackground: false,
+        useGridLayout: true,
+        images: [
+          { url: '/projects/combat/combatg1.png', caption: '' },
+          { url: '/projects/combat/combatg2.png', caption: '' },
+          { url: '/projects/combat/combatg3.png', caption: '' },
+          { url: '/projects/combat/combatg4.png', caption: '' },
+        ]
+      }
     ],
     year: '2024',
     services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
@@ -71,6 +133,7 @@ export const projects: Project[] = [
     headerText: 'Thoughtful Design, Timeless Impact.',
     description: 'An elegant portfolio website for a creative studio specializing in visual storytelling.',
     introText: 'Hawa Studio needed a digital home that reflected their approach to creative work—thoughtful, refined, and deeply human. We designed a website that puts their projects at center stage while maintaining an elegant restraint that lets the work breathe. The result is a portfolio experience that feels both contemporary and timeless.',
+    thumbnail: 'https://picsum.photos/1200/800?random=3',
     coverImage: 'https://picsum.photos/1200/800?random=3',
     images: [
       { url: 'https://picsum.photos/1200/900?random=31', size: 'full' },
@@ -92,6 +155,7 @@ export const projects: Project[] = [
     headerText: 'Wandering with Purpose.',
     description: 'A sophisticated brand identity for a modern menswear label rooted in timeless elegance.',
     introText: 'Beau Flâneur celebrates the art of wandering with purpose—the modern man who moves through the world with intention and style. We developed a complete brand identity that balances European sophistication with contemporary minimalism. From monogram design to packaging, every touchpoint reinforces the brand\'s commitment to craftsmanship and quiet luxury.',
+    thumbnail: 'https://picsum.photos/1200/800?random=4',
     coverImage: 'https://picsum.photos/1200/800?random=4',
     images: [
       { url: 'https://picsum.photos/800/1000?random=41', size: 'half' },

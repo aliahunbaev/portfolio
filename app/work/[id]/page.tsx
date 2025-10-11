@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -234,18 +235,163 @@ export default function ProjectPage() {
         </section>
 
         {/* Image Grid */}
-        <section className="px-4 pb-16 md:pb-24">
-          <div className="grid grid-cols-12 gap-6 md:gap-8">
-            {project.images.map((image, index) => (
-              <ProjectImage 
-                key={index}
-                image={image}
-                projectTitle={project.title}
-                index={index}
-              />
-            ))}
+        <section className="pb-16 md:pb-24">
+          {project.images.map((image, index) => {
+            const isFirstOrLast = index === 0 || index === project.images.length - 1;
+            const isFullWidth = image.size === 'full';
+            const shouldBeFullBleed = isFirstOrLast && isFullWidth;
+
+            if (shouldBeFullBleed) {
+              return (
+                <div key={index} className="w-full mb-4">
+                  <img 
+                    src={image.url}
+                    alt={image.caption || `${project.title} image ${index + 1}`}
+                    className="w-full h-auto"
+                  />
+                  {image.caption && (
+                    <p 
+                      className="mt-4 px-4 text-sm md:text-base text-gray-500"
+                      style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                    >
+                      {image.caption}
+                    </p>
+                  )}
+                </div>
+              );
+            }
+
+            return null;
+          })}
+          
+          <div className="px-4">
+            <div className="grid grid-cols-12 gap-4">
+              {project.images.map((image, index) => {
+                const isFirstOrLast = index === 0 || index === project.images.length - 1;
+                const isFullWidth = image.size === 'full';
+                const shouldBeFullBleed = isFirstOrLast && isFullWidth;
+
+                if (shouldBeFullBleed) return null;
+
+                return (
+                  <ProjectImage 
+                    key={index}
+                    image={image}
+                    projectTitle={project.title}
+                    index={index}
+                  />
+                );
+              })}
+            </div>
           </div>
         </section>
+
+        {/* Showcase Sections */}
+        {project.showcaseSections && project.showcaseSections.map((section, sectionIndex) => {
+          const hasGridBackground = section.hasGridBackground !== false; // Default true
+          const useGridLayout = section.useGridLayout === true;
+          
+          return (
+            <section key={sectionIndex} className="px-4 pb-16 md:pb-24">
+              {/* Section Header */}
+              <div className="mb-4 md:mb-4">
+                <h3 
+                  className="text-lg md:text-xl text-gray-400 uppercase tracking-widest"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+                >
+                  {section.title}
+                </h3>
+              </div>
+              
+              {useGridLayout ? (
+                // Grid layout - images expand to fill width
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {section.images.map((showcaseImage, index) => {
+                    const isLastImage = index === section.images.length - 1;
+                    const isHardtokillLastSection = project.id === 'hardtokill' && section.title === 'CURATED SITE PHOTOGRAPHY';
+                    
+                    return (
+                    <div key={index} className={`flex flex-col ${isLastImage && isHardtokillLastSection ? 'col-span-2' : ''}`}>
+                      <div 
+                        className="w-full rounded-xl overflow-hidden"
+                        style={{ 
+                          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
+                        }}
+                      >
+                        {showcaseImage.urlMobile && (
+                          <img 
+                            src={showcaseImage.urlMobile}
+                            alt={showcaseImage.caption}
+                            className="w-full lg:hidden h-auto"
+                          />
+                        )}
+                        <img 
+                          src={showcaseImage.url}
+                          alt={showcaseImage.caption}
+                          className={`w-full h-auto ${showcaseImage.urlMobile ? 'hidden lg:block' : ''}`}
+                        />
+                      </div>
+                      <p 
+                        className="mt-4 text-sm text-gray-600 whitespace-pre-line"
+                        style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                      >
+                        {showcaseImage.caption}
+                      </p>
+                    </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                // Centered flex layout with fixed heights
+                <div 
+                  className={`w-full ${hasGridBackground ? 'px-8 md:px-16 py-16 md:py-20 rounded-2xl' : 'py-8'}`}
+                  style={hasGridBackground ? {
+                    background: '#f8f9fa',
+                    backgroundImage: `
+                      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px',
+                    backgroundPosition: 'center center'
+                  } : {}}
+                >
+                  <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-center items-center md:items-start flex-wrap">
+                    {section.images.map((showcaseImage, index) => (
+                      <div key={index} className="flex flex-col items-center w-full md:w-auto">
+                        <div 
+                          className="w-full md:w-auto rounded-xl overflow-hidden"
+                          style={{ 
+                            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
+                          }}
+                        >
+                          {showcaseImage.urlMobile && (
+                            <img 
+                              src={showcaseImage.urlMobile}
+                              alt={showcaseImage.caption}
+                              className="w-full lg:hidden h-auto"
+                            />
+                          )}
+                          <img 
+                            src={showcaseImage.url}
+                            alt={showcaseImage.caption}
+                            className={`w-full lg:w-auto lg:h-80 h-auto ${showcaseImage.urlMobile ? 'hidden lg:block' : ''}`}
+                          />
+                        </div>
+                        <p 
+                          className="mt-4 text-sm text-gray-600 text-center whitespace-pre-line"
+                          style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                        >
+                          {showcaseImage.caption}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </section>
+          );
+        })}
+
 
         {/* Project Navigation */}
         <section className="px-4 py-16 md:py-24">

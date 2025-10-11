@@ -29,10 +29,18 @@ export default function WorkSection() {
               >
                 {/* Project Image */}
                 <div className="aspect-[16/9] md:aspect-[9/16] mb-3 rounded-2xl transition-all duration-150 overflow-hidden">
+                  {/* Show horizontal thumbnail on mobile, vertical on desktop */}
+                  {project.thumbnailHorizontal && (
+                    <img 
+                      src={project.thumbnailHorizontal} 
+                      alt={project.title}
+                      className="w-full h-full object-cover md:hidden"
+                    />
+                  )}
                   <img 
-                    src={project.coverImage} 
+                    src={project.thumbnail} 
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${project.thumbnailHorizontal ? 'hidden md:block' : ''}`}
                   />
                 </div>
                 
