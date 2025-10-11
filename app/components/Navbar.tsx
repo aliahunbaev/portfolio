@@ -75,6 +75,13 @@ export default function Navbar() {
                 WORK
               </Link>
               <Link
+                href="/writing"
+                className="text-lg font-light text-black uppercase tracking-widest"
+                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+              >
+                WRITING
+              </Link>
+              <Link
                 href="/about"
                 className="text-lg font-light text-black uppercase tracking-widest"
                 style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
@@ -118,34 +125,42 @@ export default function Navbar() {
               isMenuOpen ? 'opacity-100 flex' : 'opacity-0 hidden'
             }`}
           >
-            <div className="flex flex-col justify-between items-start flex-1 pr-8 py-4 pb-8">
+            <div className="flex flex-col justify-between items-center flex-1 px-8 py-4 pb-8">
               {/* Navigation Links - Centered vertically */}
-              <div className="flex flex-col items-start space-y-16 flex-1 justify-center">
+              <div className="flex flex-col items-center space-y-8 flex-1 justify-center">
                 <Link
                   href="/"
-                  className="text-5xl font-medium text-black tracking-tight hover:text-[#1e3a5f] transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+                  className="text-5xl font-light text-black uppercase tracking-widest hover:underline decoration-2 underline-offset-8 transition-all duration-200"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Work
+                  WORK
+                </Link>
+                <Link
+                  href="/writing"
+                  className="text-5xl font-light text-black uppercase tracking-widest hover:underline decoration-2 underline-offset-8 transition-all duration-200"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  WRITING
                 </Link>
                 <Link
                   href="/about"
-                  className="text-5xl font-medium text-black tracking-tight hover:text-[#1e3a5f] transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+                  className="text-5xl font-light text-black uppercase tracking-widest hover:underline decoration-2 underline-offset-8 transition-all duration-200"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  About
+                  ABOUT
                 </Link>
                 <a
                   href="https://cal.com/ahunbaev/intro"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-5xl font-medium text-black tracking-tight hover:text-[#1e3a5f] transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
+                  className="text-5xl font-light text-black uppercase tracking-widest hover:underline decoration-2 underline-offset-8 transition-all duration-200"
+                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Contact
+                  CONTACT
                 </a>
               </div>
               
