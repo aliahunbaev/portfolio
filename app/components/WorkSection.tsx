@@ -19,7 +19,7 @@ export default function WorkSection() {
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-6">
           {projects.map((project) => {
             return (
               <Link 
@@ -28,19 +28,12 @@ export default function WorkSection() {
                 className="group cursor-pointer"
               >
                 {/* Project Image */}
-                <div className="aspect-[16/9] md:aspect-[9/16] mb-3 rounded-2xl transition-all duration-150 overflow-hidden">
-                  {/* Show horizontal thumbnail on mobile, vertical on desktop */}
-                  {project.thumbnailHorizontal && (
-                    <img 
-                      src={project.thumbnailHorizontal} 
-                      alt={project.title}
-                      className="w-full h-full object-cover md:hidden"
-                    />
-                  )}
+                <div className="aspect-[16/9] mb-3 rounded-2xl transition-all duration-150 overflow-hidden">
+                  {/* Always show horizontal thumbnail */}
                   <img 
-                    src={project.thumbnail} 
+                    src={project.thumbnailHorizontal || project.thumbnail} 
                     alt={project.title}
-                    className={`w-full h-full object-cover ${project.thumbnailHorizontal ? 'hidden md:block' : ''}`}
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 

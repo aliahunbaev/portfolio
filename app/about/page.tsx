@@ -47,7 +47,7 @@ export default function About() {
             <div className="w-60 lg:w-[40%]">
               <div className="aspect-square w-full">
                 <img 
-                  src="https://picsum.photos/800/600?random=about" 
+                  src="/handsomefounder.jpg" 
                   alt="Ali Ahunbáev"
                   className="w-full h-full object-cover rounded-2xl"
                 />

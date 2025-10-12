@@ -125,50 +125,6 @@ export const projects: Project[] = [
     services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
     technologies: ['Shopify', 'Liquid', 'React'],
     websiteUrl: 'https://combat.com'
-  },
-  {
-    id: 'hawa-studio',
-    title: 'Hawa Studio',
-    subtitle: 'Creative Studio Website',
-    headerText: 'Thoughtful Design, Timeless Impact.',
-    description: 'An elegant portfolio website for a creative studio specializing in visual storytelling.',
-    introText: 'Hawa Studio needed a digital home that reflected their approach to creative work—thoughtful, refined, and deeply human. We designed a website that puts their projects at center stage while maintaining an elegant restraint that lets the work breathe. The result is a portfolio experience that feels both contemporary and timeless.',
-    thumbnail: 'https://picsum.photos/1200/800?random=3',
-    coverImage: 'https://picsum.photos/1200/800?random=3',
-    images: [
-      { url: 'https://picsum.photos/1200/900?random=31', size: 'full' },
-      { url: 'https://picsum.photos/600/800?random=32', size: 'half', caption: 'Typography system showcasing Freight Display' },
-      { url: 'https://picsum.photos/600/800?random=33', size: 'half' },
-      { url: 'https://picsum.photos/1200/800?random=34', size: 'full', caption: 'Project case study template' },
-      { url: 'https://picsum.photos/800/600?random=35', size: 'two-thirds' },
-      { url: 'https://picsum.photos/400/600?random=36', size: 'third' },
-    ],
-    year: '2024',
-    services: ['Web Design', 'Development', 'Content Strategy'],
-    technologies: ['Webflow', 'Custom CSS', 'GSAP'],
-    websiteUrl: 'https://hawastudio.com'
-  },
-  {
-    id: 'beau-flaneur',
-    title: 'Beau Flâneur',
-    subtitle: 'Fashion Brand Identity',
-    headerText: 'Wandering with Purpose.',
-    description: 'A sophisticated brand identity for a modern menswear label rooted in timeless elegance.',
-    introText: 'Beau Flâneur celebrates the art of wandering with purpose—the modern man who moves through the world with intention and style. We developed a complete brand identity that balances European sophistication with contemporary minimalism. From monogram design to packaging, every touchpoint reinforces the brand\'s commitment to craftsmanship and quiet luxury.',
-    thumbnail: 'https://picsum.photos/1200/800?random=4',
-    coverImage: 'https://picsum.photos/1200/800?random=4',
-    images: [
-      { url: 'https://picsum.photos/800/1000?random=41', size: 'half' },
-      { url: 'https://picsum.photos/800/1000?random=42', size: 'half', caption: 'Lookbook photography' },
-      { url: 'https://picsum.photos/1200/700?random=43', size: 'full' },
-      { url: 'https://picsum.photos/400/600?random=44', size: 'third', caption: 'Packaging design details' },
-      { url: 'https://picsum.photos/800/600?random=45', size: 'two-thirds' },
-      { url: 'https://picsum.photos/1200/800?random=46', size: 'full', caption: 'Brand guidelines spread' },
-    ],
-    year: '2024',
-    services: ['Brand Identity', 'Packaging Design', 'Art Direction'],
-    technologies: ['Figma', 'Adobe Suite', 'Webflow'],
-    websiteUrl: 'https://beauflaneur.com'
   }
 ];
 
