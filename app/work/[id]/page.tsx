@@ -395,40 +395,12 @@ export default function ProjectPage() {
 
         {/* Project Navigation */}
         <section className="px-4 py-16 md:py-24">
-          <div className="flex flex-row justify-between gap-8">
-            {/* Previous Project */}
-            {previousProject && (
-              <Link 
-                href={`/work/${previousProject.id}`}
-                className="flex-1 group flex items-center gap-2"
-              >
-                <svg 
-                  width="28" 
-                  height="28" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="black" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                  className="flex-shrink-0"
-                >
-                  <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-                <h3 
-                  className="text-xl md:text-2xl text-black"
-                  style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
-                >
-                  {previousProject.title}
-                </h3>
-              </Link>
-            )}
-
+          <div className="flex flex-row justify-end">
             {/* Next Project */}
             {nextProject && (
               <Link 
                 href={`/work/${nextProject.id}`}
-                className="flex-1 group flex items-center justify-end gap-2 text-right"
+                className="group flex items-center gap-2"
               >
                 <h3 
                   className="text-xl md:text-2xl text-black"
