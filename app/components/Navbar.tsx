@@ -75,13 +75,6 @@ export default function Navbar() {
                 WORK
               </Link>
               <Link
-                href="/writing"
-                className="text-lg font-light text-black uppercase tracking-widest"
-                style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-              >
-                WRITING
-              </Link>
-              <Link
                 href="/about"
                 className="text-lg font-light text-black uppercase tracking-widest"
                 style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
@@ -135,14 +128,6 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   WORK
-                </Link>
-                <Link
-                  href="/writing"
-                  className="text-5xl font-light text-black uppercase tracking-widest"
-                  style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  WRITING
                 </Link>
                 <Link
                   href="/about"
