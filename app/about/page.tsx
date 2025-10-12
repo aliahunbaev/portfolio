@@ -47,7 +47,7 @@ export default function About() {
             <div className="w-60 lg:w-[40%]">
               <div className="aspect-square w-full">
                 <img 
-                  src="/handsomefounder.jpg" 
+                  src="/handsomefounder.webp" 
                   alt="Ali Ahunbáev"
                   className="w-full h-full object-cover rounded-2xl"
                 />
