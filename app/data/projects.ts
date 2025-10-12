@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     id: 'hardtokill',
     title: 'Hardtokill',
-    subtitle: 'Brand Identity & Web Design',
+    subtitle: 'E-commerce & Media Platform',
     headerText: 'A Curated Mood of Triumph.',
     description: 'A bold fitness brand identity system designed for champions who refuse to quit.',
     introText: 'Hardtokill is a media company built around triumph and resilience. Over four years, they grew to 340k followers by curating powerful imagery, stories, and interviews with people who embody their ethos from UFC fighters to artists pushing boundaries. As they transitioned into a full media business, they needed infrastructure to support product drops, editorial content, and community building. I built them a Shopify-integrated website with a dynamic CMS for managing both media and products, email capture for upcoming releases, and a clean design that preserves their aesthetic.',
@@ -78,7 +78,7 @@ export const projects: Project[] = [
       }
     ],
     year: '2024',
-    services: ['Brand Identity', 'Web Design', 'Art Direction'],
+    services: ['Web Design', 'Art Direction'],
     technologies: ['Next.js', 'Framer Motion', 'Figma'],
     websiteUrl: 'https://hardtokillclo.com',
     instagramUrl: 'https://instagram.com/hardtokill'
@@ -86,7 +86,7 @@ export const projects: Project[] = [
   {
     id: 'combat',
     title: 'Combat',
-    subtitle: 'E-commerce Platform',
+    subtitle: 'Brand Identity & Web Design',
     headerText: 'Precision Meets Performance.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
     introText: 'Combat is a creative community and clothing brand built around the idea that true beauty comes through struggle. We grew the brand from an Instagram page to a multi-faceted platform releasing clothes, publishing a magazine, and hosting events for builders and artists. I built the digital infrastructure to support this expansion: a product system with editorial articles explaining each release, a curated library with sorting functionality for visual inspiration, and email capture to transition our Instagram audience into a community ready for events and future tools.',
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       }
     ],
     year: '2024',
-    services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
+    services: ['E-commerce Design', 'Web Development', 'Social Media Design'],
     technologies: ['Shopify', 'Liquid', 'React'],
     websiteUrl: 'https://combatny.com',
     instagramUrl: 'https://instagram.com/combat.ny'

@@ -174,7 +174,7 @@ export default function ProjectPage() {
               </div>
 
                 {/* Text Content and Metadata */}
-                <div className="w-full lg:w-[30%] flex flex-col gap-4">
+                <div className="w-full lg:w-[35%] flex flex-col gap-4">
                   {/* Introduction Text in White Div */}
                   <div className="bg-white rounded-2xl p-4 md:p-3 flex" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}>
                     <p 
