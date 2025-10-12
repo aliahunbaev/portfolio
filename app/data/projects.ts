@@ -87,7 +87,7 @@ export const projects: Project[] = [
     id: 'combat',
     title: 'Combat',
     subtitle: 'Brand Identity & Web Design',
-    headerText: 'Precision Meets Performance.',
+    headerText: 'For Creative Soldiers.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
     introText: 'Combat is a creative community and clothing brand built around the idea that true beauty comes through struggle. We grew the brand from an Instagram page to a multi-faceted platform releasing clothes, publishing a magazine, and hosting events for builders and artists. I built the digital infrastructure to support this expansion: a product system with editorial articles explaining each release, a curated library with sorting functionality for visual inspiration, and email capture to transition our Instagram audience into a community ready for events and future tools.',
     thumbnail: '/projects/combat/combatvertical.png.webp',
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       }
     ],
     year: '2024',
-    services: ['E-commerce Design', 'Web Development', 'Social Media Design'],
+    services: ['E-commerce Design', 'Web Development', 'Social Media Strategy'],
     technologies: ['Shopify', 'Liquid', 'React'],
     websiteUrl: 'https://combatny.com',
     instagramUrl: 'https://instagram.com/combat.ny'
