@@ -34,6 +34,7 @@ export interface Project {
   services: string[];
   technologies: string[];
   websiteUrl?: string;
+  instagramUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -43,7 +44,7 @@ export const projects: Project[] = [
     subtitle: 'Brand Identity & Web Design',
     headerText: 'A Curated Mood of Triumph.',
     description: 'A bold fitness brand identity system designed for champions who refuse to quit.',
-    introText: 'Hardtokill is a premium fitness brand that embodies resilience and unstoppable determination. We crafted a complete brand identity that captures the raw energy and dedication of athletes who push beyond their limits. The visual system combines brutal minimalism with powerful typography to create a presence that commands attention in the competitive fitness space.',
+    introText: 'Hardtokill is a media company built around triumph and resilience. Over four years, they grew to 340k followers by curating powerful imagery, stories, and interviews with people who embody their ethos from UFC fighters to artists pushing boundaries. As they transitioned into a full media business, they needed infrastructure to support product drops, editorial content, and community building. I built them a Shopify-integrated website with a dynamic CMS for managing both media and products, email capture for upcoming releases, and a clean design that preserves their aesthetic.',
     thumbnail: '/projects/hardtokill/verticalhtk.png.webp',
     thumbnailHorizontal: '/projects/hardtokill/horizhtk.png.webp',
     coverImage: '/projects/hardtokill/mainhtk.png.webp',
@@ -79,7 +80,8 @@ export const projects: Project[] = [
     year: '2024',
     services: ['Brand Identity', 'Web Design', 'Art Direction'],
     technologies: ['Next.js', 'Framer Motion', 'Figma'],
-    websiteUrl: 'https://hardtokillclo.com'
+    websiteUrl: 'https://hardtokillclo.com',
+    instagramUrl: 'https://instagram.com/hardtokill'
   },
   {
     id: 'combat',
@@ -87,7 +89,7 @@ export const projects: Project[] = [
     subtitle: 'E-commerce Platform',
     headerText: 'Precision Meets Performance.',
     description: 'A sophisticated e-commerce platform for premium combat sports equipment.',
-    introText: 'Combat represents the intersection of brutal sport and refined design. This e-commerce platform was built to showcase premium martial arts equipment with the respect and attention it deserves. Every detail from product photography to checkout flow was designed to feel as precise and intentional as the training these products enable.',
+    introText: 'Combat is a creative community and clothing brand built around the idea that true beauty comes through struggle. We grew the brand from an Instagram page to a multi-faceted platform releasing clothes, publishing a magazine, and hosting events for builders and artists. I built the digital infrastructure to support this expansion: a product system with editorial articles explaining each release, a curated library with sorting functionality for visual inspiration, and email capture to transition our Instagram audience into a community ready for events and future tools.',
     thumbnail: '/projects/combat/combatvertical.png.webp',
     thumbnailHorizontal: '/projects/combat/combathorizontal.png.webp',
     coverImage: '/projects/combat/combathero.png.webp',
@@ -96,21 +98,21 @@ export const projects: Project[] = [
     ],
     showcaseSections: [
       {
-        title: 'CONTENT STRATEGY',
+        title: 'MAGAZINE STRUCTURE',
         images: [
-          { url: '/projects/combat/combatjournal.png.webp', urlMobile: '/projects/combat/combatjournal2.png.webp', caption: 'Training Journal' },
-          { url: '/projects/combat/combatarticles.png.webp', caption: 'Article System' },
+          { url: '/projects/combat/combatjournal.png.webp', urlMobile: '/projects/combat/combatjournal2.png.webp', caption: 'Print magazine digitized and converted to blog format, split into chapters' },
+          { url: '/projects/combat/combatarticles.png.webp', caption: 'Dynamic blog content' },
         ]
       },
       {
         title: 'USER EXPERIENCE',
         images: [
-          { url: '/projects/combat/library.gif', caption: 'Interactive Library' },
-          { url: '/projects/combat/combatemail.png.webp', caption: 'Email Marketing' },
+          { url: '/projects/combat/library.gif', caption: 'Interactive library with Next.js sorting' },
+          { url: '/projects/combat/combatemail.png.webp', caption: 'Mailchimp email integration' },
         ]
       },
       {
-        title: 'SOCIAL MEDIA ASSETS',
+        title: 'SOCIAL MEDIA DESIGN',
         hasGridBackground: false,
         useGridLayout: true,
         images: [
@@ -124,7 +126,8 @@ export const projects: Project[] = [
     year: '2024',
     services: ['E-commerce Design', 'Web Development', 'Photography Direction'],
     technologies: ['Shopify', 'Liquid', 'React'],
-    websiteUrl: 'https://combat.com'
+    websiteUrl: 'https://combatny.com',
+    instagramUrl: 'https://instagram.com/combat.ny'
   }
 ];
 

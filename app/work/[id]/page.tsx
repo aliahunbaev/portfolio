@@ -138,15 +138,15 @@ export default function ProjectPage() {
             className={`scroll-fade-in ${titleVisible ? 'visible' : ''}`}
           >
             {/* Project Title and Subheader */}
-            <div>
+            <div className="flex flex-col md:flex-row md:gap-2 gap-0">
               <h1 
-                className="text-3xl md:text-4xl lg:text-5xl text-black font-medium inline tracking-tight"
+                className="text-3xl md:text-4xl lg:text-5xl text-black font-medium tracking-tight"
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
                 {project.title}.{' '}
               </h1>
               <span 
-                className="text-3xl md:text-4xl lg:text-5xl text-gray-400 font-medium inline tracking-tight"
+                className="text-3xl md:text-4xl lg:text-5xl text-gray-400 font-medium tracking-tight"
                 style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}
               >
                 {project.headerText}
@@ -178,7 +178,7 @@ export default function ProjectPage() {
                   {/* Introduction Text in White Div */}
                   <div className="bg-white rounded-2xl p-4 md:p-3 flex" style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}>
                     <p 
-                      className="text-sm text-black leading-relaxed tracking-wide"
+                      className="text-base text-gray-700 leading-normal"
                       style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
                     >
                       {project.introText}
@@ -226,6 +226,20 @@ export default function ProjectPage() {
                       >
                         {project.websiteUrl.replace(/^https?:\/\//, '')}
                       </a>
+                      {project.instagramUrl && (
+                        <>
+                          <br />
+                          <a 
+                            href={project.instagramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-black leading-relaxed underline hover:no-underline inline-block mt-2"
+                            style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
+                          >
+                            @{project.instagramUrl.replace('https://instagram.com/', '')}
+                          </a>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>

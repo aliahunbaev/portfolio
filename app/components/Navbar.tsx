@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo and subtext */}
             <div className="flex flex-col">
-              <Link href="/" className="text-xl tracking-tight md:text-2xl font-semibold text-black" style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}>
+              <Link href="/" className="text-xl tracking-tight md:text-2xl font-semibold text-black hover:italic" style={{ fontFamily: 'var(--font-lora), Georgia, serif' }}>
                 Ahunbáev
               </Link>
               {/* <p className="text-xs tracking-wider md:text-sm text-gray-500 font-sans">

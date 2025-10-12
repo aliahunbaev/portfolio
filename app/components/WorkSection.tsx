@@ -14,7 +14,7 @@ export default function WorkSection() {
             className="text-lg md:text-xl text-gray-400 uppercase tracking-widest"
             style={{ fontFamily: 'var(--font-chivo), Arial, sans-serif', letterSpacing: '0.05em' }}
           >
-            RECENT WORKS
+            SELECTED WORKS
           </h2>
         </div>
 
@@ -39,7 +39,7 @@ export default function WorkSection() {
                 
                 {/* Project Title */}
                 <h3 
-                  className="text-xl text-black tracking mb-1"
+                  className="text-xl text-black tracking mb-1 group-hover:italic"
                   style={{ 
                     fontFamily: 'var(--font-lora), Georgia, serif'
                   }}
