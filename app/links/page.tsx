@@ -13,21 +13,21 @@ const links = [
   {
     title: 'Book a Call',
     description: 'Start your project',
-    href: '/about',
+    href: 'https://cal.com/ahunbaev/intro',
     image: '/handsomefounder.webp', // Replace with call/meeting image
     gradient: 'from-black/70 to-transparent',
   },
   {
     title: 'YouTube Channel',
     description: 'Design, business, & life in NYC',
-    href: 'YOUR_YOUTUBE_CHANNEL_URL',
+    href: 'https://youtube.com/@ahunbaev',
     image: '/link1.jpg',
     gradient: 'from-red-500/80 to-transparent',
   },
   {
     title: 'Playfighter Newsletter',
     description: 'Letters on building a life of play',
-    href: 'YOUR_NEWSLETTER_URL',
+    href: 'https://playfighter.substack.com',
     image: '/link5.png',
     gradient: 'from-blue-500/80 to-transparent',
   },
