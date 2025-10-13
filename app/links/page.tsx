@@ -59,7 +59,7 @@ export default function LinksPage() {
                 Ali Ahunbáev
               </h1>
               <h2 
-                className="text-gray-400 tracking-tight leading-tight"
+                className="text-gray-400 tracking-tight leading-tight italic"
                 style={{ 
                   fontFamily: 'var(--font-lora), Georgia, serif',
                   fontSize: 'clamp(1.5rem, 6vw, 2.5rem)'
