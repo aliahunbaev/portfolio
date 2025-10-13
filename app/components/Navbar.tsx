@@ -152,7 +152,7 @@ export default function Navbar() {
               {/* Social Icons and Copyright - Bottom aligned */}
               <div className="flex flex-col items-center space-y-6">
                 {/* Social Icons - Spread out */}
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center gap-8 justify-center">
                   {/* Instagram */}
                   <a
                     href="https://instagram.com/alizahunbaev"
@@ -210,10 +210,10 @@ export default function Navbar() {
 
                 {/* Copyright Text */}
                 <p 
-                  className="text-xs text-gray-500 text-center"
+                  className="text-xs text-gray-400 text-center"
                   style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}
                 >
-                  © 2025 Ali Ahunbáev. All Rights Reserved. New York, NY.
+                  © 2025 Ali Ahunbáev
                 </p>
               </div>
             </div>
