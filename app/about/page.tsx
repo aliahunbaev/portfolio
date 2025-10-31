@@ -56,7 +56,7 @@ export default function About() {
                   className={`md:scroll-fade-in ${textVisible ? 'visible' : ''} max-w-xl lg:max-w-2xl`}
                 >
                   <p className="text-base text-gray-700 leading-normal mb-4" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
-                    Hi, I&apos;m Ali. It&apos;s nice to meet you!
+                    What&apos;s up, I&apos;m Ali.
                   </p>
                   
                   <p className="text-base text-gray-700 leading-normal mb-4" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
