@@ -201,6 +201,21 @@ export default function Home() {
                   );
                 })}
               </div>
+
+              {/* Footer */}
+              <div className="pt-12 pb-6 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-mono">
+                  <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
+                  <a
+                    href="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tracking-widest uppercase hover:text-gray-600 transition-colors"
+                  >
+                    Stay Hungry
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
