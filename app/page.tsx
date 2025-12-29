@@ -89,7 +89,7 @@ const aboutSections = [
       "I see myself leading Combat. I always had this idea that the pinnacle of what I want to do in this world would look something like a school.",
       "But a good one. You go and learn how to box, paint, give speeches, to think for yourself, to be okay with pissing people off, to find a way to actually create wealth, to flirt, to cultivate both peace & progress.",
       "Just a Human Potential Extracting Machine. The closest equivalents are startup incubators (Y Combinator), groups like buildspace or Founders Inc., or a studio like Teenage Engineering or Aime Leon Dore.",
-      "In any case, I'm fly as fuck, surrounded by great people. I see myself as a good boxer & nice on the sax. I also see myself with an absolute baddie."
+      "In any case, I'm fly as fuck, surrounded by great people. I see myself as a good boxer & nice on the sax. I also see myself with an absolute baddie. Kind curious creative baddie."
     ]
   }
 ];
@@ -205,7 +205,7 @@ export default function Home() {
               </div>
 
               {/* Expandable About Sections */}
-              <div className="space-y-3 py-8 lg:py-0">
+              <div className="space-y-3 pb-36 lg:py-0">
                 {aboutSections.map((section) => {
                   const isExpanded = expandedSections.includes(section.id);
                   return (
