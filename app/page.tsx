@@ -12,7 +12,7 @@ const links = [
   {
     title: 'YouTube',
     description: 'Design, business, & life in NYC',
-    href: 'https://youtube.com/@ahunbaev',
+    href: 'https://youtube.com/@playfighter',
     image: '/link1.jpg',
   },
   {
