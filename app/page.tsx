@@ -28,36 +28,68 @@ const aboutSections = [
     id: 'how-i-started',
     title: 'How I Started',
     content: [
-      "I got rejected from every school I applied to out of high school. Princeton, Stanford, all of them. So I went to community college.",
-      "That rejection pushed me into monk mode. I woke up at 3-4am every day, trained hard, studied harder, and lived with militant discipline. It worked. I got into NYU.",
-      "But once I got to NYU, something shifted. New city, new people, new chaos. The discipline that got me there started to slip. I drifted for a semester.",
-      "Now I'm rebuilding. Getting back to the training, the focus, the early mornings. But this time it's not about proving myself to schools. It's about building Combat."
+      "I've been drawing my whole life, and I got this identity as an \"artist\" reinforced by everyone around me.",
+      "It was one of the primary ways I was known. And how I knew myself.",
+      "I'm so lucky this label got thrown on me. It's so much harder to make stuff when you think you're \"just not creative.\"",
+      "My earliest career interests were being a ninja, Wild Kratt brother, pro-fisherman, paleontologist, or a Lego set designer.",
+      "After I turned 9, I was mostly interested in being a painter or writer.",
+      "Math (and school in general) has always been easy for me as well. My mom wanted me to be a doctor and my father told me to study computer science.",
+      "I said, \"Fuck no, they're all nerds, I'm never doing that shit.\"",
+      "In high school, I found so much good shit. Tarantino, Wes Anderson movies, Wu-Tang, Miles Davis, actually endless inspiration.",
+      "My desire for a creative life grew. So did my ambition.",
+      "I didn't know what to do with that though. I spent a long time thinking.",
+      "One morning in 11th grade, I was sitting in my Calculus BC class talking to the girls next to me. My teacher Mr. Moon walked in, and he got really interested in what I said (Pretty sure I asked something like \"when's the last time you cried\" or \"why do you get out of bed in the morning\").",
+      "He paused and asked me, \"what are you doing after high school?\"",
+      "I said I'm studying architecture.",
+      "He put his hands on his hips and looked at the ceiling and spoke in a mathematical tone, as if solving an equation \"Right, because smart artists go into architecture.\"",
+      "Then he looked at me and said plainly, \"You should be a programmer.\"",
+      "I told him I don't want a boring life.",
+      "He told me that the tech world is full of nerds who are good at programming but have no vision. But if you're smart enough to use the tools, and have the taste of an artist, you have so much room to do amazing things. And make more money.",
+      "I shot the idea down again, but the seed was planted.",
+      "This persuasive genius played to my ego and my desires so well.",
+      "In the following year, I read the biography of Steve Jobs, read the essays of Paul Graham, watched The Social Network, and fell down the rabbit hole of startups and entrepreneurship.",
+      "And here I am, a CS major, writing the code for this website."
     ]
   },
   {
-    id: 'what-im-building',
-    title: "What I'm Building",
+    id: 'my-goal',
+    title: "My Goal",
     content: [
-      "Combat is what I spend most of my time on. It's a community and studio for creative people—the ones who want to build things, make art, train hard, live intentionally. The warrior-artist duality. Discipline and beauty together.",
-      "I'm making software tools (fitness tracking, life planning, inspiration curation), physical products (clothing, journals, gear), and media (magazine, videos, gatherings). All under one philosophy: fight for your creative life."
+      "I've enjoyed <i>a lot</i> of books, movies, music, documentaries, magazines, biographies, podcasts throughout my childhood.",
+      "I'm so grateful for the art I've come across, and the people who made them. It's made me believe that",
+      "1. life is beautiful<br />2. i can do great things",
+      "I love art that makes you feel strong and excited to live.",
+      "I want to make stuff like that. I have this huge list of people who've enriched my life. Most of them never knew me.",
+      "I'd like to be on someone else's list.",
+      "My goal is to make enough money to never think about it again,",
+      "bring joy and fulfillment to the lives of others,",
+      "and have a lot of fun.",
+      "In short: build a cool company with cool people."
     ]
   },
   {
-    id: '10-year-vision',
-    title: '10-Year Vision',
+    id: 'motivations',
+    title: "Motivations",
     content: [
-      "The vision is simple. By 30, I want Combat to be a real company—store, cafe, community space, products that matter. I want generational wealth, cultural impact, creative freedom.",
-      "I want to be like Pharrell or Virgil—someone who built their own platform and used it to make beautiful things forever.",
-      "I know I'll probably need a job after graduation—somewhere like Figma or Notion—to fund Combat while it grows. That's fine. The job is just the engine. Combat is the work.",
-      "I'm 19. I have 11 years until 30. That's 3,650 days to build this. I'm going all in."
+      "honestly I do a lot of what I do because I think it's cool.",
+      "i remember one day i was thinking about how, when you're in a group, if someone sings or raps or tells jokes or does <i>something</i>, it makes the experience so much more enjoyable. for everyone involved.",
+      "as opposed to the people who just kinda sit back, because they don't have the skill or feel too shy.",
+      "i think of birds singing. they just do it naturally, and it makes things nicer.",
+      "so i think it's cool to have a business, make art, build software, create wealth, get jacked, play the saxophone, freestyle, write a book, etc.",
+      "i'm lucky enough that most of the things I want to do, I actually <i>can</i>. I'm healthy enough, my living conditions are secure, I have access to the internet, and I stumbled into a good mindset before turning 18.",
+      "It just takes some courage and a lot of practice.",
+      "I'm extremely afraid of wasting life.",
+      "We're given this opportunity, why not use all of it?"
     ]
   },
   {
-    id: 'who-im-looking-for',
-    title: "Who I'm Looking For",
+    id: 'future-vision',
+    title: "Where I See Myself in 3,650 Days",
     content: [
-      "If you're building something, or you care about this kind of work, reach out. My friends tend to be creative, ambitious, and a little obsessed.",
-      "If that's you, let's talk."
+      "I see myself leading Combat. I always had this idea that the pinnacle of what I want to do in this world would look something like a school.",
+      "But a good one. You go and learn how to box, paint, give speeches, to think for yourself, to be okay with pissing people off, to find a way to actually create wealth, to flirt, to cultivate both peace & progress.",
+      "Just a Human Potential Extracting Machine. The closest equivalents are startup incubators (Y Combinator), groups like buildspace or Founders Inc., or a studio like Teenage Engineering or Aime Leon Dore.",
+      "In any case, I'm fly as fuck, surrounded by great people. I see myself as a good boxer & nice on the sax. I also see myself with an absolute baddie."
     ]
   }
 ];
