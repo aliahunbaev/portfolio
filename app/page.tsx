@@ -107,7 +107,7 @@ export default function Home() {
           </div>
 
           {/* Main Content */}
-          <div className="px-4 pt-24 pb-6 lg:px-6 lg:pt-32 lg:min-h-screen lg:flex lg:flex-col">
+          <div className="px-4 pt-24 lg:px-6 lg:pt-32 lg:min-h-screen lg:flex lg:flex-col">
             <div className="lg:max-w-xl mx-auto lg:mx-0 lg:flex-1">
               {/* Profile Photo */}
               <div className="mb-6">
@@ -206,7 +206,7 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <div className="lg:max-w-xl mx-auto lg:mx-0 py-4 border-t border-gray-200">
+            <div className="px-4 lg:px-6 py-4 border-t border-gray-200">
               <div className="flex items-center justify-between text-xs text-gray-400 font-mono">
                 <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
                 <a
