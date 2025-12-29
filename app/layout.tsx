@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lora, Chivo } from "next/font/google";
+import { Geist, Geist_Mono, Chivo } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import PageTransition from "./components/PageTransition";
 
@@ -13,11 +14,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+const centurySchoolbook = localFont({
+  src: [
+    {
+      path: "../public/fonts/CenturySchoolbookBT.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CenturySchoolbookItalicBT.ttf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/CenturySchoolbookBoldBT.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CenturySchoolbookBoldItalicBT.ttf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-century-schoolbook",
 });
 
 const chivo = Chivo({
@@ -38,7 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${chivo.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${centurySchoolbook.variable} ${chivo.variable} antialiased`}
       >
         <PageTransition>
           {children}

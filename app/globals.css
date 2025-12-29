@@ -27,6 +27,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Minimal scrollbar styling */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d1d5db;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: none;
+  scrollbar-color: #e5e7eb transparent;
+}
+
 /* Page fade-in animation */
 @keyframes fadeIn {
   from {
