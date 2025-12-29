@@ -173,7 +173,7 @@ export default function Home() {
               </div>
 
               {/* Expandable About Sections */}
-              <div className="space-y-3">
+              <div className="space-y-3 py-8 lg:py-0">
                 {aboutSections.map((section) => {
                   const isExpanded = expandedSections.includes(section.id);
                   return (
@@ -206,7 +206,7 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <div className="-mx-4 lg:-mx-6 px-4 lg:px-6 py-4 border-t border-gray-200">
+            <div className="-mx-4 mt-16 lg:-mx-6 px-4 lg:px-6 py-4 border-t border-gray-200">
               <div className="flex items-center justify-between text-xs text-gray-400 font-mono">
                 <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
                 <a
