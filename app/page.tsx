@@ -226,7 +226,7 @@ export default function Home() {
                         <div className="px-4 pb-4">
                           <div className="space-y-3 text-gray-600 text-sm font-mono leading-relaxed pt-2">
                             {section.content.map((paragraph, idx) => (
-                              <p key={idx}>{paragraph}</p>
+                              <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
                             ))}
                           </div>
                         </div>
