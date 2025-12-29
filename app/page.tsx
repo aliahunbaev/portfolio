@@ -112,7 +112,7 @@ export default function Home() {
               {/* Profile Photo */}
               <div className="mb-6">
                 <img
-                  src="/color.webp"
+                  src="/photo.webp"
                   alt="Ali Ahunbaev"
                   draggable="false"
                   className="w-full max-w-sm rounded-3xl object-cover select-none"
