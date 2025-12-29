@@ -139,8 +139,8 @@ export default function Home() {
           </div>
 
           {/* Main Content */}
-          <div className="px-4 pt-24 lg:px-6 lg:pt-32 lg:min-h-screen lg:flex lg:flex-col">
-            <div className="lg:max-w-xl mx-auto lg:mx-0 lg:flex-1">
+          <div className="px-4 pt-24 lg:px-6 lg:pt-20 lg:min-h-screen lg:flex lg:flex-col">
+            <div className="mx-auto lg:mx-0 lg:flex-1">
               {/* Profile Photo */}
               <div className="mb-6">
                 <img
