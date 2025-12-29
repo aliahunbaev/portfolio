@@ -206,7 +206,7 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <div className="px-4 lg:px-6 py-4 border-t border-gray-200">
+            <div className="-mx-4 lg:-mx-6 px-4 lg:px-6 py-4 border-t border-gray-200">
               <div className="flex items-center justify-between text-xs text-gray-400 font-mono">
                 <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
                 <a
