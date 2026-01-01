@@ -125,12 +125,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      <main className="lg:grid lg:grid-cols-2 lg:min-h-screen">
-        {/* Left Column - Profile & Info */}
-        <div className="relative min-h-screen border-r border-gray-200 lg:overflow-y-auto lg:max-h-screen">
-          {/* Location & Time - Top Left */}
-          <div className="absolute top-0 left-0 px-4 py-6 lg:px-6 lg:py-6 z-10">
-            <div className="flex items-center gap-2 text-gray-400 font-mono text-xs tracking-widest uppercase">
+      <main className="min-h-screen">
+        {/* Single Container */}
+        <div className="relative min-h-screen">
+          {/* Location & Time - Top */}
+          <div className="px-4 py-6 lg:px-6 lg:py-6">
+            <div className="max-w-2xl mx-auto flex items-center gap-2 text-gray-400 text-xs tracking-widest uppercase" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
               <p>Brooklyn, NY</p>
               <span>•</span>
               <p>{currentTime}</p>
@@ -139,30 +139,30 @@ export default function Home() {
           </div>
 
           {/* Main Content */}
-          <div className="px-4 pt-24 lg:px-6 lg:pt-20 lg:min-h-screen lg:flex lg:flex-col">
-            <div className="mx-auto lg:mx-0 lg:flex-1">
+          <div className="px-4 pb-12 lg:px-6">
+            <div className="max-w-2xl mx-auto">
               {/* Profile Photo */}
               <div className="mb-6">
                 <img
                   src="/photo.webp"
                   alt="Ali Ahunbaev"
                   draggable="false"
-                  className="w-full max-w-sm rounded-3xl object-cover select-none"
+                  className="max-w-xs md:max-w-sm rounded-3xl object-cover select-none"
                   style={{ boxShadow: '0 0 20px rgba(0, 0, 0, 0.06)' }}
                 />
               </div>
 
               {/* Name & Subtitle */}
-              <div className="mb-12">
+              <div className="mb-8">
                 <div className="select-none mb-4">
                   <h1
-                    className="text-3xl md:text-4xl text-gray-900 tracking-tight leading-none mb-1"
+                    className="text-2xl md:text-2xl text-gray-900 tracking-tight leading-none mb-1"
                     style={{ fontFamily: 'var(--font-century-schoolbook), Georgia, serif' }}
                   >
                     Ali Ahunbáev
                   </h1>
                   <h2
-                    className="text-3xl md:text-4xl text-blue-400 tracking-tight italic leading-none"
+                    className="text-2xl md:text-2xl text-blue-400 tracking-tight leading-none"
                     style={{ fontFamily: 'var(--font-century-schoolbook), Georgia, serif' }}
                   >
                     Designer & Developer
@@ -170,8 +170,40 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Mobile: Link Cards */}
-              <div className="lg:hidden space-y-4 mb-12 py-12 -mx-4 px-4 lg:-mx-12 lg:px-12 border-t border-b border-gray-200">
+              {/* Intro Section */}
+              <div className="mb-12 space-y-4 text-gray-700 text-sm tracking-wide leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
+                <p>What's up, I'm Ali.</p>
+                <p>The first time I remember "being an artist" was drawing a Crayola portrait of my mother. I was around 3 years old. She liked it.</p>
+                <p>I'm 19 now, and still think of myself that way.</p>
+                <p>I'm currently studying Computer Science at NYU. It's been my dream to move to New York since I was 15. Couldn't be happier (or broker).</p>
+                <p>I spend most of my time working to create beautiful things. I find this pursuit difficult, fulfilling, and wildly fun.</p>
+                <p>The rest of my attention is divided between the gym, shawarma, books, movies, and women.</p>
+              </div>
+
+              {/* What I'm Working On */}
+              <div className="mb-16 pb-12 -mx-4 px-4 lg:-mx-6 lg:px-6 border-b border-gray-200">
+                <h3 className="text-sm uppercase text-gray-600 tracking-wider mb-6" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>What I'm Working On</h3>
+                <div className="space-y-4 text-gray-700 text-sm tracking-wide leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
+                  <p>
+                    <a href="https://instagram.com/combatcreatif" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">COMBAT®</a> – design studio. Visual identity & digital experiences for creative brands.
+                  </p>
+                  <p>
+                    <span className="text-blue-400">Marble</span> – building software to track nutrition & training. Sculpt your body like marble.
+                  </p>
+                  <p>
+                    <span className="text-blue-400">Boxing</span> – I gotta do justice to my first name.
+                  </p>
+                  <p>
+                    <a href="https://youtube.com/@playfighter" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">YouTube</a> – making videos about design, business, and life in NYC.
+                  </p>
+                  <p>
+                    <a href="https://playfighter.substack.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">Playfighter</a> – writing letters about design, building, and life in NYC every week.
+                  </p>
+                </div>
+              </div>
+
+              {/* Link Cards */}
+              <div className="space-y-4 mb-16 pb-12 -mx-4 px-4 lg:-mx-6 lg:px-6 border-b border-gray-200">
                 {links.map((link) => (
                   <a
                     key={link.href}
@@ -180,7 +212,7 @@ export default function Home() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <div className="relative aspect-[2/1] rounded-3xl overflow-hidden transition-all duration-200">
+                    <div className="relative aspect-[3/1] rounded-3xl overflow-hidden transition-all duration-200">
                       <img
                         src={link.image}
                         alt={link.title}
@@ -195,7 +227,7 @@ export default function Home() {
                         >
                           {link.title}
                         </h2>
-                        <p className="text-xs text-white/90 uppercase font-mono tracking-widest">
+                        <p className="text-xs text-white/90 uppercase tracking-widest" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
                           {link.description}
                         </p>
                       </div>
@@ -205,7 +237,7 @@ export default function Home() {
               </div>
 
               {/* Expandable About Sections */}
-              <div className="space-y-3 pb-36 lg:py-0">
+              <div className="space-y-3 mb-16">
                 {aboutSections.map((section) => {
                   const isExpanded = expandedSections.includes(section.id);
                   return (
@@ -214,17 +246,17 @@ export default function Home() {
                         onClick={() => toggleSection(section.id)}
                         className="w-full px-4 py-3.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer"
                       >
-                        <h3 className="text-sm uppercase text-gray-600 text-left font-mono tracking-wider">
+                        <h3 className="text-sm uppercase text-gray-600 text-left tracking-wider" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
                           {section.title}
                         </h3>
-                        <span className="text-gray-400 text-base flex-shrink-0 ml-4 font-mono">
+                        <span className="text-gray-400 text-base flex-shrink-0 ml-4" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
                           {isExpanded ? '−' : '+'}
                         </span>
                       </button>
 
                       {isExpanded && (
                         <div className="px-4 pb-4">
-                          <div className="space-y-3 text-gray-600 text-sm font-mono leading-relaxed pt-2">
+                          <div className="space-y-3 text-gray-600 text-sm tracking-wide  leading-relaxed pt-2" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
                             {section.content.map((paragraph, idx) => (
                               <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
                             ))}
@@ -235,63 +267,30 @@ export default function Home() {
                   );
                 })}
               </div>
-            </div>
 
-            {/* Footer */}
-            <div className="-mx-4 mt-16 lg:-mx-6 px-4 lg:px-6 pt-4 pb-12 lg:pb-4 border-t border-gray-200">
-              <div className="flex items-center justify-between text-xs text-gray-400 font-mono">
-                <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
-                <a
-                  href="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="tracking-widest uppercase hover:text-gray-600 transition-colors"
-                >
-                  Stay Hungry
-                </a>
+              {/* Reach Out Section */}
+              <div className="mt-12 pt-12 mb-12 -mx-4 px-4 lg:-mx-6 lg:px-6 border-t border-gray-200">
+                <div className="space-y-4 text-gray-700 text-sm tracking-wide leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
+                  <p>My friends tend to be creative, curious, excited people.</p>
+                  <p>If you want to talk about what you're building or enjoy anything I share, please <a href="mailto:alizahunbaev@gmail.com" className="text-blue-400 underline underline-offset-4">reach out</a>. I always love a good conversation.</p>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="pt-4 pb-12 -mx-4 px-4 lg:-mx-6 lg:px-6 border-t border-gray-200">
+                <div className="flex items-center justify-between text-xs text-gray-400" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
+                  <p>© {new Date().getFullYear()} Ali Ahunbáev</p>
+                  <a
+                    href="https://www.youtube.com/watch?v=UF8uR6Z6KLc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tracking-widest uppercase hover:text-gray-600 transition-colors"
+                  >
+                    Stay Hungry
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Right Column - Links (Desktop Only) */}
-        <div className="hidden lg:flex lg:flex-col lg:justify-center px-6 py-12 lg:px-8 lg:py-16 bg-white">
-          <div className="space-y-4">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="block group"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="relative aspect-[3/1] rounded-3xl overflow-hidden transition-all duration-200">
-                  {/* Background Image */}
-                  <img
-                    src={link.image}
-                    alt={link.title}
-                    draggable="false"
-                    className="absolute inset-0 w-full h-full object-cover select-none"
-                  />
-
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-                  {/* Content */}
-                  <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                    <h2
-                      className="text-2xl text-white mb-1 tracking-tight group-hover:italic"
-                      style={{ fontFamily: 'var(--font-century-schoolbook), Georgia, serif' }}
-                    >
-                      {link.title}
-                    </h2>
-                    <p className="text-xs text-white/90 uppercase font-mono tracking-widest">
-                      {link.description}
-                    </p>
-                  </div>
-                </div>
-              </a>
-            ))}
           </div>
         </div>
       </main>
