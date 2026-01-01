@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const links = [
   {
-    title: 'Combát',
+    title: 'Combat',
     description: 'Community & Creative Studio',
     href: 'https://instagram.com/combatcreatif',
     image: '/combatlink.png',
@@ -185,19 +185,16 @@ export default function Home() {
                 <h3 className="text-sm uppercase text-gray-600 tracking-wider mb-6" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>What I'm Working On</h3>
                 <div className="space-y-4 text-gray-700 text-sm tracking-wide leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif' }}>
                   <p>
-                    <a href="https://instagram.com/combatcreatif" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">COMBAT®</a> – design studio. Visual identity & digital experiences for creative brands.
+                    <a href="https://instagram.com/combatcreatif" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">COMBAT®</a> – A studio for creative soldiers. Making tools, products, and media for people who treat their craft with discipline. Software, magazines, clothing, community.
                   </p>
                   <p>
-                    <span className="text-blue-400">Marble</span> – building software to track nutrition & training. Sculpt your body like marble.
+                    <span className="text-blue-400 uppercase">Marble</span> – building software to track nutrition & training. Most apps in the space are ugly, I wanted to make a clean one. Inspired by "Man cannot remake himself without suffering, for he is both the marble and the sculptor."
                   </p>
                   <p>
-                    <span className="text-blue-400">Boxing</span> – I gotta do justice to my first name.
+                    <a href="https://youtube.com/@playfighter" target="_blank" rel="noopener noreferrer" className="text-blue-400 uppercase underline underline-offset-4">YouTube</a> – Videos documenting what I'm building and how I'm thinking about design, work, and life in NYC.
                   </p>
                   <p>
-                    <a href="https://youtube.com/@playfighter" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">YouTube</a> – making videos about design, business, and life in NYC.
-                  </p>
-                  <p>
-                    <a href="https://playfighter.substack.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">Playfighter</a> – writing letters about design, building, and life in NYC every week.
+                    <a href="https://playfighter.substack.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 uppercase underline underline-offset-4">Playfighter</a> – Weekly letters on building a life that feels like play. Writing about discipline, creativity, and what I'm learning.
                   </p>
                 </div>
               </div>
