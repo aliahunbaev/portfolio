@@ -60,6 +60,8 @@ html {
   text-size-adjust: 100%;
   /* one column everywhere; never a horizontal scrollbar */
   overflow-x: hidden;
+  /* chapter anchors glide; prefers-reduced-motion resets this below */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -176,6 +178,14 @@ button {
 @media (max-width: 768px) {
   /* clock is static at page end on mobile — no bottom veil needed */
   .veil--bottom {
+    display: none;
+  }
+}
+
+/* Wide view: the nav stands vertical in its own column of air and content
+   never crosses the fixtures — no veil needed at all. */
+@media (min-width: 1101px) {
+  .veil {
     display: none;
   }
 }

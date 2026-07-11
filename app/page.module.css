@@ -38,6 +38,7 @@
 
   .rail {
     position: static;
-    max-width: var(--measure);
+    /* tighter measure than the reading pages — it's a blurb, not an essay */
+    max-width: 44ch;
   }
 }

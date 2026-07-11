@@ -1,0 +1,19 @@
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+  margin-top: 2rem;
+}
+
+.link {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+
+.link:hover,
+.active {
+  opacity: 1;
+}

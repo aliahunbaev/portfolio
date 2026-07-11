@@ -33,8 +33,8 @@
   min-width: 0;
 }
 
-/* Narrow: the margins vanish — the rail becomes an inline line above the
-   content instead of floating beside it. */
+/* Narrow: the margins vanish — Back becomes an inline line above the
+   content, and the chapters simply don't exist. */
 @media (max-width: 900px) {
   .shell {
     display: block;
@@ -43,5 +43,9 @@
   .rail {
     position: static;
     margin-bottom: 2rem;
+  }
+
+  .chapters {
+    display: none;
   }
 }

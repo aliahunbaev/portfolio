@@ -18,9 +18,20 @@
   align-self: flex-end;
 }
 
+/* Single-column view: the straight feed anchors to the RIGHT edge of the
+   container — a quiet counterweight to the left-anchored bio above it. */
 @media (max-width: 1100px) {
+  .item,
   .item:nth-child(even) {
-    align-self: flex-start;
+    align-self: flex-end;
+  }
+}
+
+/* Mobile: entries fill the width, so anchoring no longer means anything. */
+@media (max-width: 768px) {
+  .item,
+  .item:nth-child(even) {
+    align-self: stretch;
   }
 }
 
@@ -37,13 +48,20 @@
   margin-bottom: 0.9rem;
 }
 
-/* Same voice and size as the rest of the homepage serif; wraps well before
-   the image's right edge. */
-.sentence {
+/* Name in the serif; the accompanying line beneath it in the sans utility
+   voice. Both wrap well before the image's right edge. */
+.title {
   font-family: var(--serif);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
-  max-width: 36ch;
+  font-size: var(--text-entry);
+  line-height: 1.4;
+}
+
+.description {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-top: 0.35rem;
+  max-width: 44ch;
   text-wrap: pretty;
 }
 

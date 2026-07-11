@@ -26,7 +26,12 @@
   text-wrap: pretty;
 }
 
-/* Alternating text sections — sans body, comfortable measure. */
+/* Anchored chapters land clear of the fixtures when scrolled to. */
+.section {
+  scroll-margin-top: clamp(6rem, 12vh, 8rem);
+}
+
+/* Alternating text blocks — sans body, comfortable measure. */
 .text {
   font-family: var(--sans);
   font-size: 1rem;

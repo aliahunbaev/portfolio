@@ -12,15 +12,18 @@ function EntryInner({ entry }: { entry: WorkEntry }) {
         </time>
       ) : null}
 
-      <p className={styles.sentence}>
-        <span className={styles.title}>{entry.title}</span>
-        {entry.description ? <> — {entry.description}</> : null}
+      <p className={styles.title}>
+        {entry.title}
         {entry.kind === "linkout" ? (
           <span aria-hidden="true" className={styles.arrow}>
             {" ↗"}
           </span>
         ) : null}
       </p>
+
+      {entry.description ? (
+        <p className={styles.description}>{entry.description}</p>
+      ) : null}
 
       {/* Image is optional and only carried by monuments. Left edge is flush
           with the text's left edge because it lives in the same block. When a
