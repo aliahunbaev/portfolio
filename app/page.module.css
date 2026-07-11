@@ -20,7 +20,7 @@
 
 .feedColumn {
   min-width: 0;
-  margin-left: clamp(0px, 24vw - 6rem, 26rem);
+  margin-left: clamp(0px, 32vw - 7rem, 34rem);
 }
 
 /* ========================================================================

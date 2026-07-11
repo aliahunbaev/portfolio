@@ -1,6 +1,6 @@
 /* The Work feed. Add an entry here — layout never gets touched.
  *
- * Every entry carries a visual — one shared horizontal ratio (16:9) so the
+ * Every entry carries a visual — one shared horizontal ratio (2:1) so the
  * feed reads as a wall of uniform cards. Weighting is about where the entry LEADS:
  *   monument — has a dedicated project page on this site
  *   index    — smaller work; links to a note (or nowhere grand)
@@ -45,7 +45,7 @@ export const work: WorkEntry[] = [
       src: "/images/marble.jpg",
       alt: "Marble — training journal app",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
   {
@@ -59,7 +59,7 @@ export const work: WorkEntry[] = [
       src: "/images/art-movement.jpg",
       alt: "The Art Movement",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
   {
@@ -73,7 +73,7 @@ export const work: WorkEntry[] = [
       src: "/images/combat-creatif.jpg",
       alt: "Combat Créatif",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
   {
@@ -87,7 +87,7 @@ export const work: WorkEntry[] = [
       src: "/images/beau-flaneur.jpg",
       alt: "Beau Flâneur",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
   {
@@ -101,7 +101,7 @@ export const work: WorkEntry[] = [
       src: "/images/combat-issue-one.jpg",
       alt: "Combat, Issue One",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
   {
@@ -115,7 +115,7 @@ export const work: WorkEntry[] = [
       src: "/images/the-coat.jpg",
       alt: "A single wool coat",
       width: 1600,
-      height: 900,
+      height: 800,
     },
   },
 ];

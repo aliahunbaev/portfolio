@@ -1,7 +1,7 @@
 .feed {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 3vw, 2.75rem); /* the wall reads close-set */
+  gap: clamp(1.25rem, 2vw, 1.75rem); /* the wall reads close-set */
 }
 
 .item {
@@ -43,7 +43,7 @@
 
 /* extra specificity so the card radius beats Placeholder's default 3px */
 .link .image {
-  border-radius: 18px;
+  border-radius: 28px;
   overflow: hidden;
 }
 

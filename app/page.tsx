@@ -17,9 +17,8 @@ export default function Home() {
         >
           Combat Créatif
         </a>
-        .
+        . <br></br><br></br> Currently on leave from New York University, focused on doing great work and connecting with brilliant people.
       </h1>
-
       <section className={styles.feedColumn} aria-label="Work">
         <Feed />
       </section>
