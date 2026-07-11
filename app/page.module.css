@@ -8,7 +8,7 @@
 /* Left rail — bio only, sticky. This is identity content, not chrome. */
 .rail {
   position: sticky;
-  top: clamp(4.5rem, 9vh, 6.5rem);
+  top: clamp(7rem, 14vh, 9rem);
   align-self: start;
   display: flex;
   flex-direction: column;

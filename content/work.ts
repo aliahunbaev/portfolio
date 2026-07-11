@@ -43,8 +43,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/marble.jpg",
       alt: "Marble — training journal app",
-      width: 1200,
-      height: 800,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -57,8 +57,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/art-movement.jpg",
       alt: "The Art Movement",
-      width: 1200,
-      height: 800,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -79,8 +79,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/beau-flaneur.jpg",
       alt: "Beau Flâneur",
-      width: 1200,
-      height: 800,
+      width: 1600,
+      height: 900,
     },
   },
   {

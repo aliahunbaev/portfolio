@@ -14,12 +14,7 @@ function EntryInner({ entry }: { entry: WorkEntry }) {
 
       <p className={styles.sentence}>
         <span className={styles.title}>{entry.title}</span>
-        {entry.description ? (
-          <>
-            {" — "}
-            <em className={styles.description}>{entry.description}</em>
-          </>
-        ) : null}
+        {entry.description ? <> — {entry.description}</> : null}
         {entry.kind === "linkout" ? (
           <span aria-hidden="true" className={styles.arrow}>
             {" ↗"}

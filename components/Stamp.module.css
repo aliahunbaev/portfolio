@@ -13,6 +13,6 @@
 }
 
 .seal {
-  width: clamp(34px, 4vw, 42px);
-  height: clamp(34px, 4vw, 42px);
+  width: clamp(72px, 7vw, 96px);
+  height: auto;
 }

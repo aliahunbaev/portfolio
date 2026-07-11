@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
-import { Libre_Caslon_Text, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Stamp from "@/components/Stamp";
 import Nav from "@/components/Nav";
 import Clock from "@/components/Clock";
 
-/* Serif — primary voice. Caslon-flavored stand-in; swap the face here and it
-   re-flows everywhere through the --font-serif variable. */
-const serif = Libre_Caslon_Text({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
+/* Serif — primary voice. Century Schoolbook BT; swap the face here and it
+   re-flows everywhere through the --font-serif variable. (ABC Otto lives in
+   ~/Library/Fonts if we want to audition it — same shape, four src lines.) */
+const serif = localFont({
+  src: [
+    { path: "./fonts/CenturySchoolbookBT.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/CenturySchoolbookItalicBT.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/CenturySchoolbookBoldBT.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/CenturySchoolbookBoldItalicBT.ttf", weight: "700", style: "italic" },
+  ],
   variable: "--font-serif",
   display: "swap",
 });

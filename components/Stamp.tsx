@@ -1,40 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./Stamp.module.css";
 
-/* Stamp — top-left, always the home link. The "A勇!" seal mark carries the
-   only color on the site (--accent). Interaction: instant press-down on click.
-   This SVG is a placeholder for the final seal asset; keep it in --accent. */
+/* Stamp — top-left, always the home link. The "A勇!" seal asset carries the
+   only color on the site (blue #00309F, baked into the artwork).
+   Interaction: instant press-down on click. Nothing else.
+   Variants (black / red / square) live in ~/Desktop/icons if we ever swap. */
 export default function Stamp() {
   return (
     <Link href="/" className={styles.stamp} aria-label="Ali Ahunbáev — home">
-      <svg
+      {/* 110 × 62 is the SVG's native viewBox ratio */}
+      <Image
+        src="/stamp.svg"
+        alt=""
+        width={110}
+        height={62}
+        priority
         className={styles.seal}
-        viewBox="0 0 100 100"
-        role="img"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <rect
-          x="3"
-          y="3"
-          width="94"
-          height="94"
-          rx="10"
-          fill="var(--accent)"
-        />
-        <text
-          x="50"
-          y="54"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontFamily="var(--serif)"
-          fontSize="46"
-          fontWeight="700"
-          fill="var(--paper)"
-        >
-          A勇
-        </text>
-      </svg>
+      />
     </Link>
   );
 }

@@ -10,13 +10,13 @@
      never revisit. Change it in this one place. */
   --ink: #111111;
   --paper: #ffffff;
-  --accent: #1e3fe0; /* seal blue */
+  --accent: #00309f; /* seal blue — taken from the stamp asset itself. Frozen. */
 
   /* --- Type --------------------------------------------------------------
      Swap a typeface by changing the next/font import in app/layout.tsx —
      the --font-serif / --font-sans variables it sets flow through here, so
      the whole site re-faces from one line. */
-  --serif: var(--font-serif), "Libre Caslon Text", Georgia, "Times New Roman",
+  --serif: var(--font-serif), "Century Schoolbook", Georgia, "Times New Roman",
     serif;
   --sans: var(--font-sans), system-ui, -apple-system, "Helvetica Neue", Arial,
     sans-serif;
@@ -73,18 +73,19 @@ body {
 }
 
 /* main provides the standing clearance for the three fixtures so no page has
-   to think about them: top clears the stamp/nav, right reserves the nav's
-   column of air, bottom clears the clock. */
+   to think about them: top clears the stamp/nav (with air below the stamp),
+   right reserves the nav's column of air, bottom clears the clock. The left
+   edge matches the stamp's inset so content lines up under it. */
 main {
   display: block;
-  padding: clamp(4.5rem, 9vh, 6.5rem) var(--nav-column)
-    clamp(4rem, 10vh, 7rem) var(--gutter);
+  padding: clamp(7rem, 14vh, 9rem) var(--nav-column) clamp(4rem, 10vh, 7rem)
+    var(--fixture-inset);
 }
 
 @media (max-width: 768px) {
   main {
     /* nav is a glyph now; clock flows at page end — reclaim the side air */
-    padding: 4.5rem var(--gutter) 0;
+    padding: 6.5rem var(--fixture-inset) 0;
   }
 }
 
