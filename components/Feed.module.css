@@ -1,11 +1,11 @@
 .feed {
   display: flex;
   flex-direction: column;
-  gap: clamp(3rem, 6vw, 5rem);
+  gap: clamp(2rem, 3vw, 2.75rem); /* the wall reads close-set */
 }
 
 .item {
-  width: min(36rem, 100%);
+  width: min(42rem, 100%);
 }
 
 .link {
@@ -43,46 +43,73 @@
 
 /* extra specificity so the card radius beats Placeholder's default 3px */
 .link .image {
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
 }
 
+/* Hidden off the wide view; defined outside the media query so the class
+   always exists. */
+.cursorTag {
+  display: none;
+}
+
 /* ========================================================================
-   Wide view (>1100px): highly visual — the card IS the image. A subtle
-   alternating inset gives the feed its rhythm. The caption fades in over
-   the image's lower edge on hover/focus; clicking reads the project.
+   Wide view (>1100px): the card IS the image. Odd cards anchor left of
+   the feed band, even cards run out to the nav's edge — the diagonal.
+   Context follows the cursor as a catalog label; keyboard focus pins the
+   caption to the card instead.
    ======================================================================== */
 @media (min-width: 1101px) {
   .item:nth-child(even) {
-    margin-left: clamp(4rem, 9vw, 10rem);
+    align-self: flex-end;
   }
 
+  /* caption at rest: invisible but present (it names the link) */
   .info {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 1rem;
+    left: 1rem;
     z-index: 1;
-    padding: 2.25rem 1.4rem 1.2rem;
-    border-radius: 0 0 14px 14px;
-    background: linear-gradient(
-      to top,
-      color-mix(in srgb, var(--paper) 94%, transparent) 55%,
-      transparent 100%
-    );
+    max-width: 36ch;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 3px;
     opacity: 0;
-    transition: opacity 0.18s ease;
+    pointer-events: none;
   }
 
-  .link:hover .info,
   .link:focus-visible .info {
     opacity: 1;
   }
 }
 
+/* The cursor tag needs a real pointer, not just a wide screen. */
+@media (min-width: 1101px) and (hover: hover) {
+  .cursorTag {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    max-width: 34ch;
+    padding: 0.7rem 0.9rem;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 3px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease;
+  }
+
+  .link:hover .cursorTag {
+    opacity: 1;
+  }
+}
+
 /* ========================================================================
-   ≤1100px: text is necessary — it sits above the image, and the straight
-   single column anchors right as a counterweight to the hero.
+   ≤1100px: text above the images, straight right-anchored column.
    ======================================================================== */
 @media (max-width: 1100px) {
   .item {
