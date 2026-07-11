@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Nav.module.css";
 
 const LINKS = [
@@ -24,6 +24,21 @@ export default function Nav() {
 
   // Sketches is immersive: the nav rests dim until hovered.
   const immersive = pathname.startsWith("/sketches");
+
+  // While the full-screen sheet is open: lock page scroll, close on Escape.
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
     <nav

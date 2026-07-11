@@ -128,6 +128,48 @@ button {
   color: var(--paper);
 }
 
+/* --- Veils ----------------------------------------------------------------
+   Full-width white fades at the viewport's top and bottom edges. Content
+   dissolves under them before it reaches the fixtures — legibility without
+   a header bar or boxes. They sit below the fixtures (z 20) and above the
+   page, and ignore the pointer entirely. */
+.veil {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.veil--top {
+  top: 0;
+  height: clamp(6rem, 12vh, 8rem);
+  background: linear-gradient(
+    to bottom,
+    var(--paper) 0%,
+    var(--paper) 45%,
+    transparent 100%
+  );
+}
+
+.veil--bottom {
+  bottom: 0;
+  height: clamp(3.5rem, 8vh, 5rem);
+  background: linear-gradient(
+    to top,
+    var(--paper) 0%,
+    var(--paper) 35%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 768px) {
+  /* clock is static at page end on mobile — no bottom veil needed */
+  .veil--bottom {
+    display: none;
+  }
+}
+
 /* --- Shared type helpers ------------------------------------------------- */
 .eyebrow {
   font-family: var(--sans);

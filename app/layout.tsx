@@ -45,6 +45,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
+        {/* Veils — full-width white fades at the viewport's top and bottom.
+            Scrolling content dissolves before it reaches the fixtures, so
+            they stay legible with no bar and no boxes. */}
+        <div className="veil veil--top" aria-hidden="true" />
+        <div className="veil veil--bottom" aria-hidden="true" />
+
         {/* The three fixtures — layout-independent, hung off the viewport
             corners, touching no column. They survive every page unchanged. */}
         <Stamp />

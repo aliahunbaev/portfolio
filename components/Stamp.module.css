@@ -1,15 +1,9 @@
 .stamp {
-  --glass-pad: 0.5rem;
   position: fixed;
-  top: calc(var(--fixture-inset) - var(--glass-pad));
-  left: calc(var(--fixture-inset) - var(--glass-pad));
+  top: var(--fixture-inset);
+  left: var(--fixture-inset);
   z-index: 20;
   display: block;
-  padding: var(--glass-pad);
-  background: color-mix(in srgb, var(--paper) 78%, transparent);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-radius: 3px;
   /* instant press-down — no easing, the one interaction the stamp gets */
   transition: transform 0.04s linear;
 }
