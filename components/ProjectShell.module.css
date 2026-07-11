@@ -1,3 +1,15 @@
+/* Full-bleed hero — spans the viewport edge to edge and runs up under the
+   fixtures, grounding the project before the reading cluster begins. */
+.hero {
+  margin: calc(-1 * clamp(7rem, 14vh, 9rem)) calc(-1 * var(--fixture-inset))
+    clamp(3.5rem, 8vh, 5.5rem);
+}
+
+.heroBox {
+  height: clamp(340px, 58vh, 620px);
+  border-radius: 0;
+}
+
 .header {
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }
@@ -29,6 +41,15 @@
 /* Anchored chapters land clear of the fixtures when scrolled to. */
 .section {
   scroll-margin-top: clamp(6rem, 12vh, 8rem);
+}
+
+/* Chapter headings — the standard 20px serif line, no bold. */
+.sectionHeading {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text-entry);
+  line-height: 1.4;
+  margin-bottom: 1.1rem;
 }
 
 /* Alternating text blocks — sans body, comfortable measure. */

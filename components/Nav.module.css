@@ -14,6 +14,12 @@
   font-family: var(--serif);
   font-size: var(--text-nav);
   text-align: right;
+  transition: opacity 0.25s ease;
+}
+
+:global(body[data-chrome-hidden]) .nav:not(.open) {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .list {

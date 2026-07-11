@@ -22,10 +22,10 @@ export default function Marble() {
       title="Marble"
       year="2026"
       summary="An attempt at making the most beautiful training journal in existence."
+      hero={{ label: "Marble — hero" }}
       chapters={CHAPTERS}
     >
-      <ProjectSection id="introduction">
-        <ProjectFigure label="Marble — hero" ratio="16 / 9" />
+      <ProjectSection id="introduction" heading="Introduction">
         <ProjectText>
           <p>
             Placeholder body. Marble is a training journal — a place to record
@@ -35,14 +35,13 @@ export default function Marble() {
           </p>
           <p>
             The measure is comfortable, the voice is the sans utility face,
-            and the chapters in the left margin track where you are as you
-            read.
+            and the chapters in the rail track where you are as you read.
           </p>
         </ProjectText>
+        <ProjectFigure label="Marble — overview" ratio="16 / 9" />
       </ProjectSection>
 
-      <ProjectSection id="the-journal">
-        <ProjectFigure label="Marble — the journal" ratio="4 / 3" />
+      <ProjectSection id="the-journal" heading="The journal">
         <ProjectText>
           <p>
             Placeholder body. A second section, to prove the alternation reads
@@ -50,16 +49,17 @@ export default function Marble() {
             exists, how it is made.
           </p>
         </ProjectText>
+        <ProjectFigure label="Marble — the journal" ratio="4 / 3" />
       </ProjectSection>
 
-      <ProjectSection id="details">
-        <ProjectFigure label="Marble — detail" ratio="3 / 2" />
+      <ProjectSection id="details" heading="Details">
         <ProjectText>
           <p>
             Placeholder body. A closing section for craft details — the
             typography, the materials, the small decisions.
           </p>
         </ProjectText>
+        <ProjectFigure label="Marble — detail" ratio="3 / 2" />
       </ProjectSection>
     </ProjectShell>
   );

@@ -1,19 +1,16 @@
-.work {
-  display: grid;
-  grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  max-width: 1500px;
+.home {
+  /* the feed (and the blurb above it) live in the left band of the page,
+     Jenny-style — the right stays air for the nav */
+  max-width: 60rem;
 }
 
-/* Left rail — bio only, sticky. This is identity content, not chrome. */
-.rail {
-  position: sticky;
-  top: clamp(7rem, 14vh, 9rem);
-  align-self: start;
+/* The opening — prominent through position and the space after it. */
+.intro {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 32ch;
+  max-width: 40ch;
+  margin-bottom: clamp(5rem, 12vh, 8rem);
 }
 
 .bio {
@@ -25,20 +22,4 @@
 
 .feedColumn {
   min-width: 0;
-}
-
-/* ========================================================================
-   Below ~1100px: rail merges into a single column above the feed.
-   ======================================================================== */
-@media (max-width: 1100px) {
-  .work {
-    grid-template-columns: 1fr;
-    gap: clamp(2.5rem, 6vw, 3.5rem);
-  }
-
-  .rail {
-    position: static;
-    /* tighter measure than the reading pages — it's a blurb, not an essay */
-    max-width: 44ch;
-  }
 }

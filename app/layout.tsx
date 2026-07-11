@@ -5,6 +5,7 @@ import "./globals.css";
 import Stamp from "@/components/Stamp";
 import Nav from "@/components/Nav";
 import Clock from "@/components/Clock";
+import ChromeVisibility from "@/components/ChromeVisibility";
 
 /* Serif — primary voice. Century Schoolbook BT; swap the face here and it
    re-flows everywhere through the --font-serif variable. (ABC Otto lives in
@@ -52,7 +53,9 @@ export default function RootLayout({
         <div className="veil veil--bottom" aria-hidden="true" />
 
         {/* The three fixtures — layout-independent, hung off the viewport
-            corners, touching no column. They survive every page unchanged. */}
+            corners, touching no column. They survive every page unchanged.
+            Scrolling down tucks the top two away; scrolling up restores. */}
+        <ChromeVisibility />
         <Stamp />
         <Nav />
         <main>{children}</main>

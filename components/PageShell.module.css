@@ -1,15 +1,19 @@
-/* [ margin+rail ] [ centered measure ] [ margin ] */
+/* [ air ] [ rail ] [ measure ] [ more air ]
+   The rail sits close beside the body and the two read as one anchored
+   cluster; the uneven flanks put the body a touch right of center. The
+   rail column is fixed so every reading page's body lands in the same
+   place, chapters or not. */
 .shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) min(var(--measure), 100%) minmax(
+  grid-template-columns: minmax(0, 1fr) 9rem min(var(--measure), 100%) minmax(
       0,
-      1fr
+      1.4fr
     );
   column-gap: clamp(1.5rem, 3vw, 3rem);
 }
 
 .rail {
-  grid-column: 1;
+  grid-column: 2;
   justify-self: start;
   position: sticky;
   top: clamp(7rem, 14vh, 9rem);
@@ -29,7 +33,7 @@
 }
 
 .column {
-  grid-column: 2;
+  grid-column: 3;
   min-width: 0;
 }
 
