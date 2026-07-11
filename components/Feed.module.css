@@ -5,16 +5,23 @@
 }
 
 /* --- Stagger -------------------------------------------------------------
-   Entries hold a FIXED width; odd anchor left, even anchor right. As the
-   container narrows, the two anchor edges converge until the entry fills the
-   container — one aligned column — with no breakpoint and no size change
-   along the way. */
+   Wide computer view only. Entries hold a FIXED width; odd anchor left,
+   even anchor right. As the viewport narrows the two anchor edges slide
+   toward each other and land fully aligned right at the 1100px layout
+   switch (the card width is chosen so offset ≈ 0 there). Below that, home
+   is a single vertical column and the feed is simply straight. */
 .item {
-  width: min(34rem, 100%);
+  width: min(36rem, 100%);
 }
 
 .item:nth-child(even) {
   align-self: flex-end;
+}
+
+@media (max-width: 1100px) {
+  .item:nth-child(even) {
+    align-self: flex-start;
+  }
 }
 
 .link {

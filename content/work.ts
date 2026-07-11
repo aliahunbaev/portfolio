@@ -1,9 +1,10 @@
 /* The Work feed. Add an entry here — layout never gets touched.
  *
- * Weighting (how much an entry carries on the site):
- *   monument — date + sentence + image + a dedicated project page
- *   index    — date + sentence only (an "index card"), no image, no page
- *   linkout  — an entry whose title opens an external site in a new tab (↗)
+ * Every entry carries a visual — same width in the feed, heights vary with
+ * the image's aspect ratio. Weighting is about where the entry LEADS:
+ *   monument — has a dedicated project page on this site
+ *   index    — smaller work; links to a note (or nowhere grand)
+ *   linkout  — title opens an external site in a new tab (↗)
  */
 
 export type WorkKind = "monument" | "index" | "linkout";
@@ -58,7 +59,7 @@ export const work: WorkEntry[] = [
       src: "/images/art-movement.jpg",
       alt: "The Art Movement",
       width: 1600,
-      height: 900,
+      height: 1200,
     },
   },
   {
@@ -68,6 +69,12 @@ export const work: WorkEntry[] = [
     description: "the studio.",
     href: "https://combatcreatif.com",
     kind: "linkout",
+    image: {
+      src: "/images/combat-creatif.jpg",
+      alt: "Combat Créatif",
+      width: 1600,
+      height: 1000,
+    },
   },
   {
     datetime: "2026-03",
@@ -80,7 +87,7 @@ export const work: WorkEntry[] = [
       src: "/images/beau-flaneur.jpg",
       alt: "Beau Flâneur",
       width: 1600,
-      height: 900,
+      height: 1067,
     },
   },
   {
@@ -90,6 +97,12 @@ export const work: WorkEntry[] = [
     description: "a magazine, printed.",
     href: "/notes/combat-issue-one",
     kind: "index",
+    image: {
+      src: "/images/combat-issue-one.jpg",
+      alt: "Combat, Issue One",
+      width: 1280,
+      height: 1600,
+    },
   },
   {
     datetime: "2025-11",
@@ -98,5 +111,11 @@ export const work: WorkEntry[] = [
     description: "cut once, cut right.",
     href: "/notes/the-coat",
     kind: "index",
+    image: {
+      src: "/images/the-coat.jpg",
+      alt: "A single wool coat",
+      width: 1600,
+      height: 1280,
+    },
   },
 ];

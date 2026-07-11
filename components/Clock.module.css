@@ -1,8 +1,15 @@
 .clock {
+  --glass-pad-y: 0.5rem;
+  --glass-pad-x: 0.6rem;
   position: fixed;
-  bottom: var(--fixture-inset);
-  left: var(--fixture-inset);
+  bottom: calc(var(--fixture-inset) - var(--glass-pad-y));
+  left: calc(var(--fixture-inset) - var(--glass-pad-x));
   z-index: 20;
+  padding: var(--glass-pad-y) var(--glass-pad-x);
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 3px;
 
   display: flex;
   align-items: baseline;
@@ -28,9 +35,13 @@
    ======================================================================== */
 @media (max-width: 768px) {
   .clock {
+    /* static at page end — no longer floating, so no glass */
     position: static;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     margin-top: 4rem;
-    padding: 2rem var(--gutter) 2.5rem;
+    padding: 2rem var(--fixture-inset) 2.5rem;
     justify-content: flex-start;
   }
 }

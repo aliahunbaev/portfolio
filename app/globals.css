@@ -82,6 +82,14 @@ main {
     var(--fixture-inset);
 }
 
+@media (max-width: 1100px) {
+  main {
+    /* nav lies down into a horizontal row at the top — the right-side
+       column of air is no longer needed */
+    padding-right: var(--fixture-inset);
+  }
+}
+
 @media (max-width: 768px) {
   main {
     /* nav is a glyph now; clock flows at page end — reclaim the side air */
