@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 
-/* Scrolling down past the opening hides the top chrome (stamp + nav) so the
- * page can be read immersed; any scroll upward brings it back. The state
- * lives as a body attribute the fixtures' CSS reacts to. */
+/* Project pages only: scrolling down past the hero hides the top chrome
+ * (stamp + nav) so the case study reads immersed; any scroll upward brings
+ * it back. The state lives as a body attribute the fixtures' CSS reacts
+ * to, and unmounting (leaving the page) always restores the chrome. */
 export default function ChromeVisibility() {
   useEffect(() => {
     let last = window.scrollY;

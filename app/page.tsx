@@ -1,12 +1,14 @@
 import Feed from "@/components/Feed";
 import styles from "./page.module.css";
 
-/* Work — the home page. One flowing column: the blurb opens the page with
-   room to breathe, then the feed begins; the blurb simply scrolls away. */
+/* Work — the home page. Wide screens: the blurb holds the left band
+   (sticky — it never scrolls under the stamp) while the feed scrolls in
+   its own column to the right, clear of the nav's air. Narrow: the blurb
+   opens the page and scrolls away, the feed follows. */
 export default function Home() {
   return (
-    <div className={styles.home}>
-      <header className={styles.intro}>
+    <div className={styles.work}>
+      <aside className={styles.rail}>
         <p className={styles.bio}>
           Ali Ahunbáev is an artist, product designer, founder and director of
           Combat Créatif.
@@ -15,7 +17,7 @@ export default function Home() {
           Currently on leave from New York University, focused on doing great
           work and connecting with brilliant people.
         </p>
-      </header>
+      </aside>
 
       <section className={styles.feedColumn} aria-label="Work">
         <Feed />

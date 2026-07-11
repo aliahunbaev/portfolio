@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import PageShell from "./PageShell";
 import type { Chapter } from "./ChapterRail";
+import ChromeVisibility from "./ChromeVisibility";
 import Placeholder from "./Placeholder";
 import styles from "./ProjectShell.module.css";
 
@@ -26,6 +27,9 @@ export default function ProjectShell({
 }) {
   return (
     <>
+      {/* Immersive reading: top chrome tucks away on scroll-down here only */}
+      <ChromeVisibility />
+
       {hero ? (
         <div className={styles.hero}>
           <Placeholder className={styles.heroBox} label={hero.label ?? title} />

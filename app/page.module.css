@@ -1,25 +1,46 @@
-.home {
-  /* the feed (and the blurb above it) live in the left band of the page,
-     Jenny-style — the right stays air for the nav */
-  max-width: 60rem;
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  max-width: 1500px;
 }
 
-/* The opening — prominent through position and the space after it. */
-.intro {
+/* Left band — the blurb, prominent at title size. Sticky on wide screens:
+   it holds the page while the work scrolls past, and never slides under
+   the stamp. This is identity content, not chrome. */
+.rail {
+  position: sticky;
+  top: clamp(7rem, 14vh, 9rem);
+  align-self: start;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 40ch;
-  margin-bottom: clamp(5rem, 12vh, 8rem);
+  gap: 1.25rem;
+  max-width: 28ch;
 }
 
 .bio {
   font-family: var(--serif);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-size: var(--text-entry);
+  line-height: 1.5;
   text-wrap: pretty;
 }
 
 .feedColumn {
   min-width: 0;
+}
+
+/* ========================================================================
+   Below ~1100px: one column — the blurb opens the page and scrolls away
+   (the veil covers its pass under the fixtures), the feed follows.
+   ======================================================================== */
+@media (max-width: 1100px) {
+  .work {
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 8vh, 5rem);
+  }
+
+  .rail {
+    position: static;
+    max-width: 34ch;
+  }
 }
