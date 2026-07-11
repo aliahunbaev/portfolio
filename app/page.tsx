@@ -1,23 +1,24 @@
 import Feed from "@/components/Feed";
 import styles from "./page.module.css";
 
-/* Work — the home page. Wide screens: the blurb holds the left band
-   (sticky — it never scrolls under the stamp) while the feed scrolls in
-   its own column to the right, clear of the nav's air. Narrow: the blurb
-   opens the page and scrolls away, the feed follows. */
+/* Work — the home page. A short hero statement opens the page, set inward
+   and scrolling away with the page; the work follows as visual-first cards,
+   indented further still. Nothing approaches the fixtures on either side. */
 export default function Home() {
   return (
     <div className={styles.work}>
-      <aside className={styles.rail}>
-        <p className={styles.bio}>
-          Ali Ahunbáev is an artist, product designer, founder and director of
-          Combat Créatif.
-        </p>
-        <p className={styles.bio}>
-          Currently on leave from New York University, focused on doing great
-          work and connecting with brilliant people.
-        </p>
-      </aside>
+      <h1 className={styles.hero}>
+        Ali Ahunbáev is an artist, product designer, founder and director of{" "}
+        <a
+          href="https://combatcreatif.com"
+          target="_blank"
+          rel="noreferrer"
+          className={styles.heroLink}
+        >
+          Combat Créatif
+        </a>
+        .
+      </h1>
 
       <section className={styles.feedColumn} aria-label="Work">
         <Feed />

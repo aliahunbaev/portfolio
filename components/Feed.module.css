@@ -4,38 +4,12 @@
   gap: clamp(3rem, 6vw, 5rem);
 }
 
-/* --- Stagger -------------------------------------------------------------
-   Wide computer view only. Entries hold a FIXED width; odd anchor left,
-   even anchor right. As the viewport narrows the two anchor edges slide
-   toward each other and land fully aligned right at the 1100px layout
-   switch (the card width is chosen so offset ≈ 0 there). Below that, home
-   is a single vertical column and the feed is simply straight. */
 .item {
   width: min(36rem, 100%);
 }
 
-.item:nth-child(even) {
-  align-self: flex-end;
-}
-
-/* Single-column view: the straight feed anchors to the RIGHT edge of the
-   container — a quiet counterweight to the left-anchored bio above it. */
-@media (max-width: 1100px) {
-  .item,
-  .item:nth-child(even) {
-    align-self: flex-end;
-  }
-}
-
-/* Mobile: entries fill the width, so anchoring no longer means anything. */
-@media (max-width: 768px) {
-  .item,
-  .item:nth-child(even) {
-    align-self: stretch;
-  }
-}
-
 .link {
+  position: relative;
   display: block;
 }
 
@@ -45,11 +19,9 @@
   font-size: var(--text-label);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Name in the serif; the accompanying line beneath it in the sans utility
-   voice. Both wrap well before the image's right edge. */
 .title {
   font-family: var(--serif);
   font-size: var(--text-entry);
@@ -60,7 +32,7 @@
   font-family: var(--sans);
   font-size: 0.9375rem;
   line-height: 1.5;
-  margin-top: 0.35rem;
+  margin-top: 0.25rem;
   max-width: 44ch;
   text-wrap: pretty;
 }
@@ -69,6 +41,63 @@
   font-style: normal;
 }
 
-.image {
-  margin-top: 1.25rem;
+/* extra specificity so the card radius beats Placeholder's default 3px */
+.link .image {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ========================================================================
+   Wide view (>1100px): highly visual — the card IS the image. A subtle
+   alternating inset gives the feed its rhythm. The caption fades in over
+   the image's lower edge on hover/focus; clicking reads the project.
+   ======================================================================== */
+@media (min-width: 1101px) {
+  .item:nth-child(even) {
+    margin-left: clamp(4rem, 9vw, 10rem);
+  }
+
+  .info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 2.25rem 1.4rem 1.2rem;
+    border-radius: 0 0 14px 14px;
+    background: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--paper) 94%, transparent) 55%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+
+  .link:hover .info,
+  .link:focus-visible .info {
+    opacity: 1;
+  }
+}
+
+/* ========================================================================
+   ≤1100px: text is necessary — it sits above the image, and the straight
+   single column anchors right as a counterweight to the hero.
+   ======================================================================== */
+@media (max-width: 1100px) {
+  .item {
+    align-self: flex-end;
+  }
+
+  .info {
+    margin-bottom: 1.1rem;
+  }
+}
+
+/* Mobile: entries fill the width; anchoring no longer means anything. */
+@media (max-width: 768px) {
+  .item {
+    align-self: stretch;
+    width: 100%;
+  }
 }

@@ -6,24 +6,29 @@ import styles from "./Feed.module.css";
 function EntryInner({ entry }: { entry: WorkEntry }) {
   return (
     <>
-      {entry.eyebrow ? (
-        <time dateTime={entry.datetime} className={styles.eyebrow}>
-          {entry.eyebrow}
-        </time>
-      ) : null}
-
-      <p className={styles.title}>
-        {entry.title}
-        {entry.kind === "linkout" ? (
-          <span aria-hidden="true" className={styles.arrow}>
-            {" ↗"}
-          </span>
+      {/* On wide screens the card is the image alone; this block fades in
+          on hover/focus as the card's caption. Below 1100px it simply sits
+          above the image. */}
+      <div className={styles.info}>
+        {entry.eyebrow ? (
+          <time dateTime={entry.datetime} className={styles.eyebrow}>
+            {entry.eyebrow}
+          </time>
         ) : null}
-      </p>
 
-      {entry.description ? (
-        <p className={styles.description}>{entry.description}</p>
-      ) : null}
+        <p className={styles.title}>
+          {entry.title}
+          {entry.kind === "linkout" ? (
+            <span aria-hidden="true" className={styles.arrow}>
+              {" ↗"}
+            </span>
+          ) : null}
+        </p>
+
+        {entry.description ? (
+          <p className={styles.description}>{entry.description}</p>
+        ) : null}
+      </div>
 
       {/* Image is optional and only carried by monuments. Left edge is flush
           with the text's left edge because it lives in the same block. When a

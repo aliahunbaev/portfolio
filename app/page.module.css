@@ -1,46 +1,38 @@
-.work {
-  display: grid;
-  grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
-  gap: clamp(2rem, 6vw, 5rem);
-  max-width: 1500px;
-}
+/* Home floats inward: the hero sits in from the left the way the cards
+   stop short of the nav on the right — content never approaches either
+   fixture band. */
 
-/* Left band — the blurb, prominent at title size. Sticky on wide screens:
-   it holds the page while the work scrolls past, and never slides under
-   the stamp. This is identity content, not chrome. */
-.rail {
-  position: sticky;
-  top: clamp(7rem, 14vh, 9rem);
-  align-self: start;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  max-width: 28ch;
-}
-
-.bio {
+.hero {
   font-family: var(--serif);
-  font-size: var(--text-entry);
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.35;
+  max-width: 46ch;
+  margin-left: clamp(0px, 12vw - 3rem, 14rem);
+  margin-bottom: clamp(4rem, 10vh, 7rem);
   text-wrap: pretty;
+}
+
+.heroLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .feedColumn {
   min-width: 0;
+  margin-left: clamp(0px, 24vw - 6rem, 26rem);
 }
 
 /* ========================================================================
-   Below ~1100px: one column — the blurb opens the page and scrolls away
-   (the veil covers its pass under the fixtures), the feed follows.
+   Narrow: the indents collapse — one column, full width.
    ======================================================================== */
-@media (max-width: 1100px) {
-  .work {
-    grid-template-columns: 1fr;
-    gap: clamp(3rem, 8vh, 5rem);
+@media (max-width: 768px) {
+  .hero {
+    margin-left: 0;
+    margin-bottom: clamp(3rem, 8vh, 4.5rem);
   }
 
-  .rail {
-    position: static;
-    max-width: 34ch;
+  .feedColumn {
+    margin-left: 0;
   }
 }
