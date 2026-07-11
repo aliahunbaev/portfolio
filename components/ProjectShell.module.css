@@ -1,29 +1,5 @@
-.project {
-  display: grid;
-  /* [reserved chapter rail] [content] — the left stays reserved on purpose */
-  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  max-width: 1400px;
-}
-
-.rail {
-  /* empty in v1; the chapter rail fills it in v1.1 */
-}
-
-.body {
-  min-width: 0;
-  max-width: 62ch;
-}
-
 .header {
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
-}
-
-.title {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: var(--text-title);
-  line-height: 1.1;
 }
 
 .meta {
@@ -31,15 +7,22 @@
   font-size: var(--text-label);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  margin-top: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Standard scale: the title is a 20px serif line, same as a feed entry. */
+.title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--text-entry);
+  line-height: 1.4;
 }
 
 .summary {
   font-family: var(--serif);
-  font-size: var(--text-entry);
-  font-style: italic;
-  line-height: 1.4;
-  margin-top: 1.25rem;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  margin-top: 0.5rem;
   text-wrap: pretty;
 }
 
@@ -66,10 +49,4 @@
   text-transform: uppercase;
   color: #7a7a7a;
   margin-top: 0.75rem;
-}
-
-@media (max-width: 900px) {
-  .project {
-    grid-template-columns: 1fr;
-  }
 }

@@ -1,7 +1,3 @@
-.info {
-  max-width: var(--measure);
-}
-
 .portrait {
   max-width: 22rem;
   margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
@@ -18,10 +14,11 @@
   margin-top: 1.2rem;
 }
 
+/* Standard scale: section headings are the 20px serif line, no bold. */
 .heading {
   font-family: var(--serif);
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 400;
+  font-size: var(--text-entry);
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
 }

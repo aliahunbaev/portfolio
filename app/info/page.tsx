@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PageShell from "@/components/PageShell";
 import Placeholder from "@/components/Placeholder";
 import styles from "./page.module.css";
 
@@ -9,10 +10,10 @@ export const metadata: Metadata = {
 };
 
 /* Info — the most literary page. No repeated blurb (home owns that): a
-   portrait, then an extended bio and lists, all in one ~65ch serif measure. */
+   portrait, then an extended bio and lists, in one centered serif measure. */
 export default function Info() {
   return (
-    <div className={styles.info}>
+    <PageShell>
       <Placeholder className={styles.portrait} ratio="4 / 5" label="Portrait" />
 
       <div className={styles.prose}>
@@ -39,6 +40,6 @@ export default function Info() {
         <h2 className={styles.heading}>Recommendations</h2>
         <p>Placeholder — things worth your attention.</p>
       </div>
-    </div>
+    </PageShell>
   );
 }

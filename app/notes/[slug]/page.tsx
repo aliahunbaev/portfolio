@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import PageShell from "@/components/PageShell";
 import { getNote, getNotes } from "@/content/notes";
 import styles from "./page.module.css";
 
@@ -29,7 +30,8 @@ export default async function NotePage({
   if (!note) notFound();
 
   return (
-    <article className={styles.note}>
+    <PageShell back={{ href: "/notes", label: "Notes" }}>
+      <article>
       <time dateTime={note.datetime} className={styles.date}>
         {note.date}
       </time>
@@ -39,6 +41,7 @@ export default async function NotePage({
           <p key={i}>{paragraph}</p>
         ))}
       </div>
-    </article>
+      </article>
+    </PageShell>
   );
 }

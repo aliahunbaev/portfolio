@@ -1,7 +1,3 @@
-.notes {
-  max-width: var(--measure);
-}
-
 .list {
   display: flex;
   flex-direction: column;

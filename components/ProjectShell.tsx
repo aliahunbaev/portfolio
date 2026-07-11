@@ -1,10 +1,12 @@
 import type { ReactNode } from "react";
+import PageShell from "./PageShell";
 import Placeholder from "./Placeholder";
 import styles from "./ProjectShell.module.css";
 
-/* Project page scaffold. Full width — the fixtures are the only chrome.
- * The left column is deliberately reserved (empty) so a chapter rail (small
- * sans, fades in, tracks scroll) can drop into v1.1 without restructuring. */
+/* Project page scaffold: a centered reading column with Back in the left
+ * margin (the v1.1 chapter rail will join it there). Typography is the
+ * site's standard scale — the title is the same 20px serif as a feed
+ * entry, not a hero. */
 export default function ProjectShell({
   title,
   year,
@@ -17,19 +19,16 @@ export default function ProjectShell({
   children: ReactNode;
 }) {
   return (
-    <article className={styles.project}>
-      {/* reserved for the v1.1 chapter rail — leave it be */}
-      <div className={styles.rail} aria-hidden="true" />
-
-      <div className={styles.body}>
+    <PageShell back={{ href: "/", label: "Back" }}>
+      <article>
         <header className={styles.header}>
-          <h1 className={styles.title}>{title}</h1>
           <p className={styles.meta}>{year}</p>
+          <h1 className={styles.title}>{title}</h1>
           <p className={styles.summary}>{summary}</p>
         </header>
         {children}
-      </div>
-    </article>
+      </article>
+    </PageShell>
   );
 }
 

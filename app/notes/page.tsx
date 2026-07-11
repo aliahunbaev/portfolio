@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import PageShell from "@/components/PageShell";
 import { getNotes } from "@/content/notes";
 import styles from "./page.module.css";
 
@@ -13,7 +14,7 @@ export default function Notes() {
   const notes = getNotes();
 
   return (
-    <div className={styles.notes}>
+    <PageShell>
       <ul className={styles.list}>
         {notes.map((note) => (
           <li key={note.slug} className={styles.item}>
@@ -26,6 +27,6 @@ export default function Notes() {
           </li>
         ))}
       </ul>
-    </div>
+    </PageShell>
   );
 }

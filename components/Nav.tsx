@@ -30,6 +30,14 @@ export default function Nav() {
     setOpen(false);
   }, [pathname]);
 
+  // The stamp announces its clicks so the sheet closes even when the route
+  // doesn't change (tapping it while already home).
+  useEffect(() => {
+    const close = () => setOpen(false);
+    window.addEventListener("ah:home", close);
+    return () => window.removeEventListener("ah:home", close);
+  }, []);
+
   // While the full-screen sheet is open: lock page scroll, close on Escape.
   useEffect(() => {
     if (!open) return;
@@ -71,7 +79,12 @@ export default function Nav() {
               href={link.href}
               className={isActive(pathname, link.href) ? styles.current : ""}
               aria-current={isActive(pathname, link.href) ? "page" : undefined}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+                // Next scrolls to top on route change; cover the
+                // same-page click too.
+                if (link.href === pathname) window.scrollTo({ top: 0 });
+              }}
             >
               {link.label}
             </Link>
