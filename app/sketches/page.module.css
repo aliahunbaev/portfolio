@@ -1,0 +1,27 @@
+/* Masonry-ish via CSS columns — tight gutters, mixed heights fall naturally. */
+.grid {
+  column-count: 3;
+  column-gap: 0.5rem;
+  max-width: 1400px;
+}
+
+.tile {
+  margin-bottom: 0.5rem;
+  break-inside: avoid;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    column-count: 2;
+    column-gap: 0.4rem;
+  }
+  .tile {
+    margin-bottom: 0.4rem;
+  }
+}

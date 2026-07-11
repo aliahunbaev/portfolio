@@ -1,0 +1,36 @@
+.clock {
+  position: fixed;
+  bottom: var(--fixture-inset);
+  left: var(--fixture-inset);
+  z-index: 20;
+
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+
+  font-family: var(--sans);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.dot {
+  opacity: 0.55;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========================================================================
+   Mobile: the clock stops being a fixture and comes to rest at page end.
+   ======================================================================== */
+@media (max-width: 768px) {
+  .clock {
+    position: static;
+    margin-top: 4rem;
+    padding: 2rem var(--gutter) 2.5rem;
+    justify-content: flex-start;
+  }
+}

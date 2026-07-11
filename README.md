@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ahunbaev.com
 
-## Getting Started
+Personal site / archive for Ali Ahunbáev. White, black, serif-led, literary —
+reads like a library, not a landing page.
 
-First, run the development server:
+## Stack
+
+Next.js (App Router) + plain CSS Modules on Vercel. No UI libraries, no
+Tailwind, no animation libraries. Content lives in data files so entries are
+added without touching layout code.
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev     # dev server at http://localhost:3000
+npm run build   # production build
+npm start       # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/
+  layout.tsx            root shell + fonts; mounts the three fixtures
+  globals.css           color + type system (all design tokens live here)
+  page.tsx              Work — the home feed + bio rail
+  info/                 Info — extended bio, currents, influences
+  notes/                Notes — dated list + notes/[slug] reading pages
+  sketches/             Sketches — masonry grid (stub)
+  contact/              Contact — one screen
+  marble/               project page (ships fuller)
+  art-movement/         project page (stub)
+  beau-flaneur/         project page (stub)
+components/
+  Stamp.tsx             top-left seal / home link
+  Nav.tsx               top-right nav (mobile glyph, active-route underline)
+  Clock.tsx             bottom-left live clock
+  Feed.tsx              the Work feed (staggered entries)
+  ProjectShell.tsx      shared project-page scaffold
+  Placeholder.tsx       temporary image stand-in
+content/
+  work.ts               Work feed entries — add work here
+  notes.ts              Notes — add writing here
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing content
 
-## Learn More
+- **Add a work entry:** append to `content/work.ts`. `monument` = full entry
+  with image + project page; `index` = date + sentence only; `linkout` =
+  external ↗.
+- **Add a note:** append to `content/notes.ts`.
+- **Images:** black & white, treated in the asset. Drop files in
+  `public/images/` and swap `<Placeholder>` for `next/image` (Feed and
+  ProjectShell have inline notes showing how).
 
-To learn more about Next.js, take a look at the following resources:
+## Design tokens
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All color, type, scale, and rhythm live as CSS variables in
+`app/globals.css`. The accent (seal blue) is the only color on the site —
+change it in one place. Typefaces swap via the `next/font` import in
+`app/layout.tsx`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Not yet built (by design)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Chapter rail (v1.1), lightbox, MDX authoring, halftone/WebGL. The classic
+version ships first; delight layers arrive one at a time.

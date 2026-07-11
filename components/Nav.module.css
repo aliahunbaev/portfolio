@@ -1,0 +1,83 @@
+.nav {
+  position: fixed;
+  top: var(--fixture-inset);
+  right: var(--fixture-inset);
+  z-index: 20;
+  font-family: var(--serif);
+  font-size: var(--text-nav);
+  text-align: right;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em; /* generous line spacing between items */
+  align-items: flex-end;
+}
+
+.list a {
+  display: inline-block;
+  text-underline-offset: 0.28em;
+  transition: text-decoration-color 0.15s ease;
+}
+
+/* current page = dotted underline (doubles as the focus style) */
+.current {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.28em;
+}
+
+/* --- Immersive pages (Sketches): rest dim, wake on hover ---------------- */
+.immersive .list {
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.immersive:hover .list,
+.immersive:focus-within .list {
+  opacity: 1;
+}
+
+/* --- Mobile glyph (hidden on desktop) ----------------------------------- */
+.glyph {
+  display: none;
+  width: 26px;
+  height: 16px;
+  padding: 0;
+  margin-left: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.glyph span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: var(--ink);
+}
+
+/* ========================================================================
+   Mobile: nav collapses to a two-line glyph; the list drops below it.
+   ======================================================================== */
+@media (max-width: 768px) {
+  .glyph {
+    display: flex;
+  }
+
+  .list {
+    /* collapsed by default; the glyph reveals it */
+    display: none;
+    margin-top: 0.75rem;
+    gap: 0.75em;
+    font-size: 1.0625rem;
+  }
+
+  .open .list {
+    display: flex;
+  }
+
+  /* On mobile the immersive dimming is dropped — the menu is intentional */
+  .immersive .list {
+    opacity: 1;
+  }
+}

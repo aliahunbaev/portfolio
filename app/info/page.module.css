@@ -1,0 +1,27 @@
+.info {
+  max-width: var(--measure);
+}
+
+.portrait {
+  max-width: 22rem;
+  margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+.prose {
+  font-family: var(--serif);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  text-wrap: pretty;
+}
+
+.prose p + p {
+  margin-top: 1.2rem;
+}
+
+.heading {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}

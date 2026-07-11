@@ -1,0 +1,18 @@
+.stamp {
+  position: fixed;
+  top: var(--fixture-inset);
+  left: var(--fixture-inset);
+  z-index: 20;
+  display: block;
+  /* instant press-down — no easing, the one interaction the stamp gets */
+  transition: transform 0.04s linear;
+}
+
+.stamp:active {
+  transform: scale(0.97);
+}
+
+.seal {
+  width: clamp(34px, 4vw, 42px);
+  height: clamp(34px, 4vw, 42px);
+}

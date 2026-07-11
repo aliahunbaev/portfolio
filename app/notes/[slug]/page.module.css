@@ -1,0 +1,31 @@
+.note {
+  max-width: var(--measure);
+}
+
+.date {
+  display: block;
+  font-family: var(--sans);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: var(--text-title);
+  line-height: 1.15;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.body {
+  font-family: var(--serif);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.body p + p {
+  margin-top: 1.3rem;
+}
