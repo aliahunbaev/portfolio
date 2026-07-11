@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { work, type WorkEntry } from "@/content/work";
 import Placeholder from "./Placeholder";
@@ -52,13 +53,25 @@ function Entry({ entry }: { entry: WorkEntry }) {
         <EntryText entry={entry} />
       </div>
 
-      {entry.image ? (
+      {/* Real cover when the asset exists; gray placeholder until then.
+          Either way the card is cropped to the wall's uniform 2:1. */}
+      {entry.image?.src ? (
+        <div className={styles.image}>
+          <Image
+            src={entry.image.src}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 672px"
+            className={styles.img}
+          />
+        </div>
+      ) : (
         <Placeholder
           className={styles.image}
           label={entry.title}
-          ratio={`${entry.image.width} / ${entry.image.height}`}
+          ratio="2 / 1"
         />
-      ) : null}
+      )}
 
       <div ref={tag} className={styles.cursorTag} aria-hidden="true">
         <EntryText entry={entry} />

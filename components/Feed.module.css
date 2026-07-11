@@ -43,8 +43,14 @@
 
 /* extra specificity so the card radius beats Placeholder's default 3px */
 .link .image {
+  position: relative;
+  aspect-ratio: 2 / 1; /* the wall's uniform ratio; covers crop into it */
   border-radius: 28px;
   overflow: hidden;
+}
+
+.img {
+  object-fit: cover;
 }
 
 /* Hidden off the wide view; defined outside the media query so the class

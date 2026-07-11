@@ -42,7 +42,7 @@ export const work: WorkEntry[] = [
     href: "/marble",
     kind: "monument",
     image: {
-      src: "/images/marble.jpg",
+      src: "/images/marble.png",
       alt: "Marble — training journal app",
       width: 1600,
       height: 800,
@@ -56,7 +56,7 @@ export const work: WorkEntry[] = [
     href: "/art-movement",
     kind: "monument",
     image: {
-      src: "/images/art-movement.jpg",
+      src: "/images/art-movement.png",
       alt: "The Art Movement",
       width: 1600,
       height: 800,
@@ -70,7 +70,7 @@ export const work: WorkEntry[] = [
     href: "https://combatcreatif.com",
     kind: "linkout",
     image: {
-      src: "/images/combat-creatif.jpg",
+      src: "",
       alt: "Combat Créatif",
       width: 1600,
       height: 800,
@@ -84,7 +84,7 @@ export const work: WorkEntry[] = [
     href: "/beau-flaneur",
     kind: "monument",
     image: {
-      src: "/images/beau-flaneur.jpg",
+      src: "/images/beau-flaneur.png",
       alt: "Beau Flâneur",
       width: 1600,
       height: 800,
@@ -98,7 +98,7 @@ export const work: WorkEntry[] = [
     href: "/notes/combat-issue-one",
     kind: "index",
     image: {
-      src: "/images/combat-issue-one.jpg",
+      src: "/images/combat-issue-one.png",
       alt: "Combat, Issue One",
       width: 1600,
       height: 800,
@@ -112,7 +112,7 @@ export const work: WorkEntry[] = [
     href: "/notes/the-coat",
     kind: "index",
     image: {
-      src: "/images/the-coat.jpg",
+      src: "",
       alt: "A single wool coat",
       width: 1600,
       height: 800,

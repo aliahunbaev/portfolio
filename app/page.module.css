@@ -5,9 +5,9 @@
 .hero {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-size: 2rem; /* standardized — no fluid scaling */
   line-height: 1.35;
-  max-width: 46ch;
+  max-width: 38ch;
   margin-left: clamp(0px, 12vw - 3rem, 14rem);
   margin-bottom: clamp(4rem, 10vh, 7rem);
   text-wrap: pretty;
@@ -24,11 +24,19 @@
 }
 
 /* ========================================================================
-   Narrow: the indents collapse — one column, full width.
+   Vertical layout: the hero goes full width to the left.
+   ======================================================================== */
+@media (max-width: 1100px) {
+  .hero {
+    margin-left: 0;
+  }
+}
+
+/* ========================================================================
+   Narrow: all indents collapse — one column, full width.
    ======================================================================== */
 @media (max-width: 768px) {
   .hero {
-    margin-left: 0;
     margin-bottom: clamp(3rem, 8vh, 4.5rem);
   }
 
