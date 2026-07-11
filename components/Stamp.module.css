@@ -2,7 +2,8 @@
   position: fixed;
   top: var(--fixture-inset);
   left: var(--fixture-inset);
-  z-index: 20;
+  /* above the nav (20) so the seal stays visible over the open menu sheet */
+  z-index: 30;
   display: block;
   /* instant press-down — no easing, the one interaction the stamp gets */
   transition: transform 0.04s linear;
@@ -13,6 +14,6 @@
 }
 
 .seal {
-  width: clamp(72px, 7vw, 96px);
+  width: var(--seal-w);
   height: auto;
 }

@@ -96,9 +96,33 @@
    with the options set big.
    ======================================================================== */
 @media (max-width: 768px) {
+  .nav {
+    /* optically center the glyph against the seal: the seal is
+       --seal-w × (62/110) tall, the glyph 16px */
+    top: calc(var(--fixture-inset) + (var(--seal-w) * 0.5636 - 16px) / 2);
+  }
+
   .glyph {
     display: block;
+    width: 26px;
+    height: 16px;
     z-index: 2; /* stays above the open sheet so the × remains tappable */
+  }
+
+  .glyph span:nth-child(1) {
+    top: 4.5px;
+  }
+
+  .glyph span:nth-child(2) {
+    bottom: 4.5px;
+  }
+
+  .open .glyph span:nth-child(1) {
+    transform: translateY(2.75px) rotate(45deg);
+  }
+
+  .open .glyph span:nth-child(2) {
+    transform: translateY(-2.75px) rotate(-45deg);
   }
 
   .list {
@@ -112,12 +136,12 @@
     z-index: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.6rem;
     padding: 0 var(--fixture-inset);
 
     font-size: clamp(1.9rem, 9vw, 2.5rem);
-    text-align: left;
+    text-align: center;
 
     /* frosted sheet: white gradient over a deep blur of the page */
     background: linear-gradient(

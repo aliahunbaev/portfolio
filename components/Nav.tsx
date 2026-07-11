@@ -25,6 +25,11 @@ export default function Nav() {
   // Sketches is immersive: the nav rests dim until hovered.
   const immersive = pathname.startsWith("/sketches");
 
+  // Any navigation dismisses the sheet (e.g. tapping the stamp while open).
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   // While the full-screen sheet is open: lock page scroll, close on Escape.
   useEffect(() => {
     if (!open) return;
