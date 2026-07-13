@@ -53,7 +53,6 @@
   .rail {
     grid-column: 1;
     position: static;
-    max-width: 40ch;
     padding-right: 0;
   }
 

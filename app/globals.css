@@ -16,7 +16,7 @@
   /* One glass, everywhere it appears (bar, menu sheet): mostly-opaque
      paper over a tiny blur — drafting paper, not frosted glass. */
   --glass-bg: color-mix(in srgb, var(--paper) 86%, transparent);
-  --glass-blur: blur(6px);
+  --glass-blur: blur(2px);
 
   /* --- Type --------------------------------------------------------------
      Swap a typeface by changing the next/font import in app/layout.tsx —
