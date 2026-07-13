@@ -28,8 +28,9 @@
 }
 
 .back:hover {
-  text-decoration: underline dotted;
-  text-underline-offset: 0.3em;
+  background: var(--accent);
+  color: var(--paper);
+  box-shadow: 0.35em 0 0 var(--accent), -0.35em 0 0 var(--accent);
 }
 
 .column {

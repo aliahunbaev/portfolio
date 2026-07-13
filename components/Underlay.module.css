@@ -15,7 +15,7 @@
   line-height: 1.5;
   color: var(--ink);
   opacity: 0.05;
-  filter: blur(0.4px); /* sits just out of focus, like the sheet below */
+  filter: blur(0.8px); /* sits just out of focus, like the sheet below */
 
   pointer-events: none;
   user-select: none;

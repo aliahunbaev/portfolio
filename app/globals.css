@@ -13,6 +13,11 @@
   --paper: #ffffff;
   --accent: #00309f; /* seal blue — taken from the stamp asset. Frozen. */
 
+  /* One glass, everywhere it appears (bar, menu sheet): mostly-opaque
+     paper over a tiny blur — drafting paper, not frosted glass. */
+  --glass-bg: color-mix(in srgb, var(--paper) 86%, transparent);
+  --glass-blur: blur(6px);
+
   /* --- Type --------------------------------------------------------------
      Swap a typeface by changing the next/font import in app/layout.tsx —
      the --font-serif / --font-sans variables it sets flow through here, so
@@ -132,7 +137,7 @@ button {
 /* --- Focus: real, visible, literary ------------------------------------- */
 a:focus-visible,
 button:focus-visible {
-  outline: 1.5px dotted var(--accent);
+  outline: 1.5px solid var(--accent);
   outline-offset: 3px;
 }
 

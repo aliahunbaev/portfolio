@@ -20,9 +20,9 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: color-mix(in srgb, var(--paper) 72%, transparent);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  backdrop-filter: blur(20px) saturate(1.8);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 /* The mark — a blue square, sized against the nav type. The site's only
@@ -52,11 +52,8 @@
   text-underline-offset: 0.28em;
 }
 
-/* current page = dotted underline (doubles as the focus style) */
-.current {
-  text-decoration: underline dotted;
-  text-underline-offset: 0.28em;
-}
+/* The nav carries no states — you click and you go. aria-current still
+   marks the page for assistive tech. */
 
 .menuButton {
   display: none;
@@ -101,11 +98,10 @@
     font-size: clamp(2.25rem, 10vw, 2.75rem);
     line-height: 1.15;
 
-    /* a sheet of paper laid over the page: mostly opaque, lightly
-       frosted — the page beneath ghosts through like drafting paper */
-    background: color-mix(in srgb, var(--paper) 87%, transparent);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    /* a sheet of paper laid over the page — same glass as the bar */
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
 
     animation: sheet-in 0.16s ease both;
   }

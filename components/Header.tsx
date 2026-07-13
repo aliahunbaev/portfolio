@@ -72,7 +72,6 @@ export default function Header() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={isActive(pathname, link.href) ? styles.current : ""}
                 aria-current={
                   isActive(pathname, link.href) ? "page" : undefined
                 }

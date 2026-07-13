@@ -1,35 +1,41 @@
-/* Split view: bio left, ledger right. */
+/* Split view: two even halves of the screen. The blurb justifies to the
+   left column's left edge; the ledger to the right column's — the page's
+   exact middle, at every width. Each container has a set width; when the
+   halves run out of room the page folds to one column. */
 .work {
   display: grid;
-  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
-  gap: clamp(3rem, 7vw, 8rem);
-  max-width: 1500px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .rail {
+  grid-column: 1;
   position: sticky;
   top: clamp(6rem, 11vh, 7.5rem);
   align-self: start;
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  max-width: 46ch;
+  padding-right: clamp(2rem, 5vw, 5rem);
 }
 
-/* Same size as the ledger titles — the blurb speaks at the work's level. */
+/* Viewport-relative: distinctly larger than the ledger titles on wide
+   screens, and it lands exactly AT title size as the columns approach
+   their fold — zooming out morphs it sensibly, no jump. */
 .bio {
   font-family: var(--serif);
-  font-size: var(--text-entry);
-  line-height: 1.45;
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  line-height: 1.4;
   text-wrap: pretty;
 }
 
 .bioLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  background: var(--accent);
+  color: var(--paper);
+  box-shadow: 0.12em 0 0 var(--accent), -0.12em 0 0 var(--accent);
 }
 
 .feedColumn {
+  grid-column: 2;
   min-width: 0;
   max-width: 34rem;
   /* the ledger begins where the blurb ends — the page reads diagonally */
@@ -37,20 +43,22 @@
 }
 
 /* ========================================================================
-   Below ~1100px: one column — bio opens the page, the ledger follows.
+   The fold: the halves are out of room — one column.
    ======================================================================== */
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .work {
     grid-template-columns: 1fr;
-    gap: clamp(3rem, 8vh, 4.5rem);
   }
 
   .rail {
+    grid-column: 1;
     position: static;
     max-width: 40ch;
+    padding-right: 0;
   }
 
   .feedColumn {
-    margin-top: 0;
+    grid-column: 1;
+    margin-top: clamp(3rem, 8vh, 4.5rem);
   }
 }

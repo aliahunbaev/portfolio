@@ -23,11 +23,15 @@
   font-family: var(--serif);
   font-size: var(--text-entry);
   line-height: 1.4;
+  width: fit-content; /* the highlight hugs the words */
 }
 
-/* Hover: the title leans into italic — the site's one inline flourish. */
+/* Hover: the highlight — instant, like selecting the line. Same blue as
+   ::selection, so it reads as native. */
 .link:hover .title {
-  font-style: italic;
+  background: var(--accent);
+  color: var(--paper);
+  box-shadow: 0.15em 0 0 var(--accent), -0.15em 0 0 var(--accent);
 }
 
 .description {
