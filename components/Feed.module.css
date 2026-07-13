@@ -25,9 +25,9 @@
   line-height: 1.4;
 }
 
+/* Hover: the title leans into italic — the site's one inline flourish. */
 .link:hover .title {
-  text-decoration: underline dotted;
-  text-underline-offset: 0.28em;
+  font-style: italic;
 }
 
 .description {

@@ -1,8 +1,8 @@
 /* Split view: bio left, ledger right. */
 .work {
   display: grid;
-  grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
-  gap: clamp(3rem, 8vw, 9rem);
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  gap: clamp(3rem, 7vw, 8rem);
   max-width: 1500px;
 }
 
@@ -13,13 +13,14 @@
   display: flex;
   flex-direction: column;
   gap: 1.1rem;
-  max-width: 44ch;
+  max-width: 46ch;
 }
 
+/* Same size as the ledger titles — the blurb speaks at the work's level. */
 .bio {
   font-family: var(--serif);
-  font-size: var(--text-body);
-  line-height: var(--leading-body);
+  font-size: var(--text-entry);
+  line-height: 1.45;
   text-wrap: pretty;
 }
 
@@ -31,6 +32,8 @@
 .feedColumn {
   min-width: 0;
   max-width: 34rem;
+  /* the ledger begins where the blurb ends — the page reads diagonally */
+  margin-top: clamp(9rem, 20vh, 12rem);
 }
 
 /* ========================================================================
@@ -45,5 +48,9 @@
   .rail {
     position: static;
     max-width: 40ch;
+  }
+
+  .feedColumn {
+    margin-top: 0;
   }
 }

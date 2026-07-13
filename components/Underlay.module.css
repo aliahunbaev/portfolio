@@ -1,0 +1,40 @@
+/* Fixed behind the page (above the body's paper, below all content).
+   Faint enough to read as texture first, words second. */
+.underlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  padding: 6rem 3rem 3rem;
+
+  column-count: 2;
+  column-gap: 4rem;
+
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: 0.05;
+  filter: blur(0.4px); /* sits just out of focus, like the sheet below */
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.underlay p {
+  margin-bottom: 1.1rem;
+  break-inside: avoid;
+}
+
+@media (min-width: 1400px) {
+  .underlay {
+    column-count: 3;
+  }
+}
+
+/* Small screens: the draft would fight the content — texture off. */
+@media (max-width: 768px) {
+  .underlay {
+    display: none;
+  }
+}

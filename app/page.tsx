@@ -1,4 +1,5 @@
 import Feed from "@/components/Feed";
+import Underlay from "@/components/Underlay";
 import styles from "./page.module.css";
 
 /* Work — the home page. Split view: the bio holds the left band while the
@@ -6,6 +7,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div className={styles.work}>
+      <Underlay />
       <aside className={styles.rail}>
         <p className={styles.bio}>
           Ali Ahunbáev is an artist, product designer, founder and director

@@ -95,18 +95,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 1.3rem;
+    gap: 0.4rem;
     padding: 0 calc(var(--fixture-inset) + 0.5rem);
 
     font-size: clamp(2.25rem, 10vw, 2.75rem);
+    line-height: 1.15;
 
-    background: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--paper) 96%, transparent),
-      color-mix(in srgb, var(--paper) 80%, transparent)
-    );
-    -webkit-backdrop-filter: blur(24px);
-    backdrop-filter: blur(24px);
+    /* a sheet of paper laid over the page: mostly opaque, lightly
+       frosted — the page beneath ghosts through like drafting paper */
+    background: color-mix(in srgb, var(--paper) 87%, transparent);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
 
     animation: sheet-in 0.16s ease both;
   }
