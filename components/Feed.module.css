@@ -1,15 +1,11 @@
 .feed {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 2vw, 1.75rem); /* the wall reads close-set */
+  gap: clamp(2.5rem, 5vh, 3.5rem);
 }
 
-.item {
-  width: min(42rem, 100%);
-}
-
-.link {
-  position: relative;
+.link,
+.block {
   display: block;
 }
 
@@ -19,7 +15,8 @@
   font-size: var(--text-label);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  color: var(--ink-secondary);
+  margin-bottom: 0.55rem;
 }
 
 .title {
@@ -28,109 +25,21 @@
   line-height: 1.4;
 }
 
+.link:hover .title {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.28em;
+}
+
 .description {
   font-family: var(--sans);
   font-size: 0.9375rem;
   line-height: 1.5;
-  margin-top: 0.25rem;
+  color: var(--ink-secondary);
+  margin-top: 0.35rem;
   max-width: 44ch;
   text-wrap: pretty;
 }
 
 .arrow {
   font-style: normal;
-}
-
-/* extra specificity so the card radius beats Placeholder's default 3px */
-.link .image {
-  position: relative;
-  aspect-ratio: 2 / 1; /* the wall's uniform ratio; covers crop into it */
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.img {
-  object-fit: cover;
-}
-
-/* Hidden off the wide view; defined outside the media query so the class
-   always exists. */
-.cursorTag {
-  display: none;
-}
-
-/* ========================================================================
-   Wide view (>1100px): the card IS the image. Odd cards anchor left of
-   the feed band, even cards run out to the nav's edge — the diagonal.
-   Context follows the cursor as a catalog label; keyboard focus pins the
-   caption to the card instead.
-   ======================================================================== */
-@media (min-width: 1101px) {
-  .item:nth-child(even) {
-    align-self: flex-end;
-  }
-
-  /* caption at rest: invisible but present (it names the link) */
-  .info {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1;
-    max-width: 36ch;
-    padding: 0.7rem 0.9rem;
-    background: var(--paper);
-    border: 1px solid var(--ink);
-    border-radius: 3px;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .link:focus-visible .info {
-    opacity: 1;
-  }
-}
-
-/* The cursor tag needs a real pointer, not just a wide screen. */
-@media (min-width: 1101px) and (hover: hover) {
-  .cursorTag {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 30;
-    max-width: 34ch;
-    padding: 0.7rem 0.9rem;
-    background: var(--paper);
-    border: 1px solid var(--ink);
-    border-radius: 3px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.12s ease;
-  }
-
-  .link:hover .cursorTag {
-    opacity: 1;
-  }
-}
-
-/* ========================================================================
-   ≤1100px: text above the images, straight right-anchored column.
-   ======================================================================== */
-@media (max-width: 1100px) {
-  .item {
-    align-self: flex-end;
-  }
-
-  .info {
-    margin-bottom: 1.1rem;
-  }
-}
-
-/* Mobile: entries fill the width; anchoring no longer means anything. */
-@media (max-width: 768px) {
-  .item {
-    align-self: stretch;
-    width: 100%;
-  }
 }

@@ -22,3 +22,10 @@
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
 }
+
+/* The seal — signs the bottom of the page. */
+.seal {
+  width: 92px;
+  height: auto;
+  margin-top: clamp(3rem, 6vh, 4.5rem);
+}

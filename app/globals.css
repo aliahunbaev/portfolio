@@ -1,22 +1,23 @@
 /* ==========================================================================
    ahunbaev.com — global stylesheet
-   White, black, serif-led, literary. The stamp holds the only color.
+   White, black, serif-led, literary. The blue square holds the only color.
    ========================================================================== */
 
 :root {
   /* --- Color -------------------------------------------------------------
-     The site is black on white. The stamp (--accent) is the ONLY color.
-     Frozen day one — confirm this hex against the final mocks once, then
-     never revisit. Change it in this one place. */
+     Black on white; --accent (the mark's blue) is the only color, and
+     --ink-secondary the only gray — used for eyebrows and entry
+     descriptions, never body text. */
   --ink: #111111;
+  --ink-secondary: #8a8a8a;
   --paper: #ffffff;
-  --accent: #00309f; /* seal blue — taken from the stamp asset itself. Frozen. */
+  --accent: #00309f; /* seal blue — taken from the stamp asset. Frozen. */
 
   /* --- Type --------------------------------------------------------------
      Swap a typeface by changing the next/font import in app/layout.tsx —
      the --font-serif / --font-sans variables it sets flow through here, so
      the whole site re-faces from one line. */
-  --serif: var(--font-serif), "Century Schoolbook", Georgia, "Times New Roman",
+  --serif: var(--font-serif), "Times Newer Roman", "Times New Roman", Times,
     serif;
   --sans: var(--font-sans), system-ui, -apple-system, "Helvetica Neue", Arial,
     sans-serif;
@@ -36,12 +37,10 @@
   --measure: 65ch; /* literary reading width (Info, Notes) */
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --fixture-inset: clamp(1rem, 2.4vw, 1.75rem);
-  --nav-column: 9rem; /* air reserved on the right for the nav fixture */
-  --seal-w: clamp(72px, 7vw, 96px); /* stamp width; its height is ×62/110 */
 
   /* --- Breakpoints (reference; media queries use literals) ---------------
-     ~768px  : one column, nav becomes glyph
-     ~1100px : feed stagger dies */
+     ~768px  : one column, nav links move behind MENU
+     ~1100px : home split view collapses */
 }
 
 /* --- Reset (minimal) ----------------------------------------------------- */
@@ -76,35 +75,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* main provides the standing clearance for the three fixtures so no page has
-   to think about them: top clears the stamp/nav (with air below the stamp),
-   right reserves the nav's column of air, bottom clears the clock. The left
-   edge matches the stamp's inset so content lines up under it. */
+/* main clears the chrome so no page has to think about it: top clears the
+   glass bar, bottom clears the clock, sides sit on the fixture inset. */
 main {
   display: block;
-  padding: clamp(7rem, 14vh, 9rem) var(--nav-column) clamp(4rem, 10vh, 7rem)
-    var(--fixture-inset);
-}
-
-/* Reading pages (Info, Notes, projects) center their column on the
-   viewport, so their padding must be symmetric — the nav's column of air
-   only matters for the home feed. */
-main:has([data-reading-shell]) {
-  padding-right: var(--fixture-inset);
-}
-
-@media (max-width: 1100px) {
-  main {
-    /* nav lies down into a horizontal row at the top — the right-side
-       column of air is no longer needed */
-    padding-right: var(--fixture-inset);
-  }
+  padding: clamp(6rem, 11vh, 7.5rem) var(--fixture-inset)
+    clamp(4rem, 10vh, 7rem);
 }
 
 @media (max-width: 768px) {
   main {
-    /* nav is a glyph now; clock flows at page end — reclaim the side air */
-    padding: 6.5rem var(--fixture-inset) 0;
+    /* clock flows at page end on mobile */
+    padding-bottom: 0;
   }
 }
 
@@ -137,57 +119,6 @@ button {
 ::selection {
   background: var(--accent);
   color: var(--paper);
-}
-
-/* --- Veils ----------------------------------------------------------------
-   Full-width white fades at the viewport's top and bottom edges. Content
-   dissolves under them before it reaches the fixtures — legibility without
-   a header bar or boxes. They sit below the fixtures (z 20) and above the
-   page, and ignore the pointer entirely. */
-.veil {
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  pointer-events: none;
-}
-
-.veil--top {
-  top: 0;
-  height: clamp(7.5rem, 15vh, 9.5rem);
-  /* solid comfortably past the fixtures' bottom edge, then dissolve */
-  background: linear-gradient(
-    to bottom,
-    var(--paper) 0%,
-    var(--paper) 62%,
-    transparent 100%
-  );
-}
-
-.veil--bottom {
-  bottom: 0;
-  height: clamp(3.5rem, 8vh, 5rem);
-  background: linear-gradient(
-    to top,
-    var(--paper) 0%,
-    var(--paper) 35%,
-    transparent 100%
-  );
-}
-
-@media (max-width: 768px) {
-  /* clock is static at page end on mobile — no bottom veil needed */
-  .veil--bottom {
-    display: none;
-  }
-}
-
-/* Wide view: the nav stands vertical in its own column of air and content
-   never crosses the fixtures — no veil needed at all. */
-@media (min-width: 1101px) {
-  .veil {
-    display: none;
-  }
 }
 
 /* --- Shared type helpers ------------------------------------------------- */

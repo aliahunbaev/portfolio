@@ -2,19 +2,17 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
-import Stamp from "@/components/Stamp";
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Clock from "@/components/Clock";
 
-/* Serif — primary voice. Century Schoolbook BT; swap the face here and it
-   re-flows everywhere through the --font-serif variable. (ABC Otto lives in
-   ~/Library/Fonts if we want to audition it — same shape, four src lines.) */
+/* Serif — primary voice. Times Newer Roman; swap the face here and it
+   re-flows everywhere through the --font-serif variable. */
 const serif = localFont({
   src: [
-    { path: "./fonts/CenturySchoolbookBT.ttf", weight: "400", style: "normal" },
-    { path: "./fonts/CenturySchoolbookItalicBT.ttf", weight: "400", style: "italic" },
-    { path: "./fonts/CenturySchoolbookBoldBT.ttf", weight: "700", style: "normal" },
-    { path: "./fonts/CenturySchoolbookBoldItalicBT.ttf", weight: "700", style: "italic" },
+    { path: "./fonts/TimesNewerRoman-Regular.otf", weight: "400", style: "normal" },
+    { path: "./fonts/TimesNewerRoman-Italic.otf", weight: "400", style: "italic" },
+    { path: "./fonts/TimesNewerRoman-Bold.otf", weight: "700", style: "normal" },
+    { path: "./fonts/TimesNewerRoman-BoldItalic.otf", weight: "700", style: "italic" },
   ],
   variable: "--font-serif",
   display: "swap",
@@ -45,16 +43,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
       <body>
-        {/* Veils — full-width white fades at the viewport's top and bottom.
-            Scrolling content dissolves before it reaches the fixtures, so
-            they stay legible with no bar and no boxes. */}
-        <div className="veil veil--top" aria-hidden="true" />
-        <div className="veil veil--bottom" aria-hidden="true" />
-
-        {/* The three fixtures — layout-independent, hung off the viewport
-            corners, touching no column. They survive every page unchanged. */}
-        <Stamp />
-        <Nav />
+        {/* Chrome: the glass bar on top, the clock bottom-left. Both are
+            layout-independent and survive every page unchanged. */}
+        <Header />
         <main>{children}</main>
         <Clock />
       </body>

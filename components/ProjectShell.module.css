@@ -1,7 +1,7 @@
 /* Full-bleed hero — spans the viewport edge to edge and runs up under the
    fixtures, grounding the project before the reading cluster begins. */
 .hero {
-  margin: calc(-1 * clamp(7rem, 14vh, 9rem)) calc(-1 * var(--fixture-inset))
+  margin: calc(-1 * clamp(6rem, 11vh, 7.5rem)) calc(-1 * var(--fixture-inset))
     clamp(3.5rem, 8vh, 5.5rem);
 }
 

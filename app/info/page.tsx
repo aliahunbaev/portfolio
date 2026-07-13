@@ -39,6 +39,16 @@ export default function Info() {
 
         <h2 className={styles.heading}>Recommendations</h2>
         <p>Placeholder — things worth your attention.</p>
+
+        {/* The seal signs the page — the artist's chop, retired here from
+            the site chrome. */}
+        <img
+          src="/stamp.svg"
+          alt="A勇! — Ali's seal"
+          width={110}
+          height={62}
+          className={styles.seal}
+        />
       </div>
     </PageShell>
   );

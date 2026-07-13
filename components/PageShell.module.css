@@ -16,7 +16,7 @@
   grid-column: 2;
   justify-self: start;
   position: sticky;
-  top: clamp(7rem, 14vh, 9rem);
+  top: clamp(6rem, 11vh, 7.5rem);
   align-self: start;
 }
 

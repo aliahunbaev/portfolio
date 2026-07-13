@@ -1,46 +1,49 @@
-/* Home floats inward: the hero sits in from the left the way the cards
-   stop short of the nav on the right — content never approaches either
-   fixture band. */
+/* Split view: bio left, ledger right. */
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 38%) minmax(0, 1fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  max-width: 1500px;
+}
 
-.hero {
+.rail {
+  position: sticky;
+  top: clamp(6rem, 11vh, 7.5rem);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 44ch;
+}
+
+.bio {
   font-family: var(--serif);
-  font-weight: 400;
-  font-size: 2rem; /* standardized — no fluid scaling */
-  line-height: 1.35;
-  max-width: 38ch;
-  margin-left: clamp(0px, 12vw - 3rem, 14rem);
-  margin-bottom: clamp(4rem, 10vh, 7rem);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
   text-wrap: pretty;
 }
 
-.heroLink:hover {
+.bioLink:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
 .feedColumn {
   min-width: 0;
-  margin-left: clamp(0px, 32vw - 7rem, 34rem);
+  max-width: 34rem;
 }
 
 /* ========================================================================
-   Vertical layout: the hero goes full width to the left.
+   Below ~1100px: one column — bio opens the page, the ledger follows.
    ======================================================================== */
 @media (max-width: 1100px) {
-  .hero {
-    margin-left: 0;
-  }
-}
-
-/* ========================================================================
-   Narrow: all indents collapse — one column, full width.
-   ======================================================================== */
-@media (max-width: 768px) {
-  .hero {
-    margin-bottom: clamp(3rem, 8vh, 4.5rem);
+  .work {
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 8vh, 4.5rem);
   }
 
-  .feedColumn {
-    margin-left: 0;
+  .rail {
+    position: static;
+    max-width: 40ch;
   }
 }
