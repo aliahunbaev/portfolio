@@ -31,16 +31,23 @@ export default function Header() {
   }, [pathname]);
 
   // While the sheet is open: lock page scroll, close on Escape.
+  // The lock goes on <html> — it is the document's scroller (body's
+  // overflow doesn't propagate to the viewport because html carries
+  // overflow-x: hidden). Body is belt-and-suspenders for touch.
   useEffect(() => {
     if (!open) return;
-    const previous = document.body.style.overflow;
+    const html = document.documentElement;
+    const previousHtml = html.style.overflow;
+    const previousBody = document.body.style.overflow;
+    html.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = previous;
+      html.style.overflow = previousHtml;
+      document.body.style.overflow = previousBody;
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
