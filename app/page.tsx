@@ -188,7 +188,7 @@ export default function Home() {
                     <a href="https://instagram.com/combatcreatif" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline underline-offset-4">COMBAT®</a> – A studio for creative soldiers. Making tools, products, and media for people who treat their craft with discipline. Software, magazines, clothing, community.
                   </p>
                   <p>
-                    <span className="text-blue-400 uppercase">Marble</span> – building software to track nutrition & training. Most apps in the space are ugly, I wanted to make a clean one. Inspired by "Man cannot remake himself without suffering, for he is both the marble and the sculptor."
+                    <a href="https://marblejournal.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 uppercase underline underline-offset-4">Marble</a> – building software to track nutrition & training. Most apps in the space are ugly, I wanted to make a clean one. Inspired by "Man cannot remake himself without suffering, for he is both the marble and the sculptor."
                   </p>
                   <p>
                     <a href="https://youtube.com/@playfighter" target="_blank" rel="noopener noreferrer" className="text-blue-400 uppercase underline underline-offset-4">YouTube</a> – Videos documenting what I'm building and how I'm thinking about design, work, and life in NYC.
