@@ -45,8 +45,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/marble.png",
       alt: "Marble — training journal app",
-      width: 1600,
-      height: 800,
+      width: 761,
+      height: 384,
     },
   },
   {
@@ -60,8 +60,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/art-movement.png",
       alt: "The Art Movement",
-      width: 1600,
-      height: 800,
+      width: 761,
+      height: 385,
     },
   },
   {
@@ -83,8 +83,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/beau-flaneur.png",
       alt: "Beau Flâneur",
-      width: 1600,
-      height: 800,
+      width: 761,
+      height: 384,
     },
   },
   {
@@ -105,8 +105,8 @@ export const work: WorkEntry[] = [
     image: {
       src: "/images/combat-issue-one.png",
       alt: "Combat Journal, Vol I",
-      width: 1600,
-      height: 800,
+      width: 761,
+      height: 384,
     },
   },
   {

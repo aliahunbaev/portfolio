@@ -3,6 +3,7 @@ import ProjectShell, {
   ProjectText,
   ProjectFigure,
 } from "@/components/ProjectShell";
+import { work } from "@/content/work";
 
 export const metadata: Metadata = {
   title: "Beau Flâneur",
@@ -15,6 +16,10 @@ export default function BeauFlaneur() {
       title="Beau Flâneur"
       year="2026"
       summary="A wandering, dressed well."
+      hero={{
+        label: "Beau Flâneur — hero",
+        image: work.find((w) => w.href === "/beau-flaneur")?.image,
+      }}
     >
       <ProjectText>
         <p>Stub. Placeholder copy for Beau Flâneur — to be written.</p>

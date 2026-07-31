@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import PageShell from "./PageShell";
 import type { Chapter } from "./ChapterRail";
+import type { WorkImage } from "@/content/work";
 import Placeholder from "./Placeholder";
 import styles from "./ProjectShell.module.css";
 
@@ -19,8 +21,9 @@ export default function ProjectShell({
   title: string;
   year: string;
   summary: string;
-  /** Label for the placeholder hero; swap for a real asset when it lands. */
-  hero?: { label?: string };
+  /** The project's cover renders as the hero; label-only falls back to a
+      placeholder until the asset lands. */
+  hero?: { label?: string; image?: WorkImage };
   chapters?: Chapter[];
   children: ReactNode;
 }) {
@@ -28,7 +31,22 @@ export default function ProjectShell({
     <>
       {hero ? (
         <div className={styles.hero}>
-          <Placeholder className={styles.heroBox} label={hero.label ?? title} />
+          {hero.image?.src ? (
+            <div className={styles.heroBox + " " + styles.heroImage}>
+              <Image
+                src={hero.image.src}
+                alt={hero.image.alt}
+                fill
+                priority
+                sizes="100vw"
+              />
+            </div>
+          ) : (
+            <Placeholder
+              className={styles.heroBox}
+              label={hero.label ?? title}
+            />
+          )}
         </div>
       ) : null}
 

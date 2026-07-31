@@ -10,6 +10,16 @@
   border-radius: 0;
 }
 
+/* Real cover: fill the band, crop from the center. */
+.heroImage {
+  position: relative;
+  overflow: hidden;
+}
+
+.heroImage img {
+  object-fit: cover;
+}
+
 .header {
   margin-bottom: clamp(2.5rem, 6vw, 4rem);
 }

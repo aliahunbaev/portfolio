@@ -4,6 +4,7 @@ import ProjectShell, {
   ProjectText,
   ProjectFigure,
 } from "@/components/ProjectShell";
+import { work } from "@/content/work";
 
 export const metadata: Metadata = {
   title: "Marble",
@@ -22,7 +23,10 @@ export default function Marble() {
       title="Marble"
       year="2026"
       summary="An attempt at making the most beautiful training journal in existence."
-      hero={{ label: "Marble — hero" }}
+      hero={{
+        label: "Marble — hero",
+        image: work.find((w) => w.href === "/marble")?.image,
+      }}
       chapters={CHAPTERS}
     >
       <ProjectSection id="introduction" heading="Introduction">
