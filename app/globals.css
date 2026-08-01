@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* Single source of truth for page margins and grid gaps. */
-  --spacing-gutter: 1rem;
+  --spacing-gutter: 0.5rem;
 }
 
 body {
