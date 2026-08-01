@@ -9,9 +9,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  /* Single source of truth for page margins, grid gaps, and vertical
-     rhythm (row gap = 1 gutter, section spacing = 4-5 gutters). */
-  --spacing-gutter: 1.5rem;
+  /* Single source of truth for page margins and grid gaps. */
+  --spacing-gutter: 1rem;
 }
 
 body {
