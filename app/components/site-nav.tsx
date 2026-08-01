@@ -9,7 +9,7 @@ const links = [
 
 export default function SiteNav() {
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-white/90 px-7 py-1 text-[14px] font-medium leading-none">
+    <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-white/90 px-gutter py-1 text-sm font-medium leading-none">
       <Link href="/">Ali Ahunbáev</Link>
       {links.map(({ label, href }) => (
         <Link key={href} href={href}>
