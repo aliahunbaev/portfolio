@@ -21,14 +21,17 @@ export default function WorkIndex() {
             <a
               href="#"
               onMouseEnter={() => setActive(project)}
-              className={`flex items-baseline justify-between gap-x-gutter py-3 text-title max-md:flex-wrap ${
+              className={`grid grid-cols-12 items-baseline gap-x-gutter py-3 text-title max-md:flex max-md:flex-wrap ${
                 active && active !== project ? "text-neutral-400" : ""
               }`}
             >
-              <span className="font-medium">{project.title}</span>
-              {/* ml-auto keeps the type right-aligned even when it wraps to
-                  its own line on narrow screens. */}
-              <span className="ml-auto">{project.category}</span>
+              <span className="col-span-2 text-body max-md:hidden">
+                {project.date}
+              </span>
+              <span className="col-span-5 font-medium">{project.title}</span>
+              <span className="col-span-5 max-md:ml-auto">
+                {project.category}
+              </span>
             </a>
           </li>
         ))}
