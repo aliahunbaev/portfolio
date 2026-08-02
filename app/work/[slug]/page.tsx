@@ -110,7 +110,7 @@ export default async function WorkPage({ params }: Params) {
   const meta: [string, string][] = [
     ["Project", work.title],
     ["Date", work.date],
-    ["Type", work.category],
+    ["Medium", work.category],
   ];
 
   return (
