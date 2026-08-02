@@ -2,16 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-
-export type Project = {
-  date: string;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  /** Vertical object-position matching the crop framing in the design. */
-  objectPosition: string;
-};
+import type { Project } from "../lib/projects";
 
 /*
  * Meta uses a 3-column grid: the wide (2-col) track holds title/description,
