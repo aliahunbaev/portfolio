@@ -25,11 +25,11 @@ export default function WorkIndex() {
                 active && active !== project ? "text-neutral-400" : ""
               }`}
             >
-              {/* Even thirds: date 1-4, title 5-8 (same axis as the homepage
-                  images), category 9-12. One size; weight marks the title. */}
-              <span className="col-span-4 max-md:hidden">{project.date}</span>
-              <span className="col-span-4 font-medium">{project.title}</span>
-              <span className="col-span-4 max-md:ml-auto">
+              {/* Title hard left, type from col 6 — everything ends before
+                  the preview zone so the image never covers text. The date
+                  lives in the preview caption. */}
+              <span className="col-span-5 font-medium">{project.title}</span>
+              <span className="col-span-7 max-md:ml-auto">
                 {project.category}
               </span>
             </a>
@@ -49,6 +49,7 @@ export default function WorkIndex() {
               style={{ objectPosition: active.objectPosition }}
             />
           </div>
+          <p className="pt-2 text-body">{active.date}</p>
         </div>
       )}
     </div>
