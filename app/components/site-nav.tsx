@@ -33,7 +33,7 @@ export default function SiteNav() {
           screen, bar included — the bar goes transparent so there's no seam
           (mobile only; desktop keeps its glass). */}
       <nav
-        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-gutter py-1 text-sm font-medium leading-none ${open ? glassDesktop : glass}`}
+        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-gutter py-1 text-body font-medium ${open ? glassDesktop : glass}`}
       >
         <Link href="/" className="hover:text-neutral-400">
           Ali Ahunbáev
@@ -57,7 +57,7 @@ export default function SiteNav() {
       </nav>
       {open && (
         <div className={`fixed inset-0 z-40 md:hidden ${glass}`}>
-          <ul className="flex flex-col gap-2 px-gutter pt-28 text-[32px] font-medium leading-none">
+          <ul className="flex flex-col gap-2 px-gutter pt-28 text-display font-medium">
             <li>
               <Link href="/" onClick={() => setOpen(false)}>
                 Ali Ahunbáev

@@ -26,7 +26,7 @@ export default function ProjectRow({ project }: { project: Project }) {
       {/* Starts 48px above the image on desktop and stays sticky while the
           row scrolls. */}
       <div className="max-md:order-2 md:col-span-4 md:-mt-12 md:self-stretch">
-        <div className="grid grid-cols-3 gap-x-gutter gap-y-4 text-sm leading-none max-md:pt-4 md:sticky md:top-0 md:pt-12">
+        <div className="grid grid-cols-3 gap-x-gutter gap-y-4 text-body max-md:pt-4 md:sticky md:top-0 md:pt-12">
           <p className="col-span-2 row-start-1 font-medium max-md:col-start-1 md:col-start-2">
             {project.title}
           </p>
@@ -59,7 +59,7 @@ export default function ProjectRow({ project }: { project: Project }) {
             (the cursor doesn't move relative to the viewport on scroll). */}
         <span
           ref={labelRef}
-          className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-sm font-medium leading-none text-white opacity-0 mix-blend-exclusion transition-opacity duration-150 group-hover:opacity-100"
+          className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-body font-medium text-white opacity-0 mix-blend-exclusion transition-opacity duration-150 group-hover:opacity-100"
         >
           View Project
         </span>

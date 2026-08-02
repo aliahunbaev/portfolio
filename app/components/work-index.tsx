@@ -2,17 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { projects, type Project } from "../lib/projects";
-
-// The homepage rows feature some projects more than once with different
-// imagery; the index lists each work once (first occurrence wins), newest
-// first.
-const works = projects
-  .filter((p, i, arr) => arr.findIndex((q) => q.title === p.title) === i)
-  .sort(
-    (a, b) =>
-      (new Date(b.date).getTime() || 0) - (new Date(a.date).getTime() || 0),
-  );
+import { works, type Project } from "../lib/projects";
 
 /*
  * Full-width hairline rows: title left, type right. Hovering a row swaps the
@@ -31,12 +21,14 @@ export default function WorkIndex() {
             <a
               href="#"
               onMouseEnter={() => setActive(project)}
-              className={`flex items-baseline justify-between gap-gutter py-3 text-xl leading-none ${
+              className={`flex items-baseline justify-between gap-x-gutter py-3 text-title max-md:flex-wrap ${
                 active && active !== project ? "text-neutral-400" : ""
               }`}
             >
               <span className="font-medium">{project.title}</span>
-              <span className="max-md:text-sm">{project.category}</span>
+              {/* ml-auto keeps the type right-aligned even when it wraps to
+                  its own line on narrow screens. */}
+              <span className="ml-auto">{project.category}</span>
             </a>
           </li>
         ))}
