@@ -11,14 +11,25 @@
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   /* Single source of truth for page margins and grid gaps. */
   --spacing-gutter: 0.5rem;
-  /* Two-tier type scale used everywhere, plus a display size for the menu.
-     body: nav, metadata, descriptions. title: intro, index rows, headlines. */
+}
+
+/* Two-tier type scale used everywhere, plus a display size for the menu.
+   body: nav, metadata, descriptions. title: intro, index rows, headlines.
+   Kept out of the inline theme so utilities reference the variables and
+   the title size can step down responsively. */
+@theme {
   --text-body: 0.875rem;
   --text-body--line-height: 1;
   --text-title: 1.5rem;
   --text-title--line-height: 1;
   --text-display: 2rem;
   --text-display--line-height: 1;
+}
+
+@media (max-width: 48rem) {
+  :root {
+    --text-title: 1.25rem;
+  }
 }
 
 body {

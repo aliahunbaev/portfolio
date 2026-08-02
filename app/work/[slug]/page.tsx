@@ -55,7 +55,7 @@ function Frame({
 function BlockView({ block, alt }: { block: Block; alt: string }) {
   if (block.type === "text") {
     return (
-      <p className="whitespace-pre-line py-12 leading-[1.5] md:col-span-5">
+      <p className="whitespace-pre-line py-12 leading-[1.5] first:pt-0 md:col-span-5">
         {block.body}
       </p>
     );
@@ -93,6 +93,7 @@ export default async function WorkPage({ params }: Params) {
   const index = works.findIndex((w) => slugify(w.title) === slug);
   if (index === -1) notFound();
   const work = works[index];
+  const previous = works[(index - 1 + works.length) % works.length];
   const next = works[(index + 1) % works.length];
 
   const blocks: Block[] = work.blocks ?? [
@@ -110,7 +111,10 @@ export default async function WorkPage({ params }: Params) {
   ];
 
   return (
-    <main className="px-gutter pb-24 text-body">
+    <main
+      className="min-h-screen px-gutter pb-24 text-body"
+      style={work.tint ? { backgroundColor: work.tint } : undefined}
+    >
       {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
       <div className="pt-16 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
         <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-16 md:col-span-4">
@@ -140,8 +144,15 @@ export default async function WorkPage({ params }: Params) {
               <BlockView key={i} block={block} alt={work.title} />
             ))}
           </div>
-          <div className="grid gap-x-gutter pt-24 max-md:pt-16 md:grid-cols-8">
-            <p className="max-md:pb-2 md:col-span-3">Next Project</p>
+          <div className="grid gap-x-gutter gap-y-4 pt-24 max-md:pt-16 md:grid-cols-8">
+            <p className="md:col-span-3">Previous Project</p>
+            <Link
+              href={`/work/${slugify(previous.title)}`}
+              className="hover:text-neutral-400 max-md:pb-2 md:col-span-5"
+            >
+              {previous.title}
+            </Link>
+            <p className="md:col-span-3">Next Project</p>
             <Link
               href={`/work/${slugify(next.title)}`}
               className="hover:text-neutral-400 md:col-span-5"
