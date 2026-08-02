@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { slugify, workImages, works } from "../../lib/projects";
+import {
+  slugify,
+  workImages,
+  works,
+  type Block,
+} from "../../lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -15,13 +20,86 @@ export async function generateMetadata({ params }: Params) {
   return { title: work ? `${work.title} — Ali Ahunbáev` : "Ali Ahunbáev" };
 }
 
+function Frame({
+  image,
+  objectPosition = "50% 50%",
+  aspect,
+  sizes,
+  alt,
+}: {
+  image: string;
+  objectPosition?: string;
+  aspect: string;
+  sizes: string;
+  alt: string;
+}) {
+  return (
+    <div className={`relative w-full overflow-hidden ${aspect}`}>
+      <Image
+        src={image}
+        alt={alt}
+        fill
+        sizes={sizes}
+        className="object-cover"
+        style={{ objectPosition }}
+      />
+    </div>
+  );
+}
+
+/* Width is a property of each block, assigned in columns: text sits in
+   6-9 for a readable measure, single images bleed across all 12, pairs
+   split the grid 6/6. */
+function BlockView({ block, alt }: { block: Block; alt: string }) {
+  if (block.type === "text") {
+    return (
+      <div className="py-12 md:grid md:grid-cols-12 md:gap-x-gutter">
+        <p className="whitespace-pre-line text-body leading-[1.5] md:col-span-4 md:col-start-6">
+          {block.body}
+      </p>
+      </div>
+    );
+  }
+  if (block.type === "pair") {
+    return (
+      <div className="grid grid-cols-2 gap-x-gutter">
+        {block.images.map(({ image, objectPosition }) => (
+          <Frame
+            key={image + objectPosition}
+            image={image}
+            objectPosition={objectPosition}
+            aspect="aspect-[4/5]"
+            sizes="50vw"
+            alt={alt}
+          />
+        ))}
+      </div>
+    );
+  }
+  return (
+    <Frame
+      image={block.image}
+      objectPosition={block.objectPosition}
+      aspect="aspect-[1.85/1]"
+      sizes="100vw"
+      alt={alt}
+    />
+  );
+}
+
 export default async function WorkPage({ params }: Params) {
   const { slug } = await params;
   const index = works.findIndex((w) => slugify(w.title) === slug);
   if (index === -1) notFound();
   const work = works[index];
   const next = works[(index + 1) % works.length];
-  const images = workImages(work.title);
+  const blocks: Block[] =
+    work.blocks ??
+    workImages(work.title).map(({ image, objectPosition }) => ({
+      type: "image",
+      image,
+      objectPosition,
+    }));
 
   return (
     <main className="px-gutter pb-24">
@@ -37,20 +115,8 @@ export default async function WorkPage({ params }: Params) {
         <p className="col-span-4 max-md:col-span-2">{work.description}</p>
       </div>
       <div className="flex flex-col gap-gutter pt-24 max-md:pt-12">
-        {images.map(({ image, objectPosition }) => (
-          <div
-            key={image}
-            className="relative aspect-[1.85/1] w-full overflow-hidden"
-          >
-            <Image
-              src={image}
-              alt={work.title}
-              fill
-              sizes="100vw"
-              className="object-cover"
-              style={{ objectPosition }}
-            />
-          </div>
+        {blocks.map((block, i) => (
+          <BlockView key={i} block={block} alt={work.title} />
         ))}
       </div>
       <div className="grid grid-cols-12 gap-x-gutter pt-24 max-md:pt-16">

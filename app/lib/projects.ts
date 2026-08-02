@@ -1,3 +1,13 @@
+/** A unit of project-page content. Width is a property of the block type:
+ *  text sits in cols 6-9, image spans all 12, pair splits 6/6. */
+export type Block =
+  | { type: "text"; body: string }
+  | { type: "image"; image: string; objectPosition?: string }
+  | {
+      type: "pair";
+      images: { image: string; objectPosition?: string }[];
+    };
+
 export type Project = {
   date: string;
   title: string;
@@ -6,6 +16,10 @@ export type Project = {
   image: string;
   /** Vertical object-position matching the crop framing in the design. */
   objectPosition: string;
+  /** Optional page content; without it the page falls back to description +
+   *  every image associated with the work. Frontloaded pages lead with one
+   *  text block; narrative pages weave text between images. */
+  blocks?: Block[];
 };
 
 export function slugify(title: string) {
@@ -38,6 +52,26 @@ export const works: Project[] = [
       "Building the most beautiful training app in existence, mixing sport, philosophy, and design.",
     image: "/images/marble-book.png",
     objectPosition: "50% 50%",
+    // Narrative mode: text woven between images.
+    blocks: [
+      {
+        type: "text",
+        body: "Marble began as a question: what would a training app look like if it treated the body the way philosophy treats the mind — as something sculpted deliberately, over years, with taste. Most fitness software is a spreadsheet wearing a neon jacket. Marble is built from the opposite instinct.",
+      },
+      { type: "image", image: "/images/marble-book.png" },
+      {
+        type: "text",
+        body: "The interface strips training down to its essential rhythm. No streaks, no confetti, no gamification — a single daily surface that knows what today is for, closer to a beautiful notebook than a dashboard. Every screen is set in one type family at two sizes, because restraint is the feature.",
+      },
+      {
+        type: "image",
+        image: "/images/marble-jungle.png",
+      },
+      {
+        type: "text",
+        body: "Marble ships to beta in summer 2026. The name is the thesis: the work is already inside the block — training is just removing what isn't.",
+      },
+    ],
   },
   {
     date: "June 2026",
@@ -96,6 +130,22 @@ export const works: Project[] = [
       "The fashion design project centered around wandering, existentialism, and French - Romantic visuals.",
     image: "/images/beau-flaneur-lightbox.png",
     objectPosition: "50% 0%",
+    // Frontloaded mode: full context first, then uninterrupted visuals.
+    blocks: [
+      {
+        type: "text",
+        body: "Beau Flâneur is a fashion project about wandering — clothes for moving through cities with no destination, cut from the French-Romantic instinct that beauty is found, not scheduled. The first collection pairs structured outerwear with soft, undone layers: garments that look composed in motion and dissolve at rest.\n\nEvery piece develops from archival references — trumpet players, lightboxes, contact sheets — and is photographed the way it's meant to be worn: mid-stride, unposed, slightly out of frame.",
+      },
+      { type: "image", image: "/images/beau-flaneur-lightbox.png" },
+      {
+        type: "pair",
+        images: [
+          { image: "/images/beau-flaneur-trumpet.png", objectPosition: "50% 30%" },
+          { image: "/images/beau-flaneur-lightbox.png", objectPosition: "50% 100%" },
+        ],
+      },
+      { type: "image", image: "/images/beau-flaneur-trumpet.png", objectPosition: "50% 55%" },
+    ],
   },
   {
     date: "June 2025",
