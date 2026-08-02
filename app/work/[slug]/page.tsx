@@ -26,15 +26,17 @@ function Frame({
   aspect,
   sizes,
   alt,
+  className = "",
 }: {
   image: string;
   objectPosition?: string;
   aspect: string;
   sizes: string;
   alt: string;
+  className?: string;
 }) {
   return (
-    <div className={`relative w-full overflow-hidden ${aspect}`}>
+    <div className={`relative w-full overflow-hidden ${aspect} ${className}`}>
       <Image
         src={image}
         alt={alt}
@@ -47,28 +49,27 @@ function Frame({
   );
 }
 
-/* The whole page is body-size text. Prose always runs cols 6-12, midline
-   to the page edge; images bleed across all 12 (pairs split 6/6). */
+/* Blocks live in the content zone (page cols 5-12, an 8-col subgrid).
+   Images take the zone's full width, pairs split it, text runs narrower
+   (5 of 8 cols) so reading lines stay comfortable on big screens. */
 function BlockView({ block, alt }: { block: Block; alt: string }) {
   if (block.type === "text") {
     return (
-      <div className="py-12 md:grid md:grid-cols-12 md:gap-x-gutter">
-        <p className="whitespace-pre-line text-body leading-[1.5] md:col-span-7 md:col-start-6">
-          {block.body}
-        </p>
-      </div>
+      <p className="whitespace-pre-line py-12 leading-[1.5] md:col-span-5">
+        {block.body}
+      </p>
     );
   }
   if (block.type === "pair") {
     return (
-      <div className="grid grid-cols-2 gap-x-gutter">
+      <div className="grid grid-cols-2 gap-x-gutter md:col-span-8">
         {block.images.map(({ image, objectPosition }) => (
           <Frame
             key={image + objectPosition}
             image={image}
             objectPosition={objectPosition}
             aspect="aspect-[4/5]"
-            sizes="50vw"
+            sizes="(max-width: 768px) 50vw, 33vw"
             alt={alt}
           />
         ))}
@@ -80,8 +81,9 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
       image={block.image}
       objectPosition={block.objectPosition}
       aspect="aspect-[1.85/1]"
-      sizes="100vw"
+      sizes="(max-width: 768px) 100vw, 67vw"
       alt={alt}
+      className="md:col-span-8"
     />
   );
 }
@@ -93,19 +95,13 @@ export default async function WorkPage({ params }: Params) {
   const work = works[index];
   const next = works[(index + 1) % works.length];
 
-  const blocks: Block[] =
-    work.blocks ??
-    workImages(work.title).map(({ image, objectPosition }) => ({
-      type: "image",
-      image,
-      objectPosition,
-    }));
-  // The first text block opens in the header's right column, beside the
-  // meta; the description stands in when a project has no written story.
-  const [headerText, rest] =
-    blocks[0]?.type === "text"
-      ? [blocks[0].body, blocks.slice(1)]
-      : [work.description, blocks];
+  const blocks: Block[] = work.blocks ?? [
+    { type: "text", body: work.description },
+    ...workImages(work.title).map(
+      ({ image, objectPosition }) =>
+        ({ type: "image", image, objectPosition }) as Block,
+    ),
+  ];
 
   const meta: [string, string][] = [
     ["Project", work.title],
@@ -115,41 +111,45 @@ export default async function WorkPage({ params }: Params) {
 
   return (
     <main className="px-gutter pb-24 text-body">
-      {/* SODAA-style header: label/value meta left, story right, all 14px. */}
-      <div className="pt-16 md:grid md:grid-cols-12 md:gap-x-gutter">
-        <div className="grid grid-cols-5 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:col-span-5">
+      {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
+      <div className="pt-16 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-16 md:col-span-4">
           {meta.map(([label, value]) => (
-            <div key={label} className="col-span-5 grid grid-cols-subgrid max-md:col-span-3">
-              <p className="col-span-2 max-md:col-span-1">
-                {label}
-              </p>
+            <div
+              key={label}
+              className="col-span-4 grid grid-cols-subgrid max-md:col-span-3"
+            >
+              <p className="col-span-2 max-md:col-span-1">{label}</p>
               {label === "Project" ? (
-                <h1 className="col-span-3 max-md:col-span-2">{value}</h1>
+                <h1 className="col-span-2 max-md:col-span-2">{value}</h1>
               ) : (
-                <p className="col-span-3 max-md:col-span-2">{value}</p>
+                <p className="col-span-2 max-md:col-span-2">{value}</p>
               )}
             </div>
           ))}
+          <Link
+            href="/archive"
+            className="col-span-4 pt-8 hover:text-neutral-400 max-md:hidden"
+          >
+            Back
+          </Link>
+        </aside>
+        <div className="max-md:pt-12 md:col-span-8">
+          <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
+            {blocks.map((block, i) => (
+              <BlockView key={i} block={block} alt={work.title} />
+            ))}
+          </div>
+          <div className="grid gap-x-gutter pt-24 max-md:pt-16 md:grid-cols-8">
+            <p className="max-md:pb-2 md:col-span-3">Next Project</p>
+            <Link
+              href={`/work/${slugify(next.title)}`}
+              className="hover:text-neutral-400 md:col-span-5"
+            >
+              {next.title}
+            </Link>
+          </div>
         </div>
-        <p className="whitespace-pre-line leading-[1.5] max-md:pt-12 md:col-span-7 md:col-start-6">
-          {headerText}
-        </p>
-      </div>
-      <div className="flex flex-col gap-gutter pt-24 max-md:pt-12">
-        {rest.map((block, i) => (
-          <BlockView key={i} block={block} alt={work.title} />
-        ))}
-      </div>
-      <div className="grid grid-cols-12 gap-x-gutter pt-24 max-md:pt-16">
-        <p className="max-md:col-span-12 max-md:pb-2 md:col-span-5">
-          Next Project
-        </p>
-        <Link
-          href={`/work/${slugify(next.title)}`}
-          className="hover:text-neutral-400 max-md:col-span-12 md:col-span-7"
-        >
-          {next.title}
-        </Link>
       </div>
     </main>
   );
