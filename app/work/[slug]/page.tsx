@@ -47,16 +47,15 @@ function Frame({
   );
 }
 
-/* Width is a property of each block, assigned in columns: text sits in
-   6-9 for a readable measure, single images bleed across all 12, pairs
-   split the grid 6/6. */
+/* The whole page is body-size text. Prose always lives in cols 6-9;
+   images bleed across all 12 (pairs split 6/6). */
 function BlockView({ block, alt }: { block: Block; alt: string }) {
   if (block.type === "text") {
     return (
       <div className="py-12 md:grid md:grid-cols-12 md:gap-x-gutter">
         <p className="whitespace-pre-line text-body leading-[1.5] md:col-span-4 md:col-start-6">
           {block.body}
-      </p>
+        </p>
       </div>
     );
   }
@@ -93,6 +92,7 @@ export default async function WorkPage({ params }: Params) {
   if (index === -1) notFound();
   const work = works[index];
   const next = works[(index + 1) % works.length];
+
   const blocks: Block[] =
     work.blocks ??
     workImages(work.title).map(({ image, objectPosition }) => ({
@@ -100,32 +100,55 @@ export default async function WorkPage({ params }: Params) {
       image,
       objectPosition,
     }));
+  // The first text block opens in the header's right column, beside the
+  // meta; the description stands in when a project has no written story.
+  const [headerText, rest] =
+    blocks[0]?.type === "text"
+      ? [blocks[0].body, blocks.slice(1)]
+      : [work.description, blocks];
+
+  const meta: [string, string][] = [
+    ["Project", work.title],
+    ["Date", work.date],
+    ["Type", work.category],
+  ];
 
   return (
-    <main className="px-gutter pb-24">
-      {/* Header mirrors an index row: title cols 1-5, type from col 6. */}
+    <main className="px-gutter pb-24 text-body">
+      {/* SODAA-style header: label/value meta left, story right, all 14px. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
-        <h1 className="text-title font-medium md:col-span-5">{work.title}</h1>
-        <p className="text-title max-md:hidden md:col-span-7">
-          {work.category}
+        <div className="grid grid-cols-5 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:col-span-5">
+          {meta.map(([label, value]) => (
+            <div key={label} className="col-span-5 grid grid-cols-subgrid max-md:col-span-3">
+              <p className="col-span-2 text-neutral-400 max-md:col-span-1">
+                {label}
+              </p>
+              {label === "Project" ? (
+                <h1 className="col-span-3 font-medium max-md:col-span-2">
+                  {value}
+                </h1>
+              ) : (
+                <p className="col-span-3 max-md:col-span-2">{value}</p>
+              )}
+            </div>
+          ))}
+        </div>
+        <p className="whitespace-pre-line leading-[1.5] max-md:pt-12 md:col-span-4 md:col-start-6">
+          {headerText}
         </p>
       </div>
-      <div className="grid grid-cols-12 gap-x-gutter pt-12 text-body max-md:grid-cols-3 max-md:pt-6">
-        <p className="col-span-2 font-medium max-md:col-span-1">{work.date}</p>
-        <p className="col-span-4 max-md:col-span-2">{work.description}</p>
-      </div>
       <div className="flex flex-col gap-gutter pt-24 max-md:pt-12">
-        {blocks.map((block, i) => (
+        {rest.map((block, i) => (
           <BlockView key={i} block={block} alt={work.title} />
         ))}
       </div>
       <div className="grid grid-cols-12 gap-x-gutter pt-24 max-md:pt-16">
-        <p className="col-span-5 text-body max-md:col-span-12 max-md:pb-2">
+        <p className="text-neutral-400 max-md:col-span-12 max-md:pb-2 md:col-span-5">
           Next Project
         </p>
         <Link
           href={`/work/${slugify(next.title)}`}
-          className="col-span-7 text-title font-medium hover:text-neutral-400 max-md:col-span-12"
+          className="font-medium hover:text-neutral-400 max-md:col-span-12 md:col-span-7"
         >
           {next.title}
         </Link>
