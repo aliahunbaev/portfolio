@@ -124,9 +124,7 @@ export default async function WorkPage({ params }: Params) {
                 {label}
               </p>
               {label === "Project" ? (
-                <h1 className="col-span-3 font-medium max-md:col-span-2">
-                  {value}
-                </h1>
+                <h1 className="col-span-3 max-md:col-span-2">{value}</h1>
               ) : (
                 <p className="col-span-3 max-md:col-span-2">{value}</p>
               )}
@@ -148,7 +146,7 @@ export default async function WorkPage({ params }: Params) {
         </p>
         <Link
           href={`/work/${slugify(next.title)}`}
-          className="font-medium hover:text-neutral-400 max-md:col-span-12 md:col-span-7"
+          className="hover:text-neutral-400 max-md:col-span-12 md:col-span-7"
         >
           {next.title}
         </Link>
