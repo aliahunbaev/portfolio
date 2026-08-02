@@ -12,7 +12,7 @@ export default function Home() {
             href="https://combatcreatif.com"
             target="_blank"
             rel="noopener"
-            className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.22em] py-[0.1em] font-fraktion text-[0.88em] uppercase tracking-wide hover:bg-[#B7C29A]"
+            className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] py-[0em] font-fraktion text-[0.92em] uppercase  hover:bg-[#B7C29A]"
           >
             Combat Créatif
           </a>. Currently on leave from New York University, focused on doing great
