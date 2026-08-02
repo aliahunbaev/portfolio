@@ -120,7 +120,7 @@ export default async function WorkPage({ params }: Params) {
         <div className="grid grid-cols-5 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:col-span-5">
           {meta.map(([label, value]) => (
             <div key={label} className="col-span-5 grid grid-cols-subgrid max-md:col-span-3">
-              <p className="col-span-2 text-neutral-400 max-md:col-span-1">
+              <p className="col-span-2 max-md:col-span-1">
                 {label}
               </p>
               {label === "Project" ? (
@@ -141,7 +141,7 @@ export default async function WorkPage({ params }: Params) {
         ))}
       </div>
       <div className="grid grid-cols-12 gap-x-gutter pt-24 max-md:pt-16">
-        <p className="text-neutral-400 max-md:col-span-12 max-md:pb-2 md:col-span-5">
+        <p className="max-md:col-span-12 max-md:pb-2 md:col-span-5">
           Next Project
         </p>
         <Link
