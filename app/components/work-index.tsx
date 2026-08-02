@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { projects, type Project } from "../lib/projects";
 
 type SortKey = "date" | "title" | "category";
 
-const columns: { key: SortKey; label: string }[] = [
+const sorts: { key: SortKey; label: string }[] = [
   { key: "date", label: "Date" },
   { key: "title", label: "Project" },
   { key: "category", label: "Type" },
@@ -19,12 +19,16 @@ function compare(a: Project, b: Project, key: SortKey) {
   return a[key].localeCompare(b[key]);
 }
 
+/*
+ * Text-first archive: a typographic list of titles on the left, and a fixed
+ * preview slot on the right (cols 8-12) where the hovered project's cover,
+ * date/type, and description appear. The preview persists until another row
+ * is hovered so the slot never sits empty.
+ */
 export default function WorkIndex() {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [descending, setDescending] = useState(true);
-  const [hovered, setHovered] = useState<Project | null>(null);
-  const previewRef = useRef<HTMLDivElement>(null);
-  const lastPos = useRef({ x: 0, y: 0 });
+  const [active, setActive] = useState<Project>(projects[0]);
 
   const sorted = [...projects].sort(
     (a, b) => compare(a, b, sortKey) * (descending ? -1 : 1),
@@ -39,83 +43,63 @@ export default function WorkIndex() {
     }
   }
 
-  function movePreview(e: React.MouseEvent) {
-    lastPos.current = { x: e.clientX, y: e.clientY };
-    const preview = previewRef.current;
-    if (!preview) return;
-    preview.style.left = `${e.clientX}px`;
-    preview.style.top = `${e.clientY}px`;
-  }
-
-  // Place the preview at the cursor the moment it appears, before the next
-  // mousemove fires.
-  useLayoutEffect(() => {
-    const preview = previewRef.current;
-    if (!preview) return;
-    preview.style.left = `${lastPos.current.x}px`;
-    preview.style.top = `${lastPos.current.y}px`;
-  }, [hovered]);
-
   return (
-    <div onMouseMove={movePreview}>
-      <div className="grid grid-cols-12 gap-x-gutter border-b border-black/10 pb-2 text-sm leading-none max-md:hidden">
-        {columns.map(({ key, label }, i) => (
-          <button
-            key={key}
-            type="button"
-            onClick={() => toggleSort(key)}
-            className={`text-left font-medium ${
-              i === 0 ? "col-span-2" : i === 1 ? "col-span-3" : "col-span-2"
-            } ${sortKey === key ? "" : "text-neutral-400 hover:text-black"}`}
-          >
-            {label}
-            {sortKey === key ? (descending ? " ↓" : " ↑") : ""}
-          </button>
-        ))}
-        <p className="col-span-5 font-medium text-neutral-400">Description</p>
-      </div>
-      <ul>
-        {sorted.map((project, i) => (
-          <li key={`${project.title}-${project.image}`}>
-            <a
-              href="#"
-              onMouseEnter={() => setHovered(project)}
-              onMouseLeave={() => setHovered(null)}
-              className="grid grid-cols-12 gap-x-gutter border-b border-black/10 py-2 text-sm leading-none max-md:grid-cols-3 max-md:gap-y-4 max-md:py-4"
+    <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
+      <div className="md:col-span-7">
+        <div className="flex gap-gutter pb-8 text-sm leading-none">
+          {sorts.map(({ key, label }) => (
+            <button
+              key={key}
+              type="button"
+              onClick={() => toggleSort(key)}
+              className={`font-medium ${
+                sortKey === key ? "" : "text-neutral-400 hover:text-black"
+              }`}
             >
-              <p className="max-md:col-start-3 max-md:row-start-1 max-md:text-right md:col-span-2">
-                {project.date}
-              </p>
-              <p className="font-medium max-md:col-span-2 max-md:col-start-1 max-md:row-start-1 md:col-span-3">
-                {project.title}
-              </p>
-              <p className="max-md:col-start-3 max-md:row-start-2 max-md:text-right md:col-span-2">
-                {project.category}
-              </p>
-              <p className="max-md:col-span-2 max-md:col-start-1 max-md:row-start-2 md:col-span-5">
-                {project.description}
-              </p>
-            </a>
-          </li>
-        ))}
-      </ul>
-      {/* Cursor-following image preview, same pattern as the View Project
-          label: fixed to the viewport so scrolling doesn't drag it away. */}
-      {hovered && (
-        <div
-          ref={previewRef}
-          className="pointer-events-none fixed z-30 aspect-[1.85/1] w-72 -translate-x-1/2 -translate-y-1/2 overflow-hidden max-md:hidden"
-        >
-          <Image
-            src={hovered.image}
-            alt=""
-            fill
-            sizes="288px"
-            className="object-cover"
-            style={{ objectPosition: hovered.objectPosition }}
-          />
+              {label}
+              {sortKey === key ? (descending ? " ↓" : " ↑") : ""}
+            </button>
+          ))}
         </div>
-      )}
+        <ul className="flex flex-col gap-2">
+          {sorted.map((project) => (
+            <li key={`${project.title}-${project.image}`}>
+              <a
+                href="#"
+                onMouseEnter={() => setActive(project)}
+                className="group flex items-baseline justify-between gap-gutter"
+              >
+                <span className="text-2xl font-medium leading-none group-hover:text-neutral-400 max-md:text-xl">
+                  {project.title}
+                </span>
+                <span className="text-sm leading-none text-neutral-400 md:hidden">
+                  {project.date}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="max-md:hidden md:col-span-5 md:col-start-8">
+        <div className="sticky top-12">
+          <div className="relative aspect-[1.85/1] w-full overflow-hidden">
+            <Image
+              key={active.image}
+              src={active.image}
+              alt={active.title}
+              fill
+              sizes="(max-width: 768px) 0px, 42vw"
+              className="object-cover"
+              style={{ objectPosition: active.objectPosition }}
+            />
+          </div>
+          <div className="grid grid-cols-5 gap-x-gutter pt-4 text-sm leading-none">
+            <p className="col-span-2 font-medium">{active.date}</p>
+            <p className="col-span-3 font-medium">{active.category}</p>
+            <p className="col-span-3 col-start-3 pt-4">{active.description}</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
