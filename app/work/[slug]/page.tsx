@@ -47,13 +47,13 @@ function Frame({
   );
 }
 
-/* The whole page is body-size text. Prose always lives in cols 6-9;
-   images bleed across all 12 (pairs split 6/6). */
+/* The whole page is body-size text. Prose always runs cols 6-12, midline
+   to the page edge; images bleed across all 12 (pairs split 6/6). */
 function BlockView({ block, alt }: { block: Block; alt: string }) {
   if (block.type === "text") {
     return (
       <div className="py-12 md:grid md:grid-cols-12 md:gap-x-gutter">
-        <p className="whitespace-pre-line text-body leading-[1.5] md:col-span-4 md:col-start-6">
+        <p className="whitespace-pre-line text-body leading-[1.5] md:col-span-7 md:col-start-6">
           {block.body}
         </p>
       </div>
@@ -116,7 +116,7 @@ export default async function WorkPage({ params }: Params) {
   return (
     <main className="px-gutter pb-24 text-body">
       {/* SODAA-style header: label/value meta left, story right, all 14px. */}
-      <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
+      <div className="pt-16 md:grid md:grid-cols-12 md:gap-x-gutter">
         <div className="grid grid-cols-5 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:col-span-5">
           {meta.map(([label, value]) => (
             <div key={label} className="col-span-5 grid grid-cols-subgrid max-md:col-span-3">
@@ -131,7 +131,7 @@ export default async function WorkPage({ params }: Params) {
             </div>
           ))}
         </div>
-        <p className="whitespace-pre-line leading-[1.5] max-md:pt-12 md:col-span-4 md:col-start-6">
+        <p className="whitespace-pre-line leading-[1.5] max-md:pt-12 md:col-span-7 md:col-start-6">
           {headerText}
         </p>
       </div>
