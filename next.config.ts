@@ -1,12 +1,8 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  // The archive lives at /index in the browser, but a route folder literally
-  // named "index" collides with the framework's output naming on Vercel, so
-  // the real route is /archive with a rewrite keeping the public URL.
-  async rewrites() {
-    return [{ source: "/index", destination: "/archive" }];
-  },
-};
+// Note: the archive route is /archive (nav label "Index") because both a
+// route folder named "index" and the public path /index fight the
+// platform — Vercel normalizes /index to / before routing.
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
