@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
-import type { Project } from "../lib/projects";
+import { slugify, type Project } from "../lib/projects";
 
 /*
  * Meta uses a 3-column grid: the wide (2-col) track holds title/description,
@@ -41,8 +42,8 @@ export default function ProjectRow({ project }: { project: Project }) {
           </p>
         </div>
       </div>
-      <a
-        href="#"
+      <Link
+        href={`/work/${slugify(project.title)}`}
         className="group relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:order-1 md:col-span-8"
         onMouseMove={moveLabel}
       >
@@ -63,7 +64,7 @@ export default function ProjectRow({ project }: { project: Project }) {
         >
           View Project
         </span>
-      </a>
+      </Link>
     </article>
   );
 }

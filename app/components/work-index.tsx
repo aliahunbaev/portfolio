@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import { works, type Project } from "../lib/projects";
+import { slugify, works, type Project } from "../lib/projects";
 
 /*
  * Full-width hairline rows: title left, type right. Hovering a row swaps the
@@ -18,8 +19,8 @@ export default function WorkIndex() {
       <ul onMouseLeave={() => setActive(null)}>
         {works.map((project) => (
           <li key={project.title} className="border-b border-black/10">
-            <a
-              href="#"
+            <Link
+              href={`/work/${slugify(project.title)}`}
               onMouseEnter={() => setActive(project)}
               className={`grid grid-cols-12 items-baseline gap-x-gutter py-3 text-title max-md:flex max-md:flex-wrap ${
                 active && active !== project ? "text-neutral-400" : ""
@@ -32,7 +33,7 @@ export default function WorkIndex() {
               <span className="col-span-7 max-md:ml-auto">
                 {project.category}
               </span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -49,7 +50,6 @@ export default function WorkIndex() {
               style={{ objectPosition: active.objectPosition }}
             />
           </div>
-          <p className="pt-2 text-body">{active.date}</p>
         </div>
       )}
     </div>

@@ -8,6 +8,23 @@ export type Project = {
   objectPosition: string;
 };
 
+export function slugify(title: string) {
+  return title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+/** Every image associated with a work, across features and archive. */
+export function workImages(title: string) {
+  const seen = new Set<string>();
+  return [...projects, ...works]
+    .filter((p) => p.title === title && !seen.has(p.image) && seen.add(p.image))
+    .map((p) => ({ image: p.image, objectPosition: p.objectPosition }));
+}
+
 /**
  * Everything, for the index archive — placeholder entries reuse the six
  * committed images until each work gets its own cover. Newest first.
