@@ -24,20 +24,19 @@ export default function WorkIndex() {
 
   return (
     <div>
+      {/* All rows sit black; hovering one dims the others. */}
       <ul onMouseLeave={() => setActive(null)}>
         {works.map((project) => (
           <li key={project.title} className="border-b border-black/10">
             <a
               href="#"
               onMouseEnter={() => setActive(project)}
-              className="group flex items-baseline justify-between gap-gutter py-3"
+              className={`flex items-baseline justify-between gap-gutter py-3 text-xl leading-none ${
+                active && active !== project ? "text-neutral-400" : ""
+              }`}
             >
-              <span className="text-xl font-medium leading-none group-hover:text-neutral-400">
-                {project.title}
-              </span>
-              <span className="text-xl leading-none text-neutral-400 group-hover:text-black max-md:text-sm">
-                {project.category}
-              </span>
+              <span className="font-medium">{project.title}</span>
+              <span className="max-md:text-sm">{project.category}</span>
             </a>
           </li>
         ))}
