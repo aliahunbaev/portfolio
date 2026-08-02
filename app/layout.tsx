@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import SiteNav from "./components/site-nav";
+
+// Combat Créatif wordmark typeface, used only for the brand pill.
+const fraktion = localFont({
+  src: "./fonts/PPFraktionSans-Bold.otf",
+  variable: "--font-fraktion",
+});
 
 export const metadata: Metadata = {
   title: "Ali Ahunbáev",
@@ -14,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`${fraktion.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <SiteNav />
         {children}

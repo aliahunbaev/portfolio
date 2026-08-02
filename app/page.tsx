@@ -12,11 +12,10 @@ export default function Home() {
             href="https://combatcreatif.com"
             target="_blank"
             rel="noopener"
-            className="underline decoration-[#dfdfdf] decoration-2 underline-offset-4 hover:text-neutral-400"
+            className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.22em] py-[0.1em] font-fraktion text-[0.88em] uppercase tracking-wide hover:bg-[#B7C29A]"
           >
             Combat Créatif
-          </a>
-          . Currently on leave from New York University, focused on doing great
+          </a>. Currently on leave from New York University, focused on doing great
           work and connecting with brilliant people. His focus is on a mix of
           philosophy and beautiful utility.
         </h1>

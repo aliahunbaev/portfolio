@@ -88,7 +88,7 @@ export const works: Project[] = [
   {
     date: "May 2026",
     title: "The Art Movement",
-    category: "Community Gathering",
+    category: "Event",
     description:
       "Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.",
     image: "/images/art-movement-painting.png",
@@ -156,7 +156,7 @@ export const works: Project[] = [
   {
     date: "June 2025",
     title: "Rooftop 001",
-    category: "Community Gathering",
+    category: "Event",
     description: "The first Art Movement rooftop — 60 artists, one night.",
     image: "/images/art-movement-painting.png",
     objectPosition: "50% 54%",
@@ -200,7 +200,7 @@ export const projects: Project[] = [
   {
     date: "May 2026",
     title: "The Art Movement",
-    category: "Community Gathering",
+    category: "Event",
     description:
       "Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.",
     image: "/images/art-movement-painting.png",
@@ -227,7 +227,7 @@ export const projects: Project[] = [
   {
     date: "May 2026",
     title: "The Art Movement",
-    category: "Community Gathering",
+    category: "Event",
     description:
       "Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.",
     image: "/images/art-movement-panther.png",
