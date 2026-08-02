@@ -5,12 +5,17 @@ export default function Home() {
   return (
     <main className="px-gutter pb-24">
       {/* Intro caps at 8 of 12 columns for a readable line length. */}
-      <div className="pt-16 md:grid md:grid-cols-12 md:gap-x-gutter">
+      <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
         <h1 className="text-title font-medium max-md:leading-tight md:col-span-8">
           Ali Ahunbáev is an artist, product designer, founder and director of{" "}
-          <span className="underline decoration-[#dfdfdf] decoration-2 underline-offset-4">
+          <a
+            href="https://combatcreatif.com"
+            target="_blank"
+            rel="noopener"
+            className="underline decoration-[#dfdfdf] decoration-2 underline-offset-4 hover:text-neutral-400"
+          >
             Combat Créatif
-          </span>
+          </a>
           . Currently on leave from New York University, focused on doing great
           work and connecting with brilliant people. His focus is on a mix of
           philosophy and beautiful utility.

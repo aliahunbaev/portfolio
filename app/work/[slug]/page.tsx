@@ -116,8 +116,8 @@ export default async function WorkPage({ params }: Params) {
       style={work.tint ? { backgroundColor: work.tint } : undefined}
     >
       {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
-      <div className="pt-16 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-16 md:col-span-4">
+      <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
           {meta.map(([label, value]) => (
             <div
               key={label}
@@ -144,21 +144,26 @@ export default async function WorkPage({ params }: Params) {
               <BlockView key={i} block={block} alt={work.title} />
             ))}
           </div>
-          <div className="grid gap-x-gutter gap-y-4 pt-24 max-md:pt-16 md:grid-cols-8">
-            <p className="md:col-span-3">Previous Project</p>
-            <Link
-              href={`/work/${slugify(previous.title)}`}
-              className="hover:text-neutral-400 max-md:pb-2 md:col-span-5"
-            >
-              {previous.title}
-            </Link>
-            <p className="md:col-span-3">Next Project</p>
-            <Link
-              href={`/work/${slugify(next.title)}`}
-              className="hover:text-neutral-400 md:col-span-5"
-            >
-              {next.title}
-            </Link>
+          {/* Previous west, next east — the direction you'd travel. */}
+          <div className="flex items-baseline justify-between gap-gutter pt-24 max-md:pt-16">
+            <div className="grid gap-y-4">
+              <p>Previous Project</p>
+              <Link
+                href={`/work/${slugify(previous.title)}`}
+                className="hover:text-neutral-400"
+              >
+                {previous.title}
+              </Link>
+            </div>
+            <div className="grid gap-y-4 text-right">
+              <p>Next Project</p>
+              <Link
+                href={`/work/${slugify(next.title)}`}
+                className="hover:text-neutral-400"
+              >
+                {next.title}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
