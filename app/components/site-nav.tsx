@@ -57,9 +57,13 @@ export default function SiteNav() {
       </nav>
       {open && (
         <div className={`fixed inset-0 z-40 md:hidden ${glass}`}>
-          <ul className="flex flex-col gap-2 px-gutter pt-28 text-display font-medium">
+          <ul className="flex flex-col gap-1 px-gutter pt-28 text-display font-medium">
             <li>
-              <Link href="/" onClick={() => setOpen(false)}>
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className={pathname === "/" ? "text-neutral-400" : ""}
+              >
                 Ali Ahunbáev
               </Link>
             </li>
