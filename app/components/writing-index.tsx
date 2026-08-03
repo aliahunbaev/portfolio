@@ -97,18 +97,6 @@ export default function WritingIndex() {
         ))}
       </div>
       <div className="pt-24">
-        <p className="pb-4">
-          Journal (
-          <Link
-            href="https://playfighter.substack.com"
-            target="_blank"
-            rel="noopener"
-            className="hover:text-neutral-400"
-          >
-            Read on Substack
-          </Link>
-          )
-        </p>
         <div className="flex flex-col gap-8">
           {groups.map(([y, list]) => (
             <section key={y} className="md:grid md:grid-cols-12 md:gap-x-gutter">
