@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { sketches } from "../lib/sketches";
+import { sketches, type Sketch } from "../lib/sketches";
+
+// Hash slug per sketch (SODAA-style deep links): /sketches#sketch-004
+// opens the gallery at that sketch.
+const slugFor = (sketch: Sketch) =>
+  sketch.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 /* Strict column grid, Renell-style: fixed columns, natural image heights,
    rows bottom-aligned to a shared shelf so the white space above shorter
@@ -10,6 +18,27 @@ import { sketches } from "../lib/sketches";
    tap/click halves or arrow keys page through; nav or Escape exits. */
 export default function SketchGrid() {
   const [open, setOpen] = useState<number | null>(null);
+
+  // Arriving with a hash opens the gallery at that sketch.
+  useEffect(() => {
+    const slug = window.location.hash.slice(1);
+    if (!slug) return;
+    const i = sketches.findIndex((sk) => slugFor(sk) === slug);
+    if (i >= 0) setOpen(i);
+  }, []);
+
+  // The hash tracks the open sketch and clears on close.
+  useEffect(() => {
+    if (open !== null) {
+      history.replaceState(null, "", `#${slugFor(sketches[open])}`);
+    } else if (window.location.hash) {
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+    }
+  }, [open]);
 
   const step = useCallback((delta: number) => {
     setOpen((i) =>
@@ -40,7 +69,7 @@ export default function SketchGrid() {
             key={i}
             type="button"
             onClick={() => setOpen(i)}
-            className="block w-full"
+            className="block w-full cursor-pointer"
           >
             <Image
               src={sketch.image}
