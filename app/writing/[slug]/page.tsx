@@ -23,16 +23,17 @@ export default async function EssayPage({ params }: Params) {
   const essay = essays[index];
   const previous = essays[(index - 1 + essays.length) % essays.length];
   const next = essays[(index + 1) % essays.length];
+  const words = wordCount(essay);
 
   const meta: [string, string][] = [
-    ["Essay", essay.title],
-    ["Date", essay.date],
-    ["Length", `${wordCount(essay).toLocaleString()} words`],
+    ["Length", `${words.toLocaleString()} words`],
+    ["Reading", `${Math.max(1, Math.round(words / 220))} min`],
   ];
 
   return (
     <main className="px-gutter pb-24 text-body">
-      {/* Same anatomy as a work page: sticky rail 1-4, reading column 5-9. */}
+      {/* Rail keeps the apparatus; the piece itself — title, date, text —
+          opens at the top of the reading column. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
         <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
           {meta.map(([label, value]) => (
@@ -41,11 +42,7 @@ export default async function EssayPage({ params }: Params) {
               className="col-span-4 grid grid-cols-subgrid max-md:col-span-3"
             >
               <p className="col-span-2 max-md:col-span-1">{label}</p>
-              {label === "Essay" ? (
-                <h1 className="col-span-2 max-md:col-span-2">{value}</h1>
-              ) : (
-                <p className="col-span-2 max-md:col-span-2">{value}</p>
-              )}
+              <p className="col-span-2 max-md:col-span-2">{value}</p>
             </div>
           ))}
           <Link
@@ -56,11 +53,15 @@ export default async function EssayPage({ params }: Params) {
           </Link>
         </aside>
         <div className="max-md:pt-12 md:col-span-8">
-          <div className="space-y-[1.4em] leading-[1.5] md:grid md:grid-cols-8 md:gap-x-gutter md:space-y-0">
-            <div className="space-y-[1.4em] md:col-span-5">
-              {essay.paragraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
+          <div className="md:grid md:grid-cols-8 md:gap-x-gutter">
+            <div className="md:col-span-5">
+              <h1 className="font-medium">{essay.title}</h1>
+              <p className="pt-1">{essay.date}</p>
+              <div className="space-y-[1.4em] pt-12 leading-[1.5]">
+                {essay.paragraphs.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex items-baseline justify-between gap-gutter pt-24 max-md:pt-16">

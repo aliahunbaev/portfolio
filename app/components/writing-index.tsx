@@ -42,7 +42,7 @@ export default function WritingIndex() {
           ))}
         </div>
       </section>
-      <section className="max-md:pt-16 md:col-span-6 md:col-start-7">
+      <section className="max-md:pt-16 md:col-span-5 md:col-start-7">
         <p className="pb-8">
           Journal (
           <Link
@@ -60,10 +60,10 @@ export default function WritingIndex() {
             <Link
               key={essay.slug}
               href={`/writing/${essay.slug}`}
-              className="grid grid-cols-6 gap-x-gutter hover:text-neutral-400"
+              className="grid grid-cols-5 gap-x-gutter hover:text-neutral-400"
             >
               <span className="col-span-2">{essay.date}</span>
-              <span className="col-span-4">
+              <span className="col-span-3">
                 <span className="block font-medium">{essay.title}</span>
                 {essay.subtitle && (
                   <span className="block pt-1 leading-[1.4]">
