@@ -1,16 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { sketches } from "../lib/sketches";
 
 /* Strict column grid, Renell-style: fixed columns, natural image heights,
    rows bottom-aligned to a shared shelf so the white space above shorter
-   images is part of the composition. Tapping opens a frosted full-screen
-   gallery: arrows / swipe navigate, Escape or any tap closes. */
+   images is part of the composition. Tapping opens a full-screen gallery:
+   tap/click halves or arrow keys page through; nav or Escape exits. */
 export default function SketchGrid() {
   const [open, setOpen] = useState<number | null>(null);
-  const touchX = useRef<number | null>(null);
 
   const step = useCallback((delta: number) => {
     setOpen((i) =>
@@ -55,20 +54,6 @@ export default function SketchGrid() {
       {open !== null && (
         <div
           className="fixed inset-0 z-30 flex items-center justify-center bg-white px-gutter"
-          onClick={() => setOpen(null)}
-          onTouchStart={(e) => {
-            touchX.current = e.touches[0].clientX;
-          }}
-          onTouchEnd={(e) => {
-            const start = touchX.current;
-            touchX.current = null;
-            if (start === null) return;
-            const delta = e.changedTouches[0].clientX - start;
-            if (Math.abs(delta) > 40) {
-              e.preventDefault();
-              step(delta < 0 ? 1 : -1);
-            }
-          }}
         >
           {/* The viewport's short axis is the constraint: landscape screens
               fix the height, portrait screens run edge-to-edge minus the
@@ -79,8 +64,8 @@ export default function SketchGrid() {
             sizes="100vw"
             className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:h-auto portrait:w-full portrait:max-h-[80vh]"
           />
-          {/* Desktop: click-zones page through (exit via nav or Escape);
-              mobile taps fall through to the backdrop and close. */}
+          {/* Tapping left/right halves pages through on every device;
+              exits are the nav (always visible) and Escape. */}
           <button
             type="button"
             aria-label="Previous sketch"
@@ -88,7 +73,7 @@ export default function SketchGrid() {
               e.stopPropagation();
               step(-1);
             }}
-            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize max-md:hidden"
+            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize"
           />
           <button
             type="button"
@@ -97,7 +82,7 @@ export default function SketchGrid() {
               e.stopPropagation();
               step(1);
             }}
-            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize max-md:hidden"
+            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
           />
           {/* Meta rail left on desktop (SODAA), bottom-left on mobile;
               the counter anchors bottom-center everywhere. */}
@@ -114,7 +99,7 @@ export default function SketchGrid() {
             {sketches[open].title}
             {sketches[open].note ? ` — ${sketches[open].note}` : ""}
           </p>
-          <p className="absolute inset-x-0 bottom-3 text-center text-body">
+          <p className="absolute bottom-3 text-body max-md:right-gutter md:inset-x-0 md:text-center">
             {open + 1} / {sketches.length}
           </p>
         </div>
