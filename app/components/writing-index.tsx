@@ -24,13 +24,13 @@ const journal = essays.filter((e) => !FEATURED.includes(e.slug));
 export default function WritingIndex() {
   const [active, setActive] = useState<Essay | null>(null);
 
-  const entry = (essay: Essay) => (
+  const entry = (essay: Essay, pad: string) => (
     <Link
       key={essay.slug}
       href={`/writing/${essay.slug}`}
       onMouseEnter={() => setActive(essay)}
       onMouseLeave={() => setActive(null)}
-      className={`grid grid-cols-5 gap-x-gutter ${
+      className={`grid grid-cols-5 gap-x-gutter ${pad} ${
         active && active !== essay ? "text-neutral-400" : ""
       }`}
     >
@@ -47,11 +47,11 @@ export default function WritingIndex() {
   return (
     <div className="text-body md:grid md:grid-cols-12 md:gap-x-gutter">
       <section className="md:col-span-5">
-        <p className="pb-8">Essays</p>
-        <div className="flex flex-col gap-8">{featured.map(entry)}</div>
+        <p className="pb-4">Essays</p>
+        <div className="flex flex-col">{featured.map((e) => entry(e, "py-4"))}</div>
       </section>
       <section className="max-md:pt-16 md:col-span-5 md:col-start-7">
-        <p className="pb-8">
+        <p className="pb-5">
           Journal (
           <Link
             href="https://playfighter.substack.com"
@@ -63,7 +63,7 @@ export default function WritingIndex() {
           </Link>
           )
         </p>
-        <div className="flex flex-col gap-6">{journal.map(entry)}</div>
+        <div className="flex flex-col">{journal.map((e) => entry(e, "py-3"))}</div>
       </section>
     </div>
   );
