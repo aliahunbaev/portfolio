@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { sketches } from "../lib/sketches";
 
-/* Masonry of natural-aspect sketches; tapping one opens a frosted
-   full-screen gallery. Arrows / swipe navigate, Escape or any tap closes. */
+/* Strict column grid, Renell-style: fixed columns, natural image heights,
+   rows bottom-aligned to a shared shelf so the white space above shorter
+   images is part of the composition. Tapping opens a frosted full-screen
+   gallery: arrows / swipe navigate, Escape or any tap closes. */
 export default function SketchGrid() {
   const [open, setOpen] = useState<number | null>(null);
   const touchX = useRef<number | null>(null);
@@ -33,13 +35,13 @@ export default function SketchGrid() {
 
   return (
     <>
-      <div className="columns-2 gap-gutter md:columns-4">
+      <div className="grid grid-cols-2 items-end gap-x-gutter gap-y-16 md:grid-cols-4">
         {sketches.map((sketch, i) => (
           <button
             key={i}
             type="button"
             onClick={() => setOpen(i)}
-            className="mb-gutter block w-full break-inside-avoid"
+            className="block w-full"
           >
             <Image
               src={sketch.image}
