@@ -37,35 +37,34 @@ const groups = journal.reduce<[string, Essay[]][]>((acc, essay) => {
   return acc;
 }, []);
 
-/* Magazine rack above, notebook below: essay cover cards at full presence,
-   then the raw journal as a year-shelved archive list. One spotlight rule
-   across both — the hovered thing stays, everything else recedes. */
+/* Magazine rack above, notebook below: wide essay cover cards in a 2x2,
+   then the raw journal as a year-shelved archive list with the spotlight
+   (cards hover quietly; only the log dims siblings). */
 export default function WritingIndex() {
   const [active, setActive] = useState<Essay | null>(null);
 
   return (
     <div className="text-body">
-      <div className="grid grid-cols-2 gap-x-gutter gap-y-12 md:grid-cols-4">
+      {/* Covers use the site's cinematic frame; text stays body-size — the
+          homepage law: images carry scale, text wins by contrast. Cards get
+          the quiet chrome hover, never the spotlight. */}
+      <div className="grid grid-cols-1 gap-x-gutter gap-y-12 md:grid-cols-2">
         {featured.map(({ essay, cover }) => (
           <Link
             key={essay.slug}
             href={`/writing/${essay.slug}`}
-            onMouseEnter={() => setActive(essay)}
-            onMouseLeave={() => setActive(null)}
-            className={active && active !== essay ? "text-neutral-400" : ""}
+            className="hover:text-neutral-400"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden">
+            <div className="relative aspect-[1.85/1] w-full overflow-hidden">
               <Image
                 src={cover}
                 alt={essay.title}
                 fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className={`object-cover ${
-                  active && active !== essay ? "opacity-60" : ""
-                }`}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
             </div>
-            <p className="pt-3 text-title font-medium">{essay.title}</p>
+            <p className="pt-3 font-medium">{essay.title}</p>
             {essay.subtitle && (
               <p className="pt-1 leading-[1.4]">{essay.subtitle}</p>
             )}
