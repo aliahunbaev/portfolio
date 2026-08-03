@@ -116,8 +116,8 @@ export default async function WorkPage({ params }: Params) {
       style={work.tint ? { backgroundColor: work.tint } : undefined}
     >
       {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
-      <div className="pt-16 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-16 md:col-span-4">
+      <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
           {meta.map(([label, value]) => (
             <div
               key={label}

@@ -15,7 +15,7 @@ const links: [string, string][] = [
 
 export default function Links() {
   return (
-    <main className="px-gutter pb-24 pt-16 text-body">
+    <main className="px-gutter pb-24 pt-30 text-body">
       <p>Ali Ahunbáev — artist and product designer, New York.</p>
       <div className="flex flex-col gap-2 pt-12 text-title font-medium">
         {links.map(([label, href]) => (

@@ -34,8 +34,8 @@ export default async function EssayPage({ params }: Params) {
     <main className="px-gutter pb-24 text-body">
       {/* Rail keeps the apparatus; the piece itself — title, date, text —
           opens at the top of the reading column. */}
-      <div className="pt-16 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-16 md:col-span-4">
+      <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
           {meta.map(([label, value]) => (
             <div
               key={label}

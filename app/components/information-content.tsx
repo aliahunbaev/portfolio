@@ -22,7 +22,7 @@ export default function InformationContent() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <main className="px-gutter pb-24 pt-16 text-body">
+    <main className="px-gutter pb-24 pt-30 text-body">
       <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
         <div className="text-title font-medium leading-[1.1] md:col-span-8">
           <p>

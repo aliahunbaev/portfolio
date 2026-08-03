@@ -6,7 +6,7 @@ import { projects } from "./lib/projects";
 export default function Home() {
   return (
     <main className="px-gutter pb-24">
-      <div className="pt-16 md:grid md:grid-cols-12 md:gap-x-gutter">
+      <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
         <h1 className="text-title font-medium leading-[1.1] md:col-span-8">
           Ali Ahunbáev is an artist, product designer, founder and director of{" "}
           <a
