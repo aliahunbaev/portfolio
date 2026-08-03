@@ -4,10 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 // All copy is placeholder in the site's voice — rewrite freely.
-const intro = [
-  "Ali Ahunbáev is an artist and product designer in New York — founder and director of Combat Créatif, a studio built on the belief that philosophy and beautiful utility belong in the same object. His current work spans Marble, a training app that treats the body the way philosophy treats the mind; The Art Movement, a series of exhibitions and rooftop gatherings for artists in the city; and Beau Flâneur, a fashion project about wandering.",
-  "He is on leave from New York University, focused on doing great work and connecting with brilliant people, and writes weekly at PLAYFIGHTER.",
-];
 
 const more = [
   "He started college at fifteen, taking community college classes with zero bills, zero pressure, and an empty social circle — a comfortable life that made him miserable. During classes, in the car, and in the gym he listened to biographies that stretched his imagination far beyond his reality, and decided comfort was the wrong thing to optimize for.",
@@ -26,14 +22,32 @@ export default function InformationContent() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <main className="px-gutter pb-24 pt-12 text-body">
+    <main className="px-gutter pb-24 pt-16 text-body">
       <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
         <div className="text-title font-medium max-md:leading-tight md:col-span-8">
-          {intro.map((paragraph, i) => (
-            <p key={i} className={i > 0 ? "pt-8" : ""}>
-              {paragraph}
-            </p>
-          ))}
+          <p>
+            Ali Ahunbáev is an artist and product designer in New York —
+            founder and director of{" "}
+            <a
+              href="https://combatcreatif.com"
+              target="_blank"
+              rel="noopener"
+              className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
+            >
+              Combat Créatif
+            </a>
+            , a studio built on the belief that philosophy and beautiful
+            utility belong in the same object. His current work spans Marble, a
+            training app that treats the body the way philosophy treats the
+            mind; The Art Movement, a series of exhibitions and rooftop
+            gatherings for artists in the city; and Beau Flâneur, a fashion
+            project about wandering.
+          </p>
+          <p className="pt-8">
+            He is on leave from New York University, focused on doing great
+            work and connecting with brilliant people, and writes weekly at
+            PLAYFIGHTER.
+          </p>
           {expanded &&
             more.map((paragraph, i) => (
               <p key={i} className="pt-8">
