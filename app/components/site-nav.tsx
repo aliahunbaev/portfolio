@@ -50,7 +50,7 @@ export default function SiteNav() {
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="font-medium md:hidden"
+          className="cursor-pointer font-medium md:hidden"
         >
           {open ? "Close" : "Menu"}
         </button>
