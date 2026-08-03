@@ -70,11 +70,14 @@ export default function SketchGrid() {
             }
           }}
         >
+          {/* The viewport's short axis is the constraint: landscape screens
+              fix the height, portrait screens fix the width — every sketch
+              occupies a consistent size while keeping its aspect. */}
           <Image
             src={sketches[open].image}
             alt={sketches[open].title}
-            sizes="90vw"
-            className="max-h-[80vh] w-auto max-w-full object-contain"
+            sizes="100vw"
+            className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:w-[88vw] portrait:h-auto portrait:max-h-[80vh]"
           />
           <p className="pt-4 text-body">
             {open + 1} / {sketches.length}
