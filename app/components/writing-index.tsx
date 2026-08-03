@@ -113,14 +113,14 @@ export default function WritingIndex() {
           {groups.map(([y, list]) => (
             <section key={y} className="md:grid md:grid-cols-12 md:gap-x-gutter">
               <p className="pt-2 max-md:pb-3 md:col-span-2">{y}</p>
-              <div className="flex flex-col md:col-span-8 md:col-start-3">
+              <div className="flex flex-col md:col-span-8 md:col-start-5">
                 {list.map((essay) => (
                   <Link
                     key={essay.slug}
                     href={`/writing/${essay.slug}`}
                     onMouseEnter={() => setActive(essay)}
                     onMouseLeave={() => setActive(null)}
-                    className={`grid grid-cols-8 gap-x-gutter py-2 leading-[1.4] ${
+                    className={`grid grid-cols-8 gap-x-gutter py-3 leading-[1.4] ${
                       active && active !== essay ? "text-neutral-400" : ""
                     }`}
                   >
@@ -128,8 +128,12 @@ export default function WritingIndex() {
                       {shortDate(essay)}
                     </span>
                     <span className="col-span-7 max-md:col-span-6">
-                      <span className="font-medium">{essay.title}</span>
-                      {essay.subtitle && <> — {essay.subtitle}</>}
+                      <span className="block font-medium">{essay.title}</span>
+                      {essay.subtitle && (
+                        <span className="block pt-1 leading-[1.4]">
+                          {essay.subtitle}
+                        </span>
+                      )}
                     </span>
                   </Link>
                 ))}
