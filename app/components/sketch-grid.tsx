@@ -71,24 +71,52 @@ export default function SketchGrid() {
           }}
         >
           {/* The viewport's short axis is the constraint: landscape screens
-              fix the height, portrait screens fix the width — every sketch
-              occupies a consistent size while keeping its aspect. */}
+              fix the height, portrait screens run edge-to-edge minus the
+              gutter — every sketch occupies a consistent size. */}
           <Image
             src={sketches[open].image}
             alt={sketches[open].title}
             sizes="100vw"
-            className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:w-[88vw] portrait:h-auto portrait:max-h-[80vh]"
+            className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:h-auto portrait:w-full portrait:max-h-[80vh]"
           />
-          {/* Renell-style framing: nav above, fixed caption rail below. */}
-          <div className="absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-gutter px-gutter pb-3 text-body">
-            <p>
-              {sketches[open].title}
-              {sketches[open].note ? ` — ${sketches[open].note}` : ""}
-            </p>
-            <p>
-              {open + 1} / {sketches.length}
-            </p>
+          {/* Desktop: click-zones page through (exit via nav or Escape);
+              mobile taps fall through to the backdrop and close. */}
+          <button
+            type="button"
+            aria-label="Previous sketch"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(-1);
+            }}
+            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize max-md:hidden"
+          />
+          <button
+            type="button"
+            aria-label="Next sketch"
+            onClick={(e) => {
+              e.stopPropagation();
+              step(1);
+            }}
+            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize max-md:hidden"
+          />
+          {/* Meta rail left on desktop (SODAA), bottom-left on mobile;
+              the counter anchors bottom-center everywhere. */}
+          <div className="absolute left-gutter top-30 text-body max-md:hidden">
+            <p>{sketches[open].title}</p>
+            <p className="pt-1">{sketches[open].date}</p>
+            {sketches[open].note && (
+              <p className="max-w-[16rem] pt-4 leading-[1.4]">
+                {sketches[open].note}
+              </p>
+            )}
           </div>
+          <p className="absolute bottom-3 left-gutter max-w-[45%] text-body leading-[1.4] md:hidden">
+            {sketches[open].title}
+            {sketches[open].note ? ` — ${sketches[open].note}` : ""}
+          </p>
+          <p className="absolute inset-x-0 bottom-3 text-center text-body">
+            {open + 1} / {sketches.length}
+          </p>
         </div>
       )}
     </>
