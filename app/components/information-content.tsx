@@ -24,7 +24,7 @@ export default function InformationContent() {
   return (
     <main className="px-gutter pb-24 pt-16 text-body">
       <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
-        <div className="text-title font-medium max-md:leading-tight md:col-span-8">
+        <div className="text-title font-medium leading-[1.1] md:col-span-8">
           <p>
             Ali Ahunbáev is an artist and product designer in New York —
             founder and director of{" "}
