@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export const metadata = { title: "Links — Ali Ahunbáev" };
+export const metadata = { title: "Ali Ahunbáev" };
 
-// Bio-link page (ahunbaev.com/links, aliased at /peace and /love) — the
-// one place every channel is listed, so Information stays minimal.
+// Bio-link page at ahunbaev.com/peace — placeholder layout, to be
+// designed properly later.
 const links: [string, string][] = [
   ["Portfolio", "/"],
   ["Instagram", "https://instagram.com/alizahunbaev"],
