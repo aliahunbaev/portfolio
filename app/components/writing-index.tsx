@@ -29,6 +29,7 @@ export default function WritingIndex() {
       key={essay.slug}
       href={`/writing/${essay.slug}`}
       onMouseEnter={() => setActive(essay)}
+      onMouseLeave={() => setActive(null)}
       className={`grid grid-cols-5 gap-x-gutter ${
         active && active !== essay ? "text-neutral-400" : ""
       }`}
@@ -44,10 +45,7 @@ export default function WritingIndex() {
   );
 
   return (
-    <div
-      className="text-body md:grid md:grid-cols-12 md:gap-x-gutter"
-      onMouseLeave={() => setActive(null)}
-    >
+    <div className="text-body md:grid md:grid-cols-12 md:gap-x-gutter">
       <section className="md:col-span-5">
         <p className="pb-8">Essays</p>
         <div className="flex flex-col gap-8">{featured.map(entry)}</div>
