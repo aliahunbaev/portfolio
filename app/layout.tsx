@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import IntroLoader from "./components/intro-loader";
 import SiteNav from "./components/site-nav";
 
 // Combat Créatif wordmark typeface, used only for the brand pill.
@@ -23,6 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraktion.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <IntroLoader />
         <SiteNav />
         {children}
       </body>

@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-/* Load-in: the name appears vertically centered, the tagline fades in on
-   the right, the band rises to the nav line, then the overlay fades and
-   the page appears. Homepage only, once per session.
-   ?intro replays it; ?intro=slow runs it at 3x length. */
+/* Load-in on every full page load (lives in the layout, so client-side
+   navigation never retriggers it): the name appears vertically centered,
+   the tagline fades in on the right, the band rises to the nav line, then
+   the overlay fades and the page appears. ?intro=slow runs it at 3x. */
 export default function IntroLoader() {
   const [phase, setPhase] = useState<
     "name" | "tagline" | "rise" | "fade" | "done"
@@ -13,15 +13,10 @@ export default function IntroLoader() {
 
   useEffect(() => {
     const param = new URLSearchParams(window.location.search).get("intro");
-    const replay = new URLSearchParams(window.location.search).has("intro");
-    if (
-      (!replay && sessionStorage.getItem("introSeen")) ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPhase("done");
       return;
     }
-    sessionStorage.setItem("introSeen", "1");
     const k = param === "slow" ? 3 : 1;
     const timers = [
       setTimeout(() => setPhase("tagline"), 500 * k),
