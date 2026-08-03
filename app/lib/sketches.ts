@@ -10,16 +10,28 @@ export type Sketch = {
   image: StaticImageData;
   title: string;
   date: string;
+  /** Optional little context line, shown in the gallery caption rail. */
+  note?: string;
 };
 
 // Placeholder set — the six project images standing in until real sketch
 // scans land in public/images (import them above and list them here;
 // natural aspect ratios come from the static imports).
 export const sketches: Sketch[] = [
-  { image: marbleBook, title: "Sketch 001", date: "2026" },
+  {
+    image: marbleBook,
+    title: "Sketch 001",
+    date: "2026",
+    note: "study for the Marble opening screen",
+  },
   { image: panther, title: "Sketch 002", date: "2026" },
   { image: trumpet, title: "Sketch 003", date: "2026" },
-  { image: artPainting, title: "Sketch 004", date: "2025" },
+  {
+    image: artPainting,
+    title: "Sketch 004",
+    date: "2025",
+    note: "drawn the night after Rooftop 001",
+  },
   { image: lightbox, title: "Sketch 005", date: "2025" },
   { image: jungle, title: "Sketch 006", date: "2025" },
   { image: trumpet, title: "Sketch 007", date: "2025" },

@@ -54,7 +54,7 @@ export default function SketchGrid() {
       </div>
       {open !== null && (
         <div
-          className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-white/75 px-gutter backdrop-blur-xl backdrop-saturate-150"
+          className="fixed inset-0 z-30 flex items-center justify-center bg-white px-gutter"
           onClick={() => setOpen(null)}
           onTouchStart={(e) => {
             touchX.current = e.touches[0].clientX;
@@ -79,9 +79,16 @@ export default function SketchGrid() {
             sizes="100vw"
             className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:w-[88vw] portrait:h-auto portrait:max-h-[80vh]"
           />
-          <p className="pt-4 text-body">
-            {open + 1} / {sketches.length}
-          </p>
+          {/* Renell-style framing: nav above, fixed caption rail below. */}
+          <div className="absolute inset-x-0 bottom-0 flex items-baseline justify-between gap-gutter px-gutter pb-3 text-body">
+            <p>
+              {sketches[open].title}
+              {sketches[open].note ? ` — ${sketches[open].note}` : ""}
+            </p>
+            <p>
+              {open + 1} / {sketches.length}
+            </p>
+          </div>
         </div>
       )}
     </>
