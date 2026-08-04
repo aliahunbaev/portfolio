@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export const metadata = { title: "Ali Ahunbáev" };
 
-// Bio-link page at ahunbaev.com/peace — placeholder layout, to be
-// designed properly later.
+// Bio-link page at ahunbaev.com/peace — mobile-first, its audience
+// arrives from a social bio.
 const links: [string, string][] = [
   ["Portfolio", "/"],
   ["Instagram", "https://instagram.com/alizahunbaev"],
@@ -13,20 +13,19 @@ const links: [string, string][] = [
   ["Email", "mailto:alizahunbaev@gmail.com"],
 ];
 
-export default function Links() {
+export default function Peace() {
   return (
     <main className="px-gutter pb-24 pt-30 text-body">
-      <p>Ali Ahunbáev — artist and product designer, New York.</p>
+      <p className="font-medium">Ali Ahunbáev</p>
+      <p className="pt-1">Artist &amp; Product Designer, New York.</p>
       <div className="flex flex-col gap-2 pt-12 text-title font-medium">
         {links.map(([label, href]) => (
           <Link
             key={label}
             href={href}
-            target={
-              href.startsWith("http") ? "_blank" : undefined
-            }
+            target={href.startsWith("http") ? "_blank" : undefined}
             rel="noopener"
-            className="w-fit hover:text-neutral-400"
+            className="w-fit py-1 hover:text-neutral-400"
           >
             {label}
           </Link>

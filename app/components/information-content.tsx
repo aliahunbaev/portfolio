@@ -9,6 +9,7 @@ import { useState } from "react";
 const links: [string, string][] = [
   ["@alizahunbaev", "https://instagram.com/alizahunbaev"],
   ["@combatcreatif", "https://instagram.com/combatcreatif"],
+  ["alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
 ];
 
 /* Renell anatomy: one dense big-text block, Read more continues it inline
@@ -76,7 +77,7 @@ export default function InformationContent() {
           <Link
             key={href}
             href={href}
-            target="_blank"
+            target={href.startsWith("mailto") ? undefined : "_blank"}
             rel="noopener"
             className="w-fit hover:text-neutral-400"
           >
