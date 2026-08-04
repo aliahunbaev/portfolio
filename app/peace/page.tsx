@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-export const metadata = { title: "Ali Ahunbáev" };
-
 // Bio-link page at ahunbaev.com/peace — mobile-first, its audience
 // arrives from a social bio.
 const links: [string, string][] = [

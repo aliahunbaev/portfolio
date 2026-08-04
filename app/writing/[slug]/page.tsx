@@ -11,9 +11,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const essay = essays.find((e) => e.slug === slug);
-  return essay
-    ? { title: `${essay.title} — Ali Ahunbáev`, description: essay.subtitle }
-    : { title: "Ali Ahunbáev" };
+  return { title: "Ali Ahunbáev", description: essay?.subtitle };
 }
 
 export default async function EssayPage({ params }: Params) {

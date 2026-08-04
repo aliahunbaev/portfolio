@@ -17,7 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
   const work = works.find((w) => slugify(w.title) === slug);
-  return { title: work ? `${work.title} — Ali Ahunbáev` : "Ali Ahunbáev" };
+  return { title: "Ali Ahunbáev", description: work?.description };
 }
 
 function Frame({
