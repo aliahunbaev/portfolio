@@ -35,17 +35,20 @@ export default function SiteNav() {
       <nav
         className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-gutter py-1 text-body font-medium ${open ? glassDesktop : glass}`}
       >
-        {/* Identity left, navigation right. */}
+        {/* Spread evenly, so the bar reads as a ruler across the page —
+            the same measured logic as the grid below it. */}
         <Link href="/" className="hover:text-neutral-400">
           Ali Ahunbáev
         </Link>
-        <div className="flex items-baseline gap-8 max-md:hidden">
-          {links.map(({ label, href }) => (
-            <Link key={href} href={href} className="hover:text-neutral-400">
-              {label}
-            </Link>
-          ))}
-        </div>
+        {links.map(({ label, href }) => (
+          <Link
+            key={href}
+            href={href}
+            className="hover:text-neutral-400 max-md:hidden"
+          >
+            {label}
+          </Link>
+        ))}
         <button
           type="button"
           onClick={() => setOpen(!open)}
