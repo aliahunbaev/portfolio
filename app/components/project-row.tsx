@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
 import { slugify, type Project } from "../lib/projects";
 
 /*
@@ -13,15 +10,6 @@ import { slugify, type Project } from "../lib/projects";
  * date/category right-aligned on the right.
  */
 export default function ProjectRow({ project }: { project: Project }) {
-  const labelRef = useRef<HTMLSpanElement>(null);
-
-  function moveLabel(e: React.MouseEvent<HTMLAnchorElement>) {
-    const label = labelRef.current;
-    if (!label) return;
-    label.style.left = `${e.clientX}px`;
-    label.style.top = `${e.clientY}px`;
-  }
-
   return (
     <article className="max-md:flex max-md:flex-col md:grid md:grid-cols-12 md:gap-x-gutter">
       {/* Starts 48px above the image on desktop and stays sticky while the
@@ -44,8 +32,8 @@ export default function ProjectRow({ project }: { project: Project }) {
       </div>
       <Link
         href={`/work/${slugify(project.title)}`}
-        className="group relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:order-1 md:col-span-8"
-        onMouseMove={moveLabel}
+        data-cursor-label="View Project"
+        className="relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:order-1 md:col-span-8"
       >
         <Image
           draggable={false}
@@ -55,16 +43,7 @@ export default function ProjectRow({ project }: { project: Project }) {
           sizes="(max-width: 768px) 100vw, 67vw"
           className="object-cover"
           style={{ objectPosition: project.objectPosition }}
-        />
-        {/* Follows the cursor via onMouseMove; visibility is pure CSS :hover.
-            Fixed positioning keeps it pinned to the cursor while scrolling
-            (the cursor doesn't move relative to the viewport on scroll). */}
-        <span
-          ref={labelRef}
-          className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-body font-medium text-white opacity-0 mix-blend-exclusion transition-opacity duration-150 group-hover:opacity-100"
-        >
-          View Project
-        </span>
+        />{" "}
       </Link>
     </article>
   );

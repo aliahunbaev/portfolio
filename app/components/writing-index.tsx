@@ -2,7 +2,7 @@
 
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { essays, type Essay } from "../lib/writing";
 import marbleBook from "../../public/images/marble-book.png";
 import panther from "../../public/images/art-movement-panther.png";
@@ -39,28 +39,12 @@ const groups = journal.reduce<[string, Essay[]][]>((acc, essay) => {
 
 const shortDate = (essay: Essay) => essay.date.split(",")[0];
 
-function EssayCard({
-  essay,
-  cover,
-}: {
-  essay: Essay;
-  cover: StaticImageData;
-}) {
-  const labelRef = useRef<HTMLSpanElement>(null);
-
-  // Same cursor-label pattern as the homepage's View Project.
-  function moveLabel(e: React.MouseEvent) {
-    const label = labelRef.current;
-    if (!label) return;
-    label.style.left = `${e.clientX}px`;
-    label.style.top = `${e.clientY}px`;
-  }
-
+function EssayCard({ essay, cover }: { essay: Essay; cover: StaticImageData }) {
   return (
     <Link href={`/writing/${essay.slug}`}>
       <div
-        className="group relative aspect-[1.85/1] w-full cursor-none overflow-hidden"
-        onMouseMove={moveLabel}
+        data-cursor-label="Read Essay"
+        className="relative aspect-[1.85/1] w-full cursor-none overflow-hidden"
       >
         <Image
           draggable={false}
@@ -70,12 +54,6 @@ function EssayCard({
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
         />
-        <span
-          ref={labelRef}
-          className="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-medium text-white opacity-0 mix-blend-exclusion group-hover:opacity-100"
-        >
-          Read Essay
-        </span>
       </div>
       <p className="pt-3 font-medium">{essay.title}</p>
       {essay.subtitle && <p className="pt-1 leading-[1.4]">{essay.subtitle}</p>}
@@ -100,7 +78,10 @@ export default function WritingIndex() {
       <div className="pt-24">
         <div className="flex flex-col gap-8">
           {groups.map(([y, list]) => (
-            <section key={y} className="md:grid md:grid-cols-12 md:gap-x-gutter">
+            <section
+              key={y}
+              className="md:grid md:grid-cols-12 md:gap-x-gutter"
+            >
               <p className="pt-2 max-md:pb-3 md:col-span-2">{y}</p>
               <div className="flex flex-col md:col-span-8 md:col-start-5">
                 {list.map((essay) => (

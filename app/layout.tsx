@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CursorLabel from "./components/cursor-label";
 import IntroLoader from "./components/intro-loader";
 import PageFade from "./components/page-fade";
 import SiteNav from "./components/site-nav";
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraktion.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <CursorLabel />
         <IntroLoader />
         <SiteNav />
         <PageFade>{children}</PageFade>
