@@ -17,8 +17,12 @@ export default function WorkIndex() {
     <div>
       {/* All rows sit black; hovering one dims the others. */}
       <ul onMouseLeave={() => setActive(null)}>
-        {works.map((project) => (
-          <li key={project.title} className="border-b border-black/10">
+        {works.map((project, i) => (
+          <li
+            key={project.title}
+            className="fade-in border-b border-black/10"
+            style={{ animationDelay: `${i * 45}ms` }}
+          >
             <Link
               href={`/work/${slugify(project.title)}`}
               onMouseEnter={() => setActive(project)}
