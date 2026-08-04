@@ -39,6 +39,14 @@ body {
   font-family: var(--font-sans);
 }
 
+/* No drag ghosts: images are part of the layout, not draggable objects.
+   The attribute covers Firefox; this covers WebKit and anything added
+   later. */
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

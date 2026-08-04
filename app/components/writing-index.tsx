@@ -63,6 +63,7 @@ function EssayCard({
         onMouseMove={moveLabel}
       >
         <Image
+          draggable={false}
           src={cover}
           alt={essay.title}
           fill

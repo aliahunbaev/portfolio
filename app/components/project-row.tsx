@@ -48,6 +48,7 @@ export default function ProjectRow({ project }: { project: Project }) {
         onMouseMove={moveLabel}
       >
         <Image
+          draggable={false}
           src={project.image}
           alt={project.title}
           fill

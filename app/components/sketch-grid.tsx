@@ -72,6 +72,7 @@ export default function SketchGrid() {
             className="block w-full cursor-pointer"
           >
             <Image
+              draggable={false}
               src={sketch.image}
               alt={sketch.title}
               sizes="(max-width: 768px) 50vw, 25vw"
@@ -88,6 +89,7 @@ export default function SketchGrid() {
               fix the height, portrait screens run edge-to-edge minus the
               gutter — every sketch occupies a consistent size. */}
           <Image
+            draggable={false}
             src={sketches[open].image}
             alt={sketches[open].title}
             sizes="100vw"

@@ -38,6 +38,7 @@ function Frame({
   return (
     <div className={`relative w-full overflow-hidden ${aspect} ${className}`}>
       <Image
+        draggable={false}
         src={image}
         alt={alt}
         fill
