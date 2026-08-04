@@ -44,7 +44,7 @@ export default function CursorLabel() {
     <span
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed z-[60] ml-2 mt-2 whitespace-nowrap text-body font-medium text-white opacity-0 mix-blend-exclusion [@media(hover:none)]:hidden"
+      className="pointer-events-none fixed z-[60] ml-2 -translate-y-1/2 whitespace-nowrap text-body font-medium text-white opacity-0 mix-blend-exclusion [@media(hover:none)]:hidden"
     />
   );
 }
