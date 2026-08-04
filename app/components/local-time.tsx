@@ -14,18 +14,13 @@ export default function LocalTime() {
   useEffect(() => {
     const tick = () => {
       const now = new Date();
-      const date = now.toLocaleDateString("en-US", {
-        timeZone: ZONE,
-        month: "long",
-        day: "numeric",
-      });
       const time = now.toLocaleTimeString("en-US", {
         timeZone: ZONE,
         hour: "numeric",
         minute: "2-digit",
         second: "2-digit",
       });
-      setStamp(`${date}, ${time}, Manhattan, New York`);
+      setStamp(`New York, ${time}`);
     };
     tick();
     const id = setInterval(tick, 1000);

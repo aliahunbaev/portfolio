@@ -38,7 +38,7 @@ export default function SiteNav() {
       >
         {/* Identity left (name, then local date/time/place in regular
             weight), navigation right. */}
-        <div className="flex items-baseline gap-gutter">
+        <div className="flex items-baseline gap-12">
           <Link href="/" className="hover:text-neutral-400">
             Ali Ahunbáev
           </Link>
