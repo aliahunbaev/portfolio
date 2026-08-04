@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LocalTime from "./local-time";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -35,18 +36,23 @@ export default function SiteNav() {
       <nav
         className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-gutter py-1 text-body font-medium ${open ? glassDesktop : glass}`}
       >
-        <Link href="/" className="hover:text-neutral-400">
-          Ali Ahunbáev
-        </Link>
-        {links.map(({ label, href }) => (
-          <Link
-            key={href}
-            href={href}
-            className="hover:text-neutral-400 max-md:hidden"
-          >
-            {label}
+        {/* Identity left (name, then local date/time/place in regular
+            weight), navigation right. */}
+        <div className="flex items-baseline gap-gutter">
+          <Link href="/" className="hover:text-neutral-400">
+            Ali Ahunbáev
           </Link>
-        ))}
+          <span className="font-normal">
+            <LocalTime />
+          </span>
+        </div>
+        <div className="flex items-baseline gap-8 max-md:hidden">
+          {links.map(({ label, href }) => (
+            <Link key={href} href={href} className="hover:text-neutral-400">
+              {label}
+            </Link>
+          ))}
+        </div>
         <button
           type="button"
           onClick={() => setOpen(!open)}
