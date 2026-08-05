@@ -1,5 +1,5 @@
 import ProjectRow from "./components/project-row";
-import { projects } from "./lib/projects";
+import { getFeatured } from "./lib/content";
 
 // The homepage statement: one breath, at the site-wide 64px line — the
 // full portrait lives on Information. Curated project rows follow.
@@ -22,7 +22,7 @@ export default function Home() {
         </h1>
       </div>
       <div className="flex flex-col gap-gutter pt-24 max-md:gap-16 max-md:pt-16">
-        {projects.map((project, i) => (
+        {getFeatured().map((project, i) => (
           <ProjectRow key={i} project={project} />
         ))}
       </div>

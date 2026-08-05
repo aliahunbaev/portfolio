@@ -3,14 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { slugify, works, type Project } from "../lib/projects";
+import { slugify, type Project } from "../lib/projects";
 
 /*
  * Full-width hairline rows: title left, type right. Hovering a row swaps the
  * emphasis (title greys, type darkens) and shows the project's cover in a
  * fixed slot anchored to the bottom-right of the viewport.
  */
-export default function WorkIndex() {
+export default function WorkIndex({ works }: { works: Project[] }) {
   const [active, setActive] = useState<Project | null>(null);
 
   return (

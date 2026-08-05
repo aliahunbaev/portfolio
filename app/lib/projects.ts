@@ -23,6 +23,8 @@ export type Project = {
   /** Optional light background for the project page (PlayLab-style);
    *  keep tints pale enough for black body text. */
   tint?: string;
+  /** Shown as a homepage row. */
+  featured?: boolean;
 };
 
 export function slugify(title: string) {

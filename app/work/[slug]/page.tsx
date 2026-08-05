@@ -1,22 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  slugify,
-  workImages,
-  works,
-  type Block,
-} from "../../lib/projects";
+import { getWorks } from "../../lib/content";
+import { slugify, workImages, type Block } from "../../lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return works.map((work) => ({ slug: slugify(work.title) }));
+  return getWorks().map((work) => ({ slug: slugify(work.title) }));
 }
 
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
-  const work = works.find((w) => slugify(w.title) === slug);
+  const work = getWorks().find((w) => slugify(w.title) === slug);
   return { title: "Ali Ahunbáev", description: work?.description };
 }
 
@@ -91,6 +87,7 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
 
 export default async function WorkPage({ params }: Params) {
   const { slug } = await params;
+  const works = getWorks();
   const index = works.findIndex((w) => slugify(w.title) === slug);
   if (index === -1) notFound();
   const work = works[index];
