@@ -15,7 +15,7 @@ export default function Peace() {
   return (
     <main className="px-gutter pb-24 pt-30 text-body">
       <p className="font-medium">Ali Ahunbáev</p>
-      <p className="pt-1">Artist &amp; Product Designer, New York.</p>
+      <p className="pt-1">Artist and Product Designer, New York.</p>
       <div className="flex flex-col gap-2 pt-12 text-title font-medium">
         {links.map(([label, href]) => (
           <Link

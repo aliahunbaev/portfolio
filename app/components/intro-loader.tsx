@@ -56,7 +56,7 @@ export default function IntroLoader() {
             phase === "blank" || phase === "name" ? "opacity-0" : "opacity-100"
           }`}
         >
-          Artist &amp; Product Designer
+          Artist and Product Designer
         </span>
       </div>
     </div>
