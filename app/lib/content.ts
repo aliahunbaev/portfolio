@@ -74,7 +74,12 @@ function parseBlocks(slug: string, body: string): Block[] {
     const prose = trimmed.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim();
 
     if (images.length && !prose) {
-      if (images.length === 2) {
+      const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
+      if (images.every(isVideo)) {
+        for (const src of images) {
+          blocks.push({ type: "video", src: resolveSrc(slug, src) });
+        }
+      } else if (images.length === 2) {
         blocks.push({
           type: "pair",
           images: images.map((src) => ({ image: resolveSrc(slug, src) })),

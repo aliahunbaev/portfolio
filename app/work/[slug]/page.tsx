@@ -57,6 +57,20 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
       </p>
     );
   }
+  if (block.type === "video") {
+    // Silent looping clips, like the imagery around them — no player chrome.
+    return (
+      <video
+        src={block.src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="w-full md:col-span-8"
+      />
+    );
+  }
   if (block.type === "pair") {
     return (
       <div className="grid grid-cols-2 gap-x-gutter md:col-span-8">
