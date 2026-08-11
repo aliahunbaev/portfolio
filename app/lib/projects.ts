@@ -58,7 +58,6 @@ export const works: Project[] = [
       "Building the most beautiful training app in existence, mixing sport, philosophy, and design.",
     image: "/images/marble-book.png",
     objectPosition: "50% 50%",
-    tint: "#E8E5DE",
     // Narrative mode: text woven between images.
     blocks: [
       {
@@ -96,7 +95,6 @@ export const works: Project[] = [
       "Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.",
     image: "/images/art-movement-painting.png",
     objectPosition: "50% 54%",
-    tint: "#AFC5DE",
   },
   {
     date: "April 2026",
@@ -138,7 +136,6 @@ export const works: Project[] = [
       "The fashion design project centered around wandering, existentialism, and French - Romantic visuals.",
     image: "/images/beau-flaneur-lightbox.png",
     objectPosition: "50% 0%",
-    tint: "#B7C29A",
     // Frontloaded mode: full context first, then uninterrupted visuals.
     blocks: [
       {

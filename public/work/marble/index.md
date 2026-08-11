@@ -4,7 +4,6 @@ date: July 2026
 medium: iOS App
 description: Building the most beautiful training app in existence, mixing sport, philosophy, and design.
 cover: /images/marble-book.png
-tint: "#E8E5DE"
 featured: true
 ---
 

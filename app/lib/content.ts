@@ -26,7 +26,7 @@ import {
      medium: iOS App
      description: One line for the homepage row and archive.
      cover: cover.jpg          # optional; first image otherwise
-     tint: "#E8E5DE"           # optional page background
+     tint: "#E8E5DE"           # rare — only when the colour IS the work
      featured: true            # optional; shows on the homepage
      ---
 
