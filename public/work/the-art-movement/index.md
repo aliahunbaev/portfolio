@@ -21,7 +21,7 @@ The intention was simple: transfer creative inspiration directly from artist to 
 
 ![](IMG_6250.jpg)
 
-![sound](girma-poem.mp4)
+![](girma-poem.mp4)
 
 ![](IMG_0677.jpg)
 
@@ -67,6 +67,6 @@ At nine the night moved to the roof.
 
 Jaden, on the idea behind the event.
 
-![sound](jaden-inspiration.mp4)
+![](jaden-inspiration.mp4)
 
 ![](IMG_6156.jpg)

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import VideoPlayer from "../../components/video-player";
 import { notFound } from "next/navigation";
 import { getWorks } from "../../lib/content";
 import { slugify, workImages, type Block } from "../../lib/projects";
@@ -58,28 +59,7 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
     );
   }
   if (block.type === "video") {
-    // Talking pieces (marked ![sound] in markdown) wait to be played and
-    // keep their audio; everything else runs as a silent loop, like the
-    // imagery around it — no player chrome.
-    return block.sound ? (
-      <video
-        src={block.src}
-        controls
-        playsInline
-        preload="metadata"
-        className="w-full md:col-span-8"
-      />
-    ) : (
-      <video
-        src={block.src}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="w-full md:col-span-8"
-      />
-    );
+    return <VideoPlayer src={block.src} className="md:col-span-8" />;
   }
   if (block.type === "pair") {
     return (
