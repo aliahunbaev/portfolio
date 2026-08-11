@@ -58,8 +58,18 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
     );
   }
   if (block.type === "video") {
-    // Silent looping clips, like the imagery around them — no player chrome.
-    return (
+    // Talking pieces (marked ![sound] in markdown) wait to be played and
+    // keep their audio; everything else runs as a silent loop, like the
+    // imagery around it — no player chrome.
+    return block.sound ? (
+      <video
+        src={block.src}
+        controls
+        playsInline
+        preload="metadata"
+        className="w-full md:col-span-8"
+      />
+    ) : (
       <video
         src={block.src}
         autoPlay

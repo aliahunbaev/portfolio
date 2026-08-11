@@ -68,16 +68,21 @@ function parseBlocks(slug: string, body: string): Block[] {
   for (const chunk of body.split(/\n{2,}/)) {
     const trimmed = chunk.trim();
     if (!trimmed) continue;
-    const images = [...trimmed.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map(
-      (m) => m[1],
+    const media = [...trimmed.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)].map(
+      (m) => ({ alt: m[1], src: m[2] }),
     );
+    const images = media.map((m) => m.src);
     const prose = trimmed.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim();
 
     if (images.length && !prose) {
       const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
       if (images.every(isVideo)) {
-        for (const src of images) {
-          blocks.push({ type: "video", src: resolveSrc(slug, src) });
+        for (const { alt, src } of media) {
+          blocks.push({
+            type: "video",
+            src: resolveSrc(slug, src),
+            sound: /\bsound\b/i.test(alt) || undefined,
+          });
         }
       } else if (images.length === 2) {
         blocks.push({

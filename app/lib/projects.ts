@@ -3,7 +3,7 @@
 export type Block =
   | { type: "text"; body: string }
   | { type: "image"; image: string; objectPosition?: string }
-  | { type: "video"; src: string }
+  | { type: "video"; src: string; sound?: boolean }
   | {
       type: "pair";
       images: { image: string; objectPosition?: string }[];
