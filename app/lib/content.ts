@@ -119,6 +119,7 @@ function readFolder(slug: string): Project | undefined {
     objectPosition: meta.objectPosition ?? "50% 50%",
     tint: meta.tint || undefined,
     featured: meta.featured === "true",
+    previewVideo: meta.preview ? resolveSrc(slug, meta.preview) : undefined,
     blocks,
   };
 }

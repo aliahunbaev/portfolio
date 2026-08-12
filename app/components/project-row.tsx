@@ -35,15 +35,30 @@ export default function ProjectRow({ project }: { project: Project }) {
         data-cursor-label="View Project"
         className="relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:order-1 md:col-span-8"
       >
-        <Image
-          draggable={false}
-          src={project.image}
-          alt={project.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 67vw"
-          className="object-cover"
-          style={{ objectPosition: project.objectPosition }}
-        />{" "}
+        {project.previewVideo ? (
+          // Silent looping preview — the moving version of a cover image,
+          // same crop behaviour, no controls.
+          <video
+            src={project.previewVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: project.objectPosition }}
+          />
+        ) : (
+          <Image
+            draggable={false}
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 67vw"
+            className="object-cover"
+            style={{ objectPosition: project.objectPosition }}
+          />
+        )}
       </Link>
     </article>
   );
