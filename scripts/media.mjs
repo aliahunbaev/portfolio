@@ -10,6 +10,7 @@
  *   photos (jpg/png/heic/tiff/webp) -> JPEG, longest edge 2400px
  *   graphics/screenshots (png)      -> PNG, longest edge 2400px
  *   video (mov/mp4/m4v/avi)         -> MP4 H.264 1080p, web-optimized
+ *   preview*.mov/mp4                -> also extracts a first-frame poster
  *   PDF                             -> one JPEG per page (deck-01.jpg …)
  *
  * Then it prints markdown you can paste straight into index.md.
@@ -77,6 +78,15 @@ for (const entry of readdirSync(source).sort()) {
       "-pix_fmt", "yuv420p", "-movflags", "+faststart",
       "-c:a", "aac", "-b:a", "128k", dest], { stdio: "ignore" });
     written.push({ file: `${base}.mp4`, kind: "video", size: size(dest) });
+    // Homepage preview reels get a first-frame poster so the pre-play
+    // state is indistinguishable from the playing video (frontmatter:
+    // preview + previewPoster).
+    if (base.startsWith("preview")) {
+      const posterDest = path.join(out, `${base}-poster.jpg`);
+      execFileSync("ffmpeg", ["-y", "-i", dest, "-frames:v", "1",
+        "-q:v", "3", posterDest], { stdio: "ignore" });
+      written.push({ file: `${base}-poster.jpg`, kind: "image", size: size(posterDest) });
+    }
   } else if (ext === ".pdf") {
     if (!has("pdftoppm")) {
       console.warn(`skipped ${entry} — install poppler: brew install poppler`);
