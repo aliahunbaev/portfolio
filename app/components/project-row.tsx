@@ -41,7 +41,7 @@ export default function ProjectRow({ project }: { project: Project }) {
           // same crop behaviour, no controls.
           <PreviewVideo
             src={project.previewVideo}
-            poster={project.image}
+            poster={project.previewPoster}
             objectPosition={project.objectPosition}
           />
         ) : (

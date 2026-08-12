@@ -120,6 +120,9 @@ function readFolder(slug: string): Project | undefined {
     tint: meta.tint || undefined,
     featured: meta.featured === "true",
     previewVideo: meta.preview ? resolveSrc(slug, meta.preview) : undefined,
+    previewPoster: meta.previewPoster
+      ? resolveSrc(slug, meta.previewPoster)
+      : undefined,
     blocks,
   };
 }

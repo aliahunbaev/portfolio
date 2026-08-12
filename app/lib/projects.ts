@@ -29,6 +29,9 @@ export type Project = {
   /** Optional silent looping video used instead of the cover image on
    *  the homepage row (frontmatter key: preview). */
   previewVideo?: string;
+  /** First frame of previewVideo, shown until playback starts so a
+   *  blocked autoplay is indistinguishable from a paused first frame. */
+  previewPoster?: string;
 };
 
 export function slugify(title: string) {
