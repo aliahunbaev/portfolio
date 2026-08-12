@@ -52,6 +52,13 @@ img {
   user-select: none;
 }
 
+/* Videos here never use native chrome; when iOS blocks autoplay (Low
+   Power Mode) it should show the poster frame clean, not a play glyph. */
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

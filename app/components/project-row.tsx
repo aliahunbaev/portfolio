@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import PreviewVideo from "./preview-video";
 import { slugify, type Project } from "../lib/projects";
 
 /*
@@ -38,15 +39,10 @@ export default function ProjectRow({ project }: { project: Project }) {
         {project.previewVideo ? (
           // Silent looping preview — the moving version of a cover image,
           // same crop behaviour, no controls.
-          <video
+          <PreviewVideo
             src={project.previewVideo}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: project.objectPosition }}
+            poster={project.image}
+            objectPosition={project.objectPosition}
           />
         ) : (
           <Image

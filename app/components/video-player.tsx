@@ -33,6 +33,10 @@ export default function VideoPlayer({
     const v = videoRef.current;
     if (!v) return;
     if (v.duration) setDuration(v.duration);
+    // React drops the muted attribute in SSR HTML, so iOS blocks the
+    // parse-time autoplay; re-assert muted and start playback here.
+    v.muted = true;
+    if (v.paused) v.play().catch(() => {});
     setPlaying(!v.paused);
   }, []);
 
