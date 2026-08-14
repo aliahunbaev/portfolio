@@ -16,11 +16,13 @@ export default function GalleryBlock({
   images,
   cover,
   className = "",
+  style,
 }: {
   title: string;
   images: string[];
   cover?: { w: number; h: number };
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -73,7 +75,7 @@ export default function GalleryBlock({
   }, [open, index, images.length, goTo]);
 
   return (
-    <div className={className}>
+    <div className={className} style={style}>
       <button
         type="button"
         onClick={() => {

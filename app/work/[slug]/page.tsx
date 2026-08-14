@@ -57,6 +57,7 @@ function Frame({
 function BlockView({
   block,
   alt,
+  anchorId,
 }: {
   block:
     | Block
@@ -65,21 +66,25 @@ function BlockView({
         galleries: Extract<Block, { type: "gallery" }>[];
       };
   alt: string;
+  anchorId?: string;
 }) {
-  if (block.type === "section") {
-    // Invisible anchor: the rail is the visible index, the flow stays
-    // uninterrupted. scroll-mt clears the fixed nav.
-    return <span id={block.id} aria-hidden className="scroll-mt-24 md:col-span-8" />;
-  }
+  if (block.type === "section") return null;
   if (block.type === "text") {
     return (
-      <p className="whitespace-pre-line py-12 leading-[1.5] first:pt-0 md:col-span-5">
+      <p
+        id={anchorId}
+        className="scroll-mt-24 whitespace-pre-line py-12 leading-[1.5] first:pt-0 md:col-span-5"
+      >
         {block.body}
       </p>
     );
   }
   if (block.type === "video") {
-    return <VideoPlayer src={block.src} className="md:col-span-8" />;
+    return (
+      <div id={anchorId} className="scroll-mt-24 md:col-span-8">
+        <VideoPlayer src={block.src} />
+      </div>
+    );
   }
   if (block.type === "gallery") {
     return (
@@ -92,13 +97,13 @@ function BlockView({
     );
   }
   if (block.type === "galleryRow") {
-    // Consecutive portrait artifacts sit shoulder to shoulder.
+    // Shared row: each artifact's share of the width is its aspect
+    // ratio, so every tile lands at the same height and the row fills
+    // the zone exactly.
     return (
       <div
-        className="grid gap-x-gutter gap-y-gutter md:col-span-8"
-        style={{
-          gridTemplateColumns: `repeat(${block.galleries.length}, minmax(0, 1fr))`,
-        }}
+        id={anchorId}
+        className="flex scroll-mt-24 gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-span-8"
       >
         {block.galleries.map((g) => (
           <GalleryBlock
@@ -106,6 +111,11 @@ function BlockView({
             title={g.title}
             images={g.images}
             cover={g.cover}
+            style={
+              g.cover
+                ? { flexGrow: g.cover.w / g.cover.h, flexBasis: 0 }
+                : { flexGrow: 1, flexBasis: 0 }
+            }
           />
         ))}
       </div>
@@ -156,20 +166,33 @@ export default async function WorkPage({ params }: Params) {
     ),
   ];
 
-  // Consecutive portrait galleries collapse into one row.
+  // Consecutive portrait galleries collapse into one row, and each
+  // section's anchor id rides on its first real block — no empty rows.
   type GalleryB = Extract<Block, { type: "gallery" }>;
   type RowBlock = Block | { type: "galleryRow"; galleries: GalleryB[] };
-  const grouped: RowBlock[] = [];
+  const grouped: { block: RowBlock; anchorId?: string }[] = [];
+  let pendingAnchor: string | undefined;
   for (const block of blocks) {
+    if (block.type === "section") {
+      pendingAnchor = block.id;
+      continue;
+    }
     const portrait =
       block.type === "gallery" && block.cover && block.cover.h > block.cover.w;
     const last = grouped[grouped.length - 1];
-    if (portrait && last?.type === "galleryRow") {
-      last.galleries.push(block as GalleryB);
+    if (portrait && last?.block.type === "galleryRow" && !pendingAnchor) {
+      (last.block as { galleries: GalleryB[] }).galleries.push(
+        block as GalleryB,
+      );
     } else if (portrait) {
-      grouped.push({ type: "galleryRow", galleries: [block as GalleryB] });
+      grouped.push({
+        block: { type: "galleryRow", galleries: [block as GalleryB] },
+        anchorId: pendingAnchor,
+      });
+      pendingAnchor = undefined;
     } else {
-      grouped.push(block);
+      grouped.push({ block, anchorId: pendingAnchor });
+      pendingAnchor = undefined;
     }
   }
 
@@ -235,8 +258,13 @@ export default async function WorkPage({ params }: Params) {
                 </p>
               </header>
             ) : null}
-            {grouped.map((block, i) => (
-              <BlockView key={i} block={block} alt={work.title} />
+            {grouped.map(({ block, anchorId }, i) => (
+              <BlockView
+                key={i}
+                block={block}
+                alt={work.title}
+                anchorId={anchorId}
+              />
             ))}
           </div>
           {/* Previous west, next east — the direction you'd travel. */}
