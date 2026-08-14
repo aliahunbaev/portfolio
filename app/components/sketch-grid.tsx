@@ -46,30 +46,6 @@ export default function SketchGrid() {
     );
   }, []);
 
-  // A vertical wheel pages through, one work per swipe-worth of scroll.
-  useEffect(() => {
-    if (open === null) return;
-    let acc = 0;
-    let idle: ReturnType<typeof setTimeout> | undefined;
-    const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      acc += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      clearTimeout(idle);
-      idle = setTimeout(() => {
-        acc = 0;
-      }, 200);
-      if (Math.abs(acc) > 120) {
-        step(acc > 0 ? 1 : -1);
-        acc = 0;
-      }
-    };
-    window.addEventListener("wheel", onWheel, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", onWheel);
-      clearTimeout(idle);
-    };
-  }, [open, step]);
-
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -106,19 +82,23 @@ export default function SketchGrid() {
         ))}
       </div>
       {open !== null && (
-        <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-white px-gutter">
+        <div className="fixed inset-0 z-30 flex flex-col bg-white px-gutter pt-[8vh]">
           {/* The viewport's short axis is the constraint: landscape screens
               fix the height, portrait screens run edge-to-edge minus the
               gutter — every sketch occupies a consistent size. */}
-          <Image
-            draggable={false}
-            src={sketches[open].image}
-            alt={sketches[open].title}
-            sizes="100vw"
-            className="object-contain landscape:h-[74vh] landscape:w-auto landscape:max-w-[92vw] portrait:h-auto portrait:w-full portrait:max-h-[74vh]"
-          />
-          {/* The wall label, centred under the work. */}
-          <div className="pt-4 text-center text-body">
+          {/* Fixed stage: every work, any orientation, occupies the same
+              box, so the label below never moves. */}
+          <div className="flex h-[70vh] w-full items-center justify-center">
+            <Image
+              draggable={false}
+              src={sketches[open].image}
+              alt={sketches[open].title}
+              sizes="100vw"
+              className="h-auto max-h-full w-auto max-w-full object-contain"
+            />
+          </div>
+          {/* The wall label — fixed position, image-independent. */}
+          <div className="pt-5 text-center text-body">
             <p>
               {sketches[open].title}, {sketches[open].date}
             </p>
@@ -146,11 +126,10 @@ export default function SketchGrid() {
             }}
             className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
           />
-          {/* The nav contracts to one word while inside a work. */}
           <button
             type="button"
             onClick={() => setOpen(null)}
-            className="absolute right-gutter top-0 z-10 cursor-pointer py-1 text-body font-medium hover:text-neutral-400"
+            className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
           >
             Close
           </button>

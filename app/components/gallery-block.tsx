@@ -141,7 +141,7 @@ export default function GalleryBlock({
       </button>
       <p className="pt-3 text-center">{title}</p>
       {open && (
-        <div className="fixed inset-0 z-[55] bg-white/85 backdrop-blur-md">
+        <div className="fixed inset-0 z-30 bg-white/85 backdrop-blur-md">
           <div
             ref={stripRef}
             onScroll={onScroll}
