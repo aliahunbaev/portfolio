@@ -21,24 +21,45 @@ export default function VideoPlayer({
   className?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  // loadedmetadata can fire before hydration attaches the listeners, so
-  // sync whatever the element already knows on mount.
+  // The file loads only once the player approaches the viewport, so a
+  // page of many videos doesn't fetch them all up front.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setNear(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setNear(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "150% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Once the source is attached, sync state and start muted playback.
   useEffect(() => {
     const v = videoRef.current;
-    if (!v) return;
+    if (!v || !near) return;
     if (v.duration) setDuration(v.duration);
-    // React drops the muted attribute in SSR HTML, so iOS blocks the
-    // parse-time autoplay; re-assert muted and start playback here.
     v.muted = true;
     if (v.paused) v.play().catch(() => {});
     setPlaying(!v.paused);
-  }, []);
+  }, [near]);
 
   const togglePlay = () => {
     const v = videoRef.current;
@@ -65,10 +86,13 @@ export default function VideoPlayer({
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={wrapRef} className={`relative bg-black/[0.04] ${className}`}>
       <video
         ref={videoRef}
-        src={src}
+        src={near ? src : undefined}
+        // Reserves layout space before metadata arrives; the video's own
+        // proportions take over once known (that's what `auto` does).
+        style={{ aspectRatio: "auto 1350 / 1080" }}
         autoPlay
         muted
         loop

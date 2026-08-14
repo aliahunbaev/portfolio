@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import FadeImage from "../../components/fade-image";
 import VideoPlayer from "../../components/video-player";
 import { notFound } from "next/navigation";
 import { getWorks } from "../../lib/content";
@@ -33,8 +33,10 @@ function Frame({
   className?: string;
 }) {
   return (
-    <div className={`relative w-full overflow-hidden ${aspect} ${className}`}>
-      <Image
+    <div
+      className={`relative w-full overflow-hidden bg-black/[0.04] ${aspect} ${className}`}
+    >
+      <FadeImage
         draggable={false}
         src={image}
         alt={alt}
