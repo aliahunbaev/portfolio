@@ -64,6 +64,36 @@ function parseFrontmatter(raw: string) {
 const resolveSrc = (slug: string, src: string) =>
   src.startsWith("/") ? src : `/work/${slug}/${src}`;
 
+/** Pixel size of a local public/ image (PNG and JPEG), for laying out
+ *  gallery covers at their natural proportions. */
+function imageSize(url: string): { w: number; h: number } | undefined {
+  try {
+    const buf = readFileSync(path.join(process.cwd(), "public", url));
+    if (buf[0] === 0x89 && buf[1] === 0x50)
+      return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      let i = 2;
+      while (i < buf.length - 9) {
+        if (buf[i] !== 0xff) {
+          i++;
+          continue;
+        }
+        const marker = buf[i + 1];
+        if (
+          marker >= 0xc0 &&
+          marker <= 0xcf &&
+          marker !== 0xc4 &&
+          marker !== 0xc8 &&
+          marker !== 0xcc
+        )
+          return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+        i += 2 + buf.readUInt16BE(i + 2);
+      }
+    }
+  } catch {}
+  return undefined;
+}
+
 function parseBlocks(slug: string, body: string): Block[] {
   const blocks: Block[] = [];
   for (const chunk of body.split(/\n{2,}/)) {
@@ -87,10 +117,12 @@ function parseBlocks(slug: string, body: string): Block[] {
           blocks.push({ type: "video", src: resolveSrc(slug, src) });
         }
       } else if (images.length >= 3) {
+        const cover = resolveSrc(slug, images[0]);
         blocks.push({
           type: "gallery",
           title: media[0].alt || "Gallery",
           images: images.map((src) => resolveSrc(slug, src)),
+          cover: imageSize(cover),
         });
       } else if (images.length === 2) {
         blocks.push({

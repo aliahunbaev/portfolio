@@ -71,11 +71,13 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
     return <VideoPlayer src={block.src} className="md:col-span-8" />;
   }
   if (block.type === "gallery") {
+    const portrait = block.cover && block.cover.h > block.cover.w;
     return (
       <GalleryBlock
         title={block.title}
         images={block.images}
-        className="md:col-span-8"
+        cover={block.cover}
+        className={portrait ? "md:col-span-4" : "md:col-span-8"}
       />
     );
   }
@@ -169,7 +171,7 @@ export default async function WorkPage({ params }: Params) {
         <div
           className={
             sections.length
-              ? "md:col-span-8"
+              ? "md:col-span-8 md:col-start-5"
               : "max-md:pt-12 md:col-span-8"
           }
         >

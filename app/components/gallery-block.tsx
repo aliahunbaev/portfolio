@@ -10,10 +10,12 @@ import { useCallback, useEffect, useState } from "react";
 export default function GalleryBlock({
   title,
   images,
+  cover,
   className = "",
 }: {
   title: string;
   images: string[];
+  cover?: { w: number; h: number };
   className?: string;
 }) {
   const [open, setOpen] = useState<number | null>(null);
@@ -47,8 +49,8 @@ export default function GalleryBlock({
       <button
         type="button"
         onClick={() => setOpen(0)}
-        data-cursor-label={`View ${title}`}
-        className="relative block aspect-[1.85/1] w-full cursor-none overflow-hidden bg-black/[0.04] max-md:cursor-pointer"
+        className="group relative block w-full cursor-pointer overflow-hidden bg-black/[0.04]"
+        style={{ aspectRatio: cover ? `${cover.w} / ${cover.h}` : "1.85 / 1" }}
       >
         <Image
           draggable={false}
@@ -58,10 +60,12 @@ export default function GalleryBlock({
           sizes="(max-width: 768px) 100vw, 67vw"
           className="object-cover"
         />
+        {/* Filename-style chip, Playlab-fashion, on hover. */}
+        <span className="absolute left-2 top-2 bg-white px-1.5 py-0.5 text-body opacity-0 group-hover:opacity-100">
+          {title}
+        </span>
       </button>
-      <p className="pt-3">
-        <span className="font-medium">{title}</span> — {images.length} pages
-      </p>
+      <p className="pt-3 text-center">{title}</p>
       {open !== null && (
         <div className="fixed inset-0 z-30 bg-white">
           {/* The image field clears the nav line above and the counter
