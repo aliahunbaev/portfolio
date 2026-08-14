@@ -21,45 +21,18 @@ The intention was simple: transfer creative inspiration directly from artist to 
 
 Before it was a night it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves; a printed program met guests at the door; each featured artist received a three-page invitation laying out the format, the audience, and what we would provide.
 
-![](slideshow-2.jpg)
 
-![](slideshow-3.jpg)
+![Deck](slideshow-1.jpg) ![](slideshow-2.jpg) ![](slideshow-3.jpg) ![](slideshow-4.jpg) ![](slideshow-5.jpg) ![](slideshow-6.jpg) ![](slideshow-7.jpg) ![](slideshow-8.jpg) ![](slideshow-9.jpg)
 
-![](slideshow-4.jpg)
-
-![](slideshow-5.jpg)
-
-![](slideshow-6.jpg)
-
-![](slideshow-7.jpg)
-
-![](slideshow-8.jpg)
-
-![](slideshow-9.jpg)
-
-![](program-1.jpg) ![](program-2.jpg)
+![Program](program-1.jpg) ![](program-2.jpg) ![](program-3.jpg)
 
 ## The Announcement
 
 The announcement ran as two carousels on Instagram.
 
-![](post1-01.jpg) ![](post1-02.jpg)
+![First Carousel](post1-01.jpg) ![](post1-02.jpg) ![](post1-03.jpg) ![](post1-04.jpg) ![](post1-05.jpg) ![](post1-06.jpg) ![](post1-09.jpg) ![](post1-10.jpg)
 
-![](post1-03.jpg) ![](post1-04.jpg)
-
-![](post1-05.jpg) ![](post1-06.jpg)
-
-![](post1-09.jpg) ![](post1-10.jpg)
-
-![](post2-01.jpg) ![](post2-02.jpg)
-
-![](post2-03.jpg) ![](post2-04.jpg)
-
-![](post2-05.jpg) ![](post2-06.jpg)
-
-![](post2-07.jpg) ![](post2-08.jpg)
-
-![](post2-09.jpg) ![](post2-10.jpg)
+![Second Carousel](post2-01.jpg) ![](post2-02.jpg) ![](post2-03.jpg) ![](post2-04.jpg) ![](post2-05.jpg) ![](post2-06.jpg) ![](post2-07.jpg) ![](post2-08.jpg) ![](post2-09.jpg) ![](post2-10.jpg) ![](post2-11.jpg)
 
 ## The Night
 

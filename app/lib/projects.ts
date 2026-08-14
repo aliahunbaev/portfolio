@@ -2,6 +2,7 @@
  *  text sits in cols 6-9, image spans all 12, pair splits 6/6. */
 export type Block =
   | { type: "section"; title: string; id: string }
+  | { type: "gallery"; title: string; images: string[] }
   | { type: "text"; body: string }
   | { type: "image"; image: string; objectPosition?: string }
   | { type: "video"; src: string }

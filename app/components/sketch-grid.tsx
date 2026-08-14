@@ -115,6 +115,13 @@ export default function SketchGrid() {
             }}
             className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
           />
+          <button
+            type="button"
+            onClick={() => setOpen(null)}
+            className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
+          >
+            Close
+          </button>
           {/* Meta rail left on desktop (SODAA), bottom-left on mobile;
               the counter anchors bottom-center everywhere. */}
           <div className="absolute left-gutter top-30 text-body max-md:hidden">

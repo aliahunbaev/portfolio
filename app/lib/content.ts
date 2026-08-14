@@ -74,9 +74,10 @@ function parseBlocks(slug: string, body: string): Block[] {
       blocks.push({ type: "section", title, id: slugify(title) });
       continue;
     }
-    const images = [...trimmed.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map(
-      (m) => m[1],
+    const media = [...trimmed.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)].map(
+      (m) => ({ alt: m[1], src: m[2] }),
     );
+    const images = media.map((m) => m.src);
     const prose = trimmed.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim();
 
     if (images.length && !prose) {
@@ -85,6 +86,12 @@ function parseBlocks(slug: string, body: string): Block[] {
         for (const src of images) {
           blocks.push({ type: "video", src: resolveSrc(slug, src) });
         }
+      } else if (images.length >= 3) {
+        blocks.push({
+          type: "gallery",
+          title: media[0].alt || "Gallery",
+          images: images.map((src) => resolveSrc(slug, src)),
+        });
       } else if (images.length === 2) {
         blocks.push({
           type: "pair",

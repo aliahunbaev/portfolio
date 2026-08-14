@@ -3,6 +3,7 @@ import FadeImage from "../../components/fade-image";
 import VideoPlayer from "../../components/video-player";
 import { notFound } from "next/navigation";
 import AnchorRail from "../../components/anchor-rail";
+import GalleryBlock from "../../components/gallery-block";
 import { getWorks } from "../../lib/content";
 import { slugify, workImages, type Block } from "../../lib/projects";
 
@@ -69,6 +70,15 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
   if (block.type === "video") {
     return <VideoPlayer src={block.src} className="md:col-span-8" />;
   }
+  if (block.type === "gallery") {
+    return (
+      <GalleryBlock
+        title={block.title}
+        images={block.images}
+        className="md:col-span-8"
+      />
+    );
+  }
   if (block.type === "pair") {
     return (
       <div className="grid grid-cols-2 gap-x-gutter md:col-span-8">
@@ -130,7 +140,7 @@ export default async function WorkPage({ params }: Params) {
       {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
         {sections.length ? (
-          <aside className="max-md:hidden md:sticky md:top-30 md:col-span-4">
+          <aside className="max-md:hidden md:sticky md:top-30 md:col-span-3">
             <AnchorRail sections={sections} />
           </aside>
         ) : (
@@ -156,14 +166,22 @@ export default async function WorkPage({ params }: Params) {
             </Link>
           </aside>
         )}
-        <div className={sections.length ? "md:col-span-8" : "max-md:pt-12 md:col-span-8"}>
+        <div
+          className={
+            sections.length
+              ? "md:col-span-8"
+              : "max-md:pt-12 md:col-span-8"
+          }
+        >
           <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
             {sections.length ? (
               // Sectioned projects open with the meta as a standardized
               // header inside the content zone, same type size as all.
               <header className="pb-8 md:col-span-5">
-                <h1 className="font-medium">{work.title}</h1>
-                <p className="pt-1">
+                <h1 className="text-title font-medium leading-[1.1]">
+                  {work.title}
+                </h1>
+                <p className="pt-2">
                   {work.category}, {work.date}
                 </p>
               </header>
