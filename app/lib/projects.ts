@@ -33,6 +33,9 @@ export type Project = {
   tint?: string;
   /** Shown as a homepage row. */
   featured?: boolean;
+  /** Curated homepage position (1 = first); unordered rows follow,
+   *  newest first. The archive stays chronological regardless. */
+  order?: number;
   /** Optional silent looping video used instead of the cover image on
    *  the homepage row (frontmatter key: preview). */
   previewVideo?: string;

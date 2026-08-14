@@ -169,6 +169,7 @@ function readFolder(slug: string): Project | undefined {
     objectPosition: meta.objectPosition ?? "50% 50%",
     tint: meta.tint || undefined,
     featured: meta.featured === "true",
+    order: meta.order ? Number(meta.order) : undefined,
     previewVideo: meta.preview ? resolveSrc(slug, meta.preview) : undefined,
     previewPoster: meta.previewPoster
       ? resolveSrc(slug, meta.previewPoster)
@@ -200,5 +201,13 @@ export function getFeatured(): Project[] {
   const featured = getWorks().filter((work) => work.featured);
   const claimed = new Set(featured.map((work) => work.title));
   const remaining = legacyFeatured.filter((work) => !claimed.has(work.title));
-  return [...featured, ...remaining].sort(newestFirst);
+  // Curated positions first, then the rest by recency.
+  return [...featured, ...remaining].sort((a, b) => {
+    if (a.order != null || b.order != null) {
+      if (a.order == null) return 1;
+      if (b.order == null) return -1;
+      return a.order - b.order;
+    }
+    return newestFirst(a, b);
+  });
 }
