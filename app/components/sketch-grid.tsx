@@ -46,6 +46,30 @@ export default function SketchGrid() {
     );
   }, []);
 
+  // A vertical wheel pages through, one work per swipe-worth of scroll.
+  useEffect(() => {
+    if (open === null) return;
+    let acc = 0;
+    let idle: ReturnType<typeof setTimeout> | undefined;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      acc += Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      clearTimeout(idle);
+      idle = setTimeout(() => {
+        acc = 0;
+      }, 200);
+      if (Math.abs(acc) > 120) {
+        step(acc > 0 ? 1 : -1);
+        acc = 0;
+      }
+    };
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      window.removeEventListener("wheel", onWheel);
+      clearTimeout(idle);
+    };
+  }, [open, step]);
+
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
@@ -82,9 +106,7 @@ export default function SketchGrid() {
         ))}
       </div>
       {open !== null && (
-        <div
-          className="fixed inset-0 z-30 flex items-center justify-center bg-white px-gutter"
-        >
+        <div className="fixed inset-0 z-[55] flex flex-col items-center justify-center bg-white px-gutter">
           {/* The viewport's short axis is the constraint: landscape screens
               fix the height, portrait screens run edge-to-edge minus the
               gutter — every sketch occupies a consistent size. */}
@@ -93,10 +115,19 @@ export default function SketchGrid() {
             src={sketches[open].image}
             alt={sketches[open].title}
             sizes="100vw"
-            className="object-contain landscape:h-[78vh] landscape:w-auto landscape:max-w-[92vw] portrait:h-auto portrait:w-full portrait:max-h-[80vh]"
+            className="object-contain landscape:h-[74vh] landscape:w-auto landscape:max-w-[92vw] portrait:h-auto portrait:w-full portrait:max-h-[74vh]"
           />
+          {/* The wall label, centred under the work. */}
+          <div className="pt-4 text-center text-body">
+            <p>
+              {sketches[open].title}, {sketches[open].date}
+            </p>
+            {sketches[open].note && (
+              <p className="pt-1">{sketches[open].note}</p>
+            )}
+          </div>
           {/* Tapping left/right halves pages through on every device;
-              exits are the nav (always visible) and Escape. */}
+              exits are Close and Escape. */}
           <button
             type="button"
             aria-label="Previous sketch"
@@ -115,31 +146,14 @@ export default function SketchGrid() {
             }}
             className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
           />
+          {/* The nav contracts to one word while inside a work. */}
           <button
             type="button"
             onClick={() => setOpen(null)}
-            className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
+            className="absolute right-gutter top-0 z-10 cursor-pointer py-1 text-body font-medium hover:text-neutral-400"
           >
             Close
           </button>
-          {/* Meta rail left on desktop (SODAA), bottom-left on mobile;
-              the counter anchors bottom-center everywhere. */}
-          <div className="absolute left-gutter top-30 text-body max-md:hidden">
-            <p>{sketches[open].title}</p>
-            <p className="pt-1">{sketches[open].date}</p>
-            {sketches[open].note && (
-              <p className="max-w-[16rem] pt-4 leading-[1.4]">
-                {sketches[open].note}
-              </p>
-            )}
-          </div>
-          <p className="absolute bottom-3 left-gutter max-w-[45%] text-body leading-[1.4] md:hidden">
-            {sketches[open].title}
-            {sketches[open].note ? ` — ${sketches[open].note}` : ""}
-          </p>
-          <p className="absolute bottom-3 text-body max-md:right-gutter md:inset-x-0 md:text-center">
-            {open + 1} / {sketches.length}
-          </p>
         </div>
       )}
     </>
