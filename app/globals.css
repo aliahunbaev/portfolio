@@ -85,8 +85,28 @@ video::-webkit-media-controls-start-playback-button {
   animation: fade-in 650ms ease-out 300ms both;
 }
 
+/* Quick flash for the sketch room: in on open, out just before close. */
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.flash-in {
+  animation: fade-in 240ms ease-out both;
+}
+/* The room's contents arrive a beat after its white — background first,
+   then the work. */
+.flash-in-late {
+  animation: fade-in 240ms ease-out 140ms both;
+}
+.flash-out {
+  animation: fade-out 180ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .fade-in {
+  .fade-in,
+  .flash-in,
+  .flash-in-late,
+  .flash-out {
     animation: none;
   }
 }

@@ -4,7 +4,6 @@ date: May 2026
 medium: Event
 description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.
 cover: 000157750001.jpg
-tint: "#AFC5DE"
 preview: preview.mp4
 previewPoster: preview-poster.jpg
 featured: true

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import { sketches, type Sketch } from "../lib/sketches";
 
@@ -19,6 +20,16 @@ const slugFor = (sketch: Sketch) =>
    tap/click halves or arrow keys page through; nav or Escape exits. */
 export default function SketchGrid() {
   const [open, setOpen] = useState<number | null>(null);
+  const [closing, setClosing] = useState(false);
+
+  // Flash out, then unmount — mirrors the page-level fade language.
+  const close = useCallback(() => {
+    setClosing(true);
+    window.setTimeout(() => {
+      setClosing(false);
+      setOpen(null);
+    }, 180);
+  }, []);
 
   // Arriving with a hash opens the gallery at that sketch.
   useEffect(() => {
@@ -50,7 +61,7 @@ export default function SketchGrid() {
   useEffect(() => {
     if (open === null) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
+      if (e.key === "Escape") close();
       if (e.key === "ArrowRight") step(1);
       if (e.key === "ArrowLeft") step(-1);
     };
@@ -60,7 +71,7 @@ export default function SketchGrid() {
       window.removeEventListener("keydown", onKey);
       document.body.classList.remove("overflow-hidden");
     };
-  }, [open, step]);
+  }, [open, step, close]);
 
   return (
     <>
@@ -82,16 +93,19 @@ export default function SketchGrid() {
           </button>
         ))}
       </div>
-      {open !== null && (
-        <div className="fixed inset-0 z-[55] bg-white">
+      {open !== null &&
+        createPortal(
+          <div
+            className={`fixed inset-0 z-[55] bg-white ${closing ? "flash-out" : "flash-in"}`}
+          >
           {/* The site chrome yields: name home-link left, Close right. */}
-          <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-gutter py-1 text-body font-medium">
+          <div className="flash-in-late absolute inset-x-0 top-0 z-10 flex items-center justify-between px-gutter py-1 text-body font-medium">
             <Link href="/" className="hover:text-neutral-400">
               Ali Ahunbáev
             </Link>
             <button
               type="button"
-              onClick={() => setOpen(null)}
+              onClick={close}
               className="cursor-pointer hover:text-neutral-400"
             >
               Close
@@ -99,7 +113,7 @@ export default function SketchGrid() {
           </div>
           {/* The stage: wide on desktop, vertical on mobile. The work
               expands to hit whichever edges its ratio reaches first. */}
-          <div className="absolute inset-x-gutter top-[10vh] bottom-[14vh] md:inset-x-[8vw]">
+          <div className="flash-in-late absolute inset-x-gutter top-[10vh] bottom-[14vh] md:inset-x-[8vw]">
             <Image
               draggable={false}
               src={sketches[open].image}
@@ -128,7 +142,7 @@ export default function SketchGrid() {
             className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize outline-none"
           />
           {/* The wall label — fixed to the bottom, centred, Renell-wise. */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-4 text-center text-body">
+          <div className="flash-in-late pointer-events-none absolute inset-x-0 bottom-4 text-center text-body">
             <p>
               {sketches[open].title}, {sketches[open].date}
             </p>
@@ -136,8 +150,9 @@ export default function SketchGrid() {
               <p className="pt-1">{sketches[open].note}</p>
             )}
           </div>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
