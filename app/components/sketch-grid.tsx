@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { sketches, type Sketch } from "../lib/sketches";
 
@@ -63,7 +64,7 @@ export default function SketchGrid() {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-end gap-x-gutter gap-y-16 md:grid-cols-4">
+      <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-5">
         {sketches.map((sketch, i) => (
           <button
             key={i}
@@ -82,23 +83,52 @@ export default function SketchGrid() {
         ))}
       </div>
       {open !== null && (
-        <div className="fixed inset-0 z-30 flex flex-col bg-white px-gutter pt-[8vh]">
-          {/* The viewport's short axis is the constraint: landscape screens
-              fix the height, portrait screens run edge-to-edge minus the
-              gutter — every sketch occupies a consistent size. */}
-          {/* Fixed stage: every work, any orientation, occupies the same
-              box, so the label below never moves. */}
-          <div className="flex h-[70vh] w-full items-center justify-center">
+        <div className="fixed inset-0 z-[55] bg-white">
+          {/* The site chrome yields: name home-link left, Close right. */}
+          <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-gutter py-1 text-body font-medium">
+            <Link href="/" className="hover:text-neutral-400">
+              Ali Ahunbáev
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen(null)}
+              className="cursor-pointer hover:text-neutral-400"
+            >
+              Close
+            </button>
+          </div>
+          {/* The stage: wide on desktop, vertical on mobile. The work
+              expands to hit whichever edges its ratio reaches first. */}
+          <div className="absolute inset-x-gutter top-[10vh] bottom-[14vh] md:inset-x-[8vw]">
             <Image
               draggable={false}
               src={sketches[open].image}
               alt={sketches[open].title}
+              fill
               sizes="100vw"
-              className="h-auto max-h-full w-auto max-w-full object-contain"
+              className="object-contain"
             />
           </div>
-          {/* The wall label — fixed position, image-independent. */}
-          <div className="pt-5 text-center text-body">
+          <button
+            type="button"
+            aria-label="Previous sketch"
+            onClick={(e) => {
+              e.currentTarget.blur();
+              step(-1);
+            }}
+            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize outline-none"
+          />
+          <button
+            type="button"
+            aria-label="Next sketch"
+            onClick={(e) => {
+              e.currentTarget.blur();
+              step(1);
+            }}
+            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize outline-none"
+          />
+          {/* The wall label — fixed to the bottom, centred, Renell-wise. */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-4 text-center text-body">
             <p>
               {sketches[open].title}, {sketches[open].date}
             </p>
@@ -106,33 +136,6 @@ export default function SketchGrid() {
               <p className="pt-1">{sketches[open].note}</p>
             )}
           </div>
-          {/* Tapping left/right halves pages through on every device;
-              exits are Close and Escape. */}
-          <button
-            type="button"
-            aria-label="Previous sketch"
-            onClick={(e) => {
-              e.stopPropagation();
-              step(-1);
-            }}
-            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize"
-          />
-          <button
-            type="button"
-            aria-label="Next sketch"
-            onClick={(e) => {
-              e.stopPropagation();
-              step(1);
-            }}
-            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
-          />
-          <button
-            type="button"
-            onClick={() => setOpen(null)}
-            className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
-          >
-            Close
-          </button>
         </div>
       )}
     </>
