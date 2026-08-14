@@ -27,6 +27,7 @@ export default function GalleryBlock({
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const stripRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ down: false, moved: false, startX: 0, startLeft: 0 });
 
   const tile = images.find((src) => !isVideo(src)) ?? images[0];
 
@@ -58,6 +59,21 @@ export default function GalleryBlock({
     });
     setIndex(best);
   }, []);
+
+  // Vertical wheel drives the strip; mandatory snap settles it on a page.
+  useEffect(() => {
+    if (!open) return;
+    const strip = stripRef.current;
+    if (!strip) return;
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        strip.scrollLeft += e.deltaY;
+      }
+    };
+    strip.addEventListener("wheel", onWheel, { passive: false });
+    return () => strip.removeEventListener("wheel", onWheel);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -104,13 +120,42 @@ export default function GalleryBlock({
           <div
             ref={stripRef}
             onScroll={onScroll}
-            className="no-scrollbar flex h-full snap-x snap-mandatory items-center gap-gutter overflow-x-auto px-[12vw]"
+            onClick={(e) => {
+              // Empty veil closes; pages handle their own clicks.
+              if (e.target === stripRef.current) setOpen(false);
+            }}
+            onPointerDown={(e) => {
+              if (e.pointerType !== "mouse") return;
+              drag.current = {
+                down: true,
+                moved: false,
+                startX: e.clientX,
+                startLeft: stripRef.current?.scrollLeft ?? 0,
+              };
+            }}
+            onPointerMove={(e) => {
+              const d = drag.current;
+              if (!d.down || !stripRef.current) return;
+              const dx = e.clientX - d.startX;
+              if (Math.abs(dx) > 4) d.moved = true;
+              stripRef.current.scrollLeft = d.startLeft - dx;
+            }}
+            onPointerUp={() => {
+              drag.current.down = false;
+            }}
+            className="no-scrollbar flex h-full cursor-grab snap-x snap-mandatory items-center gap-gutter overflow-x-auto px-[12vw]"
           >
             {images.map((src, i) => (
               <button
                 key={src}
                 type="button"
-                onClick={() => i !== index && goTo(i)}
+                onClick={() => {
+                  if (drag.current.moved) {
+                    drag.current.moved = false;
+                    return;
+                  }
+                  if (i !== index) goTo(i);
+                }}
                 className={`flex-none snap-center ${
                   i === index ? "cursor-default" : "cursor-pointer"
                 }`}
@@ -140,19 +185,6 @@ export default function GalleryBlock({
               </button>
             ))}
           </div>
-          <p className="absolute left-gutter top-30 text-body max-md:top-16">
-            {title}
-          </p>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
-          >
-            Close
-          </button>
-          <p className="absolute bottom-3 text-body max-md:right-gutter md:inset-x-0 md:text-center">
-            {index + 1} / {images.length}
-          </p>
         </div>
       )}
     </div>
