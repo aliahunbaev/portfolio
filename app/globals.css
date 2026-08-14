@@ -66,6 +66,14 @@ video::-webkit-media-controls-start-playback-button {
   -webkit-appearance: none;
 }
 
+/* Filmstrip strips scroll without chrome. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }

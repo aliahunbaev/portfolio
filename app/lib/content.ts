@@ -112,18 +112,20 @@ function parseBlocks(slug: string, body: string): Block[] {
 
     if (images.length && !prose) {
       const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
-      if (images.every(isVideo)) {
-        for (const src of images) {
-          blocks.push({ type: "video", src: resolveSrc(slug, src) });
-        }
-      } else if (images.length >= 3) {
-        const cover = resolveSrc(slug, images[0]);
+      if (images.length >= 3) {
+        // A bounded artifact; may mix stills and clips. The cover is the
+        // first still.
+        const firstStill = images.find((src) => !isVideo(src)) ?? images[0];
         blocks.push({
           type: "gallery",
           title: media[0].alt || "Gallery",
           images: images.map((src) => resolveSrc(slug, src)),
-          cover: imageSize(cover),
+          cover: imageSize(resolveSrc(slug, firstStill)),
         });
+      } else if (images.every(isVideo)) {
+        for (const src of images) {
+          blocks.push({ type: "video", src: resolveSrc(slug, src) });
+        }
       } else if (images.length === 2) {
         blocks.push({
           type: "pair",

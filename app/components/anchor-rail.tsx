@@ -42,7 +42,7 @@ export default function AnchorRail({
           key={id}
           href={`#${id}`}
           className={`w-fit ${
-            active === id ? "text-black" : "text-neutral-400 hover:text-black"
+            active === id ? "text-black" : "text-black/40 hover:text-black"
           }`}
         >
           {title}

@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
 
 /* A bounded artifact — a deck, a document, a carousel — shown in the
-   page as one tile and opened into the site's gallery ritual: white
-   room, click halves or arrow keys to page (wrapping within the
-   object), Close top-right, Escape, counter at the bottom. */
+   page as one tile at its natural proportions and opened into a
+   filmstrip: a white veil over the project page with every page of the
+   object laid out horizontally, neighbours visible at the edges.
+   Arrow keys, a click on a neighbour, or native horizontal scroll move
+   through it; Close top-right and Escape leave. */
 export default function GalleryBlock({
   title,
   images,
@@ -18,23 +22,47 @@ export default function GalleryBlock({
   cover?: { w: number; h: number };
   className?: string;
 }) {
-  const [open, setOpen] = useState<number | null>(null);
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const stripRef = useRef<HTMLDivElement>(null);
 
-  const step = useCallback(
-    (delta: number) => {
-      setOpen((i) =>
-        i === null ? i : (i + delta + images.length) % images.length,
-      );
-    },
-    [images.length],
-  );
+  const tile = images.find((src) => !isVideo(src)) ?? images[0];
+
+  const goTo = useCallback((i: number, smooth = true) => {
+    const strip = stripRef.current;
+    const item = strip?.children[i] as HTMLElement | undefined;
+    item?.scrollIntoView({
+      behavior: smooth ? "smooth" : "instant",
+      inline: "center",
+      block: "nearest",
+    });
+  }, []);
+
+  // Track which item sits nearest the centre as the strip scrolls.
+  const onScroll = useCallback(() => {
+    const strip = stripRef.current;
+    if (!strip) return;
+    const centre = strip.scrollLeft + strip.clientWidth / 2;
+    let best = 0;
+    let bestDist = Infinity;
+    [...strip.children].forEach((child, i) => {
+      const el = child as HTMLElement;
+      const mid = el.offsetLeft + el.offsetWidth / 2;
+      const dist = Math.abs(mid - centre);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    setIndex(best);
+  }, []);
 
   useEffect(() => {
-    if (open === null) return;
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
-      if (e.key === "ArrowRight") step(1);
-      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "Escape") setOpen(false);
+      if (e.key === "ArrowRight") goTo(Math.min(index + 1, images.length - 1));
+      if (e.key === "ArrowLeft") goTo(Math.max(index - 1, 0));
     };
     window.addEventListener("keydown", onKey);
     document.body.classList.add("overflow-hidden");
@@ -42,22 +70,25 @@ export default function GalleryBlock({
       window.removeEventListener("keydown", onKey);
       document.body.classList.remove("overflow-hidden");
     };
-  }, [open, step]);
+  }, [open, index, images.length, goTo]);
 
   return (
     <div className={className}>
       <button
         type="button"
-        onClick={() => setOpen(0)}
+        onClick={() => {
+          setIndex(0);
+          setOpen(true);
+        }}
         className="group relative block w-full cursor-pointer overflow-hidden bg-black/[0.04]"
         style={{ aspectRatio: cover ? `${cover.w} / ${cover.h}` : "1.85 / 1" }}
       >
         <Image
           draggable={false}
-          src={images[0]}
+          src={tile}
           alt={title}
           fill
-          sizes="(max-width: 768px) 100vw, 67vw"
+          sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover"
         />
         {/* Filename-style chip, Playlab-fashion, on hover. */}
@@ -66,47 +97,59 @@ export default function GalleryBlock({
         </span>
       </button>
       <p className="pt-3 text-center">{title}</p>
-      {open !== null && (
-        <div className="fixed inset-0 z-30 bg-white">
-          {/* The image field clears the nav line above and the counter
-              line below; object-contain centers any aspect. */}
-          <div className="absolute inset-x-gutter inset-y-16">
-            <Image
-              draggable={false}
-              key={images[open]}
-              src={images[open]}
-              alt={`${title}, ${open + 1} of ${images.length}`}
-              fill
-              sizes="100vw"
-              className="object-contain"
-            />
+      {open && (
+        <div className="fixed inset-0 z-30 bg-white/85 backdrop-blur-md">
+          <div
+            ref={stripRef}
+            onScroll={onScroll}
+            className="no-scrollbar flex h-full snap-x snap-mandatory items-center gap-gutter overflow-x-auto px-[12vw]"
+          >
+            {images.map((src, i) => (
+              <button
+                key={src}
+                type="button"
+                onClick={() => i !== index && goTo(i)}
+                className={`flex-none snap-center ${
+                  i === index ? "cursor-default" : "cursor-pointer"
+                }`}
+              >
+                {isVideo(src) ? (
+                  <video
+                    src={src}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    className="max-h-[72vh] max-w-[76vw] w-auto"
+                  />
+                ) : (
+                  /* Natural proportions at strip height; plain img keeps
+                     variable aspects simple. */
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={src}
+                    alt={`${title}, ${i + 1} of ${images.length}`}
+                    draggable={false}
+                    loading={Math.abs(i - index) < 3 ? "eager" : "lazy"}
+                    className="max-h-[72vh] max-w-[76vw] w-auto"
+                  />
+                )}
+              </button>
+            ))}
           </div>
-          <button
-            type="button"
-            aria-label="Previous"
-            onClick={() => step(-1)}
-            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize"
-          />
-          <button
-            type="button"
-            aria-label="Next"
-            onClick={() => step(1)}
-            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize"
-          />
-          {/* Same anatomy as sketches: context top-left, exit top-right,
-              counter bottom. */}
           <p className="absolute left-gutter top-30 text-body max-md:top-16">
             {title}
           </p>
           <button
             type="button"
-            onClick={() => setOpen(null)}
+            onClick={() => setOpen(false)}
             className="absolute right-gutter top-30 z-10 cursor-pointer text-body hover:text-neutral-400 max-md:top-16"
           >
             Close
           </button>
           <p className="absolute bottom-3 text-body max-md:right-gutter md:inset-x-0 md:text-center">
-            {open + 1} / {images.length}
+            {index + 1} / {images.length}
           </p>
         </div>
       )}

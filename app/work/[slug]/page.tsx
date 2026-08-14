@@ -54,7 +54,18 @@ function Frame({
 /* Blocks live in the content zone (page cols 5-12, an 8-col subgrid).
    Images take the zone's full width, pairs split it, text runs narrower
    (5 of 8 cols) so reading lines stay comfortable on big screens. */
-function BlockView({ block, alt }: { block: Block; alt: string }) {
+function BlockView({
+  block,
+  alt,
+}: {
+  block:
+    | Block
+    | {
+        type: "galleryRow";
+        galleries: Extract<Block, { type: "gallery" }>[];
+      };
+  alt: string;
+}) {
   if (block.type === "section") {
     // Invisible anchor: the rail is the visible index, the flow stays
     // uninterrupted. scroll-mt clears the fixed nav.
@@ -71,14 +82,33 @@ function BlockView({ block, alt }: { block: Block; alt: string }) {
     return <VideoPlayer src={block.src} className="md:col-span-8" />;
   }
   if (block.type === "gallery") {
-    const portrait = block.cover && block.cover.h > block.cover.w;
     return (
       <GalleryBlock
         title={block.title}
         images={block.images}
         cover={block.cover}
-        className={portrait ? "md:col-span-4" : "md:col-span-8"}
+        className="md:col-span-8"
       />
+    );
+  }
+  if (block.type === "galleryRow") {
+    // Consecutive portrait artifacts sit shoulder to shoulder.
+    return (
+      <div
+        className="grid gap-x-gutter gap-y-gutter md:col-span-8"
+        style={{
+          gridTemplateColumns: `repeat(${block.galleries.length}, minmax(0, 1fr))`,
+        }}
+      >
+        {block.galleries.map((g) => (
+          <GalleryBlock
+            key={g.title}
+            title={g.title}
+            images={g.images}
+            cover={g.cover}
+          />
+        ))}
+      </div>
     );
   }
   if (block.type === "pair") {
@@ -125,6 +155,23 @@ export default async function WorkPage({ params }: Params) {
         ({ type: "image", image, objectPosition }) as Block,
     ),
   ];
+
+  // Consecutive portrait galleries collapse into one row.
+  type GalleryB = Extract<Block, { type: "gallery" }>;
+  type RowBlock = Block | { type: "galleryRow"; galleries: GalleryB[] };
+  const grouped: RowBlock[] = [];
+  for (const block of blocks) {
+    const portrait =
+      block.type === "gallery" && block.cover && block.cover.h > block.cover.w;
+    const last = grouped[grouped.length - 1];
+    if (portrait && last?.type === "galleryRow") {
+      last.galleries.push(block as GalleryB);
+    } else if (portrait) {
+      grouped.push({ type: "galleryRow", galleries: [block as GalleryB] });
+    } else {
+      grouped.push(block);
+    }
+  }
 
   const sections = blocks.filter((b) => b.type === "section");
 
@@ -188,7 +235,7 @@ export default async function WorkPage({ params }: Params) {
                 </p>
               </header>
             ) : null}
-            {blocks.map((block, i) => (
+            {grouped.map((block, i) => (
               <BlockView key={i} block={block} alt={work.title} />
             ))}
           </div>
