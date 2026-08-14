@@ -2,6 +2,7 @@ import Link from "next/link";
 import FadeImage from "../../components/fade-image";
 import VideoPlayer from "../../components/video-player";
 import { notFound } from "next/navigation";
+import AnchorRail from "../../components/anchor-rail";
 import { getWorks } from "../../lib/content";
 import { slugify, workImages, type Block } from "../../lib/projects";
 
@@ -53,6 +54,11 @@ function Frame({
    Images take the zone's full width, pairs split it, text runs narrower
    (5 of 8 cols) so reading lines stay comfortable on big screens. */
 function BlockView({ block, alt }: { block: Block; alt: string }) {
+  if (block.type === "section") {
+    // Invisible anchor: the rail is the visible index, the flow stays
+    // uninterrupted. scroll-mt clears the fixed nav.
+    return <span id={block.id} aria-hidden className="scroll-mt-24 md:col-span-8" />;
+  }
   if (block.type === "text") {
     return (
       <p className="whitespace-pre-line py-12 leading-[1.5] first:pt-0 md:col-span-5">
@@ -108,6 +114,8 @@ export default async function WorkPage({ params }: Params) {
     ),
   ];
 
+  const sections = blocks.filter((b) => b.type === "section");
+
   const meta: [string, string][] = [
     ["Project", work.title],
     ["Date", work.date],
@@ -121,29 +129,45 @@ export default async function WorkPage({ params }: Params) {
     >
       {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
-          {meta.map(([label, value]) => (
-            <div
-              key={label}
-              className="col-span-4 grid grid-cols-subgrid max-md:col-span-3"
+        {sections.length ? (
+          <aside className="max-md:hidden md:sticky md:top-30 md:col-span-4">
+            <AnchorRail sections={sections} />
+          </aside>
+        ) : (
+          <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
+            {meta.map(([label, value]) => (
+              <div
+                key={label}
+                className="col-span-4 grid grid-cols-subgrid max-md:col-span-3"
+              >
+                <p className="col-span-2 max-md:col-span-1">{label}</p>
+                {label === "Project" ? (
+                  <h1 className="col-span-2 max-md:col-span-2">{value}</h1>
+                ) : (
+                  <p className="col-span-2 max-md:col-span-2">{value}</p>
+                )}
+              </div>
+            ))}
+            <Link
+              href="/archive"
+              className="col-span-4 pt-8 hover:text-neutral-400 max-md:hidden"
             >
-              <p className="col-span-2 max-md:col-span-1">{label}</p>
-              {label === "Project" ? (
-                <h1 className="col-span-2 max-md:col-span-2">{value}</h1>
-              ) : (
-                <p className="col-span-2 max-md:col-span-2">{value}</p>
-              )}
-            </div>
-          ))}
-          <Link
-            href="/archive"
-            className="col-span-4 pt-8 hover:text-neutral-400 max-md:hidden"
-          >
-            Back
-          </Link>
-        </aside>
-        <div className="max-md:pt-12 md:col-span-8">
+              Back
+            </Link>
+          </aside>
+        )}
+        <div className={sections.length ? "md:col-span-8" : "max-md:pt-12 md:col-span-8"}>
           <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
+            {sections.length ? (
+              // Sectioned projects open with the meta as a standardized
+              // header inside the content zone, same type size as all.
+              <header className="pb-8 md:col-span-5">
+                <h1 className="font-medium">{work.title}</h1>
+                <p className="pt-1">
+                  {work.category}, {work.date}
+                </p>
+              </header>
+            ) : null}
             {blocks.map((block, i) => (
               <BlockView key={i} block={block} alt={work.title} />
             ))}

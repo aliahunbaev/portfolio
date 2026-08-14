@@ -38,6 +38,13 @@ html {
   overscroll-behavior: none;
 }
 
+/* Rail anchors glide instead of jumping, unless motion is reduced. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

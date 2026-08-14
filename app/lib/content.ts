@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import {
   projects as legacyFeatured,
+  slugify,
   works as legacyWorks,
   type Block,
   type Project,
@@ -68,6 +69,11 @@ function parseBlocks(slug: string, body: string): Block[] {
   for (const chunk of body.split(/\n{2,}/)) {
     const trimmed = chunk.trim();
     if (!trimmed) continue;
+    if (trimmed.startsWith("## ")) {
+      const title = trimmed.slice(3).trim();
+      blocks.push({ type: "section", title, id: slugify(title) });
+      continue;
+    }
     const images = [...trimmed.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map(
       (m) => m[1],
     );

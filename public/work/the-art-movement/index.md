@@ -9,11 +9,15 @@ previewPoster: preview-poster.jpg
 featured: true
 ---
 
+## Overview
+
 The Art Movement was the first event by Combat Créatif — one night for about a hundred invited guests at Verci in Flatiron, May 9th, 2026, hosted with Jaden Clemons. The night ran in two halves. Downstairs, four featured artists — spanning music, sculpture, and spoken word — each took the room for ten minutes in whatever format served their work: a story, a performance, a demo. Upstairs, the roof: a DJ set moving through soul, jazz, R&B, and electronic, with open microphones and instruments — freestyles, cyphers, and dancing until late.
 
 ![](slideshow-1.jpg)
 
 The intention was simple: transfer creative inspiration directly from artist to audience, then give that energy somewhere to go.
+
+## The Deck
 
 Before it was a night it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves; a printed program met guests at the door; each featured artist received a three-page invitation laying out the format, the audience, and what we would provide.
 
@@ -35,6 +39,8 @@ Before it was a night it was a deck, a program, and an hour-by-hour rundown of t
 
 ![](program-1.jpg) ![](program-2.jpg)
 
+## The Announcement
+
 The announcement ran as two carousels on Instagram.
 
 ![](post1-01.jpg) ![](post1-02.jpg)
@@ -54,6 +60,8 @@ The announcement ran as two carousels on Instagram.
 ![](post2-07.jpg) ![](post2-08.jpg)
 
 ![](post2-09.jpg) ![](post2-10.jpg)
+
+## The Night
 
 Then the night.
 
@@ -89,6 +97,8 @@ Then the night.
 
 ![](000157740021.jpg)
 
+## The Roof
+
 At nine the night moved to the roof.
 
 ![](roof-atmosphere.mp4)
@@ -108,6 +118,8 @@ At nine the night moved to the roof.
 ![](nothing-matters.mp4)
 
 ![](IMG_6158.jpg)
+
+## On the Idea
 
 Jaden, on the idea behind the event.
 
