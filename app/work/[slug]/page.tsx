@@ -73,7 +73,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line py-12 leading-[1.5] first:pt-0 md:col-span-5"
+        className="scroll-mt-24 whitespace-pre-line py-6 leading-[1.5] first:pt-0 md:col-span-5"
       >
         {block.body}
       </p>

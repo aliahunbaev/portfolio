@@ -28,6 +28,10 @@ Before it was a night it was a deck, a program, and an hour-by-hour rundown of t
 
 ![Second Carousel](post2-01.jpg) ![](post2-02.jpg) ![](post2-03.jpg) ![](post2-04.jpg) ![](post2-05.jpg) ![](post2-06.jpg) ![](post2-07.jpg) ![](post2-08.jpg) ![](post2-09.jpg) ![](post2-10.jpg) ![](post2-11.jpg)
 
+Jaden, on the idea behind the event.
+
+![](jaden-inspiration.mp4)
+
 ## The Night
 
 Then the night.
@@ -85,11 +89,5 @@ At nine the night moved to the roof.
 ![](nothing-matters.mp4)
 
 ![](IMG_6158.jpg)
-
-## On the Idea
-
-Jaden, on the idea behind the event.
-
-![](jaden-inspiration.mp4)
 
 ![](IMG_6156.jpg)

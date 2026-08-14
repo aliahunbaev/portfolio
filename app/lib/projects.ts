@@ -5,7 +5,7 @@ export type Block =
   | {
       type: "gallery";
       title: string;
-      images: string[];
+      images: { src: string; w?: number; h?: number }[];
       cover?: { w: number; h: number };
     }
   | { type: "text"; body: string }
