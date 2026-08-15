@@ -6,29 +6,29 @@ import s004 from "../../public/sketches/sketch-006.jpg";
 import s005 from "../../public/sketches/sketch-004.jpg";
 import s006 from "../../public/sketches/sketch-007.jpg";
 import s007 from "../../public/sketches/sketch-005.jpg";
-import s008 from "../../public/sketches/sketch-008.jpg";
-import s009 from "../../public/sketches/sketch-013.jpg";
-import s010 from "../../public/sketches/sketch-009.jpg";
-import s011 from "../../public/sketches/sketch-016.jpg";
-import s012 from "../../public/sketches/sketch-012.jpg";
-import s013 from "../../public/sketches/sketch-003.jpg";
-import s014 from "../../public/sketches/sketch-014.jpg";
-import s015 from "../../public/sketches/sketch-025.jpg";
-import s016 from "../../public/sketches/sketch-021.jpg";
-import s017 from "../../public/sketches/sketch-010.jpg";
-import s018 from "../../public/sketches/sketch-026.jpg";
-import s019 from "../../public/sketches/sketch-029.jpg";
-import s020 from "../../public/sketches/sketch-028.jpg";
-import s021 from "../../public/sketches/sketch-011.jpg";
-import s022 from "../../public/sketches/sketch-033.jpg";
-import s023 from "../../public/sketches/sketch-030.jpg";
-import s024 from "../../public/sketches/sketch-022.jpg";
-import s025 from "../../public/sketches/sketch-034.jpg";
-import s026 from "../../public/sketches/sketch-031.jpg";
-import s027 from "../../public/sketches/sketch-023.jpg";
-import s028 from "../../public/sketches/sketch-036.jpg";
-import s029 from "../../public/sketches/sketch-032.jpg";
-import s030 from "../../public/sketches/sketch-024.jpg";
+import s008 from "../../public/sketches/sketch-013.jpg";
+import s009 from "../../public/sketches/sketch-009.jpg";
+import s010 from "../../public/sketches/sketch-016.jpg";
+import s011 from "../../public/sketches/sketch-012.jpg";
+import s012 from "../../public/sketches/sketch-003.jpg";
+import s013 from "../../public/sketches/sketch-014.jpg";
+import s014 from "../../public/sketches/sketch-025.jpg";
+import s015 from "../../public/sketches/sketch-021.jpg";
+import s016 from "../../public/sketches/sketch-010.jpg";
+import s017 from "../../public/sketches/sketch-026.jpg";
+import s018 from "../../public/sketches/sketch-029.jpg";
+import s019 from "../../public/sketches/sketch-028.jpg";
+import s020 from "../../public/sketches/sketch-011.jpg";
+import s021 from "../../public/sketches/sketch-033.jpg";
+import s022 from "../../public/sketches/sketch-030.jpg";
+import s023 from "../../public/sketches/sketch-022.jpg";
+import s024 from "../../public/sketches/sketch-034.jpg";
+import s025 from "../../public/sketches/sketch-031.jpg";
+import s026 from "../../public/sketches/sketch-023.jpg";
+import s027 from "../../public/sketches/sketch-036.jpg";
+import s028 from "../../public/sketches/sketch-032.jpg";
+import s029 from "../../public/sketches/sketch-024.jpg";
+import s030 from "../../public/sketches/sketch-008.jpg";
 import s031 from "../../public/sketches/sketch-037.jpg";
 import s032 from "../../public/sketches/sketch-035.jpg";
 import s033 from "../../public/sketches/sketch-027.jpg";
@@ -51,8 +51,7 @@ export type Sketch = {
 };
 
 // The studio wall — unfinished and independent work, sequenced to vary
-// shape row to row. Titles/dates/notes editable per entry; dates are
-// kept in data but not shown in the room.
+// shape row to row. Titles/dates/notes editable per entry.
 export const sketches: Sketch[] = [
   { image: s001, title: "Sketch 001", date: "2026" },
   { image: s002, title: "Sketch 002", date: "2026" },

@@ -88,6 +88,8 @@ export default function SketchGrid() {
               src={sketch.image}
               alt={sketch.title}
               sizes="(max-width: 768px) 50vw, 25vw"
+              placeholder="blur"
+              priority={i < 8}
               className="h-auto w-full"
             />
           </button>
@@ -114,14 +116,22 @@ export default function SketchGrid() {
           {/* The stage: wide on desktop, vertical on mobile. The work
               expands to hit whichever edges its ratio reaches first. */}
           <div className="flash-in-late absolute inset-x-gutter top-[10vh] bottom-[14vh] md:inset-x-[8vw]">
-            <Image
-              draggable={false}
-              src={sketches[open].image}
-              alt={sketches[open].title}
-              fill
-              sizes="100vw"
-              className="object-contain"
-            />
+            {[open - 1, open, open + 1]
+              .filter((i) => i >= 0 && i < sketches.length)
+              .map((i) => (
+                <Image
+                  key={i}
+                  draggable={false}
+                  src={sketches[i].image}
+                  alt={sketches[i].title}
+                  fill
+                  sizes="100vw"
+                  priority={i === open}
+                  className={`object-contain ${
+                    i === open ? "opacity-100" : "opacity-0"
+                  }`}
+                />
+              ))}
           </div>
           <button
             type="button"
