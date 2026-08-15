@@ -1,46 +1,51 @@
 import type { StaticImageData } from "next/image";
-import s001 from "../../public/sketches/sketch-047.jpg";
-import s002 from "../../public/sketches/sketch-001.jpg";
-import s003 from "../../public/sketches/sketch-002.jpg";
-import s004 from "../../public/sketches/sketch-006.jpg";
-import s005 from "../../public/sketches/sketch-004.jpg";
-import s006 from "../../public/sketches/sketch-007.jpg";
-import s007 from "../../public/sketches/sketch-005.jpg";
-import s008 from "../../public/sketches/sketch-013.jpg";
-import s009 from "../../public/sketches/sketch-009.jpg";
-import s010 from "../../public/sketches/sketch-016.jpg";
-import s011 from "../../public/sketches/sketch-012.jpg";
-import s012 from "../../public/sketches/sketch-003.jpg";
-import s013 from "../../public/sketches/sketch-014.jpg";
-import s014 from "../../public/sketches/sketch-025.jpg";
-import s015 from "../../public/sketches/sketch-021.jpg";
-import s016 from "../../public/sketches/sketch-010.jpg";
-import s017 from "../../public/sketches/sketch-026.jpg";
-import s018 from "../../public/sketches/sketch-029.jpg";
-import s019 from "../../public/sketches/sketch-028.jpg";
-import s020 from "../../public/sketches/sketch-011.jpg";
-import s021 from "../../public/sketches/sketch-033.jpg";
-import s022 from "../../public/sketches/sketch-030.jpg";
-import s023 from "../../public/sketches/sketch-022.jpg";
-import s024 from "../../public/sketches/sketch-034.jpg";
-import s025 from "../../public/sketches/sketch-031.jpg";
-import s026 from "../../public/sketches/sketch-023.jpg";
-import s027 from "../../public/sketches/sketch-036.jpg";
-import s028 from "../../public/sketches/sketch-032.jpg";
-import s029 from "../../public/sketches/sketch-024.jpg";
-import s030 from "../../public/sketches/sketch-008.jpg";
-import s031 from "../../public/sketches/sketch-037.jpg";
-import s032 from "../../public/sketches/sketch-035.jpg";
-import s033 from "../../public/sketches/sketch-027.jpg";
-import s034 from "../../public/sketches/sketch-039.jpg";
-import s035 from "../../public/sketches/sketch-040.jpg";
-import s036 from "../../public/sketches/sketch-038.jpg";
-import s037 from "../../public/sketches/sketch-042.jpg";
-import s038 from "../../public/sketches/sketch-041.jpg";
-import s039 from "../../public/sketches/sketch-044.jpg";
-import s040 from "../../public/sketches/sketch-046.jpg";
-import s041 from "../../public/sketches/sketch-043.jpg";
-import s042 from "../../public/sketches/sketch-045.jpg";
+import s001 from "../../public/sketches/sketch-014.jpg";
+import s002 from "../../public/sketches/sketch-016.jpg";
+import s003 from "../../public/sketches/bronx-01.jpg";
+import s004 from "../../public/sketches/sketch-005.jpg";
+import s005 from "../../public/sketches/bronx-04.jpg";
+import s006 from "../../public/sketches/sketch-047.jpg";
+import s007 from "../../public/sketches/sketch-041.jpg";
+import s008 from "../../public/sketches/sketch-037.jpg";
+import s009 from "../../public/sketches/sketch-026.jpg";
+import s010 from "../../public/sketches/sketch-029.jpg";
+import s011 from "../../public/sketches/sketch-040.jpg";
+import s012 from "../../public/sketches/sketch-025.jpg";
+import s013 from "../../public/sketches/bronx-11.jpg";
+import s014 from "../../public/sketches/sketch-023.jpg";
+import s015 from "../../public/sketches/bronx-03.jpg";
+import s016 from "../../public/sketches/sketch-036.jpg";
+import s017 from "../../public/sketches/sketch-021.jpg";
+import s018 from "../../public/sketches/sketch-011.jpg";
+import s019 from "../../public/sketches/bronx-02.jpg";
+import s020 from "../../public/sketches/sketch-039.jpg";
+import s021 from "../../public/sketches/sketch-035.jpg";
+import s022 from "../../public/sketches/sketch-045.jpg";
+import s023 from "../../public/sketches/sketch-043.jpg";
+import s024 from "../../public/sketches/sketch-046.jpg";
+import s025 from "../../public/sketches/sketch-028.jpg";
+import s026 from "../../public/sketches/sketch-024.jpg";
+import s027 from "../../public/sketches/sketch-001.jpg";
+import s028 from "../../public/sketches/sketch-042.jpg";
+import s029 from "../../public/sketches/sketch-030.jpg";
+import s030 from "../../public/sketches/sketch-038.jpg";
+import s031 from "../../public/sketches/sketch-032.jpg";
+import s032 from "../../public/sketches/sketch-013.jpg";
+import s033 from "../../public/sketches/sketch-009.jpg";
+import s034 from "../../public/sketches/sketch-010.jpg";
+import s035 from "../../public/sketches/sketch-007.jpg";
+import s036 from "../../public/sketches/sketch-034.jpg";
+import s037 from "../../public/sketches/sketch-006.jpg";
+import s038 from "../../public/sketches/sketch-044.jpg";
+import s039 from "../../public/sketches/sketch-002.jpg";
+import s040 from "../../public/sketches/sketch-008.jpg";
+import s041 from "../../public/sketches/sketch-027.jpg";
+import s042 from "../../public/sketches/sketch-033.jpg";
+import s043 from "../../public/sketches/sketch-012.jpg";
+import s044 from "../../public/sketches/sketch-003.jpg";
+import s045 from "../../public/sketches/sketch-004.jpg";
+import s046 from "../../public/sketches/sketch-031.jpg";
+import s047 from "../../public/sketches/sketch-022.jpg";
 
 export type Sketch = {
   image: StaticImageData;
@@ -95,4 +100,9 @@ export const sketches: Sketch[] = [
   { image: s040, title: "Sketch 040", date: "2026" },
   { image: s041, title: "Sketch 041", date: "2026" },
   { image: s042, title: "Sketch 042", date: "2026" },
+  { image: s043, title: "Sketch 043", date: "2026" },
+  { image: s044, title: "Sketch 044", date: "2026" },
+  { image: s045, title: "Sketch 045", date: "2026" },
+  { image: s046, title: "Sketch 046", date: "2026" },
+  { image: s047, title: "Sketch 047", date: "2026" },
 ];
