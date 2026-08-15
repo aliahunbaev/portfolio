@@ -75,7 +75,7 @@ export default function SketchGrid() {
 
   return (
     <>
-      <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-5">
+      <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-4">
         {sketches.map((sketch, i) => (
           <button
             key={i}
