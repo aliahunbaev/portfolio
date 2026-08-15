@@ -143,9 +143,7 @@ export default function SketchGrid() {
           />
           {/* The wall label — fixed to the bottom, centred, Renell-wise. */}
           <div className="flash-in-late pointer-events-none absolute inset-x-0 bottom-4 text-center text-body">
-            <p>
-              {sketches[open].title}, {sketches[open].date}
-            </p>
+            <p>{sketches[open].title}</p>
             {sketches[open].note && (
               <p className="pt-1">{sketches[open].note}</p>
             )}
