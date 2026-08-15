@@ -116,7 +116,7 @@ export default function SketchGrid() {
           {/* The stage: wide on desktop, vertical on mobile. The work
               expands to hit whichever edges its ratio reaches first. */}
           <div className="flash-in-late absolute inset-x-gutter top-[10vh] bottom-[14vh] md:inset-x-[8vw]">
-            {[open - 1, open, open + 1]
+            {[open - 2, open - 1, open, open + 1, open + 2]
               .filter((i) => i >= 0 && i < sketches.length)
               .map((i) => (
                 <Image
