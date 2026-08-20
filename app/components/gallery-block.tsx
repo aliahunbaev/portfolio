@@ -80,7 +80,7 @@ export default function GalleryBlock({
     m.w && m.h ? m.w / m.h : 4 / 3;
   const pageWidth = (m: { w?: number; h?: number }) =>
     mode === "reader"
-      ? `calc(100vh * ${ratio(m).toFixed(4)})`
+      ? `min(calc((100vh - 64px) * ${ratio(m).toFixed(4)}), 92vw)`
       : `min(78vh * ${ratio(m).toFixed(4)}, 80vw)`;
   const endPad = (m: { w?: number; h?: number }) =>
     `max(0px, calc(50vw - ${pageWidth(m)} / 2))`;
@@ -149,21 +149,21 @@ export default function GalleryBlock({
         <div
           className={`fixed inset-0 ${
             mode === "reader"
-              ? "flash-in z-[55] bg-white"
+              ? "flash-in z-[55] flex flex-col bg-white"
               : "z-30 bg-white/85 backdrop-blur-md"
           }`}
         >
           {mode === "reader" && (
             /* The site chrome yields while reading: name home-link left,
-               Close right, riding above the pages. */
-            <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-gutter py-1 text-body font-medium">
-              <Link href="/" className="bg-white/90 px-1 hover:text-neutral-400">
+               Close right, on their own white band. */
+            <div className="flex h-8 items-center justify-between px-gutter text-body font-medium">
+              <Link href="/" className="hover:text-neutral-400">
                 Ali Ahunbáev
               </Link>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="cursor-pointer bg-white/90 px-1 hover:text-neutral-400"
+                className="cursor-pointer hover:text-neutral-400"
               >
                 Close
               </button>
@@ -176,18 +176,14 @@ export default function GalleryBlock({
               // Empty veil closes; pages handle their own clicks.
               if (e.target === stripRef.current) setOpen(false);
             }}
-            style={
+            style={{
+              paddingLeft: endPad(images[0]),
+              paddingRight: endPad(images[images.length - 1]),
+            }}
+            className={`no-scrollbar flex overflow-x-auto ${
               mode === "reader"
-                ? undefined
-                : {
-                    paddingLeft: endPad(images[0]),
-                    paddingRight: endPad(images[images.length - 1]),
-                  }
-            }
-            className={`no-scrollbar flex h-full overflow-x-auto ${
-              mode === "reader"
-                ? "items-stretch gap-[3px]"
-                : "items-center gap-gutter"
+                ? "flex-1 items-center gap-[3px]"
+                : "h-full items-center gap-gutter"
             }`}
           >
             {images.map(({ src, w, h }, i) => (
@@ -227,12 +223,22 @@ export default function GalleryBlock({
                       width: pageWidth({ w, h }),
                       aspectRatio: w && h ? `${w} / ${h}` : undefined,
                     }}
-                    className="h-auto"
+                    className={`h-auto ${
+                      mode === "reader" ? "border border-black/10" : ""
+                    }`}
                   />
                 )}
               </button>
             ))}
           </div>
+          {mode === "reader" && (
+            <div className="flex h-8 items-center justify-between px-gutter text-body">
+              <p>{title}</p>
+              <p>
+                {index + 1} / {images.length}
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>
