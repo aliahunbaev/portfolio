@@ -16,6 +16,8 @@ export type Block =
   | {
       type: "gallery";
       title: string;
+      /** "reader": full-bleed page-by-page reading, hairline seams. */
+      mode?: "reader";
       images: { src: string; w?: number; h?: number }[];
       cover?: { w: number; h: number };
     };

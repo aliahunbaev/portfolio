@@ -129,9 +129,13 @@ function parseBlocks(slug: string, body: string): Block[] {
         // A bounded artifact; may mix stills and clips. Every still gets
         // its pixel size so the viewer lays out before any image loads.
         const firstStill = images.find((src) => !isVideo(src)) ?? images[0];
+        const [galleryTitle, flag] = (media[0].alt || "Gallery")
+          .split("|")
+          .map((part) => part.trim());
         blocks.push({
           type: "gallery",
-          title: media[0].alt || "Gallery",
+          title: galleryTitle || "Gallery",
+          mode: flag === "reader" ? ("reader" as const) : undefined,
           images: images.map((src) => {
             const url = resolveSrc(slug, src);
             return isVideo(src) ? { src: url } : { src: url, ...imageSize(url) };

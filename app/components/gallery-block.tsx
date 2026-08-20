@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -22,12 +23,14 @@ export default function GalleryBlock({
   title,
   images,
   cover,
+  mode,
   className = "",
   style,
 }: {
   title: string;
   images: { src: string; w?: number; h?: number }[];
   cover?: { w: number; h: number };
+  mode?: "reader";
   className?: string;
   style?: React.CSSProperties;
 }) {
@@ -76,7 +79,9 @@ export default function GalleryBlock({
   const ratio = (m: { w?: number; h?: number }) =>
     m.w && m.h ? m.w / m.h : 4 / 3;
   const pageWidth = (m: { w?: number; h?: number }) =>
-    `min(78vh * ${ratio(m).toFixed(4)}, 80vw)`;
+    mode === "reader"
+      ? `calc(100vh * ${ratio(m).toFixed(4)})`
+      : `min(78vh * ${ratio(m).toFixed(4)}, 80vw)`;
   const endPad = (m: { w?: number; h?: number }) =>
     `max(0px, calc(50vw - ${pageWidth(m)} / 2))`;
 
@@ -141,7 +146,29 @@ export default function GalleryBlock({
       </button>
       <p className="pt-3 text-center">{title}</p>
       {open && (
-        <div className="fixed inset-0 z-30 bg-white/85 backdrop-blur-md">
+        <div
+          className={`fixed inset-0 ${
+            mode === "reader"
+              ? "flash-in z-[55] bg-white"
+              : "z-30 bg-white/85 backdrop-blur-md"
+          }`}
+        >
+          {mode === "reader" && (
+            /* The site chrome yields while reading: name home-link left,
+               Close right, riding above the pages. */
+            <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-gutter py-1 text-body font-medium">
+              <Link href="/" className="bg-white/90 px-1 hover:text-neutral-400">
+                Ali Ahunbáev
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer bg-white/90 px-1 hover:text-neutral-400"
+              >
+                Close
+              </button>
+            </div>
+          )}
           <div
             ref={stripRef}
             onScroll={onScroll}
@@ -149,11 +176,19 @@ export default function GalleryBlock({
               // Empty veil closes; pages handle their own clicks.
               if (e.target === stripRef.current) setOpen(false);
             }}
-            style={{
-              paddingLeft: endPad(images[0]),
-              paddingRight: endPad(images[images.length - 1]),
-            }}
-            className="no-scrollbar flex h-full items-center gap-gutter overflow-x-auto"
+            style={
+              mode === "reader"
+                ? undefined
+                : {
+                    paddingLeft: endPad(images[0]),
+                    paddingRight: endPad(images[images.length - 1]),
+                  }
+            }
+            className={`no-scrollbar flex h-full overflow-x-auto ${
+              mode === "reader"
+                ? "items-stretch gap-[3px]"
+                : "items-center gap-gutter"
+            }`}
           >
             {images.map(({ src, w, h }, i) => (
               <button
@@ -187,7 +222,7 @@ export default function GalleryBlock({
                     height={h}
                     alt={`${title}, ${i + 1} of ${images.length}`}
                     draggable={false}
-                    loading={Math.abs(i - index) < 3 ? "eager" : "lazy"}
+                    loading={Math.abs(i - index) < 4 ? "eager" : "lazy"}
                     style={{
                       width: pageWidth({ w, h }),
                       aspectRatio: w && h ? `${w} / ${h}` : undefined,

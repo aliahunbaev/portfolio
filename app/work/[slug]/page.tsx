@@ -134,11 +134,24 @@ function BlockView({
         title={block.title}
         images={block.images}
         cover={block.cover}
+        mode={block.mode}
         className="md:col-span-8"
       />
     );
   }
   if (block.type === "galleryRow") {
+    if (block.galleries.length === 1) {
+      const g = block.galleries[0];
+      return (
+        <GalleryBlock
+          title={g.title}
+          images={g.images}
+          cover={g.cover}
+          mode={g.mode}
+          className="scroll-mt-24 md:col-span-4"
+        />
+      );
+    }
     return (
       <div
         id={anchorId}
