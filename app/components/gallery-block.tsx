@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import {
   useCallback,
   useEffect,
@@ -39,6 +40,15 @@ export default function GalleryBlock({
   const stripRef = useRef<HTMLDivElement>(null);
 
   const tile = images.find((m) => !isVideo(m.src)) ?? images[0];
+  const backTile =
+    [...images].reverse().find((m) => !isVideo(m.src)) ??
+    images[images.length - 1];
+  // A reader's tile lays the object flat: front and back covers side by
+  // side, sharing the reader's hairline seam.
+  const tiles =
+    mode === "reader" && images.length > 1 && backTile !== tile
+      ? [tile, backTile]
+      : [tile];
 
   const goTo = useCallback((i: number, smooth = true) => {
     const strip = stripRef.current;
@@ -80,7 +90,7 @@ export default function GalleryBlock({
     m.w && m.h ? m.w / m.h : 4 / 3;
   const pageWidth = (m: { w?: number; h?: number }) =>
     mode === "reader"
-      ? `min(calc((100vh - 64px) * ${ratio(m).toFixed(4)}), 92vw)`
+      ? `min(calc((100vh - 44px) * ${ratio(m).toFixed(4)}), 92vw)`
       : `min(78vh * ${ratio(m).toFixed(4)}, 80vw)`;
   const endPad = (m: { w?: number; h?: number }) =>
     `max(0px, calc(50vw - ${pageWidth(m)} / 2))`;
@@ -128,119 +138,152 @@ export default function GalleryBlock({
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="group relative block w-full cursor-pointer overflow-hidden bg-black/[0.04]"
-        style={{ aspectRatio: cover ? `${cover.w} / ${cover.h}` : "1.85 / 1" }}
+        className={`group relative block w-full cursor-pointer overflow-hidden ${
+          tiles.length === 1 ? "bg-black/[0.04]" : ""
+        }`}
+        style={
+          tiles.length === 1
+            ? {
+                aspectRatio: cover ? `${cover.w} / ${cover.h}` : "1.85 / 1",
+              }
+            : undefined
+        }
       >
-        <Image
-          draggable={false}
-          src={tile.src}
-          alt={title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
-        />
+        {tiles.length === 2 ? (
+          <span className="grid grid-cols-2 gap-[3px]">
+            {tiles.map((t) => (
+              <span
+                key={t.src}
+                className="relative block w-full overflow-hidden border border-black/10 bg-black/[0.04]"
+                style={{
+                  aspectRatio: t.w && t.h ? `${t.w} / ${t.h}` : "3 / 4",
+                }}
+              >
+                <Image
+                  draggable={false}
+                  src={t.src}
+                  alt={title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover"
+                />
+              </span>
+            ))}
+          </span>
+        ) : (
+          <Image
+            draggable={false}
+            src={tile.src}
+            alt={title}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
+          />
+        )}
         {/* Filename-style chip, Playlab-fashion, on hover. */}
         <span className="absolute left-2 top-2 bg-white px-1.5 py-0.5 text-body opacity-0 group-hover:opacity-100">
           {title}
         </span>
       </button>
       <p className="pt-3 text-center">{title}</p>
-      {open && (
-        <div
-          className={`fixed inset-0 ${
-            mode === "reader"
-              ? "flash-in z-[55] flex flex-col bg-white"
-              : "z-30 bg-white/85 backdrop-blur-md"
-          }`}
-        >
-          {mode === "reader" && (
-            /* The site chrome yields while reading: name home-link left,
-               Close right, on their own white band. */
-            <div className="flex h-8 items-center justify-between px-gutter text-body font-medium">
-              <Link href="/" className="hover:text-neutral-400">
-                Ali Ahunbáev
-              </Link>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="cursor-pointer hover:text-neutral-400"
-              >
-                Close
-              </button>
-            </div>
-          )}
+      {open &&
+        createPortal(
           <div
-            ref={stripRef}
-            onScroll={onScroll}
-            onClick={(e) => {
-              // Empty veil closes; pages handle their own clicks.
-              if (e.target === stripRef.current) setOpen(false);
-            }}
-            style={{
-              paddingLeft: endPad(images[0]),
-              paddingRight: endPad(images[images.length - 1]),
-            }}
-            className={`no-scrollbar flex overflow-x-auto ${
+            className={`fixed inset-0 ${
               mode === "reader"
-                ? "flex-1 items-center gap-[3px]"
-                : "h-full items-center gap-gutter"
+                ? "flash-in z-[55] flex flex-col bg-white"
+                : "z-30 bg-white/85 backdrop-blur-md"
             }`}
           >
-            {images.map(({ src, w, h }, i) => (
-              <button
-                key={src}
-                type="button"
-                onClick={(e) => {
-                  // Drop focus so no ring appears and the browser never
-                  // auto-scrolls the focused page against the strip.
-                  e.currentTarget.blur();
-                  if (i !== index) goTo(i);
-                }}
-                className={`flex-none ${
-                  i === index ? "cursor-default" : "cursor-pointer"
-                }`}
-              >
-                {isVideo(src) ? (
-                  <video
-                    src={src}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="max-h-[78vh] max-w-[80vw] w-auto"
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={src}
-                    width={w}
-                    height={h}
-                    alt={`${title}, ${i + 1} of ${images.length}`}
-                    draggable={false}
-                    loading={Math.abs(i - index) < 4 ? "eager" : "lazy"}
-                    style={{
-                      width: pageWidth({ w, h }),
-                      aspectRatio: w && h ? `${w} / ${h}` : undefined,
-                    }}
-                    className={`h-auto ${
-                      mode === "reader" ? "border border-black/10" : ""
-                    }`}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-          {mode === "reader" && (
-            <div className="flex h-8 items-center justify-between px-gutter text-body">
-              <p>{title}</p>
-              <p>
-                {index + 1} / {images.length}
-              </p>
+            {mode === "reader" && (
+              /* The site chrome yields while reading: name home-link left,
+               Close right, on their own white band. */
+              <div className="flex items-center justify-between px-gutter py-1 text-body font-medium">
+                <Link href="/" className="hover:text-neutral-400">
+                  Ali Ahunbáev
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="cursor-pointer hover:text-neutral-400"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+            <div
+              ref={stripRef}
+              onScroll={onScroll}
+              onClick={(e) => {
+                // Empty veil closes; pages handle their own clicks.
+                if (e.target === stripRef.current) setOpen(false);
+              }}
+              style={{
+                paddingLeft: endPad(images[0]),
+                paddingRight: endPad(images[images.length - 1]),
+              }}
+              className={`no-scrollbar flex overflow-x-auto ${
+                mode === "reader"
+                  ? "flex-1 items-center gap-[3px]"
+                  : "h-full items-center gap-gutter"
+              }`}
+            >
+              {images.map(({ src, w, h }, i) => (
+                <button
+                  key={src}
+                  type="button"
+                  onClick={(e) => {
+                    // Drop focus so no ring appears and the browser never
+                    // auto-scrolls the focused page against the strip.
+                    e.currentTarget.blur();
+                    if (i !== index) goTo(i);
+                  }}
+                  className={`flex-none ${
+                    i === index ? "cursor-default" : "cursor-pointer"
+                  }`}
+                >
+                  {isVideo(src) ? (
+                    <video
+                      src={src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="max-h-[78vh] max-w-[80vw] w-auto"
+                    />
+                  ) : (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={src}
+                      width={w}
+                      height={h}
+                      alt={`${title}, ${i + 1} of ${images.length}`}
+                      draggable={false}
+                      loading={Math.abs(i - index) < 4 ? "eager" : "lazy"}
+                      style={{
+                        width: pageWidth({ w, h }),
+                        aspectRatio: w && h ? `${w} / ${h}` : undefined,
+                      }}
+                      className={`h-auto ${
+                        mode === "reader" ? "border border-black/10" : ""
+                      }`}
+                    />
+                  )}
+                </button>
+              ))}
             </div>
-          )}
-        </div>
-      )}
+            {mode === "reader" && (
+              <div className="flex items-center justify-between px-gutter py-1 text-body">
+                <p>{title}</p>
+                <p>
+                  {index + 1} / {images.length}
+                </p>
+              </div>
+            )}
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }

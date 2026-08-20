@@ -230,6 +230,7 @@ export default async function WorkPage({ params }: Params) {
     const last = grouped[grouped.length - 1];
     if (
       block.type === "gallery" &&
+      !block.mode &&
       block.cover &&
       block.cover.h > block.cover.w
     ) {

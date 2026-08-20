@@ -4,6 +4,7 @@ date: April 2025
 medium: Publication
 description: A magazine on making things with your friends — four garments, the stories behind them, and the people who wore them.
 cover: page-01.jpg
+featured: true
 ---
 
 The Combat Journal is a magazine about the first year of Combat Créatif — four garments and the thinking behind them: the Soldier Uniform, the Workshirt, the Playfight Crewneck, and the Neighborhood Tee. Each piece began as a story before it became clothing; the journal lays those stories out the way they were meant to be read.
