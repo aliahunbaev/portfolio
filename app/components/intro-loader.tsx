@@ -40,9 +40,11 @@ export default function IntroLoader() {
       }`}
     >
       <div
-        className={`absolute inset-x-0 top-0 flex items-center justify-between px-gutter py-1 text-body font-medium transition-transform duration-700 ease-in-out ${
-          risen ? "translate-y-0" : "translate-y-[calc(50vh-50%)]"
-        }`}
+        className={`absolute inset-x-0 top-0 flex items-center justify-between px-gutter py-1 text-body font-medium ${
+          phase === "blank" || phase === "name"
+            ? ""
+            : "transition-transform duration-700 ease-in-out"
+        } ${risen ? "translate-y-0" : "translate-y-[calc(50vh-50%)]"}`}
       >
         <span
           className={`transition-opacity duration-700 ${
