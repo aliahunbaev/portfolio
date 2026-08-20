@@ -1,12 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
-import {
-  projects as legacyFeatured,
-  slugify,
-  works as legacyWorks,
-  type Block,
-  type Project,
-} from "./projects";
+import { slugify, type Block, type Project } from "./projects";
 
 /* Reads project folders from public/work/<slug>/index.md at build time.
    Server-only — never import this from a "use client" component; pages
@@ -104,6 +98,25 @@ function parseBlocks(slug: string, body: string): Block[] {
       blocks.push({ type: "section", title, id: slugify(title) });
       continue;
     }
+    if (trimmed.startsWith("> ")) {
+      // Quote block; a final line opening with an em dash is the
+      // author. Internal blank quote lines are paragraph breaks.
+      const lines = trimmed
+        .split(/\r?\n/)
+        .map((l) => l.replace(/^>\s?/, "").trimEnd());
+      let author: string | undefined;
+      const lastLine = lines[lines.length - 1].trim();
+      if (lines.length > 1 && lastLine.startsWith("—")) {
+        author = lastLine.replace(/^—\s*/, "");
+        lines.pop();
+      }
+      blocks.push({
+        type: "quote",
+        body: lines.join("\n").trim(),
+        author,
+      });
+      continue;
+    }
     const media = [...trimmed.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)].map(
       (m) => ({ alt: m[1], src: m[2] }),
     );
@@ -125,18 +138,19 @@ function parseBlocks(slug: string, body: string): Block[] {
           }),
           cover: imageSize(resolveSrc(slug, firstStill)),
         });
-      } else if (images.every(isVideo)) {
-        for (const src of images) {
-          blocks.push({ type: "video", src: resolveSrc(slug, src) });
-        }
-      } else if (images.length === 2) {
-        blocks.push({
-          type: "pair",
-          images: images.map((src) => ({ image: resolveSrc(slug, src) })),
-        });
       } else {
-        for (const src of images) {
-          blocks.push({ type: "image", image: resolveSrc(slug, src) });
+        for (const { alt, src } of media) {
+          const url = resolveSrc(slug, src);
+          if (isVideo(src)) {
+            blocks.push({ type: "video", src: url });
+          } else {
+            blocks.push({
+              type: "image",
+              image: url,
+              caption: alt || undefined,
+              ...imageSize(url),
+            });
+          }
         }
       }
     } else if (prose) {
@@ -181,8 +195,7 @@ function readFolder(slug: string): Project | undefined {
 const newestFirst = (a: Project, b: Project) =>
   (new Date(b.date).getTime() || 0) - (new Date(a.date).getTime() || 0);
 
-/** Every project — markdown folders first, then any placeholder entries
- *  that markdown hasn't replaced yet. Newest first. */
+/** Every project, from the markdown folders. Newest first. */
 export function getWorks(): Project[] {
   const written = existsSync(ROOT)
     ? readdirSync(ROOT, { withFileTypes: true })
@@ -190,24 +203,21 @@ export function getWorks(): Project[] {
         .map((entry) => readFolder(entry.name))
         .filter((work) => work !== undefined)
     : [];
-  const claimed = new Set(written.map((work) => work.title));
-  const remaining = legacyWorks.filter((work) => !claimed.has(work.title));
-  return [...written, ...remaining].sort(newestFirst);
+  return written.sort(newestFirst);
 }
 
 /** The homepage rows: markdown projects marked `featured: true`, plus any
  *  placeholder rows they haven't replaced yet. Newest first. */
 export function getFeatured(): Project[] {
-  const featured = getWorks().filter((work) => work.featured);
-  const claimed = new Set(featured.map((work) => work.title));
-  const remaining = legacyFeatured.filter((work) => !claimed.has(work.title));
   // Curated positions first, then the rest by recency.
-  return [...featured, ...remaining].sort((a, b) => {
+  return getWorks()
+    .filter((work) => work.featured)
+    .sort((a, b) => {
     if (a.order != null || b.order != null) {
       if (a.order == null) return 1;
       if (b.order == null) return -1;
       return a.order - b.order;
     }
-    return newestFirst(a, b);
-  });
+      return newestFirst(a, b);
+    });
 }

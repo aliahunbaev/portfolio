@@ -1,13 +1,20 @@
 import Link from "next/link";
-import FadeImage from "../../components/fade-image";
-import VideoPlayer from "../../components/video-player";
 import { notFound } from "next/navigation";
 import AnchorRail from "../../components/anchor-rail";
+import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
+import VideoPlayer from "../../components/video-player";
 import { getWorks } from "../../lib/content";
-import { slugify, workImages, type Block } from "../../lib/projects";
+import { slugify, type Block } from "../../lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
+
+type ImageB = Extract<Block, { type: "image" }>;
+type GalleryB = Extract<Block, { type: "gallery" }>;
+type RowBlock =
+  | Block
+  | { type: "galleryRow"; galleries: GalleryB[] }
+  | { type: "imageRow"; images: ImageB[] };
 
 export function generateStaticParams() {
   return getWorks().map((work) => ({ slug: slugify(work.title) }));
@@ -19,52 +26,73 @@ export async function generateMetadata({ params }: Params) {
   return { title: "Ali Ahunbáev", description: work?.description };
 }
 
-function Frame({
-  image,
-  objectPosition = "50% 50%",
-  aspect,
-  sizes,
+/** Renders *asterisk* spans as italics; everything else verbatim. */
+function Em({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\*[^*\n]+\*)/g).map((part, i) =>
+        part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
+          <em key={i}>{part.slice(1, -1)}</em>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+const ratio = (b: { w?: number; h?: number }) =>
+  b.w && b.h ? b.w / b.h : 1.85;
+const isPortrait = (b: { w?: number; h?: number }) =>
+  !!(b.w && b.h && b.h > b.w);
+
+/* An image at its own proportions — never cropped — with an optional
+   centred caption beneath. */
+function Picture({
+  block,
   alt,
   className = "",
+  style,
 }: {
-  image: string;
-  objectPosition?: string;
-  aspect: string;
-  sizes: string;
+  block: ImageB;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
-    <div
-      className={`relative w-full overflow-hidden bg-black/[0.04] ${aspect} ${className}`}
-    >
-      <FadeImage
-        draggable={false}
-        src={image}
-        alt={alt}
-        fill
-        sizes={sizes}
-        className="object-cover"
-        style={{ objectPosition }}
-      />
+    <div className={className} style={style}>
+      <div
+        className="relative w-full overflow-hidden bg-black/[0.04]"
+        style={{ aspectRatio: `${block.w ?? 1850} / ${block.h ?? 1000}` }}
+      >
+        <FadeImage
+          draggable={false}
+          src={block.image}
+          alt={block.caption || alt}
+          fill
+          sizes="(max-width: 768px) 100vw, 67vw"
+          className="object-cover"
+        />
+      </div>
+      {block.caption && (
+        <p className="pt-3 text-center">
+          <Em text={block.caption} />
+        </p>
+      )}
     </div>
   );
 }
 
 /* Blocks live in the content zone (page cols 5-12, an 8-col subgrid).
-   Images take the zone's full width, pairs split it, text runs narrower
-   (5 of 8 cols) so reading lines stay comfortable on big screens. */
+   Landscape images take the zone's full width at natural ratio;
+   consecutive portraits share a row, widths proportional to their
+   ratios so heights match; text runs narrower for comfortable lines. */
 function BlockView({
   block,
   alt,
   anchorId,
 }: {
-  block:
-    | Block
-    | {
-        type: "galleryRow";
-        galleries: Extract<Block, { type: "gallery" }>[];
-      };
+  block: RowBlock;
   alt: string;
   anchorId?: string;
 }) {
@@ -75,8 +103,22 @@ function BlockView({
         id={anchorId}
         className="scroll-mt-24 whitespace-pre-line py-6 leading-[1.5] first:pt-0 md:col-span-5"
       >
-        {block.body}
+        <Em text={block.body} />
       </p>
+    );
+  }
+  if (block.type === "quote") {
+    return (
+      <figure id={anchorId} className="scroll-mt-24 py-6 md:col-span-5">
+        <blockquote className="whitespace-pre-line italic leading-[1.5]">
+          <Em text={block.body} />
+        </blockquote>
+        {block.author && (
+          <figcaption className="pt-2 not-italic">
+            — <Em text={block.author} />
+          </figcaption>
+        )}
+      </figure>
     );
   }
   if (block.type === "video") {
@@ -97,9 +139,6 @@ function BlockView({
     );
   }
   if (block.type === "galleryRow") {
-    // Shared row: each artifact's share of the width is its aspect
-    // ratio, so every tile lands at the same height and the row fills
-    // the zone exactly.
     return (
       <div
         id={anchorId}
@@ -121,31 +160,37 @@ function BlockView({
       </div>
     );
   }
-  if (block.type === "pair") {
+  if (block.type === "imageRow") {
+    if (block.images.length === 1) {
+      // A lone portrait holds half the zone rather than towering.
+      return (
+        <Picture
+          block={block.images[0]}
+          alt={alt}
+          className="scroll-mt-24 md:col-span-4"
+        />
+      );
+    }
     return (
-      <div className="grid grid-cols-2 gap-x-gutter md:col-span-8">
-        {block.images.map(({ image, objectPosition }) => (
-          <Frame
-            key={image + objectPosition}
-            image={image}
-            objectPosition={objectPosition}
-            aspect="aspect-[4/5]"
-            sizes="(max-width: 768px) 50vw, 33vw"
+      <div
+        id={anchorId}
+        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-span-8"
+      >
+        {block.images.map((img) => (
+          <Picture
+            key={img.image}
+            block={img}
             alt={alt}
+            style={{ flexGrow: ratio(img), flexBasis: 0 }}
           />
         ))}
       </div>
     );
   }
   return (
-    <Frame
-      image={block.image}
-      objectPosition={block.objectPosition}
-      aspect="aspect-[1.85/1]"
-      sizes="(max-width: 768px) 100vw, 67vw"
-      alt={alt}
-      className="md:col-span-8"
-    />
+    <div id={anchorId} className="scroll-mt-24 md:col-span-8">
+      <Picture block={block} alt={alt} />
+    </div>
   );
 }
 
@@ -158,18 +203,10 @@ export default async function WorkPage({ params }: Params) {
   const previous = works[(index - 1 + works.length) % works.length];
   const next = works[(index + 1) % works.length];
 
-  const blocks: Block[] = work.blocks ?? [
-    { type: "text", body: work.description },
-    ...workImages(work.title).map(
-      ({ image, objectPosition }) =>
-        ({ type: "image", image, objectPosition }) as Block,
-    ),
-  ];
+  const blocks: Block[] = work.blocks ?? [];
 
-  // Consecutive portrait galleries collapse into one row, and each
-  // section's anchor id rides on its first real block — no empty rows.
-  type GalleryB = Extract<Block, { type: "gallery" }>;
-  type RowBlock = Block | { type: "galleryRow"; galleries: GalleryB[] };
+  // Consecutive portrait images pair up; consecutive portrait galleries
+  // share a row; each section's anchor rides its first real block.
   const grouped: { block: RowBlock; anchorId?: string }[] = [];
   let pendingAnchor: string | undefined;
   for (const block of blocks) {
@@ -177,87 +214,66 @@ export default async function WorkPage({ params }: Params) {
       pendingAnchor = block.id;
       continue;
     }
-    const portrait =
-      block.type === "gallery" && block.cover && block.cover.h > block.cover.w;
     const last = grouped[grouped.length - 1];
-    if (portrait && last?.block.type === "galleryRow" && !pendingAnchor) {
-      (last.block as { galleries: GalleryB[] }).galleries.push(
-        block as GalleryB,
-      );
-    } else if (portrait) {
-      grouped.push({
-        block: { type: "galleryRow", galleries: [block as GalleryB] },
-        anchorId: pendingAnchor,
-      });
-      pendingAnchor = undefined;
-    } else {
-      grouped.push({ block, anchorId: pendingAnchor });
-      pendingAnchor = undefined;
+    if (
+      block.type === "gallery" &&
+      block.cover &&
+      block.cover.h > block.cover.w
+    ) {
+      if (last?.block.type === "galleryRow" && !pendingAnchor) {
+        (last.block as { galleries: GalleryB[] }).galleries.push(block);
+      } else {
+        grouped.push({
+          block: { type: "galleryRow", galleries: [block] },
+          anchorId: pendingAnchor,
+        });
+        pendingAnchor = undefined;
+      }
+      continue;
     }
+    if (block.type === "image" && isPortrait(block)) {
+      if (
+        last?.block.type === "imageRow" &&
+        (last.block as { images: ImageB[] }).images.length < 2 &&
+        !pendingAnchor
+      ) {
+        (last.block as { images: ImageB[] }).images.push(block);
+      } else {
+        grouped.push({
+          block: { type: "imageRow", images: [block] },
+          anchorId: pendingAnchor,
+        });
+        pendingAnchor = undefined;
+      }
+      continue;
+    }
+    grouped.push({ block, anchorId: pendingAnchor });
+    pendingAnchor = undefined;
   }
 
   const sections = blocks.filter((b) => b.type === "section");
-
-  const meta: [string, string][] = [
-    ["Project", work.title],
-    ["Date", work.date],
-    ["Medium", work.category],
-  ];
 
   return (
     <main
       className="min-h-screen px-gutter pb-24 text-body"
       style={work.tint ? { backgroundColor: work.tint } : undefined}
     >
-      {/* Mirrors a homepage row: sticky meta rail cols 1-4, content 5-12. */}
+      {/* One anatomy for every project: rail cols 1-3 (Back, plus the
+          section index when the story declares one), content 5-12. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        {sections.length ? (
-          <aside className="max-md:hidden md:sticky md:top-30 md:col-span-3">
-            <AnchorRail sections={sections} />
-          </aside>
-        ) : (
-          <aside className="grid grid-cols-4 content-start gap-x-gutter gap-y-4 max-md:grid-cols-3 md:sticky md:top-30 md:col-span-4">
-            {meta.map(([label, value]) => (
-              <div
-                key={label}
-                className="col-span-4 grid grid-cols-subgrid max-md:col-span-3"
-              >
-                <p className="col-span-2 max-md:col-span-1">{label}</p>
-                {label === "Project" ? (
-                  <h1 className="col-span-2 max-md:col-span-2">{value}</h1>
-                ) : (
-                  <p className="col-span-2 max-md:col-span-2">{value}</p>
-                )}
-              </div>
-            ))}
-            <Link
-              href="/archive"
-              className="col-span-4 pt-8 hover:text-neutral-400 max-md:hidden"
-            >
-              Back
-            </Link>
-          </aside>
-        )}
-        <div
-          className={
-            sections.length
-              ? "md:col-span-8 md:col-start-5"
-              : "max-md:pt-12 md:col-span-8"
-          }
-        >
+        <aside className="max-md:hidden md:sticky md:top-30 md:col-span-3">
+          <AnchorRail sections={sections} />
+        </aside>
+        <div className="md:col-span-8 md:col-start-5">
           <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
-            {sections.length ? (
-              // Sectioned projects open with the meta as a standardized
-              // header inside the content zone, same type size as all.
-              <header className="pb-8 md:col-span-5">
-                <h1 className="text-title font-medium leading-[1.1]">
-                  {work.title}
-                </h1>
-                <p className="pt-2">
-                  {work.category}, {work.date}
-                </p>
-              </header>
-            ) : null}
+            <header className="pb-8 md:col-span-5">
+              <h1 className="text-title font-medium leading-[1.1]">
+                {work.title}
+              </h1>
+              <p className="pt-2">
+                {work.category}, {work.date}
+              </p>
+            </header>
             {grouped.map(({ block, anchorId }, i) => (
               <BlockView
                 key={i}
