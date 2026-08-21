@@ -89,9 +89,7 @@ export default function GalleryBlock({
   const ratio = (m: { w?: number; h?: number }) =>
     m.w && m.h ? m.w / m.h : 4 / 3;
   const pageWidth = (m: { w?: number; h?: number }) =>
-    mode === "reader"
-      ? `min(calc((100vh - 44px) * ${ratio(m).toFixed(4)}), 92vw)`
-      : `min(78vh * ${ratio(m).toFixed(4)}, 80vw)`;
+    `min(calc((100vh - 44px) * ${ratio(m).toFixed(4)}), 92vw)`;
   const endPad = (m: { w?: number; h?: number }) =>
     `max(0px, calc(50vw - ${pageWidth(m)} / 2))`;
 
@@ -188,29 +186,21 @@ export default function GalleryBlock({
       <p className="pt-3 text-center">{title}</p>
       {open &&
         createPortal(
-          <div
-            className={`fixed inset-0 ${
-              mode === "reader"
-                ? "flash-in z-[55] flex flex-col bg-white"
-                : "z-30 bg-white/85 backdrop-blur-md"
-            }`}
-          >
-            {mode === "reader" && (
-              /* The site chrome yields while reading: name home-link left,
-               Close right, on their own white band. */
-              <div className="flex items-center justify-between px-gutter py-1 text-body font-medium">
-                <Link href="/" className="hover:text-neutral-400">
-                  Ali Ahunbáev
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="cursor-pointer hover:text-neutral-400"
-                >
-                  Close
-                </button>
-              </div>
-            )}
+          <div className="flash-in fixed inset-0 z-[55] flex flex-col bg-white">
+            {/* The site chrome yields while reading: name home-link left,
+                Close right, on their own white band. */}
+            <div className="flex items-center justify-between px-gutter py-1 text-body font-medium">
+              <Link href="/" className="hover:text-neutral-400">
+                Ali Ahunbáev
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="cursor-pointer hover:text-neutral-400"
+              >
+                Close
+              </button>
+            </div>
             <div
               ref={stripRef}
               onScroll={onScroll}
@@ -222,11 +212,7 @@ export default function GalleryBlock({
                 paddingLeft: endPad(images[0]),
                 paddingRight: endPad(images[images.length - 1]),
               }}
-              className={`no-scrollbar flex overflow-x-auto ${
-                mode === "reader"
-                  ? "flex-1 items-center gap-[3px]"
-                  : "h-full items-center gap-gutter"
-              }`}
+              className="no-scrollbar flex flex-1 items-center gap-[3px] overflow-x-auto"
             >
               {images.map(({ src, w, h }, i) => (
                 <button
@@ -250,7 +236,7 @@ export default function GalleryBlock({
                       loop
                       playsInline
                       preload="metadata"
-                      className="max-h-[78vh] max-w-[80vw] w-auto"
+                      className="max-h-[calc(100vh-44px)] max-w-[92vw] w-auto"
                     />
                   ) : (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -265,22 +251,18 @@ export default function GalleryBlock({
                         width: pageWidth({ w, h }),
                         aspectRatio: w && h ? `${w} / ${h}` : undefined,
                       }}
-                      className={`h-auto ${
-                        mode === "reader" ? "border border-black/10" : ""
-                      }`}
+                      className="h-auto border border-black/10"
                     />
                   )}
                 </button>
               ))}
             </div>
-            {mode === "reader" && (
-              <div className="flex items-center justify-between px-gutter py-1 text-body">
-                <p>{title}</p>
-                <p>
-                  {index + 1} / {images.length}
-                </p>
-              </div>
-            )}
+            <div className="flex items-center justify-between px-gutter py-1 text-body">
+              <p>{title}</p>
+              <p>
+                {index + 1} / {images.length}
+              </p>
+            </div>
           </div>,
           document.body,
         )}
