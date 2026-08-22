@@ -12,7 +12,17 @@ export type Block =
       w?: number;
       h?: number;
     }
-  | { type: "video"; src: string }
+  | { type: "video"; src: string; poster?: string; w?: number; h?: number }
+  | {
+      /** Two or three pieces written on one line: shown side by side at
+       *  natural proportions, widths in ratio so heights match. Videos in
+       *  a row play as silent loops. */
+      type: "row";
+      items: (
+        | { type: "image"; image: string; caption?: string; w?: number; h?: number }
+        | { type: "video"; src: string; poster?: string; w?: number; h?: number }
+      )[];
+    }
   | {
       type: "gallery";
       title: string;

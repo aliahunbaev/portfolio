@@ -125,7 +125,14 @@ function parseBlocks(slug: string, body: string): Block[] {
 
     if (images.length && !prose) {
       const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
-      if (images.length >= 3) {
+      const [, firstFlag] = (media[0].alt || "")
+        .split("|")
+        .map((part) => part.trim());
+      // Two or three pieces on a line share a row; four or more are a
+      // bounded artifact that opens in the viewer. `Title | gallery`
+      // forces the viewer for a short set (a three-page program).
+      const forceGallery = firstFlag === "gallery" || firstFlag === "reader";
+      if (images.length >= 4 || (images.length >= 3 && forceGallery)) {
         // A bounded artifact; may mix stills and clips. Every still gets
         // its pixel size so the viewer lays out before any image loads.
         const firstStill = images.find((src) => !isVideo(src)) ?? images[0];
@@ -143,19 +150,30 @@ function parseBlocks(slug: string, body: string): Block[] {
           cover: imageSize(resolveSrc(slug, firstStill)),
         });
       } else {
-        for (const { alt, src } of media) {
-          const url = resolveSrc(slug, src);
-          if (isVideo(src)) {
-            blocks.push({ type: "video", src: url });
-          } else {
-            blocks.push({
-              type: "image",
-              image: url,
-              caption: alt || undefined,
-              ...imageSize(url),
-            });
+        // A video takes its proportions (and a first-frame poster) from a
+        // sibling still of the same name, if one exists.
+        const posterFor = (src: string) => {
+          for (const ext of [".jpg", ".png"]) {
+            const candidate = src.replace(/\.(mp4|webm|mov)$/i, ext);
+            const url = resolveSrc(slug, candidate);
+            const size = imageSize(url);
+            if (size) return { poster: url, ...size };
           }
-        }
+          return {};
+        };
+        const items = media.map(({ alt, src }) => {
+          const url = resolveSrc(slug, src);
+          return isVideo(src)
+            ? ({ type: "video", src: url, ...posterFor(src) } as const)
+            : ({
+                type: "image",
+                image: url,
+                caption: alt || undefined,
+                ...imageSize(url),
+              } as const);
+        });
+        if (items.length >= 2) blocks.push({ type: "row", items: [...items] });
+        else blocks.push(items[0]);
       }
     } else if (prose) {
       const last = blocks[blocks.length - 1];

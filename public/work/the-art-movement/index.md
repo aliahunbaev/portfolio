@@ -22,7 +22,7 @@ Before it was a night it was a deck, a program, and an hour-by-hour rundown of t
 
 ![Deck](slideshow-1.jpg) ![](slideshow-2.jpg) ![](slideshow-3.jpg) ![](slideshow-4.jpg) ![](slideshow-5.jpg) ![](slideshow-6.jpg) ![](slideshow-7.jpg) ![](slideshow-8.jpg) ![](slideshow-9.jpg)
 
-![Program](program-1.jpg) ![](program-2.jpg) ![](program-3.jpg)
+![Program | gallery](program-1.jpg) ![](program-2.jpg) ![](program-3.jpg)
 
 ![First Carousel](post1-01.jpg) ![](post1-02.jpg) ![](post1-03.jpg) ![](post1-04.jpg) ![](post1-05.jpg) ![](post1-06.jpg) ![](post1-07.mp4) ![](post1-08.mp4) ![](post1-09.jpg) ![](post1-10.jpg)
 

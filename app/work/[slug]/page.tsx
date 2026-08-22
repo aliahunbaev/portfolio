@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import AnchorRail from "../../components/anchor-rail";
 import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
+import LoopVideo from "../../components/loop-video";
 import VideoPlayer from "../../components/video-player";
 import { getWorks } from "../../lib/content";
 import { slugify, type Block } from "../../lib/projects";
@@ -125,6 +126,36 @@ function BlockView({
     return (
       <div id={anchorId} className="scroll-mt-24 md:col-span-8">
         <VideoPlayer src={block.src} />
+      </div>
+    );
+  }
+  if (block.type === "row") {
+    // Written side by side, shown side by side: widths in ratio so the
+    // row shares one height; loops and stills mix freely.
+    return (
+      <div
+        id={anchorId}
+        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-span-8"
+      >
+        {block.items.map((item) =>
+          item.type === "video" ? (
+            <LoopVideo
+              key={item.src}
+              src={item.src}
+              poster={item.poster}
+              w={item.w}
+              h={item.h}
+              style={{ flexGrow: ratio(item), flexBasis: 0 }}
+            />
+          ) : (
+            <Picture
+              key={item.image}
+              block={item}
+              alt={alt}
+              style={{ flexGrow: ratio(item), flexBasis: 0 }}
+            />
+          ),
+        )}
       </div>
     );
   }
