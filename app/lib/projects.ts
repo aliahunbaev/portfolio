@@ -26,8 +26,10 @@ export type Block =
   | {
       type: "gallery";
       title: string;
-      /** "reader": full-bleed page-by-page reading, hairline seams. */
-      mode?: "reader";
+      /** "reader": full-bleed page-by-page reading, hairline seams.
+       *  "board": a moodboard — the whole set on one pannable, zoomable
+       *  wall. */
+      mode?: "reader" | "board";
       images: { src: string; w?: number; h?: number }[];
       cover?: { w: number; h: number };
     };

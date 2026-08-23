@@ -31,7 +31,7 @@ export default function GalleryBlock({
   title: string;
   images: { src: string; w?: number; h?: number }[];
   cover?: { w: number; h: number };
-  mode?: "reader";
+  mode?: "reader" | "board";
   className?: string;
   style?: React.CSSProperties;
 }) {

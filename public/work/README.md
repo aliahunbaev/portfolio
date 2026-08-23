@@ -31,8 +31,25 @@ One folder per project. Drop it in, commit, done — the page builds itself.
 ## The rules
 
 - Blank-line-separated prose becomes a text block (cols 5-9 of the page).
-- A line holding one image becomes a full-width frame.
-- Two images on one line become a 6/6 pair — good for portrait shots.
+- A line holding one image becomes a full-width frame at its natural
+  ratio; one video becomes the full player (Pause / Fullscreen / Unmute).
+- Two or three pieces on one line share a row — widths in ratio so the
+  row has one height. Videos in a row play as silent loops; put a
+  same-name .jpg beside a clip (clip-pill.mp4 + clip-pill.jpg) and it
+  becomes the poster and the frame size. Rule of thumb on desktop: two
+  or three per row, never one small square alone.
+- Four or more on one line are a bounded artifact (deck, program,
+  carousel, magazine) — one tile on the page that opens the reader. The
+  first alt text is its title; add a flag after a pipe:
+    ![Program | gallery](p-1.jpg) ![](p-2.jpg) ![](p-3.jpg)   viewer for just 3
+    ![Combat Journal | reader](page-01.jpg) ...                front+back tile
+    ![Moodboard | board](a.jpg) ![](b.jpg) ...                 the wall
+  `board` is the moodboard: a mosaic tile, and on open the whole set laid
+  out at once — drag or trackpad to pan, pinch or ⌘-wheel to zoom, click
+  an image to bring it forward, click again / Escape to step back,
+  Escape again to leave.
+- `> quoted` lines are a pull quote; a last line starting with — is the author.
+- `## Title` starts a section and adds it to the rail on the left.
 - Image paths are relative to the folder; paths starting with `/` are
   used as-is, so `/images/foo.png` also works.
 - The folder name is the URL: `public/work/marble/` -> `/work/marble`.

@@ -142,7 +142,12 @@ function parseBlocks(slug: string, body: string): Block[] {
         blocks.push({
           type: "gallery",
           title: galleryTitle || "Gallery",
-          mode: flag === "reader" ? ("reader" as const) : undefined,
+          mode:
+            flag === "reader"
+              ? ("reader" as const)
+              : flag === "board"
+                ? ("board" as const)
+                : undefined,
           images: images.map((src) => {
             const url = resolveSrc(slug, src);
             return isVideo(src) ? { src: url } : { src: url, ...imageSize(url) };

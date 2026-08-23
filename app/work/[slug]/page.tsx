@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AnchorRail from "../../components/anchor-rail";
+import BoardBlock from "../../components/board-block";
 import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
 import LoopVideo from "../../components/loop-video";
@@ -160,6 +161,15 @@ function BlockView({
     );
   }
   if (block.type === "gallery") {
+    if (block.mode === "board") {
+      return (
+        <BoardBlock
+          title={block.title}
+          images={block.images}
+          className="md:col-span-8"
+        />
+      );
+    }
     return (
       <GalleryBlock
         title={block.title}
