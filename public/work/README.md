@@ -48,6 +48,11 @@ One folder per project. Drop it in, commit, done — the page builds itself.
   out at once — drag or trackpad to pan, pinch or ⌘-wheel to zoom, click
   an image to bring it forward, click again / Escape to step back,
   Escape again to leave.
+- `![loop](clip.mp4)` on its own line: a chromeless silent loop (gif-
+  fashion) instead of the player. Rows always loop their videos.
+- `[![caption](image.jpg)](https://url)` — a frame that links out.
+- Frontmatter `links: App Store https://..., site.com https://...` puts
+  outbound links under the title.
 - `> quoted` lines are a pull quote; a last line starting with — is the author.
 - `## Title` starts a section and adds it to the rail on the left.
 - Image paths are relative to the folder; paths starting with `/` are

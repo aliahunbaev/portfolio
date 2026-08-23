@@ -11,8 +11,19 @@ export type Block =
       caption?: string;
       w?: number;
       h?: number;
+      /** Written as a linked image — the frame is an outbound link. */
+      href?: string;
     }
-  | { type: "video"; src: string; poster?: string; w?: number; h?: number }
+  | {
+      type: "video";
+      src: string;
+      poster?: string;
+      w?: number;
+      h?: number;
+      /** Silent app preview: plays as a chromeless loop, gif-fashion.
+       *  Without it a lone video gets the full player (film, audio). */
+      loop?: boolean;
+    }
   | {
       /** Two or three pieces written on one line: shown side by side at
        *  natural proportions, widths in ratio so heights match. Videos in
@@ -55,6 +66,8 @@ export type Project = {
   previewVideo?: string;
   /** First frame of previewVideo, shown until playback starts. */
   previewPoster?: string;
+  /** Outbound links shown under the title (frontmatter: links). */
+  links?: { label: string; url: string }[];
 };
 
 export function slugify(title: string) {

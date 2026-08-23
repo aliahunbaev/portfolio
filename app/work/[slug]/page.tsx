@@ -61,8 +61,8 @@ function Picture({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  return (
-    <div className={className} style={style}>
+  const frame = (
+    <>
       <div
         className="relative w-full overflow-hidden bg-black/[0.04]"
         style={{ aspectRatio: `${block.w ?? 1850} / ${block.h ?? 1000}` }}
@@ -80,6 +80,22 @@ function Picture({
         <p className="pt-3 text-center">
           <Em text={block.caption} />
         </p>
+      )}
+    </>
+  );
+  return (
+    <div className={className} style={style}>
+      {block.href ? (
+        <a
+          href={block.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block hover:opacity-90"
+        >
+          {frame}
+        </a>
+      ) : (
+        frame
       )}
     </div>
   );
@@ -103,7 +119,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line py-6 leading-[1.5] first:pt-0 md:col-span-5"
+        className="scroll-mt-24 whitespace-pre-line leading-[1.5] md:col-span-5"
       >
         <Em text={block.body} />
       </p>
@@ -111,7 +127,7 @@ function BlockView({
   }
   if (block.type === "quote") {
     return (
-      <figure id={anchorId} className="scroll-mt-24 py-6 md:col-span-5">
+      <figure id={anchorId} className="scroll-mt-24 md:col-span-5">
         <blockquote className="whitespace-pre-line italic leading-[1.5]">
           <Em text={block.body} />
         </blockquote>
@@ -124,6 +140,19 @@ function BlockView({
     );
   }
   if (block.type === "video") {
+    // Silent app previews loop chromelessly, gif-fashion; the player —
+    // controls, time, audio — is for film.
+    if (block.loop) {
+      return (
+        <LoopVideo
+          src={block.src}
+          poster={block.poster}
+          w={block.w}
+          h={block.h}
+          className="scroll-mt-24 md:col-span-8"
+        />
+      );
+    }
     return (
       <div id={anchorId} className="scroll-mt-24 md:col-span-8">
         <VideoPlayer src={block.src} />
@@ -136,7 +165,7 @@ function BlockView({
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-span-8"
+        className="flex scroll-mt-24 items-start gap-x-gutter md:col-span-8"
       >
         {block.items.map((item) =>
           item.type === "video" ? (
@@ -321,13 +350,28 @@ export default async function WorkPage({ params }: Params) {
         </aside>
         <div className="md:col-span-8 md:col-start-5">
           <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
-            <header className="pb-8 md:col-span-5">
+            <header className="pb-2 md:col-span-5">
               <h1 className="text-title font-medium leading-[1.1]">
                 {work.title}
               </h1>
               <p className="pt-2">
                 {work.category}, {work.date}
               </p>
+              {work.links && work.links.length > 0 && (
+                <p className="flex gap-x-4 pt-2">
+                  {work.links.map((l) => (
+                    <a
+                      key={l.url}
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-neutral-400"
+                    >
+                      {l.label} ↗
+                    </a>
+                  ))}
+                </p>
+              )}
             </header>
             {grouped.map(({ block, anchorId }, i) => (
               <BlockView

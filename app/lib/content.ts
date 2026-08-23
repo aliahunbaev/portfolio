@@ -117,11 +117,19 @@ function parseBlocks(slug: string, body: string): Block[] {
       });
       continue;
     }
-    const media = [...trimmed.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)].map(
-      (m) => ({ alt: m[1], src: m[2] }),
+    // A linked image [![alt](src)](url) is a frame that leads somewhere.
+    const media: { alt: string; src: string; href?: string }[] = [];
+    const rest = trimmed.replace(
+      /\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)/g,
+      (_, alt, src, href) => {
+        media.push({ alt, src, href });
+        return "";
+      },
     );
+    for (const m of rest.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g))
+      media.push({ alt: m[1], src: m[2] });
     const images = media.map((m) => m.src);
-    const prose = trimmed.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim();
+    const prose = rest.replace(/!\[[^\]]*\]\([^)]+\)/g, "").trim();
 
     if (images.length && !prose) {
       const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
@@ -176,14 +184,22 @@ function parseBlocks(slug: string, body: string): Block[] {
           }
           return {};
         };
-        const items = media.map(({ alt, src }) => {
+        const items = media.map(({ alt, src, href }) => {
           const url = resolveSrc(slug, src);
           return isVideo(src)
-            ? ({ type: "video", src: url, ...posterFor(src) } as const)
+            ? ({
+                type: "video",
+                src: url,
+                // `![loop](clip.mp4)` on its own line: chromeless silent
+                // loop instead of the full player.
+                ...(alt.trim() === "loop" ? { loop: true } : {}),
+                ...posterFor(src),
+              } as const)
             : ({
                 type: "image",
                 image: url,
                 caption: alt || undefined,
+                href,
                 ...imageSize(url),
               } as const);
         });
@@ -224,6 +240,17 @@ function readFolder(slug: string): Project | undefined {
     previewVideo: meta.preview ? resolveSrc(slug, meta.preview) : undefined,
     previewPoster: meta.previewPoster
       ? resolveSrc(slug, meta.previewPoster)
+      : undefined,
+    // links: Label https://url, Other Label https://url
+    links: meta.links
+      ? meta.links
+          .split(",")
+          .map((part) => {
+            const bits = part.trim().split(/\s+/);
+            const url = bits.pop() ?? "";
+            return { label: bits.join(" "), url };
+          })
+          .filter((l) => l.label && /^https?:/.test(l.url))
       : undefined,
     blocks,
   };
