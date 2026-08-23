@@ -15,11 +15,12 @@ import {
 type Img = { src: string; w?: number; h?: number; small?: string };
 
 /* A moodboard — a field, not a sequence. On the page it's a small mosaic
-   of the wall; opened, the whole wall is laid out at once on a white veil
-   (fit to the screen, like walking into the room), and you wander:
-   drag or trackpad to pan, pinch or ⌘-wheel to zoom around the cursor,
-   click an image to bring it forward, click again or Escape to drop back.
-   No order, no numbering. */
+   of the wall; opened, it fills the screen edge to edge like a Pinterest
+   grid and you wander: drag or trackpad to pan, pinch or ⌘-wheel to
+   zoom around the cursor, click an image to bring it forward, click
+   again or Escape to drop back. The wall never leaves the frame — you
+   can't pan into white or zoom out past the point where it fills the
+   screen. No order, no numbering. */
 export default function BoardBlock({
   title,
   images,
@@ -100,6 +101,8 @@ function Board({
   const [animate, setAnimate] = useState(false);
   const viewRef = useRef(view);
   viewRef.current = view;
+  // Where you were before an image came forward, to return there.
+  const beforeFocus = useRef<View | null>(null);
 
   // The wall: fixed-width columns, natural heights, each image dropped
   // into the shortest column — a loose grid, never a strip.
@@ -124,34 +127,54 @@ function Board({
   useLayoutEffect(() => {
     const el = stageRef.current;
     if (!el) return;
-    const measure = () =>
-      setSize({ w: el.clientWidth, h: el.clientHeight });
+    const measure = () => setSize({ w: el.clientWidth, h: el.clientHeight });
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
 
-  const fitView = useCallback((): View => {
-    const s = Math.min(
-      (size.w - 2 * MARGIN) / layout.w,
-      (size.h - 2 * MARGIN) / layout.h,
-    );
-    return {
-      s,
-      x: (size.w - layout.w * s) / 2,
-      y: (size.h - layout.h * s) / 2,
-    };
-  }, [size, layout]);
-
-  const fitAll = useCallback(
-    (smooth = true) => {
-      setAnimate(smooth);
-      setFocused(null);
-      setView(fitView());
-    },
-    [fitView],
+  // The floor of the zoom range: the wall exactly covers the screen.
+  const minScale = useCallback(
+    () => Math.max(size.w / layout.w, size.h / layout.h),
+    [size, layout],
   );
+
+  // The wall never leaves the frame: no panning into white, and on an
+  // axis with slack the wall sits centred.
+  const clampView = useCallback(
+    (v: View): View => {
+      const bw = layout.w * v.s;
+      const bh = layout.h * v.s;
+      return {
+        s: v.s,
+        x:
+          bw <= size.w
+            ? (size.w - bw) / 2
+            : Math.min(0, Math.max(size.w - bw, v.x)),
+        y:
+          bh <= size.h
+            ? (size.h - bh) / 2
+            : Math.min(0, Math.max(size.h - bh, v.y)),
+      };
+    },
+    [layout, size],
+  );
+
+  // Step back to the widest allowed view — the wall filling the screen.
+  const zoomOut = useCallback(() => {
+    const s = minScale();
+    setAnimate(true);
+    setFocused(null);
+    setView(clampView({ s, x: (size.w - layout.w * s) / 2, y: 0 }));
+  }, [minScale, clampView, size, layout]);
+
+  const unfocus = useCallback(() => {
+    setAnimate(true);
+    setFocused(null);
+    if (beforeFocus.current) setView(clampView(beforeFocus.current));
+    beforeFocus.current = null;
+  }, [clampView]);
 
   const focus = useCallback(
     (i: number) => {
@@ -161,25 +184,29 @@ function Board({
         (size.h - 2 * MARGIN) / it.h,
         3,
       );
+      if (beforeFocus.current === null) beforeFocus.current = viewRef.current;
       setAnimate(true);
       setFocused(i);
-      setView({
-        s,
-        x: size.w / 2 - (it.x + it.w / 2) * s,
-        y: size.h / 2 - (it.y + it.h / 2) * s,
-      });
+      setView(
+        clampView({
+          s,
+          x: size.w / 2 - (it.x + it.w / 2) * s,
+          y: size.h / 2 - (it.y + it.h / 2) * s,
+        }),
+      );
     },
-    [layout, size],
+    [layout, size, clampView],
   );
 
-  // First sight is the whole wall.
-  const fitted = useRef(false);
+  // First sight: the wall at Pinterest density, from the top.
+  const opened = useRef(false);
   useLayoutEffect(() => {
-    if (size.w && size.h && !fitted.current) {
-      fitted.current = true;
-      fitAll(false);
-    }
-  }, [size, fitAll]);
+    if (!size.w || !size.h || opened.current) return;
+    opened.current = true;
+    const targetTile = size.w < 768 ? size.w / 2.3 : size.w / 6.5;
+    const s = Math.max(minScale(), targetTile / (COL_W + GAP));
+    setView(clampView({ s, x: (size.w - layout.w * s) / 2, y: 0 }));
+  }, [size, layout, minScale, clampView]);
 
   // Wheel: plain scroll pans, pinch (ctrl) or ⌘ zooms around the cursor.
   useEffect(() => {
@@ -189,29 +216,27 @@ function Board({
       e.preventDefault();
       setAnimate(false);
       setFocused(null);
+      beforeFocus.current = null; // wandering cancels the return point
       const rect = el.getBoundingClientRect();
       const v = viewRef.current;
       if (e.ctrlKey || e.metaKey) {
-        const minS = fitView().s * 0.5;
         // Trackpad pinches arrive as many small deltas; a mouse wheel as
         // ±100 chunks — cap each step so neither runs away.
         const k = Math.min(1.25, Math.max(0.8, Math.exp(-e.deltaY * 0.01)));
-        const s = Math.min(4, Math.max(minS, v.s * k));
+        const s = Math.min(4, Math.max(minScale(), v.s * k));
         const px = e.clientX - rect.left;
         const py = e.clientY - rect.top;
         const ratio = s / v.s;
-        setView({
-          s,
-          x: px - (px - v.x) * ratio,
-          y: py - (py - v.y) * ratio,
-        });
+        setView(
+          clampView({ s, x: px - (px - v.x) * ratio, y: py - (py - v.y) * ratio }),
+        );
       } else {
-        setView({ ...v, x: v.x - e.deltaX, y: v.y - e.deltaY });
+        setView(clampView({ ...v, x: v.x - e.deltaX, y: v.y - e.deltaY }));
       }
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
-  }, [fitView]);
+  }, [minScale, clampView]);
 
   // Pointer drag pans; two pointers pinch.
   const pointers = useRef(new Map<number, { x: number; y: number }>());
@@ -225,7 +250,10 @@ function Board({
     setAnimate(false);
     if (pointers.current.size === 2) {
       const [a, b] = [...pointers.current.values()];
-      pinch.current = { d: Math.hypot(a.x - b.x, a.y - b.y), s: viewRef.current.s };
+      pinch.current = {
+        d: Math.hypot(a.x - b.x, a.y - b.y),
+        s: viewRef.current.s,
+      };
     }
   };
   const onPointerMove = (e: React.PointerEvent) => {
@@ -237,21 +265,27 @@ function Board({
     if (pointers.current.size === 2 && pinch.current) {
       const [a, b] = [...pointers.current.values()];
       const d = Math.hypot(a.x - b.x, a.y - b.y);
-      const s = Math.min(4, Math.max(fitView().s * 0.5, pinch.current.s * (d / pinch.current.d)));
+      const s = Math.min(
+        4,
+        Math.max(minScale(), pinch.current.s * (d / pinch.current.d)),
+      );
       const rect = stageRef.current!.getBoundingClientRect();
       const px = (a.x + b.x) / 2 - rect.left;
       const py = (a.y + b.y) / 2 - rect.top;
       const ratio = s / v.s;
       dragged.current = true;
       setFocused(null);
-      setView({ s, x: px - (px - v.x) * ratio, y: py - (py - v.y) * ratio });
+      beforeFocus.current = null;
+      setView(
+        clampView({ s, x: px - (px - v.x) * ratio, y: py - (py - v.y) * ratio }),
+      );
       return;
     }
     const dx = cur.x - prev.x;
     const dy = cur.y - prev.y;
     if (dx === 0 && dy === 0) return;
     if (Math.abs(dx) + Math.abs(dy) > 2) dragged.current = true;
-    setView({ ...v, x: v.x + dx, y: v.y + dy });
+    setView(clampView({ ...v, x: v.x + dx, y: v.y + dy }));
   };
   const onPointerUp = (e: React.PointerEvent) => {
     pointers.current.delete(e.pointerId);
@@ -265,14 +299,14 @@ function Board({
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        if (focused !== null) fitAll();
+        if (focused !== null) unfocus();
         else onClose();
       }
-      if (e.key === "0") fitAll();
+      if (e.key === "0") zoomOut();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [focused, fitAll, onClose]);
+  }, [focused, unfocus, zoomOut, onClose]);
 
   return (
     <div className="flash-in fixed inset-0 z-[55] flex flex-col bg-white">
@@ -296,12 +330,11 @@ function Board({
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         onPointerLeave={onPointerUp}
-        onClick={(e) => {
-          // Empty wall: step back out of a focused image, or leave.
+        onClick={() => {
+          // The wall covers the stage, so a background click only means
+          // stepping out of a focused image.
           if (dragged.current) return;
-          if (e.target !== e.currentTarget) return;
-          if (focused !== null) fitAll();
-          else onClose();
+          if (focused !== null) unfocus();
         }}
       >
         <div
@@ -341,7 +374,7 @@ function Board({
                 onClick={(e) => {
                   e.stopPropagation();
                   if (dragged.current) return;
-                  if (focused === i) fitAll();
+                  if (focused === i) unfocus();
                   else focus(i);
                 }}
                 className={`absolute border border-black/10 bg-black/[0.04] ${
