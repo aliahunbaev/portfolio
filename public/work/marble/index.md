@@ -47,6 +47,6 @@ Track is where the numbers live — the month as a grid of days, bodyweight, bes
 
 ![](clip-tabs.mp4) ![](dark-recorded.png)
 
-Marble is live on the App Store.
+Marble is live on the [App Store](https://apps.apple.com/us/app/marble-training-journal/id6779775636), and the site lives at [marblejournal.com](https://marblejournal.com).
 
-[![marblejournal.com ↗](site-01-hero.jpg)](https://marblejournal.com)
+[![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com)

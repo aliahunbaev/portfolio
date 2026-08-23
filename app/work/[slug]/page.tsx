@@ -28,17 +28,34 @@ export async function generateMetadata({ params }: Params) {
   return { title: "Ali Ahunbáev", description: work?.description };
 }
 
-/** Renders *asterisk* spans as italics; everything else verbatim. */
+/** Renders *asterisk* spans as italics and [label](url) as links;
+ *  everything else verbatim. */
 function Em({ text }: { text: string }) {
   return (
     <>
-      {text.split(/(\*[^*\n]+\*)/g).map((part, i) =>
-        part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
-          <em key={i}>{part.slice(1, -1)}</em>
-        ) : (
-          <span key={i}>{part}</span>
-        ),
-      )}
+      {text.split(/(\[[^\]]+\]\(https?:[^)]+\))/g).map((chunk, i) => {
+        const link = chunk.match(/^\[([^\]]+)\]\((https?:[^)]+)\)$/);
+        if (link) {
+          return (
+            <a
+              key={i}
+              href={link[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
+            >
+              {link[1]}
+            </a>
+          );
+        }
+        return chunk.split(/(\*[^*\n]+\*)/g).map((part, j) =>
+          part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
+            <em key={`${i}-${j}`}>{part.slice(1, -1)}</em>
+          ) : (
+            <span key={`${i}-${j}`}>{part}</span>
+          ),
+        );
+      })}
     </>
   );
 }
@@ -119,7 +136,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line leading-[1.5] md:col-span-5"
+        className="scroll-mt-24 whitespace-pre-line py-6 leading-[1.5] first:pt-0 md:col-span-5"
       >
         <Em text={block.body} />
       </p>
@@ -127,7 +144,7 @@ function BlockView({
   }
   if (block.type === "quote") {
     return (
-      <figure id={anchorId} className="scroll-mt-24 md:col-span-5">
+      <figure id={anchorId} className="scroll-mt-24 py-6 md:col-span-5">
         <blockquote className="whitespace-pre-line italic leading-[1.5]">
           <Em text={block.body} />
         </blockquote>
@@ -350,7 +367,7 @@ export default async function WorkPage({ params }: Params) {
         </aside>
         <div className="md:col-span-8 md:col-start-5">
           <div className="md:grid md:grid-cols-8 md:gap-x-gutter md:gap-y-gutter max-md:flex max-md:flex-col max-md:gap-gutter">
-            <header className="pb-2 md:col-span-5">
+            <header className="pb-8 md:col-span-5">
               <h1 className="text-title font-medium leading-[1.1]">
                 {work.title}
               </h1>
@@ -358,16 +375,16 @@ export default async function WorkPage({ params }: Params) {
                 {work.category}, {work.date}
               </p>
               {work.links && work.links.length > 0 && (
-                <p className="flex gap-x-4 pt-2">
+                <p className="flex gap-x-4 pt-4">
                   {work.links.map((l) => (
                     <a
                       key={l.url}
                       href={l.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="hover:text-neutral-400"
+                      className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
                     >
-                      {l.label} ↗
+                      {l.label}
                     </a>
                   ))}
                 </p>
