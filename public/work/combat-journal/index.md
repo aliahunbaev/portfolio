@@ -3,7 +3,7 @@ title: Combat Journal, Vol. I
 date: April 2025
 medium: Publication
 description: A magazine on making things with your friends — four garments, the stories behind them, and the people who wore them.
-cover: page-01.jpg
+cover: cover.jpg
 featured: true
 ---
 
