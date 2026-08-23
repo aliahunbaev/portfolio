@@ -30,7 +30,7 @@ export type Block =
        *  "board": a moodboard — the whole set on one pannable, zoomable
        *  wall. */
       mode?: "reader" | "board";
-      images: { src: string; w?: number; h?: number }[];
+      images: { src: string; w?: number; h?: number; small?: string }[];
       cover?: { w: number; h: number };
     };
 

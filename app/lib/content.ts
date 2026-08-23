@@ -150,7 +150,17 @@ function parseBlocks(slug: string, body: string): Block[] {
                 : undefined,
           images: images.map((src) => {
             const url = resolveSrc(slug, src);
-            return isVideo(src) ? { src: url } : { src: url, ...imageSize(url) };
+            if (isVideo(src)) return { src: url };
+            // A "-s" sibling is a lightweight tier: boards open on it and
+            // load the full file only when an image is brought forward.
+            const small = url.replace(/\.(jpe?g|png)$/i, "-s.$1");
+            return {
+              src: url,
+              ...imageSize(url),
+              ...(existsSync(path.join(process.cwd(), "public", small))
+                ? { small }
+                : {}),
+            };
           }),
           cover: imageSize(resolveSrc(slug, firstStill)),
         });

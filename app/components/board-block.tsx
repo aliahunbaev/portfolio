@@ -12,7 +12,7 @@ import {
   useState,
 } from "react";
 
-type Img = { src: string; w?: number; h?: number };
+type Img = { src: string; w?: number; h?: number; small?: string };
 
 /* A moodboard — a field, not a sequence. On the page it's a small mosaic
    of the wall; opened, the whole wall is laid out at once on a white veil
@@ -105,7 +105,7 @@ function Board({
   // into the shortest column — a loose grid, never a strip.
   const layout = useMemo(() => {
     const n = images.length;
-    const cols = Math.max(2, Math.min(8, Math.round(Math.sqrt(n * 1.6))));
+    const cols = Math.max(2, Math.min(30, Math.round(Math.sqrt(n * 1.6))));
     const heights = new Array(cols).fill(0);
     const items = images.map((m) => {
       const col = heights.indexOf(Math.min(...heights));
@@ -322,7 +322,17 @@ function Board({
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={m.src}
-                src={m.src}
+                src={m.small ?? m.src}
+                srcSet={m.small ? `${m.small} 480w, ${m.src} 1400w` : undefined}
+                sizes={
+                  m.small
+                    ? focused === i
+                      ? "92vw"
+                      : view.s > 0.7
+                        ? "25vw"
+                        : "6vw"
+                    : undefined
+                }
                 alt={`${title}, ${i + 1}`}
                 width={m.w}
                 height={m.h}
