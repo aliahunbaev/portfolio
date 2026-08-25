@@ -26,6 +26,11 @@ export default async function EssayPage({ params }: Params) {
   const words = wordCount(essay);
 
   const minutes = Math.max(1, Math.round(words / 220));
+  // Month and year — the shelf's register; day precision serves no one.
+  const shelfDate = (e: { date: string }) => {
+    const [month, , year] = e.date.split(" ");
+    return `${month} ${year}`;
+  };
 
   return (
     <main className="px-gutter pb-24 text-body">
@@ -37,17 +42,20 @@ export default async function EssayPage({ params }: Params) {
             <Link href="/writing" className="hover:text-neutral-400">
               Back
             </Link>
-            <p className="pt-4">
-              {words.toLocaleString()} words · {minutes} min
-            </p>
+            <div className="grid gap-y-1 pt-4">
+              <p>{shelfDate(essay)}</p>
+              <p>
+                {words.toLocaleString()} words · {minutes} min
+              </p>
+            </div>
           </div>
         </aside>
         <article className="md:col-span-5 md:col-start-4">
-          <header className="pb-8">
+          <header className="pb-12 max-md:pb-8">
             <h1 className="text-title font-medium leading-[1.1]">
               {essay.title}
             </h1>
-            <p className="pt-2">{essay.date}</p>
+            <p className="pt-2 md:hidden">{shelfDate(essay)}</p>
           </header>
           <div className="space-y-[1.4em] leading-[1.5]">
             {essay.paragraphs.map((paragraph, i) => (
