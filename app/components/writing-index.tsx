@@ -1,35 +1,32 @@
 "use client";
 
-import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { essays, type Essay } from "../lib/all-writing";
-import marbleBook from "../../public/images/marble-book.png";
-import panther from "../../public/images/art-movement-panther.png";
-import trumpet from "../../public/images/beau-flaneur-trumpet.png";
-import painting from "../../public/images/art-movement-painting.png";
 
-// Curated, finished pieces with cover art — everything else is the raw
-// journal log. Covers are placeholders until each essay gets a real one;
-// making the cover is part of finishing the essay.
-const FEATURED: { slug: string; cover: StaticImageData }[] = [
-  { slug: "existential-courage", cover: panther },
-  { slug: "a-life-that-feels-like-play", cover: marbleBook },
-  { slug: "foundations", cover: trumpet },
-  { slug: "build-cool-shit-in-public", cover: painting },
+// The two registers of the page. Pieces are finished work — shaped,
+// standalone, the things you'd hand a stranger. Everything else is the
+// letters: the running Playfighter record, kept as a dense log. Promote
+// or demote by moving a slug.
+const PIECES = [
+  "self-image",
+  "nyu",
+  "depth",
+  "brother",
+  "existential-courage",
+  "a-life-that-feels-like-play",
+  "foundations",
+  "build-cool-shit-in-public",
 ];
 
-const featured = FEATURED.map(({ slug, cover }) => {
-  const essay = essays.find((e) => e.slug === slug);
-  return essay ? { essay, cover } : undefined;
-}).filter((e) => e !== undefined);
-
-const journal = essays.filter(
-  (e) => !FEATURED.some(({ slug }) => slug === e.slug),
+const pieces = PIECES.map((slug) => essays.find((e) => e.slug === slug)).filter(
+  (e) => e !== undefined,
 );
 
+const letters = essays.filter((e) => !PIECES.includes(e.slug));
+
 // Year shelves for the log; row dates drop the year the shelf already owns.
-const groups = journal.reduce<[string, Essay[]][]>((acc, essay) => {
+const groups = letters.reduce<[string, Essay[]][]>((acc, essay) => {
   const y = essay.date.split(" ").pop() ?? "";
   const last = acc[acc.length - 1];
   if (last && last[0] === y) last[1].push(essay);
@@ -39,50 +36,49 @@ const groups = journal.reduce<[string, Essay[]][]>((acc, essay) => {
 
 const shortDate = (essay: Essay) => essay.date.split(",")[0];
 
-function EssayCard({ essay, cover }: { essay: Essay; cover: StaticImageData }) {
-  return (
-    <Link href={`/writing/${essay.slug}`}>
-      <div
-        data-cursor-label="Read Essay"
-        className="relative aspect-[1.85/1] w-full cursor-none overflow-hidden"
-      >
-        <Image
-          draggable={false}
-          src={cover}
-          alt={essay.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover"
-        />
-      </div>
-      <p className="pt-3 font-medium">{essay.title}</p>
-      {essay.subtitle && <p className="pt-1 leading-[1.4]">{essay.subtitle}</p>}
-      <p className="pt-2">{essay.date}</p>
-    </Link>
-  );
-}
-
-/* Magazine rack above, notebook below: wide essay cover cards in a 2x2
-   with the homepage's cursor label, then the raw journal as a dense
-   year-shelved log — one line per entry, spotlight on hover. */
+/* No covers, no cards — the words are the artifact. Finished pieces at
+   display scale up top; the letters underneath as the year-shelved log,
+   spotlight on hover in both registers. */
 export default function WritingIndex() {
   const [active, setActive] = useState<Essay | null>(null);
 
   return (
     <div className="text-body">
-      <div className="grid grid-cols-1 gap-x-gutter gap-y-12 md:grid-cols-2">
-        {featured.map(({ essay, cover }) => (
-          <EssayCard key={essay.slug} essay={essay} cover={cover} />
-        ))}
-      </div>
+      <section className="md:grid md:grid-cols-12 md:gap-x-gutter">
+        <p className="max-md:pb-6 md:col-span-2">Pieces</p>
+        <div className="flex flex-col md:col-span-8 md:col-start-5">
+          {pieces.map((essay) => (
+            <Link
+              key={essay.slug}
+              href={`/writing/${essay.slug}`}
+              onMouseEnter={() => setActive(essay)}
+              onMouseLeave={() => setActive(null)}
+              className={`py-4 first:pt-0 ${
+                active && active !== essay ? "text-neutral-400" : ""
+              }`}
+            >
+              <span className="block text-title font-medium leading-[1.15]">
+                {essay.title}
+              </span>
+              {essay.subtitle && (
+                <span className="block pt-1 leading-[1.4]">
+                  {essay.subtitle}
+                </span>
+              )}
+            </Link>
+          ))}
+        </div>
+      </section>
       <div className="pt-24">
         <div className="flex flex-col gap-8">
-          {groups.map(([y, list]) => (
+          {groups.map(([y, list], gi) => (
             <section
               key={y}
               className="md:grid md:grid-cols-12 md:gap-x-gutter"
             >
-              <p className="pt-2 max-md:pb-3 md:col-span-2">{y}</p>
+              <p className="pt-2 max-md:pb-3 md:col-span-2">
+                {gi === 0 ? `Letters, ${y}` : y}
+              </p>
               <div className="flex flex-col md:col-span-8 md:col-start-5">
                 {list.map((essay) => (
                   <Link

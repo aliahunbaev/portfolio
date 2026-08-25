@@ -1,27 +1,43 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-/* The Favorite-style opening: a handful of images flash one at a time
-   at the centre of a white veil — a deck being shuffled — then the veil
-   lifts and the page reveals itself. The veil is server-rendered so the
-   page never shows before the flash. Skipped under reduced motion. */
+const SWAP_MS = 200;
+const FADE_MS = 560;
+
+/* The Favorite-style opening (mechanics borrowed from its IntroOverlay):
+   a handful of images flash one per beat at the centre of a white veil —
+   the first wipes in — then the veil holds a beat and fades away, so the
+   page arrives through the fade rather than snapping in. Runs once per
+   session; skipped under reduced motion. The veil is server-rendered so
+   a first visit never shows the page before the shuffle. */
 export default function FlashIntro({
   images,
-  interval = 110,
+  sessionKey = "flash-intro-seen",
 }: {
   images: StaticImageData[];
-  interval?: number;
+  sessionKey?: string;
 }) {
-  // -1: preloading behind the veil; images.length: done, veil lifted.
-  const [i, setI] = useState(-1);
+  const [phase, setPhase] = useState<"veil" | "flash" | "fading" | "done">(
+    "veil",
+  );
+  const [idx, setIdx] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  // Once this mount claims the intro, StrictMode's dev double-invoke must
+  // re-arm instead of bailing on the session guard (Favorite's trick).
+  const claimed = useRef(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setI(images.length);
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      (!claimed.current && sessionStorage.getItem(sessionKey))
+    ) {
+      setPhase("done");
       return;
     }
+    claimed.current = true;
+    sessionStorage.setItem(sessionKey, "1");
     let alive = true;
     const preloads = images.map(
       (m) =>
@@ -37,32 +53,59 @@ export default function FlashIntro({
       Promise.all(preloads),
       new Promise((resolve) => setTimeout(resolve, 2000)),
     ]).then(() => {
-      if (alive) setI(0);
+      if (!alive) return;
+      setPhase("flash");
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setRevealed(true)),
+      );
     });
     return () => {
       alive = false;
     };
-  }, [images]);
+  }, [images, sessionKey]);
 
   useEffect(() => {
-    if (i < 0 || i >= images.length) return;
-    const t = window.setTimeout(() => setI(i + 1), interval);
+    if (phase !== "flash") return;
+    const t = window.setTimeout(() => {
+      if (idx < images.length - 1) setIdx(idx + 1);
+      else setPhase("fading");
+    }, SWAP_MS);
     return () => window.clearTimeout(t);
-  }, [i, images.length, interval]);
+  }, [phase, idx, images.length]);
 
-  if (i >= images.length) return null;
+  useEffect(() => {
+    if (phase !== "fading") return;
+    const t = window.setTimeout(() => setPhase("done"), FADE_MS);
+    return () => window.clearTimeout(t);
+  }, [phase]);
+
+  if (phase === "done") return null;
   return (
-    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-white">
-      {i >= 0 && (
-        <Image
-          src={images[i]}
-          alt=""
-          priority
-          // The originals are what the preloader warmed — serve exactly
-          // those, so every beat of the shuffle lands with pixels ready.
-          unoptimized
-          className="max-h-[44vh] w-auto max-w-[70vw] object-contain"
-        />
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center bg-white"
+      style={{
+        opacity: phase === "fading" ? 0 : 1,
+        transition: `opacity ${FADE_MS}ms ease-out`,
+      }}
+    >
+      {phase !== "veil" && (
+        <div
+          className="flex items-center justify-center"
+          style={{
+            clipPath: revealed ? "inset(0 0 0 0)" : "inset(100% 0 0 0)",
+            transition: "clip-path 280ms cubic-bezier(0.2, 0, 0, 1)",
+          }}
+        >
+          <Image
+            src={images[idx]}
+            alt=""
+            priority
+            // The originals are what the preloader warmed — serve exactly
+            // those, so every beat of the shuffle lands with pixels ready.
+            unoptimized
+            className="max-h-[44vh] w-auto max-w-[70vw] object-contain"
+          />
+        </div>
       )}
     </div>
   );

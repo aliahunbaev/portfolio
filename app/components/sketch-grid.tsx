@@ -82,7 +82,7 @@ export default function SketchGrid() {
 
   return (
     <>
-      <FlashIntro images={flashDeck} />
+      <FlashIntro images={flashDeck} sessionKey="sketches-intro-seen" />
       <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-4">
         {sketches.map((sketch, i) => (
           <button
