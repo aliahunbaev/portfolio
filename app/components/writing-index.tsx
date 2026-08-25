@@ -17,74 +17,75 @@ const PIECES = [
   "build-cool-shit-in-public",
 ];
 
-// Membership is the curation; the shelf itself stays chronological,
-// newest first, like the archive.
+// Membership is the curation; the shelf stays chronological, newest first.
 const pieces = PIECES.map((slug) => essays.find((e) => e.slug === slug))
   .filter((e) => e !== undefined)
   .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const excerpt = (essay: Essay) => {
-  const first = essay.paragraphs[0] ?? "";
-  return first.length > 260 ? `${first.slice(0, 260).trimEnd()}…` : first;
-};
-
 /*
- * The archive's system, borrowed whole: full-width hairline rows at title
- * scale — title left, date from col 6 — spotlight on hover. Clicking a
- * row half-opens it: the subtitle and the piece's opening lines unfold
- * beneath, with the way into the full text.
+ * A reading room, not an index. The rail lists the pieces small — title
+ * in medium, subtitle receded beneath — and the selected piece sits open
+ * in the reading column, newest first so the page lands mid-sentence.
+ * Swaps are instant; the URL follows so deep links keep working. On
+ * mobile the room collapses to the list, and a tap reads the piece on
+ * its own page.
  */
 export default function WritingIndex() {
-  const [active, setActive] = useState<Essay | null>(null);
-  const [open, setOpen] = useState<string | null>(null);
+  const [current, setCurrent] = useState<Essay>(pieces[0]);
+
+  const openInPlace = (essay: Essay) => (e: React.MouseEvent) => {
+    // Desktop reads in place; mobile follows the link to the essay page.
+    if (window.matchMedia("(min-width: 768px)").matches) {
+      e.preventDefault();
+      setCurrent(essay);
+      history.replaceState(null, "", `/writing/${essay.slug}`);
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
-    <ul onMouseLeave={() => setActive(null)}>
-      {pieces.map((essay, i) => (
-        <li
-          key={essay.slug}
-          className="fade-in border-b border-black/10"
-          style={{ animationDelay: `${i * 45}ms` }}
-        >
-          <button
-            type="button"
-            onClick={() =>
-              setOpen(open === essay.slug ? null : essay.slug)
-            }
-            onMouseEnter={() => setActive(essay)}
-            className={`grid w-full cursor-pointer grid-cols-12 items-baseline gap-x-gutter py-3 text-left text-title max-md:flex max-md:flex-wrap ${
-              active && active !== essay ? "text-neutral-400" : ""
-            }`}
-          >
-            <span className="col-span-5 font-medium">{essay.title}</span>
-            <span className="col-span-7 max-md:ml-auto">{essay.date}</span>
-          </button>
-          {/* Semi-expansion: rows 0fr -> 1fr so the opening unfolds. */}
-          <div
-            className="grid transition-[grid-template-rows] duration-300 ease-out"
-            style={{
-              gridTemplateRows: open === essay.slug ? "1fr" : "0fr",
-            }}
-          >
-            <div className="overflow-hidden">
-              <div className="grid grid-cols-12 gap-x-gutter pb-6 text-body">
-                <div className="col-span-6 col-start-6 max-md:col-span-12 max-md:col-start-1">
-                  {essay.subtitle && (
-                    <p className="font-medium">{essay.subtitle}</p>
-                  )}
-                  <p className="pt-3 leading-[1.5]">{excerpt(essay)}</p>
-                  <Link
-                    href={`/writing/${essay.slug}`}
-                    className="mt-4 inline-block hover:text-neutral-400"
+    <div className="text-body md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+      <aside className="md:sticky md:top-30 md:col-span-4">
+        <ul className="flex flex-col gap-y-6">
+          {pieces.map((essay) => (
+            <li key={essay.slug}>
+              <Link
+                href={`/writing/${essay.slug}`}
+                onClick={openInPlace(essay)}
+                className={
+                  current.slug === essay.slug
+                    ? ""
+                    : "text-neutral-400 hover:text-black"
+                }
+              >
+                <span className="block font-medium">{essay.title}</span>
+                {essay.subtitle && (
+                  <span
+                    className={`block pt-1 leading-[1.4] ${
+                      current.slug === essay.slug ? "text-neutral-400" : ""
+                    }`}
                   >
-                    Read piece
-                  </Link>
-                </div>
-              </div>
+                    {essay.subtitle}
+                  </span>
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </aside>
+      <article className="max-md:hidden md:col-span-8">
+        <div className="md:grid md:grid-cols-8 md:gap-x-gutter">
+          <div className="md:col-span-5">
+            <h1 className="font-medium">{current.title}</h1>
+            <p className="pt-1">{current.date}</p>
+            <div className="space-y-[1.4em] pt-12 leading-[1.5]">
+              {current.paragraphs.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
             </div>
           </div>
-        </li>
-      ))}
-    </ul>
+        </div>
+      </article>
+    </div>
   );
 }
