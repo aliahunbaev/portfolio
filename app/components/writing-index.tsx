@@ -4,10 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { essays, type Essay } from "../lib/all-writing";
 
-// The two registers of the page. Pieces are finished work — shaped,
-// standalone, the things you'd hand a stranger. Everything else is the
-// letters: the running Playfighter record, kept as a dense log. Promote
-// or demote by moving a slug.
+// Only finished pieces live here — writing shaped enough to stand alone.
+// The running letters stay on Substack; promote one by adding its slug.
 const PIECES = [
   "self-image",
   "nyu",
@@ -19,95 +17,74 @@ const PIECES = [
   "build-cool-shit-in-public",
 ];
 
-const pieces = PIECES.map((slug) => essays.find((e) => e.slug === slug)).filter(
-  (e) => e !== undefined,
-);
+// Membership is the curation; the shelf itself stays chronological,
+// newest first, like the archive.
+const pieces = PIECES.map((slug) => essays.find((e) => e.slug === slug))
+  .filter((e) => e !== undefined)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-const letters = essays.filter((e) => !PIECES.includes(e.slug));
+const excerpt = (essay: Essay) => {
+  const first = essay.paragraphs[0] ?? "";
+  return first.length > 260 ? `${first.slice(0, 260).trimEnd()}…` : first;
+};
 
-// Year shelves for the log; row dates drop the year the shelf already owns.
-const groups = letters.reduce<[string, Essay[]][]>((acc, essay) => {
-  const y = essay.date.split(" ").pop() ?? "";
-  const last = acc[acc.length - 1];
-  if (last && last[0] === y) last[1].push(essay);
-  else acc.push([y, [essay]]);
-  return acc;
-}, []);
-
-const shortDate = (essay: Essay) => essay.date.split(",")[0];
-
-/* No covers, no cards — the words are the artifact. Finished pieces at
-   display scale up top; the letters underneath as the year-shelved log,
-   spotlight on hover in both registers. */
+/*
+ * The archive's system, borrowed whole: full-width hairline rows at title
+ * scale — title left, date from col 6 — spotlight on hover. Clicking a
+ * row half-opens it: the subtitle and the piece's opening lines unfold
+ * beneath, with the way into the full text.
+ */
 export default function WritingIndex() {
   const [active, setActive] = useState<Essay | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <div className="text-body">
-      <section className="md:grid md:grid-cols-12 md:gap-x-gutter">
-        <p className="max-md:pb-6 md:col-span-2">Pieces</p>
-        <div className="flex flex-col md:col-span-8 md:col-start-5">
-          {pieces.map((essay) => (
-            <Link
-              key={essay.slug}
-              href={`/writing/${essay.slug}`}
-              onMouseEnter={() => setActive(essay)}
-              onMouseLeave={() => setActive(null)}
-              className={`py-4 first:pt-0 ${
-                active && active !== essay ? "text-neutral-400" : ""
-              }`}
-            >
-              <span className="block text-title font-medium leading-[1.15]">
-                {essay.title}
-              </span>
-              {essay.subtitle && (
-                <span className="block pt-1 leading-[1.4]">
-                  {essay.subtitle}
-                </span>
-              )}
-            </Link>
-          ))}
-        </div>
-      </section>
-      <div className="pt-24">
-        <div className="flex flex-col gap-8">
-          {groups.map(([y, list], gi) => (
-            <section
-              key={y}
-              className="md:grid md:grid-cols-12 md:gap-x-gutter"
-            >
-              <p className="pt-2 max-md:pb-3 md:col-span-2">
-                {gi === 0 ? `Letters, ${y}` : y}
-              </p>
-              <div className="flex flex-col md:col-span-8 md:col-start-5">
-                {list.map((essay) => (
+    <ul onMouseLeave={() => setActive(null)}>
+      {pieces.map((essay, i) => (
+        <li
+          key={essay.slug}
+          className="fade-in border-b border-black/10"
+          style={{ animationDelay: `${i * 45}ms` }}
+        >
+          <button
+            type="button"
+            onClick={() =>
+              setOpen(open === essay.slug ? null : essay.slug)
+            }
+            onMouseEnter={() => setActive(essay)}
+            className={`grid w-full cursor-pointer grid-cols-12 items-baseline gap-x-gutter py-3 text-left text-title max-md:flex max-md:flex-wrap ${
+              active && active !== essay ? "text-neutral-400" : ""
+            }`}
+          >
+            <span className="col-span-5 font-medium">{essay.title}</span>
+            <span className="col-span-7 max-md:ml-auto">{essay.date}</span>
+          </button>
+          {/* Semi-expansion: rows 0fr -> 1fr so the opening unfolds. */}
+          <div
+            className="grid transition-[grid-template-rows] duration-300 ease-out"
+            style={{
+              gridTemplateRows: open === essay.slug ? "1fr" : "0fr",
+            }}
+          >
+            <div className="overflow-hidden">
+              <div className="grid grid-cols-12 gap-x-gutter pb-6 text-body">
+                <div className="col-span-6 col-start-6 max-md:col-span-12 max-md:col-start-1">
+                  {essay.subtitle && (
+                    <p className="font-medium">{essay.subtitle}</p>
+                  )}
+                  <p className="pt-3 leading-[1.5]">{excerpt(essay)}</p>
                   <Link
-                    key={essay.slug}
                     href={`/writing/${essay.slug}`}
-                    onMouseEnter={() => setActive(essay)}
-                    onMouseLeave={() => setActive(null)}
-                    className={`grid grid-cols-8 gap-x-gutter py-3 leading-[1.4] ${
-                      active && active !== essay ? "text-neutral-400" : ""
-                    }`}
+                    className="mt-4 inline-block hover:text-neutral-400"
                   >
-                    <span className="col-span-1 max-md:col-span-2">
-                      {shortDate(essay)}
-                    </span>
-                    <span className="col-span-7 max-md:col-span-6">
-                      <span className="block font-medium">{essay.title}</span>
-                      {essay.subtitle && (
-                        <span className="block pt-1 leading-[1.4]">
-                          {essay.subtitle}
-                        </span>
-                      )}
-                    </span>
+                    Read piece
                   </Link>
-                ))}
+                </div>
               </div>
-            </section>
-          ))}
-        </div>
-      </div>
-    </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
