@@ -33,10 +33,8 @@ export default function WritingIndex() {
                 active && active !== essay ? "text-neutral-400" : ""
               }`}
             >
-              <span className="col-span-2 max-md:col-span-6 max-md:pb-1">
-                {shelfDate(essay)}
-              </span>
-              <span className="col-span-4 max-md:col-span-6">
+              <span className="col-span-2">{shelfDate(essay)}</span>
+              <span className="col-span-4">
                 <span className="block font-medium">{essay.title}</span>
                 {essay.subtitle && (
                   <span className="block pt-1 leading-[1.4]">
