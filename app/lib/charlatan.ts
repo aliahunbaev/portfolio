@@ -7,7 +7,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "accept-your-experiences",
     "title": "Accept Your Experiences",
-    "subtitle": "",
+    "subtitle": "What a stolen bicycle gave Muhammad Ali.",
     "date": "April 24, 2024",
     "paragraphs": [
       "At 12 years old, Cassius Clay bought his first bicycle for $60.",
@@ -55,7 +55,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "how-to-practice-antifragility",
     "title": "How to Practice Antifragility",
-    "subtitle": "",
+    "subtitle": "Getting stronger because of the hits, not despite them.",
     "date": "April 24, 2024",
     "paragraphs": [
       "One of the most rewarding traits we can build within ourselves is antifragility.",
@@ -95,7 +95,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "big-dreams-small-steps",
     "title": "Big Dreams, Small Steps",
-    "subtitle": "",
+    "subtitle": "Impossible dreams are made of extremely possible little steps.",
     "date": "February 26, 2024",
     "paragraphs": [
       "“Great things are not done by impulse, but by a series of small things brought together.” -Vincent Van Gogh",
@@ -150,7 +150,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "what-are-friends-for",
     "title": "What Are Friends For?",
-    "subtitle": "",
+    "subtitle": "The deeper treasures of friendship, past the amusement.",
     "date": "February 18, 2024",
     "paragraphs": [
       "\"We were together. I forget the rest.\" -Walt Whitman",
@@ -209,7 +209,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "bounce-back",
     "title": "Bounce Back",
-    "subtitle": "",
+    "subtitle": "On not sitting and staring at our wounds forever.",
     "date": "February 10, 2024",
     "paragraphs": [
       "Bruce Lee",
@@ -247,7 +247,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "enjoying-goals",
     "title": "Enjoying Goals",
-    "subtitle": "",
+    "subtitle": "Goals as tools for the present, not debts to the future.",
     "date": "February 4, 2024",
     "paragraphs": [
       "At first glance, it might seem that striving toward goals and appreciating life for what it is are two opposing processes. Goals push us to think of the future, while appreciation requires us to think in the present.",
@@ -283,7 +283,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "the-cost-of-knowing",
     "title": "The Cost of Knowing",
-    "subtitle": "",
+    "subtitle": "Pide, gözleme, and the price of needing to be sure.",
     "date": "January 18, 2024",
     "paragraphs": [
       "I visited a foreign country last summer by train, so foreign that I hadn’t heard of any foods the train’s kitchen offered for meals.",
@@ -340,7 +340,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "fck-around-find-out",
     "title": "F*ck Around & Find Out",
-    "subtitle": "",
+    "subtitle": "Research is not action — the fastest teacher is trying.",
     "date": "January 12, 2024",
     "paragraphs": [
       "When presented with unfamiliar challenges or experiences, there is a common tendency to avoid action until everything feels under control.",
@@ -375,7 +375,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "feelin-lonesome",
     "title": "Feelin' Lonesome?",
-    "subtitle": "",
+    "subtitle": "On becoming good company to yourself.",
     "date": "January 5, 2024",
     "paragraphs": [
       "Film: Chungking Express",
@@ -417,7 +417,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "mindradio",
     "title": "MindRadio©",
-    "subtitle": "",
+    "subtitle": "You don't have to fight the station — change it.",
     "date": "November 10, 2023",
     "paragraphs": [
       "Sometimes the thoughts we have are quite harmful and limiting. The most prevalent reaction to negative thoughts is to try and drive them away.",
