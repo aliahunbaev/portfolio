@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { essays, wordCount } from "../../lib/writing";
+import { essays, wordCount } from "../../lib/all-writing";
 
 type Params = { params: Promise<{ slug: string }> };
 

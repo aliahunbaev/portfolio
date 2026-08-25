@@ -3,7 +3,7 @@
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { essays, type Essay } from "../lib/writing";
+import { essays, type Essay } from "../lib/all-writing";
 import marbleBook from "../../public/images/marble-book.png";
 import panther from "../../public/images/art-movement-panther.png";
 import trumpet from "../../public/images/beau-flaneur-trumpet.png";
