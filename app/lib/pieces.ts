@@ -5,14 +5,22 @@ import { essays } from "./all-writing";
 // adding its slug. Membership is the curation; the shelf stays
 // chronological, newest first.
 const PIECES = [
+  // The early essays
   "self-image",
   "nyu",
   "depth",
   "brother",
-  "existential-courage",
-  "a-life-that-feels-like-play",
-  "foundations",
-  "build-cool-shit-in-public",
+  // The Daily Charlatan — the ten most recent posts
+  "accept-your-experiences",
+  "how-to-practice-antifragility",
+  "big-dreams-small-steps",
+  "what-are-friends-for",
+  "bounce-back",
+  "enjoying-goals",
+  "the-cost-of-knowing",
+  "fck-around-find-out",
+  "feelin-lonesome",
+  "mindradio",
 ];
 
 export const pieces = PIECES.map((slug) =>
