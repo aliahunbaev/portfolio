@@ -29,33 +29,51 @@ export default async function EssayPage({ params }: Params) {
 
   return (
     <main className="px-gutter pb-24 text-body">
-      {/* Nothing beside the piece — reading gets the whole page. The
-          column sits where the index list sits, so nothing jumps. */}
-      <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
+      {/* The project-page anatomy: apparatus on the left rail, the piece
+          in the reading column where the index list sits. */}
+      <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="max-md:hidden md:sticky md:top-30 md:col-span-3">
+          <div className="grid gap-y-4">
+            <Link href="/writing" className="hover:text-neutral-400">
+              Back
+            </Link>
+            <p className="pt-4">
+              {words.toLocaleString()} words · {minutes} min
+            </p>
+          </div>
+        </aside>
         <article className="md:col-span-5 md:col-start-4">
-          <h1 className="font-medium">{essay.title}</h1>
-          <p className="pt-1 text-neutral-400">
-            {essay.date} · {minutes} min
-          </p>
-          <div className="space-y-[1.4em] pt-12 leading-[1.5]">
+          <header className="pb-8">
+            <h1 className="text-title font-medium leading-[1.1]">
+              {essay.title}
+            </h1>
+            <p className="pt-2">{essay.date}</p>
+          </header>
+          <div className="space-y-[1.4em] leading-[1.5]">
             {essay.paragraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </div>
           {previous && next && (
             <div className="flex items-baseline justify-between gap-gutter pt-24 max-md:pt-16">
-              <Link
-                href={`/writing/${previous.slug}`}
-                className="hover:text-neutral-400"
-              >
-                ← {previous.title}
-              </Link>
-              <Link
-                href={`/writing/${next.slug}`}
-                className="text-right hover:text-neutral-400"
-              >
-                {next.title} →
-              </Link>
+              <div className="grid gap-y-4">
+                <p>Previous Essay</p>
+                <Link
+                  href={`/writing/${previous.slug}`}
+                  className="hover:text-neutral-400"
+                >
+                  {previous.title}
+                </Link>
+              </div>
+              <div className="grid gap-y-4 text-right">
+                <p>Next Essay</p>
+                <Link
+                  href={`/writing/${next.slug}`}
+                  className="hover:text-neutral-400"
+                >
+                  {next.title}
+                </Link>
+              </div>
             </div>
           )}
         </article>
