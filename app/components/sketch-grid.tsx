@@ -5,6 +5,13 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import { sketches, type Sketch } from "../lib/sketches";
+import FlashIntro from "./flash-intro";
+
+// The opening shuffle: a spread of the wall, one sketch per beat.
+const flashDeck = sketches
+  .filter((_, i) => i % 4 === 0)
+  .slice(0, 12)
+  .map((sketch) => sketch.image);
 
 // Hash slug per sketch (SODAA-style deep links): /sketches#sketch-004
 // opens the gallery at that sketch.
@@ -75,6 +82,7 @@ export default function SketchGrid() {
 
   return (
     <>
+      <FlashIntro images={flashDeck} />
       <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-4">
         {sketches.map((sketch, i) => (
           <button

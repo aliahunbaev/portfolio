@@ -256,8 +256,13 @@ function readFolder(slug: string): Project | undefined {
   };
 }
 
-const newestFirst = (a: Project, b: Project) =>
-  (new Date(b.date).getTime() || 0) - (new Date(a.date).getTime() || 0);
+const timeOf = (p: Project) => {
+  const t = new Date(p.date).getTime();
+  if (!Number.isNaN(t)) return t;
+  // "Ongoing" work is the newest thing on the site by definition.
+  return /ongoing|current|now/i.test(p.date) ? 8.64e15 : 0;
+};
+const newestFirst = (a: Project, b: Project) => timeOf(b) - timeOf(a);
 
 /** Every project, from the markdown folders. Newest first. */
 export function getWorks(): Project[] {

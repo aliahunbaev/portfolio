@@ -5,7 +5,7 @@ medium: iOS App
 description: Building the most beautiful training app in existence, mixing sport, philosophy, and design.
 cover: /images/marble-book.png
 featured: true
-order: 1
+order: 2
 preview: preview.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
