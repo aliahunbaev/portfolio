@@ -6,14 +6,10 @@ description: A library for everything you love — films, books, music, podcasts
 cover: card.jpg
 featured: true
 order: 1
-preview: intro.mp4
-previewPoster: intro-poster.jpg
 links: myfavoriteapp.com https://myfavoriteapp.com
 ---
 
 Favorite is a library for everything you love. Every reference that shaped you — the film that changed you, the record on repeat, the book you press into people's hands — collected on one shelf, in one place. Abdul and I built it together, and it opens the way a library should: your covers flash past like a deck being shuffled, then the wall reveals itself.
-
-![loop](intro.mp4)
 
 Search pulls clean covers and metadata for anything — film, TV, music, books, podcasts, video — so a library builds itself in minutes and looks like a wall worth staring at.
 
