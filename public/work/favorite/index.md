@@ -3,7 +3,7 @@ title: Favorite
 date: Ongoing
 medium: Web App
 description: A library for everything you love — films, books, music, podcasts — with friends' shelves and an AI-tuned feed to grow your taste.
-cover: lib-0.jpg
+cover: card.jpg
 featured: true
 order: 1
 preview: intro.mp4
