@@ -50,7 +50,7 @@ export default async function EssayPage({ params }: Params) {
             </div>
           </div>
         </aside>
-        <article className="md:col-span-5 md:col-start-4">
+        <article className="md:col-span-4 md:col-start-5">
           <header className="pb-12 max-md:pb-8">
             <h1 className="text-title font-medium leading-[1.1]">
               {essay.title}
