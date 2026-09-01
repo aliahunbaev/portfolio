@@ -4,7 +4,6 @@ import "./globals.css";
 import CursorLabel from "./components/cursor-label";
 import IntroLoader from "./components/intro-loader";
 import PageFade from "./components/page-fade";
-import SiteFooter from "./components/site-footer";
 import SiteNav from "./components/site-nav";
 
 // Combat Créatif wordmark typeface, used only for the brand pill.
@@ -30,10 +29,7 @@ export default function RootLayout({
         <CursorLabel />
         <IntroLoader />
         <SiteNav />
-        <PageFade>
-          {children}
-          <SiteFooter />
-        </PageFade>
+        <PageFade>{children}</PageFade>
       </body>
     </html>
   );
