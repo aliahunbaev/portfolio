@@ -39,7 +39,16 @@ export default function InformationContent() {
             gatherings for artists in New York; and Beau Flâneur, a fashion
             project about wandering. He is on leave from New York University,
             focused on doing great work and connecting with brilliant people,
-            and writes weekly at PLAYFIGHTER.
+            and writes weekly at{" "}
+            <a
+              href="https://playfighter.substack.com"
+              target="_blank"
+              rel="noopener"
+              className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
+            >
+              Playfighter
+            </a>
+            .
           </p>
           {expanded && (
             <p>

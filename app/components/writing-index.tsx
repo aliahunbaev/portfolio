@@ -45,6 +45,28 @@ export default function WritingIndex() {
             </Link>
           </li>
         ))}
+        {/* The coda: finished pieces above, the running letters beyond. */}
+        <li>
+          <a
+            href="https://playfighter.substack.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => setActive(null)}
+            className={`grid grid-cols-6 gap-x-gutter ${
+              active ? "text-neutral-400" : ""
+            }`}
+          >
+            <span className="col-span-2">Ongoing</span>
+            <span className="col-span-4">
+              <span className="block font-medium text-blue-700 underline decoration-1 underline-offset-2">
+                Playfighter
+              </span>
+              <span className="block pt-1 leading-[1.4]">
+                The running letters, on Substack.
+              </span>
+            </span>
+          </a>
+        </li>
       </ul>
     </div>
   );
