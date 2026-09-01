@@ -16,7 +16,7 @@ const shelfDate = (essay: Essay) => {
    beside each entry, title in medium with subtitle in regular beneath,
    spotlight hover receding the rest. */
 export default function WritingIndex() {
-  const [active, setActive] = useState<Essay | null>(null);
+  const [active, setActive] = useState<Essay | "playfighter" | null>(null);
 
   return (
     <div className="text-body md:grid md:grid-cols-12 md:gap-x-gutter">
@@ -30,9 +30,9 @@ export default function WritingIndex() {
             href="https://playfighter.substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            onMouseEnter={() => setActive(null)}
+            onMouseEnter={() => setActive("playfighter")}
             className={`grid grid-cols-6 gap-x-gutter ${
-              active ? "text-neutral-400" : ""
+              active && active !== "playfighter" ? "text-neutral-400" : ""
             }`}
           >
             <span className="col-span-2">Ongoing</span>
@@ -41,7 +41,7 @@ export default function WritingIndex() {
                 Playfighter
               </span>
               <span className="block pt-1 leading-[1.4]">
-                The running letters, on Substack.
+                Public journal starting from the beginning of college.
               </span>
             </span>
           </a>
