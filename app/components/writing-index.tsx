@@ -22,7 +22,7 @@ export default function WritingIndex() {
     <div className="text-body md:grid md:grid-cols-12 md:gap-x-gutter">
       <ul
         onMouseLeave={() => setActive(null)}
-        className="flex flex-col gap-y-10 md:col-span-6 md:col-start-3"
+        className="flex flex-col gap-y-10 md:col-span-6 md:col-start-4"
       >
         {/* Ongoing outranks dated, like the homepage: the letters lead. */}
         <li>
