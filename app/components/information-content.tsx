@@ -10,6 +10,7 @@ const links: [string, string][] = [
   ["@alizahunbaev", "https://instagram.com/alizahunbaev"],
   ["@combatcreatif", "https://instagram.com/combatcreatif"],
   ["alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
+  ["CV", "/Ali_Ahunbaev_CV.pdf"],
 ];
 
 /* Renell anatomy: one dense big-text block, Read more continues it inline
