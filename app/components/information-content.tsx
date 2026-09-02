@@ -8,9 +8,12 @@ import { useState } from "react";
 
 // Label, value, destination — the essay-rail metadata grammar.
 const links: [string, string, string][] = [
+  ["Email", "alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
   ["Instagram", "@alizahunbaev", "https://instagram.com/alizahunbaev"],
   ["Studio", "@combatcreatif", "https://instagram.com/combatcreatif"],
-  ["Email", "alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
+  ["YouTube", "@playfighter", "https://youtube.com/@playfighter"],
+  ["Substack", "playfighter.substack.com", "https://playfighter.substack.com"],
+  ["LinkedIn", "aliahunbaev", "https://linkedin.com/in/aliahunbaev"],
   ["Resume", "Ali_Ahunbaev_CV.pdf", "/Ali_Ahunbaev_CV.pdf"],
 ];
 
@@ -87,7 +90,7 @@ export default function InformationContent() {
         {links.map(([label, value, href]) => (
           <div
             key={href}
-            className="grid grid-cols-subgrid max-md:grid-cols-3 max-md:gap-x-gutter md:col-span-6"
+            className="grid grid-cols-subgrid max-md:grid-cols-3 max-md:gap-x-gutter md:col-span-6 md:col-start-1"
           >
             <p className="md:col-span-2">{label}</p>
             <Link
