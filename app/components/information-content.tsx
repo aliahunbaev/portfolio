@@ -6,11 +6,12 @@ import { useState } from "react";
 // All copy is placeholder in the site's voice — rewrite freely. Two dense
 // sections: what shows always, and what Read more reveals.
 
-const links: [string, string][] = [
-  ["@alizahunbaev", "https://instagram.com/alizahunbaev"],
-  ["@combatcreatif", "https://instagram.com/combatcreatif"],
-  ["alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
-  ["CV", "/Ali_Ahunbaev_CV.pdf"],
+// Label, value, destination — the essay-rail metadata grammar.
+const links: [string, string, string][] = [
+  ["Instagram", "@alizahunbaev", "https://instagram.com/alizahunbaev"],
+  ["Studio", "@combatcreatif", "https://instagram.com/combatcreatif"],
+  ["Email", "alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
+  ["Resume", "Ali_Ahunbaev_CV.pdf", "/Ali_Ahunbaev_CV.pdf"],
 ];
 
 /* Renell anatomy: one dense big-text block, Read more continues it inline
@@ -82,17 +83,22 @@ export default function InformationContent() {
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-2 pt-16 text-title font-medium">
-        {links.map(([label, href]) => (
-          <Link
+      <div className="grid gap-y-3 pt-16 text-body md:grid-cols-12 md:gap-x-gutter">
+        {links.map(([label, value, href]) => (
+          <div
             key={href}
-            href={href}
-            target={href.startsWith("mailto") ? undefined : "_blank"}
-            rel="noopener"
-            className="w-fit hover:text-neutral-400"
+            className="grid grid-cols-subgrid max-md:grid-cols-3 max-md:gap-x-gutter md:col-span-6"
           >
-            {label}
-          </Link>
+            <p className="md:col-span-2">{label}</p>
+            <Link
+              href={href}
+              target={href.startsWith("mailto") ? undefined : "_blank"}
+              rel="noopener"
+              className="w-fit font-medium hover:text-neutral-400 max-md:col-span-2 md:col-span-4"
+            >
+              {value}
+            </Link>
+          </div>
         ))}
       </div>
     </main>
