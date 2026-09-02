@@ -34,7 +34,7 @@ export default function ProjectRow({ project }: { project: Project }) {
       <Link
         href={`/work/${slugify(project.title)}`}
         data-cursor-label="View Project"
-        className="relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:order-1 md:col-span-8"
+        className="relative block aspect-[1.85/1] cursor-none overflow-hidden max-md:aspect-square max-md:order-1 md:col-span-8"
       >
         {project.previewVideo ? (
           // Silent looping preview — the moving version of a cover image,
