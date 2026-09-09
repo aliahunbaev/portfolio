@@ -86,10 +86,16 @@ export default function ProjectStrip({ project }: { project: Project }) {
       {/* Desktop: the caption line, then the full-width strip. */}
       <div className="grid grid-cols-12 gap-x-gutter gap-y-4 text-body max-md:hidden">
         <p className="col-start-1 row-start-1 col-span-2">{project.date}</p>
-        {/* The medium dissolves when disciplines exist — the blurb and
-            the strip already say what kind of thing it is. */}
+        {/* Disciplines in the medium's spot, interpunct-separated — the
+            essay-rail metadata grammar. Commas in the frontmatter, dots
+            on the page; the medium prints only when no disciplines. */}
         <p className="col-start-1 row-start-2 col-span-2">
-          {project.disciplines ?? project.category}
+          {project.disciplines
+            ? project.disciplines
+                .split(",")
+                .map((d) => d.trim())
+                .join(" · ")
+            : project.category}
         </p>
         <p className="col-start-3 row-start-1 col-span-4 font-medium">
           {project.title}
