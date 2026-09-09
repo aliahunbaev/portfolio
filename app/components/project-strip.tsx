@@ -103,7 +103,9 @@ export default function ProjectStrip({ project }: { project: Project }) {
             </p>
           )}
         </div>
-        <p className="col-span-4 col-start-7">{project.description}</p>
+        <p className="col-span-4 col-start-7 leading-[1.5]">
+          {project.description}
+        </p>
       </div>
       <Link
         href={href}
@@ -169,7 +171,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
         <p className="col-start-3 row-start-1 text-right font-medium">
           {project.date}
         </p>
-        <p className="col-span-2 col-start-1 row-start-2">
+        <p className="col-span-2 col-start-1 row-start-2 leading-[1.5]">
           {project.description}
         </p>
         <p className="col-start-3 row-start-2 text-right">{project.category}</p>

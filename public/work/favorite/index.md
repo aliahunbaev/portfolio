@@ -3,9 +3,9 @@ title: Favorite
 date: Ongoing
 medium: Web App
 disciplines: Design, Engineering, AI
-description: Designed and built with Abdul: a library for everything you love, with your friends' shelves and an AI-tuned feed to grow your taste. Live now at myfavoriteapp.com.
-cover: card.jpg
-homeRow: card.jpg, library-scroll.mp4
+description: A library for everything you love, with your friends' shelves and an AI-tuned feed to grow your taste. Live now at myfavoriteapp.com.
+cover: site-0.jpg
+homeRow: site-0.jpg, library-scroll.mp4
 featured: true
 order: 2
 links: myfavoriteapp.com https://myfavoriteapp.com
