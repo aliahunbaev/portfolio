@@ -3,7 +3,7 @@ title: The Art Movement
 date: May 2026
 medium: Event
 disciplines: Concept, Production, Photography
-description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.
+description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York. One night at Verci with Jaden Clemons: four artists downstairs, a hundred guests, and a roof that went until late.
 cover: 000157750001.jpg
 preview: preview.mp4
 homeRow: preview.mp4, 000157750008.jpg, 000157750024.jpg

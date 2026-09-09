@@ -3,7 +3,7 @@ title: Marble
 date: July 2026
 medium: iOS App
 disciplines: Design, SwiftUI, Identity, Film
-description: Building the most beautiful training app in existence, mixing sport, philosophy, and design.
+description: Building the most beautiful training app in existence, mixing sport, philosophy, and design. Designed and built alone in SwiftUI, with its own identity, posters, and film.
 cover: sculptor-cover.jpg
 featured: true
 order: 1

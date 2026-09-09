@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
   outputFileTracingExcludes: {
     "/*": ["./public/**"],
   },
+  // The share-card renderer (app/lib/og.tsx) reads these at request time.
+  outputFileTracingIncludes: {
+    "/*": ["./app/fonts/Inter-*.woff"],
+  },
 };
 
 export default nextConfig;

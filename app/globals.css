@@ -21,6 +21,8 @@
 @theme {
   --text-body: 0.875rem;
   --text-body--line-height: 1;
+  /* A hair of air at the small size only — titles stay tight. */
+  --text-body--letter-spacing: 0.01em;
   --text-title: 1.5rem;
   --text-title--line-height: 1;
   --text-display: 1.75rem;

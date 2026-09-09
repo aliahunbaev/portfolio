@@ -15,10 +15,11 @@ const toArrayBuffer = (buf: Buffer) =>
   buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer;
 
 async function fonts() {
-  const dir = join(process.cwd(), "app", "fonts");
+  // Literal paths from the project root so Vercel's file tracer ships
+  // the fonts with the image function (see next.config.ts).
   const [regular, medium] = await Promise.all([
-    readFile(join(dir, "Inter-Regular.woff")),
-    readFile(join(dir, "Inter-Medium.woff")),
+    readFile(join(process.cwd(), "app/fonts/Inter-Regular.woff")),
+    readFile(join(process.cwd(), "app/fonts/Inter-Medium.woff")),
   ]);
   return [
     { name: "Inter", data: toArrayBuffer(regular), weight: 400 as const, style: "normal" as const },
