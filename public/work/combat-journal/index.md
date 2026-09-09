@@ -4,6 +4,7 @@ date: April 2025
 medium: Publication
 description: A magazine on making things with your friends: four garments, the stories behind them, and the people who wore them.
 cover: cover.jpg
+homeRow: cover.jpg, page-05.jpg, page-12.jpg, page-20.jpg
 featured: true
 ---
 

@@ -1,0 +1,33 @@
+import ProjectStrip from "../components/project-strip";
+import { getFeatured } from "../lib/content";
+
+// PROTOTYPE — nothing links here. The strip homepage: same statement,
+// but each project is a caption line over a full-width row of curated
+// assets, so the glance shows the range instead of one image. If this
+// wins it replaces app/page.tsx wholesale.
+export default function HomeStrip() {
+  return (
+    <main className="px-gutter pb-gutter max-md:pb-16">
+      <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
+        <h1 className="text-title font-medium leading-[1.1] md:col-span-8">
+          Ali Ahunbáev is an artist, product designer, founder and director of{" "}
+          <a
+            href="https://combatcreatif.com"
+            target="_blank"
+            rel="noopener"
+            className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
+          >
+            Combat Créatif
+          </a>. Currently on leave from New York University, focused on doing
+          great work and connecting with brilliant people. His focus is on a
+          mix of philosophy and beautiful utility.
+        </h1>
+      </div>
+      <div className="flex flex-col gap-24 pt-24 max-md:gap-16 max-md:pt-16">
+        {getFeatured().map((project, i) => (
+          <ProjectStrip key={i} project={project} />
+        ))}
+      </div>
+    </main>
+  );
+}

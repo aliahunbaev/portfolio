@@ -68,6 +68,17 @@ export type Project = {
   previewPoster?: string;
   /** Outbound links shown under the title (frontmatter: links). */
   links?: { label: string; url: string }[];
+  /** Curated homepage strip (frontmatter: homeRow): 2–4 assets shown
+   *  side by side at natural proportions on desktop, widths in ratio so
+   *  the strip shares one height. The first entry should be the same
+   *  asset as the cover/preview — mobile shows only that one. */
+  homeRow?: {
+    type: "image" | "video";
+    src: string;
+    poster?: string;
+    w: number;
+    h: number;
+  }[];
 };
 
 export function slugify(title: string) {

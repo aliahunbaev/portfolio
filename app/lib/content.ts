@@ -241,6 +241,32 @@ function readFolder(slug: string): Project | undefined {
     previewPoster: meta.previewPoster
       ? resolveSrc(slug, meta.previewPoster)
       : undefined,
+    // homeRow: preview.mp4, dark-workout.png — the homepage strip, in
+    // order. Videos take poster and proportions from a same-name still
+    // (or a "-poster" sibling); files without a knowable size are dropped.
+    homeRow: meta.homeRow
+      ? meta.homeRow
+          .split(",")
+          .map((part) => part.trim())
+          .filter(Boolean)
+          .map((src) => {
+            const url = resolveSrc(slug, src);
+            if (/\.(mp4|webm|mov)$/i.test(src)) {
+              for (const sibling of [".jpg", ".png", "-poster.jpg"]) {
+                const poster = url.replace(/\.(mp4|webm|mov)$/i, sibling);
+                const size = imageSize(poster);
+                if (size)
+                  return { type: "video" as const, src: url, poster, ...size };
+              }
+              return undefined;
+            }
+            const size = imageSize(url);
+            return size
+              ? { type: "image" as const, src: url, ...size }
+              : undefined;
+          })
+          .filter((item) => item !== undefined)
+      : undefined,
     // links: Label https://url, Other Label https://url
     links: meta.links
       ? meta.links

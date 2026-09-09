@@ -4,6 +4,7 @@ date: Ongoing
 medium: Web App
 description: A library for everything you love, with your friends' shelves and an AI-tuned feed to grow your taste.
 cover: card.jpg
+homeRow: card.jpg, library-scroll.mp4
 featured: true
 order: 2
 links: myfavoriteapp.com https://myfavoriteapp.com
