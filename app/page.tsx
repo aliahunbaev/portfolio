@@ -16,7 +16,7 @@ export default function Home() {
           mix of philosophy and beautiful utility.
         </h1>
       </div>
-      <div className="flex flex-col gap-gutter pt-24 max-md:gap-16 max-md:pt-16">
+      <div className="flex flex-col gap-gutter pt-40 max-md:gap-16 max-md:pt-16">
         {getFeatured().map((project, i) => (
           <ProjectRow key={i} project={project} />
         ))}
