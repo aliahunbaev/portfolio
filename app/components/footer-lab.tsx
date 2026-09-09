@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 /*
@@ -166,7 +167,118 @@ function FooterC() {
   );
 }
 
-const variants = { a: FooterA, b: FooterB, c: FooterC } as const;
+/* Click-to-copy beside the mailto — the "just give me the address"
+   path. Plain text, flips to Copied for a beat. */
+function CopyEmail({ className = "" }: { className?: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard?.writeText("alizahunbaev@gmail.com").then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        });
+      }}
+      className={`cursor-pointer text-neutral-400 hover:text-black ${className}`}
+    >
+      {copied ? "Copied" : "Copy email"}
+    </button>
+  );
+}
+
+/* The purely aesthetic band across the very bottom: one full-bleed
+   sliver of the sculptor still. Swap the src to audition others. */
+function ArtBand() {
+  return (
+    <div className="relative mt-20 h-28 w-full overflow-hidden">
+      <Image
+        draggable={false}
+        src="/work/marble/sculptor-cover.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover"
+        style={{ objectPosition: "50% 30%" }}
+      />
+    </div>
+  );
+}
+
+/* D — the center axis: location and time up top, the email as the one
+   huge action, links in a centered row, a light line, art at the foot. */
+function FooterD() {
+  return (
+    <footer className="pt-40 text-body">
+      <div className="flex flex-col items-center px-gutter text-center">
+        <p>
+          Manhattan, New York · <Clock />
+        </p>
+        <a
+          href="mailto:alizahunbaev@gmail.com"
+          className="mt-10 text-title font-medium leading-[1.1] hover:text-neutral-400"
+        >
+          alizahunbaev@gmail.com
+        </a>
+        <CopyEmail className="mt-3" />
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-14 font-medium">
+          {reach.slice(1).map(([label, href]) => (
+            <ReachLink key={href} label={label} href={href} />
+          ))}
+        </div>
+        <p className="pt-16 text-neutral-400">
+          You scrolled all the way here. Say hello.
+        </p>
+      </div>
+      <ArtBand />
+    </footer>
+  );
+}
+
+/* E — the same ingredients, left-anchored in the site grammar: voice
+   line and big email left, coordinates right, links spread across one
+   row above the art. */
+function FooterE() {
+  return (
+    <footer className="pt-40 text-body">
+      <div className="px-gutter md:grid md:grid-cols-12 md:gap-x-gutter">
+        <div className="md:col-span-6">
+          <p className="leading-[1.5]">
+            Working from New York, on a mix of philosophy and beautiful
+            utility. If you&apos;re building something great, say hello.
+          </p>
+          <a
+            href="mailto:alizahunbaev@gmail.com"
+            className="mt-6 block w-fit text-title font-medium leading-[1.1] hover:text-neutral-400"
+          >
+            alizahunbaev@gmail.com
+          </a>
+          <CopyEmail className="mt-3" />
+        </div>
+        <div className="text-right max-md:hidden md:col-span-3 md:col-start-10">
+          <p className="font-medium">Manhattan, New York</p>
+          <p className="pt-1">
+            <Clock />
+          </p>
+        </div>
+      </div>
+      <div className="flex flex-wrap justify-between gap-y-2 px-gutter pt-24 font-medium max-md:justify-start max-md:gap-x-6">
+        {reach.slice(1).map(([label, href]) => (
+          <ReachLink key={href} label={label} href={href} />
+        ))}
+      </div>
+      <ArtBand />
+    </footer>
+  );
+}
+
+const variants = {
+  a: FooterA,
+  b: FooterB,
+  c: FooterC,
+  d: FooterD,
+  e: FooterE,
+} as const;
 type Variant = keyof typeof variants;
 
 export default function FooterLab() {
@@ -180,6 +292,8 @@ export default function FooterLab() {
       if (e.key === "1") setVariant("a");
       if (e.key === "2") setVariant("b");
       if (e.key === "3") setVariant("c");
+      if (e.key === "4") setVariant("d");
+      if (e.key === "5") setVariant("e");
       if (e.key.toLowerCase() === "r") setReveal((v) => !v);
     };
     window.addEventListener("keydown", onKey);
