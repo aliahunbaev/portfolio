@@ -1,9 +1,10 @@
 import InlineLink from "./components/inline-link";
-import ProjectRow from "./components/project-row";
+import ProjectStrip from "./components/project-strip";
 import { getFeatured } from "./lib/content";
 
-// The homepage statement: one breath, at the site-wide 64px line — the
-// full portrait lives on Information. Curated project rows follow.
+// The homepage statement, then each project as a caption band over a
+// full-width strip of curated assets (homeRow in the frontmatter) —
+// the glance shows the range, the case study the depth.
 export default function Home() {
   return (
     <main className="px-gutter pb-gutter max-md:pb-16">
@@ -16,9 +17,9 @@ export default function Home() {
           mix of philosophy and beautiful utility.
         </h1>
       </div>
-      <div className="flex flex-col gap-gutter pt-40 max-md:gap-16 max-md:pt-16">
+      <div className="flex flex-col gap-24 pt-24 max-md:gap-16 max-md:pt-16">
         {getFeatured().map((project, i) => (
-          <ProjectRow key={i} project={project} />
+          <ProjectStrip key={i} project={project} />
         ))}
       </div>
     </main>
