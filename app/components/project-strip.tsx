@@ -84,30 +84,28 @@ export default function ProjectStrip({ project }: { project: Project }) {
   return (
     <article>
       {/* Desktop: the caption line, then the full-width strip. */}
-      <div className="grid grid-cols-12 gap-x-gutter gap-y-4 text-body max-md:hidden">
-        <p className="col-start-1 row-start-1 col-span-2">{project.date}</p>
-        {/* Disciplines in the medium's spot, interpunct-separated — the
-            essay-rail metadata grammar. Commas in the frontmatter, dots
-            on the page; the medium prints only when no disciplines. */}
-        <p className="col-start-1 row-start-2 col-span-2">
-          {project.disciplines
-            ? project.disciplines
-                .split(",")
-                .map((d) => d.trim())
-                .join(" · ")
-            : project.category}
-        </p>
-        <p className="col-start-3 row-start-1 col-span-4 font-medium">
-          {project.title}
-        </p>
-        <p className="col-start-3 row-start-2 col-span-4">
-          {project.description}
-        </p>
+      <div className="grid grid-cols-12 gap-x-gutter text-body max-md:hidden">
+        <p className="col-span-2 font-medium">{project.date}</p>
+        {/* One reading unit at the caption rhythm: title, disciplines
+            (interpunct-separated, the essay-rail metadata grammar),
+            blurb. The rail holds only the date. */}
+        <div className="col-span-4 col-start-3 space-y-4">
+          <p className="font-medium">{project.title}</p>
+          <p>
+            {project.disciplines
+              ? project.disciplines
+                  .split(",")
+                  .map((d) => d.trim())
+                  .join(" · ")
+              : project.category}
+          </p>
+          <p>{project.description}</p>
+        </div>
       </div>
       <Link
         href={href}
         data-cursor-label="View Project"
-        className="mt-6 flex cursor-none items-stretch gap-x-gutter max-md:hidden"
+        className="mt-8 flex cursor-none items-stretch gap-x-gutter max-md:hidden"
       >
         {items.map((item) => {
           const ratio = item.w / item.h;
