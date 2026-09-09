@@ -86,12 +86,14 @@ export default function ProjectStrip({ project }: { project: Project }) {
       {/* Desktop: the caption line, then the full-width strip. */}
       <div className="grid grid-cols-12 gap-x-gutter gap-y-4 text-body max-md:hidden">
         <p className="col-start-1 row-start-1 col-span-2">{project.date}</p>
-        <div className="col-start-1 row-start-2 col-span-2">
-          <p>{project.category}</p>
-          {project.disciplines && (
-            <p className="pt-1">{project.disciplines}</p>
-          )}
-        </div>
+        <p className="col-start-1 row-start-2 col-span-2">{project.category}</p>
+        {/* One line closing the right edge of the caption band, on the
+            title's baseline — the rail stays light. */}
+        {project.disciplines && (
+          <p className="col-start-9 row-start-1 col-span-4 text-right">
+            {project.disciplines}
+          </p>
+        )}
         <p className="col-start-3 row-start-1 col-span-4 font-medium">
           {project.title}
         </p>
