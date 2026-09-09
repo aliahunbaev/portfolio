@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import InlineLink from "./inline-link";
 import { useState } from "react";
 
 // All copy is placeholder in the site's voice — rewrite freely. Two dense
@@ -29,14 +30,7 @@ export default function InformationContent() {
           <p>
             Ali Ahunbáev is an artist and product designer in New York —
             founder and director of{" "}
-            <a
-              href="https://combatcreatif.com"
-              target="_blank"
-              rel="noopener"
-              className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
-            >
-              Combat Créatif
-            </a>
+            <InlineLink href="https://combatcreatif.com">Combat Créatif</InlineLink>
             , a studio built on the belief that philosophy and beautiful
             utility belong in the same object. His current work spans Marble, a
             training app that treats the body the way philosophy treats the
@@ -45,14 +39,7 @@ export default function InformationContent() {
             project about wandering. He is on leave from New York University,
             focused on doing great work and connecting with brilliant people,
             and writes weekly at{" "}
-            <a
-              href="https://playfighter.substack.com"
-              target="_blank"
-              rel="noopener"
-              className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
-            >
-              Playfighter
-            </a>
+            <InlineLink href="https://playfighter.substack.com">Playfighter</InlineLink>
             .
           </p>
           {expanded && (

@@ -2,6 +2,7 @@
 title: The Art Movement
 date: May 2026
 medium: Event
+disciplines: Concept, Production, Photography
 description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York.
 cover: 000157750001.jpg
 preview: preview.mp4

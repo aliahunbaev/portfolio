@@ -6,7 +6,7 @@ const links: [string, string][] = [
   ["Portfolio", "/"],
   ["Instagram", "https://instagram.com/alizahunbaev"],
   ["Combat Créatif", "https://combatcreatif.com"],
-  ["PLAYFIGHTER", "https://playfighter.substack.com"],
+  ["Playfighter", "https://playfighter.substack.com"],
   ["YouTube", "https://youtube.com/@playfighter"],
   ["Email", "mailto:alizahunbaev@gmail.com"],
 ];

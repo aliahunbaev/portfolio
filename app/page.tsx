@@ -1,3 +1,4 @@
+import InlineLink from "./components/inline-link";
 import ProjectRow from "./components/project-row";
 import { getFeatured } from "./lib/content";
 
@@ -9,14 +10,8 @@ export default function Home() {
       <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
         <h1 className="text-title font-medium leading-[1.1] md:col-span-8">
           Ali Ahunbáev is an artist, product designer, founder and director of{" "}
-          <a
-            href="https://combatcreatif.com"
-            target="_blank"
-            rel="noopener"
-            className="whitespace-nowrap rounded-[0.25em] bg-black/[0.07] px-[0.15em] font-fraktion text-[0.92em] uppercase hover:bg-[#B7C29A]"
-          >
-            Combat Créatif
-          </a>. Currently on leave from New York University, focused on doing
+          <InlineLink href="https://combatcreatif.com">Combat Créatif</InlineLink>.
+          Currently on leave from New York University, focused on doing
           great work and connecting with brilliant people. His focus is on a
           mix of philosophy and beautiful utility.
         </h1>

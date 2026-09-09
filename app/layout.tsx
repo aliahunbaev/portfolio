@@ -6,7 +6,7 @@ import IntroLoader from "./components/intro-loader";
 import PageFade from "./components/page-fade";
 import SiteNav from "./components/site-nav";
 
-// Combat Créatif wordmark typeface, used only for the brand pill.
+// Combat Créatif wordmark typeface, only used by the retired BrandPill.
 const fraktion = localFont({
   src: "./fonts/PPFraktionSans-Bold.otf",
   variable: "--font-fraktion",

@@ -68,6 +68,10 @@ export type Project = {
   previewPoster?: string;
   /** Outbound links shown under the title (frontmatter: links). */
   links?: { label: string; url: string }[];
+  /** What was actually done, named plainly (frontmatter: disciplines):
+   *  a short comma-separated line under the medium on the homepage,
+   *  e.g. "Design, SwiftUI, Identity, Film". Three or four, no more. */
+  disciplines?: string;
   /** Curated homepage strip (frontmatter: homeRow): 2–4 assets shown
    *  side by side at natural proportions on desktop, widths in ratio so
    *  the strip shares one height. The first entry should be the same

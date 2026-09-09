@@ -241,6 +241,7 @@ function readFolder(slug: string): Project | undefined {
     previewPoster: meta.previewPoster
       ? resolveSrc(slug, meta.previewPoster)
       : undefined,
+    disciplines: meta.disciplines || undefined,
     // homeRow: preview.mp4, dark-workout.png — the homepage strip, in
     // order. Videos take poster and proportions from a same-name still
     // (or a "-poster" sibling); files without a knowable size are dropped.
