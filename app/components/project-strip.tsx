@@ -85,22 +85,25 @@ export default function ProjectStrip({ project }: { project: Project }) {
     <article>
       {/* Desktop: the caption line, then the full-width strip. */}
       <div className="grid grid-cols-12 gap-x-gutter text-body max-md:hidden">
-        <p className="col-span-2 font-medium">{project.date}</p>
-        {/* One reading unit at the caption rhythm: title, disciplines
-            (interpunct-separated, the essay-rail metadata grammar),
-            blurb. The rail holds only the date. */}
+        {/* Three columns, one job each: when · what it is + what was
+            done · what happened. Disciplines interpunct-separated, the
+            essay-rail metadata grammar. */}
+        <div className="col-span-2 space-y-4">
+          <p className="font-medium">{project.date}</p>
+          <p>{project.category}</p>
+        </div>
         <div className="col-span-4 col-start-3 space-y-4">
           <p className="font-medium">{project.title}</p>
-          <p>
-            {project.disciplines
-              ? project.disciplines
-                  .split(",")
-                  .map((d) => d.trim())
-                  .join(" · ")
-              : project.category}
-          </p>
-          <p>{project.description}</p>
+          {project.disciplines && (
+            <p>
+              {project.disciplines
+                .split(",")
+                .map((d) => d.trim())
+                .join(" · ")}
+            </p>
+          )}
         </div>
+        <p className="col-span-4 col-start-7">{project.description}</p>
       </div>
       <Link
         href={href}

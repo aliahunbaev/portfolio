@@ -12,10 +12,20 @@ const fraktion = localFont({
   variable: "--font-fraktion",
 });
 
+const description =
+  "Ali Ahunbáev is an artist, product designer, founder and director of Combat Créatif.";
+
+// Share previews: metadataBase makes every image URL absolute, the
+// template puts the site name after a page's own title. Pages set title
+// and description; project pages add their cover, essays get a card
+// (writing/[slug]/opengraph-image.tsx), everything else falls back to
+// the site card (app/opengraph-image.tsx).
 export const metadata: Metadata = {
-  title: "Ali Ahunbáev",
-  description:
-    "Ali Ahunbáev is an artist, product designer, founder and director of Combat Créatif.",
+  metadataBase: new URL("https://ahunbaev.com"),
+  title: { default: "Ali Ahunbáev", template: "%s · Ali Ahunbáev" },
+  description,
+  openGraph: { siteName: "Ali Ahunbáev", type: "website", locale: "en_US" },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

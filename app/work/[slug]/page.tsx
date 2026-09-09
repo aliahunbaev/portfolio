@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AnchorRail from "../../components/anchor-rail";
@@ -6,7 +7,7 @@ import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
 import LoopVideo from "../../components/loop-video";
 import VideoPlayer from "../../components/video-player";
-import { getWorks } from "../../lib/content";
+import { getWorks, imageSize } from "../../lib/content";
 import { slugify, type Block } from "../../lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -22,10 +23,21 @@ export function generateStaticParams() {
   return getWorks().map((work) => ({ slug: slugify(work.title) }));
 }
 
-export async function generateMetadata({ params }: Params) {
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const work = getWorks().find((w) => slugify(w.title) === slug);
-  return { title: "Ali Ahunbáev", description: work?.description };
+  if (!work) return {};
+  // The cover is the preview: the work itself, not a card about it.
+  const size = imageSize(work.image);
+  return {
+    title: work.title,
+    description: work.description,
+    openGraph: {
+      images: [
+        { url: work.image, alt: work.title, width: size?.w, height: size?.h },
+      ],
+    },
+  };
 }
 
 /** Renders *asterisk* spans as italics and [label](url) as links;

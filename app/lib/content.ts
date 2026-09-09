@@ -60,7 +60,7 @@ const resolveSrc = (slug: string, src: string) =>
 
 /** Pixel size of a local public/ image (PNG and JPEG), for laying out
  *  gallery covers at their natural proportions. */
-function imageSize(url: string): { w: number; h: number } | undefined {
+export function imageSize(url: string): { w: number; h: number } | undefined {
   try {
     const buf = readFileSync(path.join(process.cwd(), "public", url));
     if (buf[0] === 0x89 && buf[1] === 0x50)
