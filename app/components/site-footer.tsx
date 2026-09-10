@@ -66,7 +66,7 @@ function CopyEmail({ dark = false }: { dark?: boolean }) {
 }
 
 /* Flip to true to audition the dark footer — everything else holds. */
-const DARK = true;
+const DARK = false;
 
 function FooterCard() {
   const muted = DARK ? "hover:text-neutral-500" : "hover:text-neutral-400";
