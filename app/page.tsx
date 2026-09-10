@@ -17,7 +17,7 @@ export default function Home() {
           mix of philosophy and beautiful utility.
         </h1>
       </div>
-      <div className="flex flex-col gap-40 pt-40 max-md:gap-16 max-md:pt-16">
+      <div className="flex flex-col gap-40 pt-40 max-md:gap-24 max-md:pt-24">
         {getFeatured().map((project, i) => (
           <ProjectStrip key={i} project={project} />
         ))}
