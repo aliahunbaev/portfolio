@@ -1,22 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import InlineLink from "./inline-link";
 import { useState } from "react";
+import { FooterCard } from "./site-footer";
 
 // All copy is placeholder in the site's voice — rewrite freely. Two dense
 // sections: what shows always, and what Read more reveals.
-
-// Label, value, destination — the essay-rail metadata grammar.
-const links: [string, string, string][] = [
-  ["Email", "alizahunbaev@gmail.com", "mailto:alizahunbaev@gmail.com"],
-  ["Instagram", "@alizahunbaev", "https://instagram.com/alizahunbaev"],
-  ["Studio", "@combatcreatif", "https://instagram.com/combatcreatif"],
-  ["YouTube", "@playfighter", "https://youtube.com/@playfighter"],
-  ["Substack", "playfighter.substack.com", "https://playfighter.substack.com"],
-  ["LinkedIn", "aliahunbaev", "https://linkedin.com/in/aliahunbaev"],
-  ["Resume", "Ali_Ahunbaev_CV.pdf", "/Ali_Ahunbaev_CV.pdf"],
-];
 
 /* Renell anatomy: one dense big-text block, Read more continues it inline
    with no paragraph gaps, then the handles. */
@@ -24,7 +13,7 @@ export default function InformationContent() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <main className="px-gutter pb-24 pt-30 text-body">
+    <main className="flex min-h-dvh flex-col justify-between gap-y-24 px-gutter pb-gutter pt-30 text-body">
       <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
         <div className="text-title font-medium leading-[1.1] md:col-span-10">
           <p>
@@ -73,24 +62,7 @@ export default function InformationContent() {
           </button>
         </div>
       </div>
-      <div className="grid gap-y-3 pt-16 text-body md:grid-cols-12 md:gap-x-gutter">
-        {links.map(([label, value, href]) => (
-          <div
-            key={href}
-            className="grid grid-cols-subgrid max-md:grid-cols-3 max-md:gap-x-gutter md:col-span-6 md:col-start-1"
-          >
-            <p className="md:col-span-2">{label}</p>
-            <Link
-              href={href}
-              target={href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noopener"
-              className="w-fit font-medium hover:text-neutral-400 max-md:col-span-2 md:col-span-4"
-            >
-              {value}
-            </Link>
-          </div>
-        ))}
-      </div>
+      <FooterCard embedded />
     </main>
   );
 }

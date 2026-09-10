@@ -60,16 +60,22 @@ function EmailAction({ className = "", onEnter }: { className?: string; onEnter?
 /* Flip to true to audition the dark footer — everything else holds. */
 const DARK = false;
 
-function FooterCard() {
+/* The card's content also lives on Information, embedded in the page
+   flow — same monument, no full-height stage. */
+export function FooterCard({ embedded = false }: { embedded?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const big = "text-title font-medium";
   const dim = (key: string) =>
     active && active !== key ? "text-neutral-400" : "";
   return (
     <footer
-      className={`flex min-h-dvh flex-col justify-end px-gutter pb-gutter text-body ${
-        DARK ? "bg-black text-white" : "bg-white"
-      }`}
+      className={
+        embedded
+          ? "text-body"
+          : `flex min-h-dvh flex-col justify-end px-gutter pb-gutter text-body ${
+              DARK ? "bg-black text-white" : "bg-white"
+            }`
+      }
     >
       {/* The monument, on the floor. Hovering a link spotlights it: the
           rest recede, Suisse's own arrow marks the departure. */}
