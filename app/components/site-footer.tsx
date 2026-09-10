@@ -67,7 +67,7 @@ function FooterCard() {
     active && active !== key ? "text-neutral-400" : "";
   return (
     <footer
-      className={`flex min-h-[75vh] flex-col justify-center px-gutter pb-gutter text-body ${
+      className={`flex min-h-dvh flex-col justify-end px-gutter pb-gutter text-body ${
         DARK ? "bg-black text-white" : "bg-white"
       }`}
     >
@@ -129,11 +129,11 @@ function FooterCard() {
       </div>
       {/* The meta closes the monument: place, time, colophon. */}
       <div className={`pt-16 text-neutral-400 ${big}`}>
-        <p>Manhattan, New York</p>
         <p>
           <Clock />
         </p>
-        <p>© 2026 Ali Ahunbáev</p>
+        <p>Manhattan, New York</p>
+        <p>Ali Ahunbáev © 2026</p>
       </div>
     </footer>
   );
