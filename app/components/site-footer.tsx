@@ -80,18 +80,17 @@ function FooterCard() {
       <p className="text-center">
         Manhattan, New York · <Clock />
       </p>
-      {/* The card: a large photo, then the person, then the contacts —
-          pulled in off the right edge. */}
-      <div className="pt-32 md:grid md:grid-cols-12 md:gap-x-gutter">
+      {/* The card: photo, the person, the contacts. */}
+      <div className="pt-20 md:grid md:grid-cols-12 md:gap-x-gutter">
         {/* The photo slot — swap in a real one. */}
-        <div className="md:col-span-3">
+        <div className="md:col-span-2">
           <div
             className={`aspect-square w-full ${
               DARK ? "bg-white/[0.08]" : "bg-black/[0.04]"
             }`}
           />
         </div>
-        <div className="max-md:pt-8 md:col-span-4 md:col-start-5">
+        <div className="max-md:pt-8 md:col-span-4 md:col-start-4">
           <p className="font-medium">Ali Ahunbáev</p>
           <p className="pt-4 leading-[1.5]">
             I&apos;m Ali, an artist and product designer in New York, founder
@@ -111,7 +110,7 @@ function FooterCard() {
           </p>
         </div>
         {/* Just the names, vertical, a column in from the edge. */}
-        <div className="flex flex-col gap-y-2 max-md:pt-8 md:col-span-2 md:col-start-10">
+        <div className="flex flex-col gap-y-2 max-md:pt-8 md:col-span-2 md:col-start-9">
           {reach.map(([label, href]) => (
             <a
               key={href}
@@ -125,6 +124,8 @@ function FooterCard() {
           ))}
         </div>
       </div>
+      {/* The baseline — the band closes instead of stopping. */}
+      <p className="pt-20">© 2026 Ali Ahunbáev</p>
     </footer>
   );
 }
