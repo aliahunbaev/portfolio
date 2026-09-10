@@ -72,7 +72,7 @@ export default function WorkIndex({ works }: { works: Project[] }) {
         ))}
       </ul>
       {active && (
-        <div className="pointer-events-none fixed bottom-gutter right-gutter z-30 w-[38vw] max-md:hidden">
+        <div className="pointer-events-none fixed bottom-gutter right-gutter z-30 w-[38vw] max-md:left-gutter max-md:w-auto [@media(hover:none)]:hidden">
           <div className="relative aspect-[1.85/1] w-full overflow-hidden">
             <Image
               draggable={false}
