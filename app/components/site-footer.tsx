@@ -17,13 +17,13 @@ import { useEffect, useRef, useState } from "react";
  * the reach table, resume. Information holds the story.
  */
 
-const reach: [string, string, string][] = [
-  ["Instagram", "@alizahunbaev", "https://instagram.com/alizahunbaev"],
-  ["Studio", "@combatcreatif", "https://instagram.com/combatcreatif"],
-  ["YouTube", "@playfighter", "https://youtube.com/@playfighter"],
-  ["Substack", "playfighter", "https://playfighter.substack.com"],
-  ["LinkedIn", "aliahunbaev", "https://linkedin.com/in/aliahunbaev"],
-  ["Resume", "PDF", "/Ali_Ahunbaev_CV.pdf"],
+const reach: [string, string][] = [
+  ["Instagram", "https://instagram.com/alizahunbaev"],
+  ["Studio", "https://instagram.com/combatcreatif"],
+  ["YouTube", "https://youtube.com/@playfighter"],
+  ["Substack", "https://playfighter.substack.com"],
+  ["LinkedIn", "https://linkedin.com/in/aliahunbaev"],
+  ["Resume", "/Ali_Ahunbaev_CV.pdf"],
 ];
 
 function Clock() {
@@ -63,11 +63,19 @@ function CopyEmail() {
 
 function FooterCard() {
   return (
-    <footer className="border-t border-black/10 bg-white px-gutter pb-gutter pt-16 text-body">
-      <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
-        {/* The photo slot — swap in a real one. */}
+    <footer className="bg-white px-gutter pb-gutter pt-12 text-body">
+      {/* Coordinates first, at the very top of the card. */}
+      <div className="flex items-baseline justify-between">
+        <p>Manhattan, New York</p>
+        <p>
+          <Clock />
+        </p>
+      </div>
+      {/* The card: photo · writing · contacts, with air above. */}
+      <div className="pt-32 md:grid md:grid-cols-12 md:gap-x-gutter">
+        {/* The photo slot — square, swap in a real one. */}
         <div className="md:col-span-2">
-          <div className="aspect-[4/5] w-24 bg-black/[0.04]" />
+          <div className="aspect-square w-28 bg-black/[0.04]" />
         </div>
         <div className="max-md:pt-8 md:col-span-4 md:col-start-3">
           <p className="leading-[1.5]">
@@ -87,29 +95,22 @@ function FooterCard() {
             </span>
           </p>
         </div>
-        <div className="grid gap-y-2 max-md:pt-8 md:col-span-4 md:col-start-9">
-          {reach.map(([label, value, href]) => (
-            <div key={href} className="grid grid-cols-4 gap-x-gutter">
-              <p className="col-span-2">{label}</p>
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener"
-                className="col-span-2 w-fit font-medium hover:text-neutral-400"
-              >
-                {value}
-              </a>
-            </div>
+        {/* Just the names, vertical — a different register from the nav. */}
+        <div className="flex flex-col items-end gap-y-2 max-md:items-start max-md:pt-8 md:col-span-3 md:col-start-10">
+          {reach.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener"
+              className="w-fit font-medium hover:text-neutral-400"
+            >
+              {label}
+            </a>
           ))}
         </div>
       </div>
-      <div className="flex items-baseline justify-between pt-16">
-        <p className="font-medium">Ali Ahunbáev</p>
-        <p>Manhattan, New York</p>
-        <p>
-          <Clock />
-        </p>
-      </div>
+      <p className="pt-24 font-medium">Ali Ahunbáev</p>
     </footer>
   );
 }
@@ -134,8 +135,10 @@ export default function FooterShell({
 
   return (
     <>
+      {/* The stroke belongs to the page, not the card — it rides the
+          bottom edge of the content through the whole wipe. */}
       <div
-        className="relative z-10 bg-white"
+        className="relative z-10 border-b border-black bg-white"
         style={{ marginBottom: footerH }}
       >
         {children}
