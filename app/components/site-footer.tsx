@@ -80,52 +80,42 @@ function FooterCard() {
       <p className="text-center">
         Manhattan, New York · <Clock />
       </p>
-      {/* The card: photo, the person, the contacts. */}
-      <div className="pt-20 md:grid md:grid-cols-12 md:gap-x-gutter">
-        {/* The photo slot — swap in a real one. */}
-        <div className="md:col-span-2">
-          <div
-            className={`aspect-square w-full ${
-              DARK ? "bg-white/[0.08]" : "bg-black/[0.04]"
-            }`}
-          />
-        </div>
-        <div className="max-md:pt-8 md:col-span-4 md:col-start-4">
-          <p className="font-medium">Ali Ahunbáev</p>
-          <p className="pt-4 leading-[1.5]">
-            I&apos;m Ali, an artist and product designer in New York, founder
-            and director of Combat Créatif. If you&apos;re building something
-            great, say hello.
-          </p>
-          <p className="pt-4">
-            <a
-              href="mailto:alizahunbaev@gmail.com"
-              className={`font-medium ${muted}`}
-            >
+      {/* The typographic close: grouped links at title scale, air doing
+          the design. Quiet labels, big type, nothing else. */}
+      <div className="pt-40">
+        <p className="text-neutral-400">Contact</p>
+        <div className="flex flex-col gap-y-3 pt-4 text-title font-medium leading-[1.1]">
+          <p>
+            <a href="mailto:alizahunbaev@gmail.com" className={muted}>
               alizahunbaev@gmail.com
             </a>
-            <span className="pl-3">
+            <span className="pl-4 text-body font-normal">
               <CopyEmail dark={DARK} />
             </span>
           </p>
+          <a href="/Ali_Ahunbaev_CV.pdf" target="_blank" className={`w-fit ${muted}`}>
+            Resume
+          </a>
         </div>
-        {/* Just the names, vertical, a column in from the edge. */}
-        <div className="flex flex-col gap-y-2 max-md:pt-8 md:col-span-2 md:col-start-9">
-          {reach.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noopener"
-              className={`w-fit font-medium ${muted}`}
-            >
-              {label}
-            </a>
-          ))}
+        <p className="pt-16 text-neutral-400">Social</p>
+        <div className="flex flex-col gap-y-3 pt-4 text-title font-medium leading-[1.1]">
+          {reach
+            .filter(([label]) => label !== "Resume")
+            .map(([label, href]) => (
+              <a
+                key={href}
+                href={href}
+                target="_blank"
+                rel="noopener"
+                className={`w-fit ${muted}`}
+              >
+                {label}
+              </a>
+            ))}
         </div>
       </div>
       {/* The baseline — the band closes instead of stopping. */}
-      <p className="pt-20">© 2026 Ali Ahunbáev</p>
+      <p className="pt-24">© 2026 Ali Ahunbáev</p>
     </footer>
   );
 }
