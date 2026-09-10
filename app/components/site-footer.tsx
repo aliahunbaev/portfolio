@@ -43,7 +43,7 @@ function Clock() {
   return <span suppressHydrationWarning>{now}</span>;
 }
 
-function CopyEmail() {
+function CopyEmail({ dark = false }: { dark?: boolean }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
@@ -54,31 +54,46 @@ function CopyEmail() {
           setTimeout(() => setCopied(false), 1500);
         });
       }}
-      className="cursor-pointer text-neutral-400 hover:text-black"
+      className={`cursor-pointer ${
+        dark
+          ? "text-neutral-500 hover:text-white"
+          : "text-neutral-400 hover:text-black"
+      }`}
     >
       {copied ? "Copied" : "Copy"}
     </button>
   );
 }
 
+/* Flip to true to audition the dark footer — everything else holds. */
+const DARK = false;
+
 function FooterCard() {
+  const muted = DARK ? "hover:text-neutral-500" : "hover:text-neutral-400";
   return (
-    <footer className="bg-white px-gutter pb-gutter pt-12 text-body">
-      {/* Coordinates first, at the very top of the card. */}
-      <div className="flex items-baseline justify-between">
-        <p>Manhattan, New York</p>
-        <p>
-          <Clock />
-        </p>
-      </div>
-      {/* The card: photo · writing · contacts, with air above. */}
+    <footer
+      className={`px-gutter pb-gutter pt-12 text-body ${
+        DARK ? "bg-black text-white" : "bg-white"
+      }`}
+    >
+      {/* Coordinates, centered at the very top of the card. */}
+      <p className="text-center">
+        Manhattan, New York · <Clock />
+      </p>
+      {/* The card: a large photo, then the person, then the contacts —
+          pulled in off the right edge. */}
       <div className="pt-32 md:grid md:grid-cols-12 md:gap-x-gutter">
-        {/* The photo slot — square, swap in a real one. */}
-        <div className="md:col-span-2">
-          <div className="aspect-square w-28 bg-black/[0.04]" />
+        {/* The photo slot — swap in a real one. */}
+        <div className="md:col-span-3">
+          <div
+            className={`aspect-square w-full ${
+              DARK ? "bg-white/[0.08]" : "bg-black/[0.04]"
+            }`}
+          />
         </div>
-        <div className="max-md:pt-8 md:col-span-4 md:col-start-3">
-          <p className="leading-[1.5]">
+        <div className="max-md:pt-8 md:col-span-4 md:col-start-5">
+          <p className="font-medium">Ali Ahunbáev</p>
+          <p className="pt-4 leading-[1.5]">
             I&apos;m Ali, an artist and product designer in New York, founder
             and director of Combat Créatif. If you&apos;re building something
             great, say hello.
@@ -86,31 +101,30 @@ function FooterCard() {
           <p className="pt-4">
             <a
               href="mailto:alizahunbaev@gmail.com"
-              className="font-medium hover:text-neutral-400"
+              className={`font-medium ${muted}`}
             >
               alizahunbaev@gmail.com
             </a>
             <span className="pl-3">
-              <CopyEmail />
+              <CopyEmail dark={DARK} />
             </span>
           </p>
         </div>
-        {/* Just the names, vertical — a different register from the nav. */}
-        <div className="flex flex-col items-end gap-y-2 max-md:items-start max-md:pt-8 md:col-span-3 md:col-start-10">
+        {/* Just the names, vertical, a column in from the edge. */}
+        <div className="flex flex-col gap-y-2 max-md:pt-8 md:col-span-2 md:col-start-10">
           {reach.map(([label, href]) => (
             <a
               key={href}
               href={href}
               target="_blank"
               rel="noopener"
-              className="w-fit font-medium hover:text-neutral-400"
+              className={`w-fit font-medium ${muted}`}
             >
               {label}
             </a>
           ))}
         </div>
       </div>
-      <p className="pt-24 font-medium">Ali Ahunbáev</p>
     </footer>
   );
 }
