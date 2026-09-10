@@ -19,7 +19,7 @@ import { contact, elsewhere, EMAIL } from "../lib/reach";
  * the reach table, resume. Information holds the story.
  */
 
-function Clock() {
+export function Clock() {
   const [now, setNow] = useState("");
   useEffect(() => {
     const fmt = new Intl.DateTimeFormat("en-US", {

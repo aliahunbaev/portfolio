@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { contact, elsewhere, EMAIL } from "../lib/reach";
+import { Clock } from "./site-footer";
 
 const links = [
   { label: "Archive", href: "/archive" },
@@ -81,54 +82,64 @@ export default function SiteNav() {
         <div
           className={`fixed inset-0 z-40 overflow-y-auto md:hidden ${glass}`}
         >
-          {/* The menu is the site's full directory on mobile: the pages,
-              then every way to reach Ali — contact one tap from anywhere. */}
-          <p className="px-gutter pt-28 text-body font-medium">Site</p>
-          <ul className="flex flex-col gap-1 px-gutter pt-2 text-title font-medium">
-            <li>
-              <Link
-                href="/"
-                onClick={() => setOpen(false)}
-                className={pathname === "/" ? "text-neutral-400" : ""}
-              >
-                Ali Ahunbáev
-              </Link>
-            </li>
-            {links.map(({ label, href }) => (
-              <li key={href}>
+          {/* The menu is the site in miniature: pages up top by the
+              name, reach and meta at the floor where the footer lives. */}
+          <div className="flex min-h-full flex-col justify-between px-gutter pb-gutter">
+            <ul className="flex flex-col gap-1 pt-16 text-title font-medium">
+              <li>
                 <Link
-                  href={href}
+                  href="/"
                   onClick={() => setOpen(false)}
-                  className={pathname === href ? "text-neutral-400" : ""}
+                  className={pathname === "/" ? "text-neutral-400" : ""}
                 >
-                  {label}
+                  Ali Ahunbáev
                 </Link>
               </li>
-            ))}
-          </ul>
-          <p className="px-gutter pt-8 text-body font-medium">Contact</p>
-          <ul className="flex flex-col gap-1 px-gutter pt-2 text-title font-medium">
-            <li>
-              <MenuCopyEmail />
-            </li>
-            {contact.map(([label, href]) => (
-              <li key={href}>
-                <a href={href} target="_blank" rel="noopener">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-          <p className="px-gutter pt-8 text-body font-medium">Links</p>
-          <ul className="flex flex-col gap-1 px-gutter pt-2 pb-16 text-title font-medium">
-            {elsewhere.map(([label, href]) => (
-              <li key={href}>
-                <a href={href} target="_blank" rel="noopener">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
+              {links.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className={pathname === href ? "text-neutral-400" : ""}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div>
+              <p className="text-body font-medium">Contact</p>
+              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
+                <li>
+                  <MenuCopyEmail />
+                </li>
+                {contact.map(([label, href]) => (
+                  <li key={href}>
+                    <a href={href} target="_blank" rel="noopener">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <p className="pt-8 text-body font-medium">Links</p>
+              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
+                {elsewhere.map(([label, href]) => (
+                  <li key={href}>
+                    <a href={href} target="_blank" rel="noopener">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-16 text-title font-medium text-neutral-400">
+                <p>
+                  <Clock />
+                </p>
+                <p>Manhattan, New York</p>
+                <p>Ali Ahunbáev © 2026</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </>
