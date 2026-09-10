@@ -121,7 +121,7 @@ export default function SiteNav() {
                   </li>
                 ))}
               </ul>
-              <p className="pt-8 text-body font-medium">Links</p>
+              <p className="pt-12 text-body font-medium">Links</p>
               <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
                 {elsewhere.map(([label, href]) => (
                   <li key={href}>
@@ -131,10 +131,12 @@ export default function SiteNav() {
                   </li>
                 ))}
               </ul>
-              <p className="pt-16 text-title font-medium leading-[1.3] text-neutral-400">
-                “Whenever someone creates something with all of their heart,
-                then that creation is given a soul.”
-              </p>
+              {/* Three lines, stacked at the metadata's rhythm. */}
+              <div className="pt-16 text-title font-medium text-neutral-400">
+                <p>“Whenever someone creates something</p>
+                <p>with all of their heart, then that</p>
+                <p>creation is given a soul.”</p>
+              </div>
             </div>
           </div>
         </div>
