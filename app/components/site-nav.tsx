@@ -81,10 +81,20 @@ export default function SiteNav() {
         <div
           className={`fixed inset-0 z-40 overflow-y-auto md:hidden ${glass}`}
         >
-          {/* The menu is the site in miniature: pages up top by the
-              name, reach and meta at the floor where the footer lives. */}
-          <div className="flex min-h-full flex-col justify-between px-gutter pb-gutter">
-            <ul className="flex flex-col gap-1 pt-16 text-title font-medium">
+          {/* The directory: Site with the name leading home, Contact,
+              Links — and a line about the work where metadata would be. */}
+          <div className="px-gutter pb-16">
+            <p className="pt-28 text-body font-medium">Site</p>
+            <ul className="flex flex-col gap-2 pt-2 text-display font-medium">
+              <li>
+                <Link
+                  href="/"
+                  onClick={() => setOpen(false)}
+                  className={pathname === "/" ? "text-neutral-400" : ""}
+                >
+                  Ali Ahunbáev
+                </Link>
+              </li>
               {links.map(({ label, href }) => (
                 <li key={href}>
                   <Link
@@ -97,31 +107,33 @@ export default function SiteNav() {
                 </li>
               ))}
             </ul>
-            <div>
-              <p className="text-body font-medium">Contact</p>
-              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
-                <li>
-                  <MenuCopyEmail />
+            <p className="pt-8 text-body font-medium">Contact</p>
+            <ul className="flex flex-col gap-2 pt-2 text-display font-medium">
+              <li>
+                <MenuCopyEmail />
+              </li>
+              {contact.map(([label, href]) => (
+                <li key={href}>
+                  <a href={href} target="_blank" rel="noopener">
+                    {label}
+                  </a>
                 </li>
-                {contact.map(([label, href]) => (
-                  <li key={href}>
-                    <a href={href} target="_blank" rel="noopener">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <p className="pt-8 text-body font-medium">Links</p>
-              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
-                {elsewhere.map(([label, href]) => (
-                  <li key={href}>
-                    <a href={href} target="_blank" rel="noopener">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              ))}
+            </ul>
+            <p className="pt-8 text-body font-medium">Links</p>
+            <ul className="flex flex-col gap-2 pt-2 text-display font-medium">
+              {elsewhere.map(([label, href]) => (
+                <li key={href}>
+                  <a href={href} target="_blank" rel="noopener">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="pt-16 text-title font-medium leading-[1.3] text-neutral-400">
+              “Whenever someone creates something with all of their heart,
+              then that creation is given a soul.”
+            </p>
           </div>
         </div>
       )}
