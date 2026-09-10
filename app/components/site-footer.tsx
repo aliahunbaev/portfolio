@@ -62,7 +62,7 @@ const DARK = false;
 
 function FooterCard() {
   const [active, setActive] = useState<string | null>(null);
-  const big = "text-display font-medium leading-[1.15]";
+  const big = "text-title font-medium";
   const dim = (key: string) =>
     active && active !== key ? "text-neutral-400" : "";
   return (
@@ -76,7 +76,7 @@ function FooterCard() {
       <div onMouseLeave={() => setActive(null)}>
         <div>
         <p className="font-medium">Contact</p>
-        <div className={`flex flex-col gap-y-1 pt-3 ${big}`}>
+        <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
           <EmailAction
             className={dim("email")}
             onEnter={() => setActive("email")}
@@ -104,7 +104,7 @@ function FooterCard() {
         </div>
         <div className="pt-12">
         <p className="font-medium">Links</p>
-        <div className={`flex flex-col gap-y-1 pt-3 ${big}`}>
+        <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
           {elsewhere.map(([label, href]) => (
             <a
               key={href}

@@ -144,7 +144,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
       <Link
         href={href}
         data-cursor-label="View Project"
-        className="relative block aspect-square cursor-none overflow-hidden md:hidden"
+        className="relative block aspect-[1.85/1] cursor-none overflow-hidden md:hidden"
       >
         {project.previewVideo ? (
           <StripVideo
