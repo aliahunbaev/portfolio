@@ -171,10 +171,20 @@ export default function ProjectStrip({ project }: { project: Project }) {
         <p className="col-start-3 row-start-1 text-right font-medium">
           {project.date}
         </p>
-        <p className="col-span-2 col-start-1 row-start-2 leading-[1.4]">
+        {/* The disciplines ride between title and blurb, the medium
+            beside them — the caption band's facts, stacked. */}
+        {project.disciplines && (
+          <p className="col-span-2 col-start-1 row-start-2">
+            {project.disciplines
+              .split(",")
+              .map((d) => d.trim())
+              .join(" · ")}
+          </p>
+        )}
+        <p className="col-start-3 row-start-2 text-right">{project.category}</p>
+        <p className="col-span-2 col-start-1 row-start-3 leading-[1.4]">
           {project.description}
         </p>
-        <p className="col-start-3 row-start-2 text-right">{project.category}</p>
       </div>
     </article>
   );
