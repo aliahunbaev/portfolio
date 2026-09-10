@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { contact, elsewhere, EMAIL } from "../lib/reach";
-import { Clock } from "./site-footer";
 
 const links = [
   { label: "Archive", href: "/archive" },
@@ -86,15 +85,6 @@ export default function SiteNav() {
               name, reach and meta at the floor where the footer lives. */}
           <div className="flex min-h-full flex-col justify-between px-gutter pb-gutter">
             <ul className="flex flex-col gap-1 pt-16 text-title font-medium">
-              <li>
-                <Link
-                  href="/"
-                  onClick={() => setOpen(false)}
-                  className={pathname === "/" ? "text-neutral-400" : ""}
-                >
-                  Ali Ahunbáev
-                </Link>
-              </li>
               {links.map(({ label, href }) => (
                 <li key={href}>
                   <Link
@@ -131,13 +121,6 @@ export default function SiteNav() {
                   </li>
                 ))}
               </ul>
-              <div className="pt-16 text-title font-medium text-neutral-400">
-                <p>
-                  <Clock />
-                </p>
-                <p>Manhattan, New York</p>
-                <p>Ali Ahunbáev © 2026</p>
-              </div>
             </div>
           </div>
         </div>
