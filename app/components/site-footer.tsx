@@ -17,13 +17,18 @@ import { useEffect, useRef, useState } from "react";
  * the reach table, resume. Information holds the story.
  */
 
-const reach: [string, string][] = [
+/* Contact = the ways Ali actually gets reached; Elsewhere = the rest
+   of the constellation. X joins when he starts using it. */
+const contact: [string, string][] = [
   ["Instagram", "https://instagram.com/alizahunbaev"],
-  ["Studio", "https://instagram.com/combatcreatif"],
+  ["Resume", "/Ali_Ahunbaev_CV.pdf"],
+];
+const elsewhere: [string, string][] = [
   ["YouTube", "https://youtube.com/@playfighter"],
   ["Substack", "https://playfighter.substack.com"],
+  ["Playfighter", "https://instagram.com/play.fighter"],
+  ["Studio", "https://instagram.com/combatcreatif"],
   ["LinkedIn", "https://linkedin.com/in/aliahunbaev"],
-  ["Resume", "/Ali_Ahunbaev_CV.pdf"],
 ];
 
 function Clock() {
@@ -43,25 +48,28 @@ function Clock() {
   return <span suppressHydrationWarning>{now}</span>;
 }
 
-function CopyEmail({ dark = false }: { dark?: boolean }) {
+/* The address is the button: click copies, the hint answers. No mail
+   app ambush — the address stays readable for anyone who'd rather type. */
+function EmailAction({ muted }: { muted: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <button
-      type="button"
-      onClick={() => {
-        navigator.clipboard?.writeText("alizahunbaev@gmail.com").then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1500);
-        });
-      }}
-      className={`cursor-pointer ${
-        dark
-          ? "text-neutral-500 hover:text-white"
-          : "text-neutral-400 hover:text-black"
-      }`}
-    >
-      {copied ? "Copied" : "Copy"}
-    </button>
+    <p className="flex items-baseline gap-x-4">
+      <button
+        type="button"
+        onClick={() => {
+          navigator.clipboard?.writeText("alizahunbaev@gmail.com").then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          });
+        }}
+        className={`cursor-pointer text-left font-medium ${muted}`}
+      >
+        alizahunbaev@gmail.com
+      </button>
+      <span className="text-body font-normal">
+        {copied ? "Copied" : "Copy"}
+      </span>
+    </p>
   );
 }
 
@@ -72,50 +80,50 @@ function FooterCard() {
   const muted = DARK ? "hover:text-neutral-500" : "hover:text-neutral-400";
   return (
     <footer
-      className={`px-gutter pb-gutter pt-12 text-body ${
+      className={`flex min-h-[70vh] flex-col justify-end px-gutter pb-gutter text-body ${
         DARK ? "bg-black text-white" : "bg-white"
       }`}
     >
-      {/* Coordinates, centered at the very top of the card. */}
-      <p className="text-center">
-        Manhattan, New York · <Clock />
-      </p>
-      {/* The typographic close: grouped links at title scale, air doing
-          the design. Quiet labels, big type, nothing else. */}
-      <div className="pt-40">
-        <p className="text-neutral-400">Contact</p>
-        <div className="flex flex-col gap-y-3 pt-4 text-title font-medium leading-[1.1]">
-          <p>
-            <a href="mailto:alizahunbaev@gmail.com" className={muted}>
-              alizahunbaev@gmail.com
+      {/* The monument: grouped links at title scale, pinned to the
+          bottom-left edge, the air above doing the design. */}
+      <div>
+        <p>Contact</p>
+        <div className="flex flex-col gap-y-1 pt-3 text-title font-medium leading-[1.15]">
+          <EmailAction muted={muted} />
+          {contact.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener"
+              className={`w-fit ${muted}`}
+            >
+              {label}
             </a>
-            <span className="pl-4 text-body font-normal">
-              <CopyEmail dark={DARK} />
-            </span>
-          </p>
-          <a href="/Ali_Ahunbaev_CV.pdf" target="_blank" className={`w-fit ${muted}`}>
-            Resume
-          </a>
+          ))}
         </div>
-        <p className="pt-16 text-neutral-400">Social</p>
-        <div className="flex flex-col gap-y-3 pt-4 text-title font-medium leading-[1.1]">
-          {reach
-            .filter(([label]) => label !== "Resume")
-            .map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                target="_blank"
-                rel="noopener"
-                className={`w-fit ${muted}`}
-              >
-                {label}
-              </a>
-            ))}
+        <p className="pt-12">Elsewhere</p>
+        <div className="flex flex-col gap-y-1 pt-3 text-title font-medium leading-[1.15]">
+          {elsewhere.map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener"
+              className={`w-fit ${muted}`}
+            >
+              {label}
+            </a>
+          ))}
         </div>
       </div>
-      {/* The baseline — the band closes instead of stopping. */}
-      <p className="pt-24">© 2026 Ali Ahunbáev</p>
+      {/* One baseline closes the page: name left, coordinates right. */}
+      <div className="flex items-baseline justify-between pt-24">
+        <p>© 2026 Ali Ahunbáev</p>
+        <p>
+          Manhattan, New York · <Clock />
+        </p>
+      </div>
     </footer>
   );
 }
@@ -140,10 +148,8 @@ export default function FooterShell({
 
   return (
     <>
-      {/* The stroke belongs to the page, not the card — it rides the
-          bottom edge of the content through the whole wipe. */}
       <div
-        className="relative z-10 border-b border-black bg-white"
+        className="relative z-10 bg-white"
         style={{ marginBottom: footerH }}
       >
         {children}
