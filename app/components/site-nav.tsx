@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { contact, elsewhere, EMAIL } from "../lib/reach";
 
 const links = [
   { label: "Archive", href: "/archive" },
@@ -16,25 +15,6 @@ const glass = "bg-white/75 backdrop-blur-xl backdrop-saturate-150";
 // Desktop-only glass, for when the mobile overlay owns the frost below md.
 const glassDesktop =
   "md:bg-white/75 md:backdrop-blur-xl md:backdrop-saturate-150";
-
-/* Copy email inside the menu — same receipt as the footer's. */
-function MenuCopyEmail() {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      type="button"
-      onClick={() => {
-        navigator.clipboard?.writeText(EMAIL).then(() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1500);
-        });
-      }}
-      className="cursor-pointer text-left"
-    >
-      {copied ? "Copied" : "Copy email"}
-    </button>
-  );
-}
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -78,67 +58,29 @@ export default function SiteNav() {
         </button>
       </nav>
       {open && (
-        <div
-          className={`fixed inset-0 z-40 overflow-y-auto md:hidden ${glass}`}
-        >
-          {/* The site in miniature: pages up top by the name, and the
-              footer nearly verbatim at the floor — the quote standing
-              where its metadata would. One size throughout. */}
-          <div className="flex min-h-full flex-col justify-between px-gutter pb-gutter">
-            <ul className="flex flex-col gap-1 pt-16 text-title font-medium">
-              <li>
+        <div className={`fixed inset-0 z-40 md:hidden ${glass}`}>
+          <ul className="flex flex-col gap-1 px-gutter pt-28 text-display font-medium">
+            <li>
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className={pathname === "/" ? "text-neutral-400" : ""}
+              >
+                Ali Ahunbáev
+              </Link>
+            </li>
+            {links.map(({ label, href }) => (
+              <li key={href}>
                 <Link
-                  href="/"
+                  href={href}
                   onClick={() => setOpen(false)}
-                  className={pathname === "/" ? "text-neutral-400" : ""}
+                  className={pathname === href ? "text-neutral-400" : ""}
                 >
-                  Ali Ahunbáev
+                  {label}
                 </Link>
               </li>
-              {links.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    onClick={() => setOpen(false)}
-                    className={pathname === href ? "text-neutral-400" : ""}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div>
-              <p className="text-body font-medium">Contact</p>
-              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
-                <li>
-                  <MenuCopyEmail />
-                </li>
-                {contact.map(([label, href]) => (
-                  <li key={href}>
-                    <a href={href} target="_blank" rel="noopener">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              <p className="pt-12 text-body font-medium">Links</p>
-              <ul className="flex flex-col gap-1 pt-2 text-title font-medium">
-                {elsewhere.map(([label, href]) => (
-                  <li key={href}>
-                    <a href={href} target="_blank" rel="noopener">
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              {/* Three lines, stacked at the metadata's rhythm. */}
-              <div className="pt-16 text-title font-medium text-neutral-400">
-                <p>“Whenever someone creates something</p>
-                <p>with all of their heart, then that</p>
-                <p>creation is given a soul.”</p>
-              </div>
-            </div>
-          </div>
+            ))}
+          </ul>
         </div>
       )}
     </>
