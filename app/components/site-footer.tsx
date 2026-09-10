@@ -38,12 +38,13 @@ export function Clock() {
 
 /* Copy email is the action; Copied is the receipt. Click puts the
    address on the clipboard without a mail-app ambush. */
-function EmailAction({ className = "", onEnter }: { className?: string; onEnter?: () => void }) {
+function EmailAction({ className = "", onEnter, onLeave }: { className?: string; onEnter?: () => void; onLeave?: () => void }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
       type="button"
       onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
       onClick={() => {
         navigator.clipboard?.writeText(EMAIL).then(() => {
           setCopied(true);
@@ -86,6 +87,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
           <EmailAction
             className={dim("email")}
             onEnter={() => setActive("email")}
+            onLeave={() => setActive(null)}
           />
           {contact.map(([label, href]) => (
             <a
@@ -94,6 +96,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
               target="_blank"
               rel="noopener"
               onMouseEnter={() => setActive(href)}
+              onMouseLeave={() => setActive(null)}
               className={`w-fit ${dim(href)}`}
             >
               {label}
@@ -118,6 +121,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
               target="_blank"
               rel="noopener"
               onMouseEnter={() => setActive(href)}
+              onMouseLeave={() => setActive(null)}
               className={`w-fit ${dim(href)}`}
             >
               {label}
