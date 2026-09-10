@@ -13,6 +13,16 @@ const fraktion = localFont({
   variable: "--font-fraktion",
 });
 
+// The site face: Suisse Int'l, regular and medium — the two weights the
+// grammar uses. Helvetica stays in the stack as fallback.
+const suisse = localFont({
+  src: [
+    { path: "./fonts/SuisseIntl-Regular.otf", weight: "400" },
+    { path: "./fonts/SuisseIntl-Medium.otf", weight: "500" },
+  ],
+  variable: "--font-suisse",
+});
+
 const description =
   "Ali Ahunbáev is an artist, product designer, founder and director of Combat Créatif.";
 
@@ -35,7 +45,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraktion.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${fraktion.variable} ${suisse.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
         <CursorLabel />
         <IntroLoader />

@@ -1,6 +1,8 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { contact, elsewhere, EMAIL } from "../lib/reach";
 
 /*
  * The site footer: an information card as a band, revealed by the wipe —
@@ -17,20 +19,6 @@ import { useEffect, useRef, useState } from "react";
  * the reach table, resume. Information holds the story.
  */
 
-/* Contact = the ways Ali actually gets reached; Elsewhere = the rest
-   of the constellation. X joins when he starts using it. */
-const contact: [string, string][] = [
-  ["Instagram", "https://instagram.com/alizahunbaev"],
-  ["Resume", "/Ali_Ahunbaev_CV.pdf"],
-];
-const elsewhere: [string, string][] = [
-  ["YouTube", "https://youtube.com/@playfighter"],
-  ["Substack", "https://playfighter.substack.com"],
-  ["Playfighter", "https://instagram.com/play.fighter"],
-  ["Studio", "https://instagram.com/combatcreatif"],
-  ["LinkedIn", "https://linkedin.com/in/aliahunbaev"],
-];
-
 function Clock() {
   const [now, setNow] = useState("");
   useEffect(() => {
@@ -38,38 +26,34 @@ function Clock() {
       timeZone: "America/New_York",
       hour: "numeric",
       minute: "2-digit",
-      second: "2-digit",
+      timeZoneName: "short",
     });
     const tick = () => setNow(fmt.format(new Date()));
     tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(tick, 15000);
     return () => clearInterval(id);
   }, []);
   return <span suppressHydrationWarning>{now}</span>;
 }
 
-/* The address is the button: click copies, the hint answers. No mail
-   app ambush — the address stays readable for anyone who'd rather type. */
-function EmailAction({ muted }: { muted: string }) {
+/* Copy email is the action; Copied is the receipt. Click puts the
+   address on the clipboard without a mail-app ambush. */
+function EmailAction({ className = "", onEnter }: { className?: string; onEnter?: () => void }) {
   const [copied, setCopied] = useState(false);
   return (
-    <p className="flex items-baseline gap-x-4">
-      <button
-        type="button"
-        onClick={() => {
-          navigator.clipboard?.writeText("alizahunbaev@gmail.com").then(() => {
-            setCopied(true);
-            setTimeout(() => setCopied(false), 1500);
-          });
-        }}
-        className={`cursor-pointer text-left font-medium ${muted}`}
-      >
-        alizahunbaev@gmail.com
-      </button>
-      <span className="text-body font-normal">
-        {copied ? "Copied" : "Copy"}
-      </span>
-    </p>
+    <button
+      type="button"
+      onMouseEnter={onEnter}
+      onClick={() => {
+        navigator.clipboard?.writeText(EMAIL).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        });
+      }}
+      className={`w-fit cursor-pointer text-left ${className}`}
+    >
+      {copied ? "Copied" : "Copy email"}
+    </button>
   );
 }
 
@@ -77,52 +61,79 @@ function EmailAction({ muted }: { muted: string }) {
 const DARK = false;
 
 function FooterCard() {
-  const muted = DARK ? "hover:text-neutral-500" : "hover:text-neutral-400";
+  const [active, setActive] = useState<string | null>(null);
+  const big = "text-display font-medium leading-[1.15]";
+  const dim = (key: string) =>
+    active && active !== key ? "text-neutral-400" : "";
   return (
     <footer
-      className={`flex min-h-[70vh] flex-col justify-end px-gutter pb-gutter text-body ${
+      className={`flex min-h-[75vh] flex-col justify-center px-gutter pb-gutter text-body ${
         DARK ? "bg-black text-white" : "bg-white"
       }`}
     >
-      {/* The monument: grouped links at title scale, pinned to the
-          bottom-left edge, the air above doing the design. */}
-      <div>
-        <p>Contact</p>
-        <div className="flex flex-col gap-y-1 pt-3 text-title font-medium leading-[1.15]">
-          <EmailAction muted={muted} />
+      {/* The monument, on the floor. Hovering a link spotlights it: the
+          rest recede, Suisse's own arrow marks the departure. */}
+      <div onMouseLeave={() => setActive(null)}>
+        <div>
+        <p className="font-medium">Contact</p>
+        <div className={`flex flex-col gap-y-1 pt-3 ${big}`}>
+          <EmailAction
+            className={dim("email")}
+            onEnter={() => setActive("email")}
+          />
           {contact.map(([label, href]) => (
             <a
               key={href}
               href={href}
               target="_blank"
               rel="noopener"
-              className={`w-fit ${muted}`}
+              onMouseEnter={() => setActive(href)}
+              className={`w-fit ${dim(href)}`}
             >
               {label}
+              <span
+                className={`pl-[0.15em] ${
+                  active === href ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                ↗
+              </span>
             </a>
           ))}
         </div>
-        <p className="pt-12">Elsewhere</p>
-        <div className="flex flex-col gap-y-1 pt-3 text-title font-medium leading-[1.15]">
+        </div>
+        <div className="pt-12">
+        <p className="font-medium">Links</p>
+        <div className={`flex flex-col gap-y-1 pt-3 ${big}`}>
           {elsewhere.map(([label, href]) => (
             <a
               key={href}
               href={href}
               target="_blank"
               rel="noopener"
-              className={`w-fit ${muted}`}
+              onMouseEnter={() => setActive(href)}
+              className={`w-fit ${dim(href)}`}
             >
               {label}
+              <span
+                className={`pl-[0.15em] ${
+                  active === href ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                ↗
+              </span>
             </a>
           ))}
         </div>
+        </div>
       </div>
-      {/* One baseline closes the page: name left, coordinates right. */}
-      <div className="flex items-baseline justify-between pt-24">
-        <p>© 2026 Ali Ahunbáev</p>
+      {/* The meta closes the monument: place, time, colophon. */}
+      <div className={`pt-16 text-neutral-400 ${big}`}>
+        <p>Manhattan, New York</p>
         <p>
-          Manhattan, New York · <Clock />
+          <Clock />
         </p>
+        <p>© 2026 Ali Ahunbáev</p>
       </div>
     </footer>
   );
@@ -133,8 +144,10 @@ export default function FooterShell({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
   const footerRef = useRef<HTMLDivElement>(null);
   const [footerH, setFooterH] = useState(0);
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const el = footerRef.current;
@@ -144,17 +157,25 @@ export default function FooterShell({
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [isHome]);
+
+  // The footer lives on the homepage only — every other page ends its
+  // own way. Desktop gets the wipe (fixed footer, content lifts off,
+  // soft seam); mobile scrolls past it in normal flow.
+  if (!isHome) return <>{children}</>;
 
   return (
     <>
       <div
-        className="relative z-10 bg-white"
-        style={{ marginBottom: footerH }}
+        className="relative z-10 bg-white md:pb-gutter md:mb-[var(--footer-h)] md:[mask-image:linear-gradient(to_bottom,black_calc(100%_-_14px),transparent)]"
+        style={{ "--footer-h": `${footerH}px` } as React.CSSProperties}
       >
         {children}
       </div>
-      <div ref={footerRef} className="fixed inset-x-0 bottom-0 z-0">
+      <div
+        ref={footerRef}
+        className="md:fixed md:inset-x-0 md:bottom-0 md:z-0"
+      >
         <FooterCard />
       </div>
     </>

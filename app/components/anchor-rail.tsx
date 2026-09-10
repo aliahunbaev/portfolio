@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-/* The project page's left rail: Back on top, then one anchor per
+/* The project page's left rail: All Projects on top, then one anchor per
    section. The section currently in view holds black; the rest recede
    to gray — the site's standard state language. Clicking scrolls (CSS
    scroll-behavior handles the motion). */
@@ -35,7 +35,7 @@ export default function AnchorRail({
   return (
     <nav className="flex flex-col gap-2">
       <Link href="/archive" className="w-fit pb-6 hover:text-neutral-400">
-        Back
+        All Projects
       </Link>
       {sections.map(({ id, title }) => (
         <a

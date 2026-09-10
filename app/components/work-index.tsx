@@ -49,22 +49,22 @@ export default function WorkIndex({ works }: { works: Project[] }) {
         {works.map((project, i) => (
           <li
             key={project.title}
-            className="fade-in border-b border-black/10"
+            className="fade-in -mx-gutter border-b border-black/10"
             style={{ animationDelay: `${i * 45}ms` }}
           >
             <Link
               href={`/work/${slugify(project.title)}`}
               data-work-row={i}
               onMouseEnter={() => setActive(project)}
-              className={`grid grid-cols-12 items-baseline gap-x-gutter py-3 text-title max-md:flex max-md:flex-wrap ${
+              className={`grid grid-cols-12 items-baseline gap-x-gutter px-gutter py-3 text-title max-md:flex max-md:flex-wrap ${
                 active && active !== project ? "text-neutral-400" : ""
               }`}
             >
               {/* Title hard left, type from col 6 — everything ends before
                   the preview zone so the image never covers text. The date
                   lives in the preview caption. */}
-              <span className="col-span-5 font-medium">{project.title}</span>
-              <span className="col-span-7 max-md:ml-auto">
+              <span className="col-span-6 font-medium">{project.title}</span>
+              <span className="col-span-6 max-md:ml-auto">
                 {project.category}
               </span>
             </Link>

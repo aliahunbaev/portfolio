@@ -38,10 +38,10 @@ export default async function EssayPage({ params }: Params) {
       {/* The project-page anatomy: apparatus on the left rail, the piece
           in the reading column where the index list sits. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="max-md:hidden md:sticky md:top-30 md:col-span-3">
+        <aside className="max-md:hidden md:sticky md:top-30 md:col-span-2">
           <div className="grid gap-y-4">
             <Link href="/writing" className="hover:text-neutral-400">
-              Back
+              All Writing
             </Link>
             <div className="grid gap-y-1 pt-4">
               <p>{shelfDate(essay)}</p>
@@ -58,27 +58,27 @@ export default async function EssayPage({ params }: Params) {
             </h1>
             <p className="pt-2 md:hidden">{shelfDate(essay)}</p>
           </header>
-          <div className="space-y-[1.4em] leading-[1.5]">
+          <div className="space-y-[1.4em] text-[16px] leading-[1.6]">
             {essay.paragraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </div>
           {previous && next && (
-            <div className="flex items-baseline justify-between gap-gutter pt-24 max-md:pt-16">
-              <div className="grid gap-y-4">
-                <p>Previous Essay</p>
+            <div className="flex items-start justify-between gap-gutter pt-24 max-md:pt-16">
+              <div>
+                <p>Previous</p>
                 <Link
                   href={`/writing/${previous.slug}`}
-                  className="hover:text-neutral-400"
+                  className="mt-2 block text-title font-medium leading-[1.1] hover:text-neutral-400"
                 >
                   {previous.title}
                 </Link>
               </div>
-              <div className="grid gap-y-4 text-right">
-                <p>Next Essay</p>
+              <div className="text-right">
+                <p>Next</p>
                 <Link
                   href={`/writing/${next.slug}`}
-                  className="hover:text-neutral-400"
+                  className="mt-2 block text-title font-medium leading-[1.1] hover:text-neutral-400"
                 >
                   {next.title}
                 </Link>

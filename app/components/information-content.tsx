@@ -54,10 +54,10 @@ export default function InformationContent() {
     <main className="px-gutter pb-24 pt-30 text-body">
       <div className="md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
         {/* The portrait, pinned while the story scrolls. */}
-        <aside className="md:sticky md:top-30 md:col-span-3">
-          <div className="aspect-[4/5] w-40 bg-black/[0.04]" />
+        <aside className="md:sticky md:top-30 md:col-span-2">
+          <div className="aspect-[4/5] w-full bg-black/[0.04]" />
         </aside>
-        <article className="max-md:pt-16 md:col-span-5 md:col-start-5">
+        <article className="max-md:pt-16 md:col-span-4 md:col-start-5">
           <div className="space-y-[1.4em] text-[16px] leading-[1.6]">
             <p>
               I&apos;m Ali — an artist and product designer in New York,

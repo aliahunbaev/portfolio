@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { contact, elsewhere, EMAIL } from "../lib/reach";
 
 const links = [
   { label: "Archive", href: "/archive" },
@@ -15,6 +16,25 @@ const glass = "bg-white/75 backdrop-blur-xl backdrop-saturate-150";
 // Desktop-only glass, for when the mobile overlay owns the frost below md.
 const glassDesktop =
   "md:bg-white/75 md:backdrop-blur-xl md:backdrop-saturate-150";
+
+/* Copy email inside the menu — same receipt as the footer's. */
+function MenuCopyEmail() {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard?.writeText(EMAIL).then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+        });
+      }}
+      className="cursor-pointer text-left"
+    >
+      {copied ? "Copied" : "Copy email"}
+    </button>
+  );
+}
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -58,8 +78,13 @@ export default function SiteNav() {
         </button>
       </nav>
       {open && (
-        <div className={`fixed inset-0 z-40 md:hidden ${glass}`}>
-          <ul className="flex flex-col gap-1 px-gutter pt-28 text-display font-medium">
+        <div
+          className={`fixed inset-0 z-40 overflow-y-auto md:hidden ${glass}`}
+        >
+          {/* The menu is the site's full directory on mobile: the pages,
+              then every way to reach Ali — contact one tap from anywhere. */}
+          <p className="px-gutter pt-28 text-body font-medium">Site</p>
+          <ul className="flex flex-col gap-1 px-gutter pt-2 text-display font-medium">
             <li>
               <Link
                 href="/"
@@ -78,6 +103,29 @@ export default function SiteNav() {
                 >
                   {label}
                 </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="px-gutter pt-8 text-body font-medium">Contact</p>
+          <ul className="flex flex-col gap-1 px-gutter pt-2 text-display font-medium">
+            <li>
+              <MenuCopyEmail />
+            </li>
+            {contact.map(([label, href]) => (
+              <li key={href}>
+                <a href={href} target="_blank" rel="noopener">
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="px-gutter pt-8 text-body font-medium">Links</p>
+          <ul className="flex flex-col gap-1 px-gutter pt-2 pb-16 text-display font-medium">
+            {elsewhere.map(([label, href]) => (
+              <li key={href}>
+                <a href={href} target="_blank" rel="noopener">
+                  {label}
+                </a>
               </li>
             ))}
           </ul>
