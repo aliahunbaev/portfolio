@@ -154,7 +154,7 @@ function BlockView({
     return (
       <h2
         id={block.id}
-        className="-mb-7 scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 md:col-start-5 md:col-span-4"
+        className="-mb-7 scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 md:col-start-3 md:col-span-4"
       >
         {block.title}
       </h2>
@@ -164,7 +164,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line py-6 text-[16px] leading-[1.6] first:pt-0 md:col-start-5 md:col-span-4"
+        className="scroll-mt-24 whitespace-pre-line py-6 text-[16px] leading-[1.6] first:pt-0 md:col-start-3 md:col-span-4"
       >
         <Em text={block.body} />
       </p>
@@ -172,7 +172,7 @@ function BlockView({
   }
   if (block.type === "quote") {
     return (
-      <figure id={anchorId} className="scroll-mt-24 py-6 text-[16px] leading-[1.6] md:col-start-5 md:col-span-4">
+      <figure id={anchorId} className="scroll-mt-24 py-6 text-[16px] leading-[1.6] md:col-start-3 md:col-span-4">
         <blockquote className="whitespace-pre-line italic leading-[1.5]">
           <Em text={block.body} />
         </blockquote>
@@ -194,12 +194,12 @@ function BlockView({
           poster={block.poster}
           w={block.w}
           h={block.h}
-          className="scroll-mt-24 md:col-start-3 md:col-span-8"
+          className="scroll-mt-24 md:col-start-1 md:col-span-8"
         />
       );
     }
     return (
-      <div id={anchorId} className="scroll-mt-24 md:col-start-3 md:col-span-8">
+      <div id={anchorId} className="scroll-mt-24 md:col-start-1 md:col-span-8">
         <VideoPlayer src={block.src} />
       </div>
     );
@@ -210,7 +210,7 @@ function BlockView({
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter md:col-start-3 md:col-span-8"
+        className="flex scroll-mt-24 items-start gap-x-gutter md:col-start-1 md:col-span-8"
       >
         {block.items.map((item) =>
           item.type === "video" ? (
@@ -240,7 +240,7 @@ function BlockView({
         <BoardBlock
           title={block.title}
           images={block.images}
-          className="md:col-start-3 md:col-span-8"
+          className="md:col-start-1 md:col-span-8"
         />
       );
     }
@@ -250,7 +250,7 @@ function BlockView({
         images={block.images}
         cover={block.cover}
         mode={block.mode}
-        className="md:col-start-3 md:col-span-8"
+        className="md:col-start-1 md:col-span-8"
       />
     );
   }
@@ -263,14 +263,14 @@ function BlockView({
           images={g.images}
           cover={g.cover}
           mode={g.mode}
-          className="scroll-mt-24 md:col-start-5 md:col-span-4"
+          className="scroll-mt-24 md:col-start-3 md:col-span-4"
         />
       );
     }
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-3 md:col-span-8"
+        className="flex scroll-mt-24 gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-1 md:col-span-8"
       >
         {block.galleries.map((g) => (
           <GalleryBlock
@@ -295,14 +295,14 @@ function BlockView({
         <Picture
           block={block.images[0]}
           alt={alt}
-          className="scroll-mt-24 md:col-start-5 md:col-span-4"
+          className="scroll-mt-24 md:col-start-3 md:col-span-4"
         />
       );
     }
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-3 md:col-span-8"
+        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-1 md:col-span-8"
       >
         {block.images.map((img) => (
           <Picture
@@ -316,7 +316,7 @@ function BlockView({
     );
   }
   return (
-    <div id={anchorId} className="scroll-mt-24 md:col-start-3 md:col-span-8">
+    <div id={anchorId} className="scroll-mt-24 md:col-start-1 md:col-span-8">
       <Picture block={block} alt={alt} />
     </div>
   );
@@ -532,18 +532,22 @@ export default async function WorkPage({ params }: Params) {
           </div>
         )}
       </header>
-      <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter md:gap-y-gutter">
-        <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2 md:row-start-1">
+      <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
+        <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2">
           <AnchorRail sections={sections} />
         </aside>
-        {grouped.map(({ block, anchorId }, i) => (
-          <BlockView
-            key={i}
-            block={block}
-            alt={work.title}
-            anchorId={anchorId}
-          />
-        ))}
+        {/* The reading flow sizes its own rows — the rail never inflates
+            the first one. */}
+        <div className="max-md:contents md:col-span-10 md:col-start-3 md:grid md:grid-cols-10 md:items-start md:gap-x-gutter md:gap-y-gutter">
+          {grouped.map(({ block, anchorId }, i) => (
+            <BlockView
+              key={i}
+              block={block}
+              alt={work.title}
+              anchorId={anchorId}
+            />
+          ))}
+        </div>
       </div>
       {/* The bookends end the reading flow, so they live in the reading
           column: small label, title-size name, west and east. */}
