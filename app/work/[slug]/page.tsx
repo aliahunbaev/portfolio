@@ -389,10 +389,10 @@ export default async function WorkPage({ params }: Params) {
           homepage's caption-band grammar opening the study. Glimpse
           first, thinking after. */}
       <header className="pt-30">
-        <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
+        <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-12 md:gap-x-gutter">
           {/* The statement, in the homepage h1's own position: name and
               thesis left, one editorial block. */}
-          <div className="md:col-span-6">
+          <div className="md:col-span-5">
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
@@ -402,14 +402,10 @@ export default async function WorkPage({ params }: Params) {
               </p>
             )}
           </div>
-          <div className="max-md:pt-10 md:col-span-5 md:col-start-8">
-            {/* The notes: the whole story in one breath, Shovel-fashion.
-                For simple projects this is the only prose. */}
-            {work.overview && (
-              <p className="pb-8 text-[16px] leading-[1.6]">{work.overview}</p>
-            )}
-            {/* The facts beneath, two by two. */}
-            <div className="grid grid-cols-2 gap-x-gutter gap-y-6">
+          {/* SODAA grammar at one size: the facts as their own column,
+              the notes beside them, both in the body register. */}
+          <div className="max-md:order-2 max-md:pt-8 md:col-span-2 md:col-start-6">
+            <div className="grid grid-cols-2 gap-x-gutter gap-y-6 md:block md:space-y-6">
             <div>
               <p className="font-medium">Year</p>
               <p className="pt-1">{work.date}</p>
@@ -449,6 +445,11 @@ export default async function WorkPage({ params }: Params) {
             )}
             </div>
           </div>
+          {work.overview && (
+            <p className="leading-[1.5] max-md:order-1 max-md:pt-10 md:col-span-4 md:col-start-9">
+              {work.overview}
+            </p>
+          )}
         </div>
         {[work.homeRow, work.caseRow].filter((r) => r && r.length).map((row, ri) => (
           <div
