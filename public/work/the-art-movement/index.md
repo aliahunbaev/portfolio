@@ -5,6 +5,7 @@ medium: Event
 disciplines: Concept, Production, Photography
 description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York. One night at Verci with Jaden Clemons: four artists downstairs, a hundred guests, and a roof that went until late.
 cover: 000157750001.jpg
+overview: The first event by Combat Créatif: one night at Verci in Flatiron for about a hundred invited guests, hosted with Jaden Clemons. Four featured artists downstairs, a rooftop that went until late, and every artifact of the night designed for it.
 tagline: Inspiration handed directly from artist to audience.
 caseRow: 000157750012.jpg, IMG_5063.jpg, IMG_6156.jpg
 preview: preview.mp4

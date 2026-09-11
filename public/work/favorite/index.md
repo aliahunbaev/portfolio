@@ -5,6 +5,7 @@ medium: Web App
 disciplines: Design, Engineering, AI
 description: A library for everything you love, with your friends' shelves and an AI-tuned feed to grow your taste. Live now at myfavoriteapp.com.
 cover: site-0.jpg
+overview: Favorite is a shared library for taste: films, records, books, and podcasts on one wall, with your friends' shelves beside yours and an AI-tuned feed that learns what you love. Abdul and I designed and built it together, and it is live at myfavoriteapp.com.
 tagline: One beautiful home for everything you love.
 caseRow: site-1.jpg, site-3.jpg
 homeRow: intro.mp4, library-scroll.mp4

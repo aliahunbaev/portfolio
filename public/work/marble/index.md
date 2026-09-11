@@ -8,6 +8,7 @@ cover: sculptor-cover.jpg
 featured: true
 order: 1
 preview: preview.mp4
+overview: Marble is a training journal for iOS: programs, workouts, and a record of every session, stripped to the essential rhythm. I designed and built the whole thing alone in SwiftUI, and gave it an identity of posters, halftones, and a two-minute film. Live on the App Store since July 2026.
 tagline: Weaving timeless beauty into simple software.
 caseRow: demo-workout.mp4, app-train.png, poster-02.jpg, dark-recorded.png
 homeRow: preview.mp4, dark-workout.png, poster-14.jpg, clip-tabs.mp4

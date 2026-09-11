@@ -72,6 +72,10 @@ export type Project = {
    *  a short comma-separated line under the medium on the homepage,
    *  e.g. "Design, SwiftUI, Identity, Film". Three or four, no more. */
   disciplines?: string;
+  /** The Shovel-style notes paragraph in the overture (frontmatter:
+   *  overview) — the whole story in one breath; for simple projects it
+   *  is the only prose. */
+  overview?: string;
   /** One pointed fragment for the case-study opening (frontmatter:
    *  tagline) — the essence, not the overview. Falls back to the
    *  description when absent. */

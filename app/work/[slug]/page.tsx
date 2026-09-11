@@ -392,7 +392,7 @@ export default async function WorkPage({ params }: Params) {
         <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
           {/* The statement, in the homepage h1's own position: name and
               thesis left, one editorial block. */}
-          <div className="md:col-span-8">
+          <div className="md:col-span-6">
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
@@ -402,8 +402,14 @@ export default async function WorkPage({ params }: Params) {
               </p>
             )}
           </div>
-          {/* The facts, stacked on the right rail — SODAA grammar. */}
-          <div className="grid grid-cols-2 gap-x-gutter gap-y-6 max-md:pt-10 md:col-span-3 md:col-start-10 md:block md:space-y-6">
+          <div className="max-md:pt-10 md:col-span-5 md:col-start-8">
+            {/* The notes: the whole story in one breath, Shovel-fashion.
+                For simple projects this is the only prose. */}
+            {work.overview && (
+              <p className="pb-8 text-[16px] leading-[1.6]">{work.overview}</p>
+            )}
+            {/* The facts beneath, two by two. */}
+            <div className="grid grid-cols-2 gap-x-gutter gap-y-6">
             <div>
               <p className="font-medium">Year</p>
               <p className="pt-1">{work.date}</p>
@@ -441,6 +447,7 @@ export default async function WorkPage({ params }: Params) {
                 </p>
               </div>
             )}
+            </div>
           </div>
         </div>
         {[work.homeRow, work.caseRow].filter((r) => r && r.length).map((row, ri) => (

@@ -268,6 +268,7 @@ function readFolder(slug: string): Project | undefined {
       : undefined,
     disciplines: meta.disciplines || undefined,
     tagline: meta.tagline || undefined,
+    overview: meta.overview || undefined,
     // homeRow: preview.mp4, dark-workout.png — the homepage strip, in
     // order. Videos take poster and proportions from a same-name still
     // (or a "-poster" sibling); files without a knowable size are dropped.
