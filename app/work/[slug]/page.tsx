@@ -6,6 +6,8 @@ import BoardBlock from "../../components/board-block";
 import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
 import LoopVideo from "../../components/loop-video";
+import StripVideo from "../../components/strip-video";
+import PreviewVideo from "../../components/preview-video";
 import VideoPlayer from "../../components/video-player";
 import { getWorks, imageSize } from "../../lib/content";
 import { slugify, type Block } from "../../lib/projects";
@@ -380,6 +382,24 @@ export default async function WorkPage({ params }: Params) {
 
   const sections = blocks.filter((b) => b.type === "section");
 
+  // The overture media, regrouped for mobile the way the body flows:
+  // landscape items run full width, portraits pair up side by side.
+  const heroItems = [...(work.homeRow ?? []), ...(work.caseRow ?? [])];
+  const heroGroups: (typeof heroItems)[] = [];
+  {
+    let pair: typeof heroItems = [];
+    for (const it of heroItems) {
+      if (it.w >= it.h) {
+        if (pair.length) { heroGroups.push(pair); pair = []; }
+        heroGroups.push([it]);
+      } else {
+        pair.push(it);
+        if (pair.length === 2) { heroGroups.push(pair); pair = []; }
+      }
+    }
+    if (pair.length) heroGroups.push(pair);
+  }
+
   return (
     <main
       className="min-h-screen px-gutter pb-24 text-body"
@@ -405,7 +425,7 @@ export default async function WorkPage({ params }: Params) {
           {/* SODAA grammar at one size: the facts as their own column,
               the notes beside them, both in the body register. */}
           <div className="max-md:order-2 max-md:pt-8 md:col-span-2 md:col-start-6">
-            <div className="grid grid-cols-2 gap-x-gutter gap-y-6 md:block md:space-y-6">
+            <div className="space-y-6">
             <div>
               <p className="font-medium">Year</p>
               <p className="pt-1">{work.date}</p>
@@ -451,29 +471,26 @@ export default async function WorkPage({ params }: Params) {
             </p>
           )}
         </div>
-        {[work.homeRow, work.caseRow].filter((r) => r && r.length).map((row, ri) => (
-          <div
-            key={ri}
-            className={`flex items-stretch gap-x-gutter max-md:hidden ${ri === 0 ? "mt-12" : "mt-gutter"}`}
-          >
-            {row!.map((item) => {
-              const r = item.w / item.h;
-              return (
+        {[work.homeRow, work.caseRow]
+          .filter((r) => r && r.length)
+          .map((row, ri) => (
+            <div
+              key={ri}
+              className={`flex items-stretch gap-x-gutter max-md:hidden ${
+                ri === 0 ? "mt-12" : "mt-gutter"
+              }`}
+            >
+              {row!.map((item) => (
                 <div
                   key={item.src}
-                  style={{ flexGrow: r, flexBasis: 0, minWidth: 0 }}
+                  style={{ flexGrow: item.w / item.h, flexBasis: 0, minWidth: 0 }}
                 >
                   <div
                     className="relative w-full overflow-hidden bg-black/[0.04]"
                     style={{ aspectRatio: `${item.w} / ${item.h}` }}
                   >
                     {item.type === "video" ? (
-                      <LoopVideo
-                        src={item.src}
-                        poster={item.poster}
-                        w={item.w}
-                        h={item.h}
-                      />
+                      <StripVideo src={item.src} poster={item.poster} />
                     ) : (
                       <FadeImage
                         draggable={false}
@@ -486,10 +503,41 @@ export default async function WorkPage({ params }: Params) {
                     )}
                   </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
+          ))}
+        {heroGroups.length > 0 && (
+          <div className="mt-10 flex flex-col gap-gutter md:hidden">
+            {heroGroups.map((group, gi) => (
+              <div key={gi} className="flex items-start gap-x-gutter">
+                {group.map((item) => (
+                  <div
+                    key={item.src}
+                    style={{ flexGrow: item.w / item.h, flexBasis: 0, minWidth: 0 }}
+                  >
+                    <div
+                      className="relative w-full overflow-hidden bg-black/[0.04]"
+                      style={{ aspectRatio: `${item.w} / ${item.h}` }}
+                    >
+                      {item.type === "video" ? (
+                        <StripVideo src={item.src} poster={item.poster} />
+                      ) : (
+                        <FadeImage
+                          draggable={false}
+                          src={item.src}
+                          alt={work.title}
+                          fill
+                          sizes="100vw"
+                          className="object-cover"
+                        />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </header>
       <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter md:gap-y-gutter">
         <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2 md:row-start-1">
