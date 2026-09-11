@@ -60,8 +60,12 @@ function Em({ text }: { text: string }) {
             </a>
           );
         }
-        return chunk.split(/(\*[^*\n]+\*)/g).map((part, j) =>
-          part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
+        return chunk.split(/(\*\*[^*\n]+\*\*|\*[^*\n]+\*)/g).map((part, j) =>
+          part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
+            <strong key={`${i}-${j}`} className="font-medium">
+              {part.slice(2, -2)}
+            </strong>
+          ) : part.startsWith("*") && part.endsWith("*") && part.length > 2 ? (
             <em key={`${i}-${j}`}>{part.slice(1, -1)}</em>
           ) : (
             <span key={`${i}-${j}`}>{part}</span>

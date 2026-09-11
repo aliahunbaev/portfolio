@@ -12,15 +12,17 @@ featured: true
 order: 3
 ---
 
-## Overview
+## One night at Verci
 
-The Art Movement was the first event by Combat Créatif: one night for about a hundred invited guests at Verci in Flatiron, May 9th, 2026, hosted with Jaden Clemons. The night ran in two halves. Downstairs, four featured artists spanning music, sculpture, and spoken word each took the room for ten minutes in whatever format served their work: a story, a performance, a demo. Upstairs on the roof, a DJ set moved through soul, jazz, R&B, and electronic, with open microphones and instruments. Freestyles, cyphers, and dancing until late.
+**The format.** The Art Movement was the first event by Combat Créatif: one night for about a hundred invited guests at Verci in Flatiron, May 9th, 2026, hosted with Jaden Clemons. The night ran in two halves. Downstairs, four featured artists spanning music, sculpture, and spoken word each took the room for ten minutes in whatever format served their work: a story, a performance, a demo. Upstairs on the roof, a DJ set moved through soul, jazz, R&B, and electronic, with open microphones and instruments. Freestyles, cyphers, and dancing until late.
 
-The intention was simple: transfer creative inspiration directly from artist to audience, then give that energy somewhere to go.
+**The intention.** Transfer creative inspiration directly from artist to audience, then give that energy somewhere to go.
 
-## The Thinking
+**My role.** I concepted the night with Jaden, designed the deck, the program, and the artist invitations, and shot the photographs on this page.
 
-Before it was a night, it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves. Each featured artist received a three-page invitation laying out the format, the audience, and what we would provide. The announcement ran as two carousels on Instagram.
+## The thinking
+
+**Paper before party.** Before it was a night, it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves. Each featured artist received a three-page invitation laying out the format, the audience, and what we would provide. The announcement ran as two carousels on Instagram.
 
 ![Deck](slideshow-1.jpg) ![](slideshow-2.jpg) ![](slideshow-3.jpg) ![](slideshow-4.jpg) ![](slideshow-5.jpg) ![](slideshow-6.jpg) ![](slideshow-7.jpg) ![](slideshow-8.jpg) ![](slideshow-9.jpg)
 
@@ -34,7 +36,7 @@ Jaden, on the idea behind the event.
 
 ![](jaden-inspiration.mp4)
 
-## The Night
+## The night
 
 Then the night.
 
@@ -70,7 +72,7 @@ Then the night.
 
 ![](000157740021.jpg)
 
-## The Roof
+## The roof
 
 At nine the night moved to the roof.
 

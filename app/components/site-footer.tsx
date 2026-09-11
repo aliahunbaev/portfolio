@@ -82,8 +82,12 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
             }`
       }
     >
-      {/* The monument, on the floor. */}
+      {/* The monument, on the floor — led by the one sentence. */}
       <div>
+        <p className="pb-12 leading-[1.4]">
+          Open to product design and design-engineer roles in New York.
+          Say hello.
+        </p>
         <div>
           <p className="font-medium">Contact</p>
           <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
