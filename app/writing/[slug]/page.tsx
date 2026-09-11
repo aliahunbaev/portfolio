@@ -58,14 +58,14 @@ export default async function EssayPage({ params }: Params) {
             </h1>
             <p className="pt-2 md:hidden">{shelfDate(essay)}</p>
           </header>
-          <div className="space-y-[1.4em] text-[16px] leading-[1.6]">
+          <div className="space-y-[1.4em] md:text-[16px] leading-[1.6]">
             {essay.paragraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}
           </div>
           {previous && next && (
             <div className="flex items-start justify-between gap-gutter pt-24 max-md:pt-16">
-              <div className="text-[16px] leading-[1.6]">
+              <div className="md:text-[16px] leading-[1.6]">
                 <p>Previous</p>
                 <Link
                   href={`/writing/${previous.slug}`}
@@ -74,7 +74,7 @@ export default async function EssayPage({ params }: Params) {
                   {previous.title}
                 </Link>
               </div>
-              <div className="text-right text-[16px] leading-[1.6]">
+              <div className="text-right md:text-[16px] leading-[1.6]">
                 <p>Next</p>
                 <Link
                   href={`/writing/${next.slug}`}

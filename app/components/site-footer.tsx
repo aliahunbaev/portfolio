@@ -85,10 +85,6 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
       {/* The monument, on the floor — opened by the availability line,
           the footer's one sentence. */}
       <div>
-        <p className="max-w-[26rem] pb-12 font-medium leading-[1.5]">
-          Open to product design and design-engineer roles in New York.
-          Highly interested in working with cool people.
-        </p>
         <div>
           <p className="font-medium">Contact</p>
           <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
@@ -98,6 +94,13 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
             ))}
           </div>
         </div>
+        {/* The availability, in the monument's gray register, flowing. */}
+        <p
+          className={`max-w-[34rem] pt-12 leading-[1.2] text-neutral-400 ${big}`}
+        >
+          Open to product design and design-engineer roles in New York.
+          Highly interested in working with cool people.
+        </p>
         <div className="pt-12">
           <p className="font-medium">Links</p>
           <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>

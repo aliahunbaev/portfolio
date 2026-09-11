@@ -154,7 +154,7 @@ function BlockView({
     return (
       <h2
         id={block.id}
-        className="-mb-7 scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
+        className="-mb-7 scroll-mt-24 pt-10 md:text-[16px] font-medium leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
       >
         {block.title}
       </h2>
@@ -164,7 +164,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line py-6 text-[16px] leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
+        className="scroll-mt-24 whitespace-pre-line py-6 md:text-[16px] leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
       >
         <Em text={block.body} />
       </p>
@@ -172,7 +172,7 @@ function BlockView({
   }
   if (block.type === "quote") {
     return (
-      <figure id={anchorId} className="scroll-mt-24 py-6 text-[16px] leading-[1.6] lg:col-start-3 lg:col-span-4">
+      <figure id={anchorId} className="scroll-mt-24 py-6 md:text-[16px] leading-[1.6] lg:col-start-3 lg:col-span-4">
         <blockquote className="whitespace-pre-line italic leading-[1.5]">
           <Em text={block.body} />
         </blockquote>
@@ -506,7 +506,13 @@ export default async function WorkPage({ params }: Params) {
                 {group.map((item) => (
                   <div
                     key={item.src}
-                    style={{ flexGrow: item.w / item.h, flexBasis: 0, minWidth: 0 }}
+                    style={{
+                      // A lone grow factor under 1 only claims that fraction
+                      // of the row — singles must grow at 1 to fill it.
+                      flexGrow: group.length === 1 ? 1 : item.w / item.h,
+                      flexBasis: 0,
+                      minWidth: 0,
+                    }}
                   >
                     <div
                       className="relative w-full overflow-hidden bg-black/[0.04]"
@@ -553,7 +559,7 @@ export default async function WorkPage({ params }: Params) {
           column: small label, title-size name, west and east. */}
       <div className="pt-24 max-lg:pt-16 lg:grid lg:grid-cols-12 lg:gap-x-gutter">
         <div className="flex items-start justify-between gap-gutter lg:col-start-5 lg:col-span-4">
-          <div className="text-[16px] leading-[1.6]">
+          <div className="md:text-[16px] leading-[1.6]">
             <p>Previous</p>
             <Link
               href={`/work/${slugify(previous.title)}`}
@@ -562,7 +568,7 @@ export default async function WorkPage({ params }: Params) {
               {previous.title}
             </Link>
           </div>
-          <div className="text-right text-[16px] leading-[1.6]">
+          <div className="text-right md:text-[16px] leading-[1.6]">
             <p>Next</p>
             <Link
               href={`/work/${slugify(next.title)}`}
