@@ -86,7 +86,12 @@ export default function ProjectStrip({ project }: { project: Project }) {
   if (!items?.length) return <ProjectRow project={project} />;
 
   const href = `/work/${slugify(project.title)}`;
-  const ratioSum = items.reduce((sum, item) => sum + item.w / item.h, 0);
+  // Cards squeeze slightly toward portrait: the row runs taller, each
+  // cell trims a sliver off its sides via object-cover.
+  const SQUEEZE = 0.85;
+  const shaped = (item: { w: number; h: number }) =>
+    (item.w / item.h) * SQUEEZE;
+  const ratioSum = items.reduce((sum, item) => sum + shaped(item), 0);
 
   return (
     <article>
@@ -120,7 +125,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
         className="mt-8 flex cursor-none items-stretch gap-x-gutter max-md:hidden"
       >
         {items.map((item) => {
-          const ratio = item.w / item.h;
+          const ratio = shaped(item);
           return (
             <div
               key={item.src}
@@ -128,7 +133,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
             >
               <div
                 className="relative w-full overflow-hidden bg-black/[0.04]"
-                style={{ aspectRatio: `${item.w} / ${item.h}` }}
+                style={{ aspectRatio: `${ratio} / 1` }}
               >
                 {item.type === "video" ? (
                   <StripVideo src={item.src} poster={item.poster} />

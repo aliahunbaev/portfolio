@@ -88,7 +88,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
         {/* The availability opens the monument — the homepage blurb's
             leading, the monument's gray. */}
         <p
-          className={`max-w-[28rem] pb-12 leading-[1.1] text-neutral-400 ${big}`}
+          className={`max-w-[22rem] pb-12 leading-[1.1] text-neutral-400 ${big}`}
         >
           Open to product design and design-engineer roles in New York.
           Highly interested in working with cool people.
