@@ -95,11 +95,11 @@ export default function ProjectStrip({ project }: { project: Project }) {
         {/* Three columns, one job each: when · what it is + what was
             done · what happened. Disciplines interpunct-separated, the
             essay-rail metadata grammar. */}
-        <div className="col-span-2 space-y-4">
+        <div className="col-span-2 space-y-1">
           <p className="font-medium">{project.date}</p>
           <p>{project.category}</p>
         </div>
-        <div className="col-span-4 col-start-3 space-y-4">
+        <div className="col-span-4 col-start-3 space-y-1">
           <p className="font-medium">{project.title}</p>
           {project.disciplines && (
             <p>
