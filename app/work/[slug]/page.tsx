@@ -397,7 +397,7 @@ export default async function WorkPage({ params }: Params) {
               {work.title}
             </h1>
             {(work.tagline ?? work.description) && (
-              <p className="pt-3 text-title font-medium leading-[1.2] text-neutral-400">
+              <p className="text-title font-medium leading-[1.1] text-neutral-400">
                 {work.tagline ?? work.description}
               </p>
             )}

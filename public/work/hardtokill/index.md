@@ -4,6 +4,7 @@ date: 2024
 medium: Web Design
 description: A Shopify-integrated website for a media brand built around triumph and resilience.
 cover: htkhero.jpg
+tagline: A storefront for a brand built on resilience.
 ---
 
 Hardtokill is a media company built around triumph and resilience. Over four years, they grew to 340k followers by curating powerful imagery, stories, and interviews with people who embody their ethos, from UFC fighters to artists pushing boundaries. As they transitioned into a full media business, they needed infrastructure to support product drops, editorial content, and community building. I built them a Shopify-integrated website with a dynamic CMS for managing both media and products, email capture for upcoming releases, and a clean design that preserves their aesthetic.
