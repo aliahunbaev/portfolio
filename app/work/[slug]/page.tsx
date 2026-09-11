@@ -416,11 +416,6 @@ export default async function WorkPage({ params }: Params) {
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
-            {(work.tagline ?? work.description) && (
-              <p className="text-title font-medium leading-[1.1] text-neutral-400">
-                {work.tagline ?? work.description}
-              </p>
-            )}
           </div>
           {/* SODAA grammar at one size: the facts as their own column,
               the notes beside them, both in the body register. */}
