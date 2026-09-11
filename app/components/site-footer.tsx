@@ -87,12 +87,14 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
       <div>
         {/* The availability opens the monument — the homepage blurb's
             leading, the monument's gray. */}
+        {/* The availability line, parked for now — uncomment to bring
+            it back above Contact.
         <p
           className={`max-w-[22rem] pb-12 leading-[1.1] text-neutral-400 ${big}`}
         >
           Open to product design and design-engineer roles in New York.
           Highly interested in working with cool people.
-        </p>
+        </p> */}
         <div>
           <p className="font-medium">Contact</p>
           <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
