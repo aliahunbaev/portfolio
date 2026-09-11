@@ -154,7 +154,7 @@ function BlockView({
     return (
       <h2
         id={block.id}
-        className="-mb-7 scroll-mt-24 pt-10 md:text-[16px] font-medium leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
+        className="chapter-head scroll-mt-24 pt-10 md:text-[16px] font-medium leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
       >
         {block.title}
       </h2>

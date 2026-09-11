@@ -107,3 +107,10 @@ video::-webkit-media-controls-start-playback-button {
     animation: none;
   }
 }
+
+/* A chapter head sits tight over prose only — media after a head keeps
+   its full distance, so nothing rides up over the title. */
+.chapter-head + p,
+.chapter-head + figure {
+  margin-top: -1.75rem;
+}
