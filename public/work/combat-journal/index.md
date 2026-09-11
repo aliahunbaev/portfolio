@@ -9,13 +9,17 @@ homeRow: page-01.jpg, page-18.jpg, page-50.jpg, page-11.jpg, page-34.jpg, page-5
 featured: true
 ---
 
-## A magazine about making things
+## Why a magazine
 
-**Why a magazine.** The Combat Journal is a magazine about the first year of Combat Créatif: four garments and the thinking behind them. Each piece began as a story before it became clothing, and stories deserve pages. Sixty-eight of them, written, shot, and laid out start to finish.
+The Combat Journal is a magazine about the first year of Combat Créatif: four garments and the thinking behind them. Each piece began as a story before it became clothing, and stories deserve pages. Sixty-eight of them, written, shot, and laid out start to finish.
 
-**The brand behind it.** Combat is the clothing company I started with my best friend Abdul. We taught ourselves graphic design, built the store, and grew a simple idea to $30,000 in revenue. The journal is the record of that year: the garments, the references, and the people who wore them.
+## The brand behind it
 
-**The four garments.** The Soldier Uniform, the Workshirt, the Playfight Crewneck, and the Neighborhood Tee. One from war films, one from garage-startup lore, one from being a kid, one from New York itself.
+Combat is the clothing company I started with my best friend Abdul. We taught ourselves graphic design, built the store, and grew a simple idea to $30,000 in revenue. The journal is the record of that year: the garments, the references, and the people who wore them.
+
+## The four garments
+
+The Soldier Uniform, the Workshirt, the Playfight Crewneck, and the Neighborhood Tee. One from war films, one from garage-startup lore, one from being a kid, one from New York itself.
 
 ## The whole issue
 

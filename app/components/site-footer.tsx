@@ -82,12 +82,8 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
             }`
       }
     >
-      {/* The monument, on the floor — led by the one sentence. */}
+      {/* The monument, on the floor. */}
       <div>
-        <p className="pb-12 leading-[1.4]">
-          Open to product design and design-engineer roles in New York.
-          Say hello.
-        </p>
         <div>
           <p className="font-medium">Contact</p>
           <div className={`flex flex-col gap-y-1 pt-2 ${big}`}>
@@ -105,6 +101,12 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
             ))}
           </div>
         </div>
+      </div>
+      {/* The availability, in the colophon register. */}
+      <div className={`pt-16 text-neutral-400 ${big}`}>
+        <p>Open to product design and design-engineer</p>
+        <p>roles in New York. Highly interested</p>
+        <p>in working with cool people.</p>
       </div>
       {/* The meta closes the monument: place, time, colophon. */}
       <div className={`pt-16 text-neutral-400 ${big}`}>

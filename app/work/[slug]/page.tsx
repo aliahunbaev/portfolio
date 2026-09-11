@@ -147,7 +147,17 @@ function BlockView({
   alt: string;
   anchorId?: string;
 }) {
-  if (block.type === "section") return null;
+  if (block.type === "section") {
+    // The header lives in the text and the rail alike — same skeleton.
+    return (
+      <h2
+        id={block.id}
+        className="scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 md:col-start-5 md:col-span-4"
+      >
+        {block.title}
+      </h2>
+    );
+  }
   if (block.type === "text") {
     return (
       <p
@@ -327,7 +337,7 @@ export default async function WorkPage({ params }: Params) {
   let pendingAnchor: string | undefined;
   for (const block of blocks) {
     if (block.type === "section") {
-      pendingAnchor = block.id;
+      grouped.push({ block });
       continue;
     }
     const last = grouped[grouped.length - 1];
