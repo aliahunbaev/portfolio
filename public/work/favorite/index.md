@@ -14,13 +14,13 @@ order: 2
 links: myfavoriteapp.com https://myfavoriteapp.com
 ---
 
-## A library for everything you love
+## Everything you love
 
 Favorite is a library for everything you love. The films, records, books, and podcasts that shaped you, collected in one place. Abdul and I designed and built it together, end to end.
 
 ![loop](library-scroll.mp4)
 
-## A library that builds itself
+## It builds itself
 
 Search pulls clean covers and metadata for anything: film, TV, music, books, podcasts, video. A library builds itself in minutes and looks like a wall worth staring at. The wall matters. If a library isn't beautiful, nobody keeps one.
 
@@ -32,7 +32,7 @@ You follow your friends, see what they save and what they say about it, and the 
 
 ![](site-3.jpg) ![](site-4.jpg)
 
-## Walk into a few libraries
+## Walk in
 
 The site is live. Walk into a few libraries.
 

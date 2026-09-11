@@ -16,13 +16,13 @@ previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
 
-## A hyperbolic goal, on purpose
+## A hyperbolic goal
 
 Marble started with a cup of coffee in December, thinking about my constant goal of getting into incredible shape. The apps I used were scattered, none of them were beautiful, and none of them made me feel anything about the act of training. I wanted an app with a cohesive thesis about sculpting your physique, so I built it.
 
 The goal was hyperbolic on purpose: the most beautiful training app in the App Store, and thus the world. Saying it that way made me take the project seriously. It also made every decision easier. Once you know what the app believes, you know what to cut.
 
-## Four hundred pins before a line of Swift
+## Four hundred pins
 
 Before a line of Swift, there was a Pinterest board with four hundred pins. Stoic quotes, Greek statues, the attitudes of Bruce Lee and Muhammad Ali, and clean, gorgeous design. The whole temperament of the app was found here before it was designed. Whenever a screen felt wrong later, the board was the tiebreaker.
 
@@ -54,7 +54,7 @@ Leave mid-workout and it folds into a pill above the tabs, timer still running. 
 
 ![](dark-workout.png) ![](clip-pill.mp4)
 
-## Every session ends on Recorded
+## It ends on Recorded
 
 Track is where the numbers live: the month as a grid of days, bodyweight, best lifts. You is the record of it all, a journal of training days, each with a photo and a line about how it went.
 
