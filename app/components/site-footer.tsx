@@ -77,7 +77,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
       className={
         embedded
           ? "text-body"
-          : `flex flex-col justify-end px-gutter pb-gutter pt-24 text-body md:min-h-dvh md:pt-0 ${
+          : `flex min-h-dvh flex-col justify-end px-gutter pb-gutter text-body ${
               DARK ? "bg-black text-white" : "bg-white"
             }`
       }
@@ -146,21 +146,21 @@ export default function FooterShell({
   }, [isHome]);
 
   // The footer lives on the homepage only — every other page ends its
-  // own way. Desktop gets the wipe (fixed footer, content lifts off,
-  // soft seam); mobile scrolls past it in normal flow.
+  // own way. Every viewport gets the wipe: fixed footer, content lifts
+  // off, soft seam; dvh keeps mobile URL-bar resizes honest.
   if (!isHome) return <>{children}</>;
 
   return (
     <>
       <div
-        className="relative z-10 bg-white md:pb-gutter md:mb-[var(--footer-h)] md:[mask-image:linear-gradient(to_bottom,black_calc(100%_-_14px),transparent)]"
+        className="relative z-10 bg-white pb-gutter mb-[var(--footer-h)] [mask-image:linear-gradient(to_bottom,black_calc(100%_-_14px),transparent)]"
         style={{ "--footer-h": `${footerH}px` } as React.CSSProperties}
       >
         {children}
       </div>
       <div
         ref={footerRef}
-        className="md:fixed md:inset-x-0 md:bottom-0 md:z-0"
+        className="fixed inset-x-0 bottom-0 z-0"
       >
         <FooterCard />
       </div>
