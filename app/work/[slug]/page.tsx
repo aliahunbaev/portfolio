@@ -412,14 +412,17 @@ export default async function WorkPage({ params }: Params) {
         <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-12 md:gap-x-gutter">
           {/* The statement, in the homepage h1's own position: name and
               thesis left, one editorial block. */}
-          <div className="md:col-span-5">
+          {/* Identity then context: the title capped over its overview,
+              the site's caption grammar — facts as the right rail. */}
+          <div className="md:col-span-6">
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
+            {work.overview && (
+              <p className="pt-4 leading-[1.5]">{work.overview}</p>
+            )}
           </div>
-          {/* SODAA grammar at one size: the facts as their own column,
-              the notes beside them, both in the body register. */}
-          <div className="max-md:order-2 max-md:pt-8 md:col-span-2 md:col-start-6">
+          <div className="max-md:pt-8 md:col-span-3 md:col-start-10">
             <div className="space-y-6">
             <div>
               <p className="font-medium">Year</p>
@@ -460,11 +463,6 @@ export default async function WorkPage({ params }: Params) {
             )}
             </div>
           </div>
-          {work.overview && (
-            <p className="leading-[1.5] max-md:order-1 max-md:pt-10 md:col-span-4 md:col-start-9">
-              {work.overview}
-            </p>
-          )}
         </div>
         {[work.homeRow, work.caseRow]
           .filter((r) => r && r.length)
