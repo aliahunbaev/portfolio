@@ -390,7 +390,14 @@ export default async function WorkPage({ params }: Params) {
           first, thinking after. */}
       <header className="pt-30">
         <h1 className="text-title font-medium leading-[1.1]">{work.title}</h1>
-        <div className="grid grid-cols-2 gap-x-gutter gap-y-6 pt-8 md:grid-cols-12">
+        {/* The thesis, at title scale in the receded register — why this
+            project is worth the scroll, before the facts. */}
+        {work.description && (
+          <p className="pt-3 text-title font-medium leading-[1.2] text-neutral-400 md:w-2/3">
+            {work.description}
+          </p>
+        )}
+        <div className="grid grid-cols-2 gap-x-gutter gap-y-6 pt-10 md:grid-cols-12">
           <div className="md:col-span-2">
             <p className="font-medium">Year</p>
             <p className="pt-1">{work.date}</p>
