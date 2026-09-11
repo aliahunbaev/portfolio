@@ -396,9 +396,9 @@ export default async function WorkPage({ params }: Params) {
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
-            {work.description && (
+            {(work.tagline ?? work.description) && (
               <p className="pt-3 text-title font-medium leading-[1.2] text-neutral-400">
-                {work.description}
+                {work.tagline ?? work.description}
               </p>
             )}
           </div>
@@ -443,9 +443,12 @@ export default async function WorkPage({ params }: Params) {
             )}
           </div>
         </div>
-        {work.homeRow && work.homeRow.length > 0 && (
-          <div className="mt-12 flex items-stretch gap-x-gutter max-md:hidden">
-            {work.homeRow.map((item) => {
+        {[work.homeRow, work.caseRow].filter((r) => r && r.length).map((row, ri) => (
+          <div
+            key={ri}
+            className={`flex items-stretch gap-x-gutter max-md:hidden ${ri === 0 ? "mt-12" : "mt-gutter"}`}
+          >
+            {row!.map((item) => {
               const r = item.w / item.h;
               return (
                 <div
@@ -478,7 +481,7 @@ export default async function WorkPage({ params }: Params) {
               );
             })}
           </div>
-        )}
+        ))}
       </header>
       <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter md:gap-y-gutter">
         <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2 md:row-start-1">

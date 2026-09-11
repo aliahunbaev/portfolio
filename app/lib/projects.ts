@@ -72,6 +72,19 @@ export type Project = {
    *  a short comma-separated line under the medium on the homepage,
    *  e.g. "Design, SwiftUI, Identity, Film". Three or four, no more. */
   disciplines?: string;
+  /** One pointed fragment for the case-study opening (frontmatter:
+   *  tagline) — the essence, not the overview. Falls back to the
+   *  description when absent. */
+  tagline?: string;
+  /** Second overture row on the case study (frontmatter: caseRow),
+   *  same shape and rules as homeRow. */
+  caseRow?: {
+    type: "image" | "video";
+    src: string;
+    poster?: string;
+    w: number;
+    h: number;
+  }[];
   /** Curated homepage strip (frontmatter: homeRow): 2–4 assets shown
    *  side by side at natural proportions on desktop, widths in ratio so
    *  the strip shares one height. The first entry should be the same

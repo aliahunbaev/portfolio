@@ -216,6 +216,31 @@ function parseBlocks(slug: string, body: string): Block[] {
   return blocks;
 }
 
+
+/** Comma-separated media files → sized row items; unknown sizes drop. */
+function parseMediaRow(slug: string, raw?: string) {
+  if (!raw) return undefined;
+  return raw
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((src) => {
+      const url = resolveSrc(slug, src);
+      if (/\.(mp4|webm|mov)$/i.test(src)) {
+        for (const sibling of [".jpg", ".png", "-poster.jpg"]) {
+          const poster = url.replace(/\.(mp4|webm|mov)$/i, sibling);
+          const size = imageSize(poster);
+          if (size)
+            return { type: "video" as const, src: url, poster, ...size };
+        }
+        return undefined;
+      }
+      const size = imageSize(url);
+      return size ? { type: "image" as const, src: url, ...size } : undefined;
+    })
+    .filter((item) => item !== undefined);
+}
+
 function readFolder(slug: string): Project | undefined {
   const file = path.join(ROOT, slug, "index.md");
   if (!existsSync(file)) return undefined;
@@ -242,9 +267,12 @@ function readFolder(slug: string): Project | undefined {
       ? resolveSrc(slug, meta.previewPoster)
       : undefined,
     disciplines: meta.disciplines || undefined,
+    tagline: meta.tagline || undefined,
     // homeRow: preview.mp4, dark-workout.png — the homepage strip, in
     // order. Videos take poster and proportions from a same-name still
     // (or a "-poster" sibling); files without a knowable size are dropped.
+    // caseRow is the case-study overture's second row, same rules.
+    caseRow: parseMediaRow(slug, meta.caseRow),
     homeRow: meta.homeRow
       ? meta.homeRow
           .split(",")

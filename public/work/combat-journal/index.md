@@ -5,6 +5,8 @@ medium: Publication
 disciplines: Design, Writing, Photography
 description: Wrote and designed a magazine on making things with your friends: four garments, the stories behind them, and the people who wore them. Sixty-eight pages written, shot, and laid out start to finish.
 cover: cover.jpg
+tagline: Sixty-eight pages on making things with your friends.
+caseRow: page-05.jpg, page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg
 homeRow: page-01.jpg, page-18.jpg, page-50.jpg, page-11.jpg, page-34.jpg, page-59.jpg
 featured: true
 ---

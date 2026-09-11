@@ -8,6 +8,8 @@ cover: sculptor-cover.jpg
 featured: true
 order: 1
 preview: preview.mp4
+tagline: Weaving timeless beauty into simple software.
+caseRow: demo-workout.mp4, app-train.png, poster-02.jpg, dark-recorded.png
 homeRow: preview.mp4, dark-workout.png, poster-14.jpg, clip-tabs.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com

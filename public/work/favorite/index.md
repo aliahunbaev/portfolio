@@ -5,6 +5,8 @@ medium: Web App
 disciplines: Design, Engineering, AI
 description: A library for everything you love, with your friends' shelves and an AI-tuned feed to grow your taste. Live now at myfavoriteapp.com.
 cover: site-0.jpg
+tagline: One beautiful home for everything you love.
+caseRow: site-1.jpg, site-3.jpg
 homeRow: intro.mp4, library-scroll.mp4
 featured: true
 order: 2
