@@ -88,7 +88,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
         {/* The availability opens the monument — the homepage blurb's
             leading, the monument's gray. */}
         <p
-          className={`max-w-[34rem] pb-12 leading-[1.1] text-neutral-400 ${big}`}
+          className={`max-w-[28rem] pb-12 leading-[1.1] text-neutral-400 ${big}`}
         >
           Open to product design and design-engineer roles in New York.
           Highly interested in working with cool people.
@@ -112,7 +112,7 @@ export function FooterCard({ embedded = false }: { embedded?: boolean }) {
         </div>
       </div>
       {/* The meta closes the monument: place, time, colophon. */}
-      <div className={`pt-16 text-neutral-400 ${big}`}>
+      <div className={`pt-16 leading-[1.1] text-neutral-400 ${big}`}>
         <p>
           <Clock />
         </p>
