@@ -74,6 +74,13 @@ function StripVideo({
   );
 }
 
+/** The first sentence, for the mobile card — the full blurb stays on
+ *  desktop where the caption band gives it room. */
+const firstSentence = (s: string) => {
+  const i = s.indexOf(". ");
+  return i === -1 ? s : s.slice(0, i + 1);
+};
+
 export default function ProjectStrip({ project }: { project: Project }) {
   const items = project.homeRow;
   if (!items?.length) return <ProjectRow project={project} />;
@@ -183,7 +190,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
         )}
         <p className="col-start-3 row-start-2 text-right">{project.category}</p>
         <p className="col-span-2 col-start-1 row-start-3 leading-[1.4]">
-          {project.description}
+          {firstSentence(project.description)}
         </p>
       </div>
     </article>

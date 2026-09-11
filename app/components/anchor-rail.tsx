@@ -41,6 +41,13 @@ export default function AnchorRail({
         <a
           key={id}
           href={`#${id}`}
+          onClick={(e) => {
+            e.preventDefault();
+            document
+              .getElementById(id)
+              ?.scrollIntoView({ behavior: "smooth" });
+            history.replaceState(null, "", `#${id}`);
+          }}
           className={`w-fit ${
             active === id ? "text-black" : "text-black/40 hover:text-black"
           }`}

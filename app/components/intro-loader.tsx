@@ -12,6 +12,16 @@ export default function IntroLoader() {
     "blank" | "name" | "tagline" | "rise" | "fade" | "done"
   >("blank");
 
+  // The page holds still while the intro plays.
+  useEffect(() => {
+    if (phase === "done") {
+      document.body.classList.remove("overflow-hidden");
+      return;
+    }
+    document.body.classList.add("overflow-hidden");
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [phase]);
+
   useEffect(() => {
     const param = new URLSearchParams(window.location.search).get("intro");
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
