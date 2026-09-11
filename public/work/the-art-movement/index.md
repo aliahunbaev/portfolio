@@ -16,7 +16,7 @@ order: 3
 
 The Art Movement was the first event by Combat Créatif: one night for about a hundred invited guests at Verci in Flatiron, May 9th, 2026, hosted with Jaden Clemons. The night ran in two halves. Downstairs, four featured artists spanning music, sculpture, and spoken word each took the room for ten minutes in whatever format served their work: a story, a performance, a demo. Upstairs on the roof, a DJ set moved through soul, jazz, R&B, and electronic, with open microphones and instruments. Freestyles, cyphers, and dancing until late.
 
-## The intention
+## Inspiration, artist to audience
 
 Transfer creative inspiration directly from artist to audience, then give that energy somewhere to go.
 
@@ -24,7 +24,7 @@ Transfer creative inspiration directly from artist to audience, then give that e
 
 I concepted the night with Jaden, designed the deck, the program, and the artist invitations, and shot the photographs on this page.
 
-## The thinking
+## Paper before party
 
 Before it was a night, it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves. Each featured artist received a three-page invitation laying out the format, the audience, and what we would provide. The announcement ran as two carousels on Instagram.
 
@@ -40,7 +40,7 @@ Jaden, on the idea behind the event.
 
 ![](jaden-inspiration.mp4)
 
-## The night
+## Four artists, ten minutes each
 
 Then the night.
 
@@ -76,7 +76,7 @@ Then the night.
 
 ![](000157740021.jpg)
 
-## The roof
+## Then the roof, until late
 
 At nine the night moved to the roof.
 

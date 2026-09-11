@@ -65,20 +65,20 @@ export default async function EssayPage({ params }: Params) {
           </div>
           {previous && next && (
             <div className="flex items-start justify-between gap-gutter pt-24 max-md:pt-16">
-              <div>
+              <div className="text-[16px] leading-[1.6]">
                 <p>Previous</p>
                 <Link
                   href={`/writing/${previous.slug}`}
-                  className="mt-2 block text-title font-medium leading-[1.1] hover:text-neutral-400"
+                  className="block font-medium hover:text-neutral-400"
                 >
                   {previous.title}
                 </Link>
               </div>
-              <div className="text-right">
+              <div className="text-right text-[16px] leading-[1.6]">
                 <p>Next</p>
                 <Link
                   href={`/writing/${next.slug}`}
-                  className="mt-2 block text-title font-medium leading-[1.1] hover:text-neutral-400"
+                  className="block font-medium hover:text-neutral-400"
                 >
                   {next.title}
                 </Link>
