@@ -154,7 +154,7 @@ function BlockView({
     return (
       <h2
         id={block.id}
-        className="-mb-7 scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 md:col-start-3 md:col-span-4"
+        className="-mb-7 scroll-mt-24 pt-10 text-[16px] font-medium leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
       >
         {block.title}
       </h2>
@@ -164,7 +164,7 @@ function BlockView({
     return (
       <p
         id={anchorId}
-        className="scroll-mt-24 whitespace-pre-line py-6 text-[16px] leading-[1.6] first:pt-0 md:col-start-3 md:col-span-4"
+        className="scroll-mt-24 whitespace-pre-line py-6 text-[16px] leading-[1.6] first:pt-0 lg:col-start-3 lg:col-span-4"
       >
         <Em text={block.body} />
       </p>
@@ -172,7 +172,7 @@ function BlockView({
   }
   if (block.type === "quote") {
     return (
-      <figure id={anchorId} className="scroll-mt-24 py-6 text-[16px] leading-[1.6] md:col-start-3 md:col-span-4">
+      <figure id={anchorId} className="scroll-mt-24 py-6 text-[16px] leading-[1.6] lg:col-start-3 lg:col-span-4">
         <blockquote className="whitespace-pre-line italic leading-[1.5]">
           <Em text={block.body} />
         </blockquote>
@@ -194,12 +194,12 @@ function BlockView({
           poster={block.poster}
           w={block.w}
           h={block.h}
-          className="scroll-mt-24 md:col-start-1 md:col-span-8"
+          className="scroll-mt-24 lg:col-start-1 lg:col-span-8"
         />
       );
     }
     return (
-      <div id={anchorId} className="scroll-mt-24 md:col-start-1 md:col-span-8">
+      <div id={anchorId} className="scroll-mt-24 lg:col-start-1 lg:col-span-8">
         <VideoPlayer src={block.src} />
       </div>
     );
@@ -210,7 +210,7 @@ function BlockView({
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter md:col-start-1 md:col-span-8"
+        className="flex scroll-mt-24 items-start gap-x-gutter lg:col-start-1 lg:col-span-8"
       >
         {block.items.map((item) =>
           item.type === "video" ? (
@@ -240,7 +240,7 @@ function BlockView({
         <BoardBlock
           title={block.title}
           images={block.images}
-          className="md:col-start-1 md:col-span-8"
+          className="lg:col-start-1 lg:col-span-8"
         />
       );
     }
@@ -250,7 +250,7 @@ function BlockView({
         images={block.images}
         cover={block.cover}
         mode={block.mode}
-        className="md:col-start-1 md:col-span-8"
+        className="lg:col-start-1 lg:col-span-8"
       />
     );
   }
@@ -263,14 +263,14 @@ function BlockView({
           images={g.images}
           cover={g.cover}
           mode={g.mode}
-          className="scroll-mt-24 md:col-start-3 md:col-span-4"
+          className="scroll-mt-24 lg:col-start-3 lg:col-span-4"
         />
       );
     }
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-1 md:col-span-8"
+        className="flex scroll-mt-24 gap-x-gutter max-lg:flex-col max-lg:gap-y-gutter lg:col-start-1 lg:col-span-8"
       >
         {block.galleries.map((g) => (
           <GalleryBlock
@@ -295,14 +295,14 @@ function BlockView({
         <Picture
           block={block.images[0]}
           alt={alt}
-          className="scroll-mt-24 md:col-start-3 md:col-span-4"
+          className="scroll-mt-24 lg:col-start-3 lg:col-span-4"
         />
       );
     }
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter max-md:flex-col max-md:gap-y-gutter md:col-start-1 md:col-span-8"
+        className="flex scroll-mt-24 items-start gap-x-gutter max-lg:flex-col max-lg:gap-y-gutter lg:col-start-1 lg:col-span-8"
       >
         {block.images.map((img) => (
           <Picture
@@ -316,7 +316,7 @@ function BlockView({
     );
   }
   return (
-    <div id={anchorId} className="scroll-mt-24 md:col-start-1 md:col-span-8">
+    <div id={anchorId} className="scroll-mt-24 lg:col-start-1 lg:col-span-8">
       <Picture block={block} alt={alt} />
     </div>
   );
@@ -409,12 +409,12 @@ export default async function WorkPage({ params }: Params) {
           homepage's caption-band grammar opening the study. Glimpse
           first, thinking after. */}
       <header className="pt-30">
-        <div className="max-md:flex max-md:flex-col md:grid md:grid-cols-12 md:gap-x-gutter">
+        <div className="max-lg:flex max-lg:flex-col lg:grid lg:grid-cols-12 lg:gap-x-gutter">
           {/* The statement, in the homepage h1's own position: name and
               thesis left, one editorial block. */}
           {/* Identity then context: the title capped over its overview,
               the site's caption grammar — facts as the right rail. */}
-          <div className="md:col-span-6">
+          <div className="lg:col-span-6">
             <h1 className="text-title font-medium leading-[1.1]">
               {work.title}
             </h1>
@@ -422,7 +422,7 @@ export default async function WorkPage({ params }: Params) {
               <p className="pt-4 leading-[1.5]">{work.overview}</p>
             )}
           </div>
-          <div className="max-md:pt-8 md:col-span-3 md:col-start-10">
+          <div className="max-lg:pt-8 lg:col-span-3 lg:col-start-10">
             <div className="space-y-6">
             <div>
               <p className="font-medium">Year</p>
@@ -469,7 +469,7 @@ export default async function WorkPage({ params }: Params) {
           .map((row, ri) => (
             <div
               key={ri}
-              className={`flex items-stretch gap-x-gutter max-md:hidden ${
+              className={`flex items-stretch gap-x-gutter max-lg:hidden ${
                 ri === 0 ? "mt-12" : "mt-gutter"
               }`}
             >
@@ -500,7 +500,7 @@ export default async function WorkPage({ params }: Params) {
             </div>
           ))}
         {heroGroups.length > 0 && (
-          <div className="mt-10 flex flex-col gap-gutter md:hidden">
+          <div className="mt-10 flex flex-col gap-gutter lg:hidden">
             {heroGroups.map((group, gi) => (
               <div key={gi} className="flex items-start gap-x-gutter">
                 {group.map((item) => (
@@ -532,13 +532,13 @@ export default async function WorkPage({ params }: Params) {
           </div>
         )}
       </header>
-      <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2">
+      <div className="pt-16 max-lg:flex max-lg:flex-col max-lg:gap-gutter lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-gutter">
+        <aside className="max-lg:hidden lg:sticky lg:top-30 lg:col-start-1 lg:col-span-2">
           <AnchorRail sections={sections} />
         </aside>
         {/* The reading flow sizes its own rows — the rail never inflates
             the first one. */}
-        <div className="max-md:contents md:col-span-10 md:col-start-3 md:grid md:grid-cols-10 md:items-start md:gap-x-gutter md:gap-y-gutter">
+        <div className="max-lg:contents lg:col-span-10 lg:col-start-3 lg:grid lg:grid-cols-10 lg:items-start lg:gap-x-gutter lg:gap-y-gutter">
           {grouped.map(({ block, anchorId }, i) => (
             <BlockView
               key={i}
@@ -551,8 +551,8 @@ export default async function WorkPage({ params }: Params) {
       </div>
       {/* The bookends end the reading flow, so they live in the reading
           column: small label, title-size name, west and east. */}
-      <div className="pt-24 max-md:pt-16 md:grid md:grid-cols-12 md:gap-x-gutter">
-        <div className="flex items-start justify-between gap-gutter md:col-start-5 md:col-span-4">
+      <div className="pt-24 max-lg:pt-16 lg:grid lg:grid-cols-12 lg:gap-x-gutter">
+        <div className="flex items-start justify-between gap-gutter lg:col-start-5 lg:col-span-4">
           <div className="text-[16px] leading-[1.6]">
             <p>Previous</p>
             <Link
