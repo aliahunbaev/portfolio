@@ -176,25 +176,27 @@ export default function ProjectStrip({ project }: { project: Project }) {
           />
         )}
       </Link>
-      <div className="grid grid-cols-3 gap-x-gutter gap-y-4 pt-4 text-body md:hidden">
-        <p className="col-span-2 col-start-1 row-start-1 font-medium">
-          {project.title}
-        </p>
-        <p className="col-start-3 row-start-1 text-right font-medium">
-          {project.date}
-        </p>
-        {/* The disciplines ride between title and blurb, the medium
-            beside them — the caption band's facts, stacked. */}
-        {project.disciplines && (
-          <p className="col-span-2 col-start-1 row-start-2">
-            {project.disciplines
-              .split(",")
-              .map((d) => d.trim())
-              .join(" · ")}
-          </p>
-        )}
-        <p className="col-start-3 row-start-2 text-right">{project.category}</p>
-        <p className="col-span-2 col-start-1 row-start-3 leading-[1.4]">
+      <div className="pt-4 text-body md:hidden">
+        {/* Pairs sit tight, the caption-band rhythm: title/date, then
+            disciplines/medium a breath below, blurb after. */}
+        <div className="flex items-baseline justify-between gap-x-gutter">
+          <p className="font-medium">{project.title}</p>
+          <p className="text-right font-medium">{project.date}</p>
+        </div>
+        <div className="flex items-baseline justify-between gap-x-gutter pt-1">
+          {project.disciplines ? (
+            <p>
+              {project.disciplines
+                .split(",")
+                .map((d) => d.trim())
+                .join(" · ")}
+            </p>
+          ) : (
+            <span />
+          )}
+          <p className="text-right">{project.category}</p>
+        </div>
+        <p className="pt-4 leading-[1.4]">
           {firstSentence(project.description)}
         </p>
       </div>
