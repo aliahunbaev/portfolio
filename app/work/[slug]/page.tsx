@@ -385,36 +385,91 @@ export default async function WorkPage({ params }: Params) {
       className="min-h-screen px-gutter pb-24 text-body"
       style={work.tint ? { backgroundColor: work.tint } : undefined}
     >
-      {/* One anatomy for every project: rail cols 1-2, prose centered
-          on the page (cols 5-8, reading size), media wide around the
-          same axis (cols 3-10). Read narrow, look wide. */}
-      <div className="pt-30 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter md:gap-y-gutter">
+      {/* The overture: full-width facts over a strip of outcomes — the
+          homepage's caption-band grammar opening the study. Glimpse
+          first, thinking after. */}
+      <header className="pt-30">
+        <h1 className="text-title font-medium leading-[1.1]">{work.title}</h1>
+        <div className="grid grid-cols-2 gap-x-gutter gap-y-6 pt-8 md:grid-cols-12">
+          <div className="md:col-span-2">
+            <p className="font-medium">Year</p>
+            <p className="pt-1">{work.date}</p>
+          </div>
+          <div className="md:col-span-2">
+            <p className="font-medium">Medium</p>
+            <p className="pt-1">{work.category}</p>
+          </div>
+          {work.disciplines && (
+            <div className="md:col-span-4">
+              <p className="font-medium">Disciplines</p>
+              <p className="pt-1">
+                {work.disciplines
+                  .split(",")
+                  .map((d) => d.trim())
+                  .join(" · ")}
+              </p>
+            </div>
+          )}
+          {work.links && work.links.length > 0 && (
+            <div className="md:col-span-3">
+              <p className="font-medium">Links</p>
+              <p className="flex gap-x-4 pt-1">
+                {work.links.map((l) => (
+                  <a
+                    key={l.url}
+                    href={l.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </p>
+            </div>
+          )}
+        </div>
+        {work.homeRow && work.homeRow.length > 0 && (
+          <div className="mt-10 flex items-stretch gap-x-gutter max-md:hidden">
+            {work.homeRow.map((item) => {
+              const r = item.w / item.h;
+              return (
+                <div
+                  key={item.src}
+                  style={{ flexGrow: r, flexBasis: 0, minWidth: 0 }}
+                >
+                  <div
+                    className="relative w-full overflow-hidden bg-black/[0.04]"
+                    style={{ aspectRatio: `${item.w} / ${item.h}` }}
+                  >
+                    {item.type === "video" ? (
+                      <LoopVideo
+                        src={item.src}
+                        poster={item.poster}
+                        w={item.w}
+                        h={item.h}
+                      />
+                    ) : (
+                      <FadeImage
+                        draggable={false}
+                        src={item.src}
+                        alt={work.title}
+                        fill
+                        sizes="30vw"
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </header>
+      <div className="pt-16 max-md:flex max-md:flex-col max-md:gap-gutter md:grid md:grid-cols-12 md:items-start md:gap-x-gutter md:gap-y-gutter">
         <aside className="max-md:hidden md:sticky md:top-30 md:col-start-1 md:col-span-2 md:row-start-1">
           <AnchorRail sections={sections} />
         </aside>
-        <header className="pb-8 md:col-start-5 md:col-span-4 md:row-start-1">
-              <h1 className="text-title font-medium leading-[1.1]">
-                {work.title}
-              </h1>
-              <p className="pt-2">
-                {work.category}, {work.date}
-              </p>
-              {work.links && work.links.length > 0 && (
-                <p className="flex gap-x-4 pt-4">
-                  {work.links.map((l) => (
-                    <a
-                      key={l.url}
-                      href={l.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
-                    >
-                      {l.label}
-                    </a>
-                  ))}
-                </p>
-              )}
-        </header>
         {grouped.map(({ block, anchorId }, i) => (
           <BlockView
             key={i}
