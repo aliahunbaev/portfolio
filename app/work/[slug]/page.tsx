@@ -389,55 +389,62 @@ export default async function WorkPage({ params }: Params) {
           homepage's caption-band grammar opening the study. Glimpse
           first, thinking after. */}
       <header className="pt-30">
-        <h1 className="text-title font-medium leading-[1.1]">{work.title}</h1>
-        {/* The thesis, at title scale in the receded register — why this
-            project is worth the scroll, before the facts. */}
-        {work.description && (
-          <p className="pt-3 text-title font-medium leading-[1.2] text-neutral-400 md:w-2/3">
-            {work.description}
-          </p>
-        )}
-        <div className="grid grid-cols-2 gap-x-gutter gap-y-6 pt-10 md:grid-cols-12">
-          <div className="md:col-span-2">
-            <p className="font-medium">Year</p>
-            <p className="pt-1">{work.date}</p>
-          </div>
-          <div className="md:col-span-2">
-            <p className="font-medium">Medium</p>
-            <p className="pt-1">{work.category}</p>
-          </div>
-          {work.disciplines && (
-            <div className="md:col-span-4">
-              <p className="font-medium">Disciplines</p>
-              <p className="pt-1">
-                {work.disciplines
-                  .split(",")
-                  .map((d) => d.trim())
-                  .join(" · ")}
+        <div className="md:grid md:grid-cols-12 md:gap-x-gutter">
+          {/* The statement, in the homepage h1's own position: name and
+              thesis left, one editorial block. */}
+          <div className="md:col-span-8">
+            <h1 className="text-title font-medium leading-[1.1]">
+              {work.title}
+            </h1>
+            {work.description && (
+              <p className="pt-3 text-title font-medium leading-[1.2] text-neutral-400">
+                {work.description}
               </p>
+            )}
+          </div>
+          {/* The facts, stacked on the right rail — SODAA grammar. */}
+          <div className="grid grid-cols-2 gap-x-gutter gap-y-6 max-md:pt-10 md:col-span-3 md:col-start-10 md:block md:space-y-6">
+            <div>
+              <p className="font-medium">Year</p>
+              <p className="pt-1">{work.date}</p>
             </div>
-          )}
-          {work.links && work.links.length > 0 && (
-            <div className="md:col-span-3">
-              <p className="font-medium">Links</p>
-              <p className="flex gap-x-4 pt-1">
-                {work.links.map((l) => (
-                  <a
-                    key={l.url}
-                    href={l.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
-                  >
-                    {l.label}
-                  </a>
-                ))}
-              </p>
+            <div>
+              <p className="font-medium">Medium</p>
+              <p className="pt-1">{work.category}</p>
             </div>
-          )}
+            {work.disciplines && (
+              <div>
+                <p className="font-medium">Disciplines</p>
+                <p className="pt-1">
+                  {work.disciplines
+                    .split(",")
+                    .map((d) => d.trim())
+                    .join(" · ")}
+                </p>
+              </div>
+            )}
+            {work.links && work.links.length > 0 && (
+              <div>
+                <p className="font-medium">Links</p>
+                <p className="flex flex-wrap gap-x-4 pt-1">
+                  {work.links.map((l) => (
+                    <a
+                      key={l.url}
+                      href={l.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-700 underline decoration-1 underline-offset-2 hover:text-neutral-400"
+                    >
+                      {l.label}
+                    </a>
+                  ))}
+                </p>
+              </div>
+            )}
+          </div>
         </div>
         {work.homeRow && work.homeRow.length > 0 && (
-          <div className="mt-10 flex items-stretch gap-x-gutter max-md:hidden">
+          <div className="mt-12 flex items-stretch gap-x-gutter max-md:hidden">
             {work.homeRow.map((item) => {
               const r = item.w / item.h;
               return (
