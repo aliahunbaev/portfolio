@@ -196,7 +196,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
           )}
           <p className="text-right">{project.category}</p>
         </div>
-        <p className="w-2/3 pt-4 leading-[1.4]">
+        <p className="pt-4 leading-[1.4]">
           {firstSentence(project.description)}
         </p>
       </div>
