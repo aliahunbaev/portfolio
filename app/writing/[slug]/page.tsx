@@ -35,30 +35,28 @@ export default async function EssayPage({ params }: Params) {
 
   return (
     <main className="px-gutter pb-24 text-body">
-      {/* The project-page anatomy: apparatus on the left rail, the piece
-          in the reading column where the index list sits. */}
+      {/* The piece sits in the reading column where the index list sits.
+          No rail: the fixed nav already holds Writing, and the piece
+          carries its own metadata. */}
       <div className="pt-30 md:grid md:grid-cols-12 md:items-start md:gap-x-gutter">
-        <aside className="max-md:hidden md:sticky md:top-30 md:col-span-2">
-          <div className="grid gap-y-4">
-            <Link href="/writing" className="hover:text-neutral-400">
-              All Writing
-            </Link>
-            <div className="grid gap-y-1 pt-4">
-              <p>{shelfDate(essay)}</p>
-              <p>
-                {words.toLocaleString()} words · {minutes} min
-              </p>
-            </div>
-          </div>
-        </aside>
         <article className="md:col-span-4 md:col-start-5">
-          <header className="pb-16 max-md:pb-10">
+          {/* Metadata sits under the title in the site sans, so the line
+              between apparatus and serif reading falls right there. The
+              head clears the first line by about two paragraph gaps. */}
+          <header className="pb-10">
             <h1 className="text-title font-medium leading-[1.1]">
               {essay.title}
             </h1>
-            <p className="pt-2 md:hidden">{shelfDate(essay)}</p>
+            <p className="pt-3">
+              {shelfDate(essay)} · {words.toLocaleString()} words · {minutes} min
+            </p>
           </header>
-          <div className="space-y-[1.4em] md:text-[16px] leading-[1.6]">
+          {/* The one place the site reads in serif: the prose itself.
+              Title, rail, metadata and previous/next stay in the site
+              sans, the same head as every other page. */}
+          {/* tracking-normal: the body tier's hair of letter-spacing is tuned for
+              Suisse at 14px; the serif carries its own fit at reading size. */}
+          <div className="font-serif tracking-normal space-y-[1.4em] md:text-[16px] leading-[1.6]">
             {essay.paragraphs.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}

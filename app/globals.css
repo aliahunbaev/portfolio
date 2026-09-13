@@ -9,6 +9,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-suisse), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Reading face, essay bodies only (font-serif). */
+  --font-serif: var(--font-otto), Georgia, "Times New Roman", serif;
   --font-fraktion: var(--font-fraktion);
   /* Single source of truth for page margins and grid gaps. */
   --spacing-gutter: 0.75rem;
