@@ -16,7 +16,7 @@ previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
 
-## No awe
+## No awe | Background
 
 Marble started in January. My ambitions for the year were to make beautiful products and to cultivate a fighter's physique. The two pursuits merged into Marble, an attempt at the most beautiful training app in existence.
 
@@ -27,7 +27,7 @@ I wanted two things:
 - To track everything required in physical transformation: food, weight, lifts, progress photos.
 - A product with a point of view built into the name, the branding, and the design, so that any engagement with the tool recalled emotions and ideas that inspired me to pursue physical greatness.
 
-## The durable fuel
+## The durable fuel | Motivation
 
 I started lifting because I wanted to look good. This is quite motivating, but a sharp, narrow, obviously vain motivation which often burns off. After my initial push to lose weight and stop getting rejected by girls in middle school, my inspirations to train changed and merged with my creative interests.
 
@@ -37,7 +37,7 @@ Before workouts I'd sit with my pre-workout and go through a Pinterest board I k
 
 The apps and tools I'd use to help pursue fitness were completely devoid of these sentiments. I wanted to build my own that wove them into the experience.
 
-## The marble and the sculptor
+## The marble and the sculptor | The name
 
 The name comes from a line by Alexis Carrel: *man cannot remake himself without suffering, for he is both the marble and the sculptor.*
 
@@ -51,7 +51,7 @@ If Marble existed hundreds of years ago, it would have been a bound notebook. Ri
 
 [![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com)
 
-## The Venn diagram
+## The Venn diagram | Audience
 
 You can wear any clothes to go train. The market of comfortable materials is vast and you can go very cheap. And yet people buy from brands like UVU, Nike, On, Alo for the status, the story, how it makes them feel.
 
@@ -59,13 +59,13 @@ There's a Venn diagram of people who love art, spirituality, and design, and who
 
 ![](venn.png)
 
-## One spearhead
+## One spearhead | Scope
 
 My first instinct was to build everything at once: food, weight, macros, lifts, runs, one dashboard. But food tracking is legacy territory owned by companies with decades of data, running belongs to Strava, and the companies I admire don't start all-encompassing anyway. They have a point of view and one spearhead, and they expand from there. Figma didn't start with Figma-everything; it started with Figma Design, and people loved it. Then came FigJam, Slides, Sites, Buzz, Make, etc.
 
 If you blew Marble out to full scale, there would be gyms, running clubs, physical products, supplements. But great brands start with a sharp, focused beginning, and lifting is the closest thing to sculpting there is. So the first version tracks workouts and bodyweight, nothing else.
 
-## A training journal
+## A training journal | Product
 
 I like to give my products a reference object. If this were a physical thing, what would it be? Marble is a training journal. Often as I visit different gyms, I see a recurring archetype: the old-school boxer or bodybuilder, the gray-haired seventy-year-old in phenomenal shape who, though you've never met him, you imagine was a renowned athlete in his youth, with a coach who demanded a code of excellence and consistency that has never left him. They are usually pulling out a battered physical notebook to write down their sets, what felt wrong, what felt right. You don't open a notebook to find friends or play a game. It's a private, reflective object.
 
@@ -77,7 +77,7 @@ The app is that notebook in digital form. It's black and white throughout, refle
 
 ![](dark-workout.png) ![](clip-pill.mp4)
 
-## Trust the user
+## Trust the user | Decisions
 
 One of my best friends was excited about the app and asked when the social features were coming. That was a difficult decision, and I'm still not sure about it, because training with people is a gift. Iron sharpens iron. Growing up, if Abdul was running a fast pace, I had to keep up despite my burning legs, and when my bench went up, he locked in. If Marble ever had a social graph, it would look like that: two or three training partners, deeply personal, no like buttons, no explore page. But I decided against social features, holding true to the private notebook.
 
@@ -91,7 +91,7 @@ You should use social media for social things, and this is not social media. It'
 
 ![](clip-tabs.mp4) ![](dark-recorded.png)
 
-## The Sculptor, a campaign film
+## The Sculptor, a campaign film | Film
 
 There's a garment company called UVU whose campaign films stopped me in my tracks. They take an athlete, a runner or a martial artist, and shoot the most dramatic, emotional, almost melancholy portrait of them, which is not how athletes are usually shown. Their actual products are simple, running clothes with a logo on them. But they did the work of creating the story behind what the products represent, and now when you wear them and run, you see those images. The storytelling makes the product.
 

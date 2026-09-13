@@ -1,7 +1,9 @@
 /** A unit of project-page content. Images carry their pixel size so
  *  layouts can honour natural proportions without cropping. */
 export type Block =
-  | { type: "section"; title: string; id: string }
+  /** `## Title | Label`: the body shows the title, the rail shows the
+   *  plain label (falling back to the title when there is none). */
+  | { type: "section"; title: string; id: string; label?: string }
   | { type: "text"; body: string }
   /** Blank-line-separated lines each starting "- " or "* ". */
   | { type: "list"; items: string[] }

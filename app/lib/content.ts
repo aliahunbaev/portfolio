@@ -94,8 +94,16 @@ function parseBlocks(slug: string, body: string): Block[] {
     const trimmed = chunk.trim();
     if (!trimmed) continue;
     if (trimmed.startsWith("## ")) {
-      const title = trimmed.slice(3).trim();
-      blocks.push({ type: "section", title, id: slugify(title) });
+      const [title, label] = trimmed
+        .slice(3)
+        .split("|")
+        .map((part) => part.trim());
+      blocks.push({
+        type: "section",
+        title,
+        id: slugify(title),
+        ...(label ? { label } : {}),
+      });
       continue;
     }
     // A chunk of "- " / "* " lines is a list.

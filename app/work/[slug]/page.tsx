@@ -394,7 +394,10 @@ export default async function WorkPage({ params }: Params) {
     pendingAnchor = undefined;
   }
 
-  const sections = blocks.filter((b) => b.type === "section");
+  // The rail is a map in plain words; the body keeps the written titles.
+  const sections = blocks
+    .filter((b) => b.type === "section")
+    .map((b) => ({ id: b.id, title: b.label ?? b.title }));
 
   // The overture media, regrouped for mobile the way the body flows:
   // landscape items run full width, portraits pair up side by side.
