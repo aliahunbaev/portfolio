@@ -454,7 +454,7 @@ export const charlatanEssays: Essay[] = [
       "Look for indications that a value of yours isn’t being met.",
       "If it isn’t, try to adjust and move in a direction you care about.",
       "If you’re already doing that, just continue (:",
-      "STEP SUMMARY",
+      "Step summary:",
       "1) Distance yourself from the MindRadio©",
       "2) Look for a value that isn’t met",
       "3) Move in the direction of your values",

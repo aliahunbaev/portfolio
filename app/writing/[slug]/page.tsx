@@ -5,6 +5,34 @@ import { pieces } from "../../lib/pieces";
 
 type Params = { params: Promise<{ slug: string }> };
 
+/* Essay paragraphs are flat strings; the shapes hide in their first
+   characters. Consecutive "- " lines gather into one bulleted list,
+   "---" is a section rule, everything else reads as a paragraph
+   (with \n kept as line breaks). */
+type ProseBlock =
+  | { kind: "text"; text: string }
+  | { kind: "list"; items: string[] }
+  | { kind: "rule" };
+
+function groupParagraphs(paragraphs: string[]): ProseBlock[] {
+  const blocks: ProseBlock[] = [];
+  for (const p of paragraphs) {
+    if (p.trim() === "---") {
+      blocks.push({ kind: "rule" });
+      continue;
+    }
+    if (p.startsWith("- ")) {
+      const last = blocks[blocks.length - 1];
+      const item = p.slice(2);
+      if (last?.kind === "list") last.items.push(item);
+      else blocks.push({ kind: "list", items: [item] });
+      continue;
+    }
+    blocks.push({ kind: "text", text: p });
+  }
+  return blocks;
+}
+
 export function generateStaticParams() {
   return essays.map((essay) => ({ slug: essay.slug }));
 }
@@ -57,9 +85,21 @@ export default async function EssayPage({ params }: Params) {
           {/* tracking-normal: the body tier's hair of letter-spacing is tuned for
               Suisse at 14px; the serif carries its own fit at reading size. */}
           <div className="font-serif tracking-normal space-y-[1.4em] md:text-[16px] leading-[1.6]">
-            {essay.paragraphs.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+            {groupParagraphs(essay.paragraphs).map((block, i) =>
+              block.kind === "list" ? (
+                <ul key={i} className="list-disc space-y-2 pl-4">
+                  {block.items.map((item, j) => (
+                    <li key={j}>{item}</li>
+                  ))}
+                </ul>
+              ) : block.kind === "rule" ? (
+                <hr key={i} className="w-10 border-neutral-300" />
+              ) : (
+                <p key={i} className="whitespace-pre-line">
+                  {block.text}
+                </p>
+              ),
+            )}
           </div>
           {previous && next && (
             <div className="flex items-start justify-between gap-gutter pt-24 max-md:pt-16">
