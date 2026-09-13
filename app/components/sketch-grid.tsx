@@ -5,13 +5,6 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 import { sketches, type Sketch } from "../lib/sketches";
-import FlashIntro from "./flash-intro";
-
-// The opening shuffle: a spread of the wall, one sketch per beat.
-const flashDeck = sketches
-  .filter((_, i) => i % 4 === 0)
-  .slice(0, 12)
-  .map((sketch) => sketch.image);
 
 // Hash slug per sketch (SODAA-style deep links): /sketches#sketch-004
 // opens the gallery at that sketch.
@@ -82,7 +75,8 @@ export default function SketchGrid() {
 
   return (
     <>
-      <FlashIntro images={flashDeck} sessionKey="sketches-intro-seen" />
+      {/* The page arrives on the site's standard fade; the flash intro
+          is parked for now (component kept in flash-intro.tsx). */}
       <div className="grid grid-cols-2 items-end gap-gutter md:grid-cols-4">
         {sketches.map((sketch, i) => (
           <button
@@ -96,9 +90,9 @@ export default function SketchGrid() {
               src={sketch.image}
               alt={sketch.title}
               sizes="(max-width: 768px) 50vw, 25vw"
-              placeholder="blur"
               priority={i < 8}
-              className="h-auto w-full"
+              // Loads over the flat placeholder tone, not a blur-up.
+              className="h-auto w-full bg-black/[0.04]"
             />
           </button>
         ))}
