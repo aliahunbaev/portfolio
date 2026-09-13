@@ -82,7 +82,7 @@ export default async function EssayPage({ params }: Params) {
           {/* The one place the site reads in serif: the prose itself.
               Title, rail, metadata and previous/next stay in the site
               sans, the same head as every other page. */}
-          <div className="font-serif space-y-[1.4em] md:text-[16px] leading-[1.6]">
+          <div className="font-serif space-y-[1.4em] text-[16px] leading-[1.6]">
             {groupParagraphs(essay.paragraphs).map((block, i) =>
               block.kind === "list" ? (
                 <ul key={i} className="list-disc space-y-2 pl-4">
