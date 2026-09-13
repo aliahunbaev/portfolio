@@ -170,6 +170,20 @@ function BlockView({
       </p>
     );
   }
+  if (block.type === "list") {
+    return (
+      <ul
+        id={anchorId}
+        className="scroll-mt-24 list-disc space-y-2 pb-6 pl-4 md:text-[16px] leading-[1.6] lg:col-start-3 lg:col-span-4"
+      >
+        {block.items.map((item) => (
+          <li key={item}>
+            <Em text={item} />
+          </li>
+        ))}
+      </ul>
+    );
+  }
   if (block.type === "quote") {
     return (
       <figure id={anchorId} className="scroll-mt-24 py-6 md:text-[16px] leading-[1.6] lg:col-start-3 lg:col-span-4">

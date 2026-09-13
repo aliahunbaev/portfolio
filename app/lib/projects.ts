@@ -3,6 +3,8 @@
 export type Block =
   | { type: "section"; title: string; id: string }
   | { type: "text"; body: string }
+  /** Blank-line-separated lines each starting "- " or "* ". */
+  | { type: "list"; items: string[] }
   | { type: "quote"; body: string; author?: string }
   | {
       type: "image";

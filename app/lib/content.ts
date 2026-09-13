@@ -98,6 +98,15 @@ function parseBlocks(slug: string, body: string): Block[] {
       blocks.push({ type: "section", title, id: slugify(title) });
       continue;
     }
+    // A chunk of "- " / "* " lines is a list.
+    const listLines = trimmed.split(/\r?\n/).map((l) => l.trim());
+    if (listLines.every((l) => /^[-*]\s+/.test(l))) {
+      blocks.push({
+        type: "list",
+        items: listLines.map((l) => l.replace(/^[-*]\s+/, "")),
+      });
+      continue;
+    }
     if (trimmed.startsWith("> ")) {
       // Quote block; a final line opening with an em dash is the
       // author. Internal blank quote lines are paragraph breaks.
