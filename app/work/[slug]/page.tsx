@@ -439,7 +439,7 @@ export default async function WorkPage({ params }: Params) {
           <div className="max-lg:pt-8 lg:col-span-3 lg:col-start-10">
             <div className="space-y-6">
             <div>
-              <p className="font-medium">Year</p>
+              <p className="font-medium">Date</p>
               <p className="pt-1">{work.date}</p>
             </div>
             <div>
