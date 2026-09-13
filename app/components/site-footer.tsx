@@ -51,7 +51,7 @@ function EmailAction() {
 }
 
 /* A departing link: gray on hover, Suisse's arrow marking the exit. */
-function ReachLink({ label, href }: { label: string; href: string }) {
+export function ReachLink({ label, href }: { label: string; href: string }) {
   return (
     <a
       href={href}
