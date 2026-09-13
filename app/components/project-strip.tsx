@@ -177,28 +177,19 @@ export default function ProjectStrip({ project }: { project: Project }) {
         )}
       </Link>
       <div className="pt-4 text-body md:hidden">
-        {/* Pairs sit tight, the caption-band rhythm: title/date, then
-            disciplines/medium a breath below, blurb after. */}
+        {/* Two rows, a small gap between: title/date up top, then the
+            blurb in a narrower column with the medium at the right.
+            Disciplines stay a desktop detail. */}
         <div className="flex items-baseline justify-between gap-x-gutter">
           <p className="font-medium">{project.title}</p>
           <p className="text-right font-medium">{project.date}</p>
         </div>
-        <div className="flex items-baseline justify-between gap-x-gutter pt-1">
-          {project.disciplines ? (
-            <p>
-              {project.disciplines
-                .split(",")
-                .map((d) => d.trim())
-                .join(" · ")}
-            </p>
-          ) : (
-            <span />
-          )}
+        <div className="flex items-baseline justify-between gap-x-gutter pt-4">
+          <p className="w-2/3 leading-[1.4]">
+            {firstSentence(project.description)}
+          </p>
           <p className="text-right">{project.category}</p>
         </div>
-        <p className="pt-4 leading-[1.4]">
-          {firstSentence(project.description)}
-        </p>
       </div>
     </article>
   );
