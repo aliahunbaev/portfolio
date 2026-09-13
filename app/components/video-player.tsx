@@ -25,6 +25,8 @@ export default function VideoPlayer({
   const barRef = useRef<HTMLDivElement>(null);
   const [near, setNear] = useState(false);
   const [fs, setFs] = useState(false);
+  const [idle, setIdle] = useState(false);
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [time, setTime] = useState(0);
@@ -70,6 +72,32 @@ export default function VideoPlayer({
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
 
+  // In fullscreen the controls step aside: they fade after a still
+  // moment and any pointer movement brings them back. A paused film
+  // keeps them up.
+  useEffect(() => {
+    if (!fs) {
+      setIdle(false);
+      return;
+    }
+    const wake = () => {
+      setIdle(false);
+      if (idleTimer.current) clearTimeout(idleTimer.current);
+      idleTimer.current = setTimeout(() => {
+        if (!videoRef.current?.paused) setIdle(true);
+      }, 2500);
+    };
+    wake();
+    const el = wrapRef.current;
+    el?.addEventListener("pointermove", wake);
+    el?.addEventListener("pointerdown", wake);
+    return () => {
+      if (idleTimer.current) clearTimeout(idleTimer.current);
+      el?.removeEventListener("pointermove", wake);
+      el?.removeEventListener("pointerdown", wake);
+    };
+  }, [fs]);
+
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     else wrapRef.current?.requestFullscreen().catch(() => {});
@@ -102,7 +130,7 @@ export default function VideoPlayer({
   return (
     <div
       ref={wrapRef}
-      className={`relative ${fs ? "flex items-center justify-center bg-black" : "bg-black/[0.04]"} ${className}`}
+      className={`relative ${fs ? "flex items-center justify-center bg-black" : "bg-black/[0.04]"} ${fs && idle ? "cursor-none" : ""} ${className}`}
     >
       <video
         ref={videoRef}
@@ -121,7 +149,12 @@ export default function VideoPlayer({
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
       />
-      <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-8 px-3 pb-2.5 text-body font-medium text-white">
+      {/* White through mix-blend-difference: the controls invert
+          whatever plays behind them, so they read on any frame. In
+          fullscreen they fade with the idle cursor. */}
+      <div
+        className={`absolute inset-x-0 bottom-0 flex items-center justify-between gap-8 px-3 pb-2.5 text-body font-medium text-white mix-blend-difference transition-opacity duration-300 ${fs && idle ? "pointer-events-none opacity-0" : "opacity-100"}`}
+      >
         <div className="flex items-baseline gap-4">
           <button
             type="button"
