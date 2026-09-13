@@ -23,10 +23,7 @@ const suisse = localFont({
   variable: "--font-suisse",
 });
 
-// The reading face: ABC Otto, for essay prose only — titles, rail, nav
-// and every other page stay in Suisse. Regular with its italic. Dinamo
-// trial files: not licensed for a live site, so buy the license before
-// this ships.
+// The essay face: ABC Otto — regular with its italic.
 const otto = localFont({
   src: [
     { path: "./fonts/ABCOttoTrial-Regular.otf", weight: "400", style: "normal" },
@@ -34,6 +31,19 @@ const otto = localFont({
   ],
   variable: "--font-otto",
 });
+
+// Untitled Serif, the reading voice: regular and medium with italics,
+// the full web family.
+const untitled = localFont({
+  src: [
+    { path: "./fonts/UntitledSerifWeb-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/UntitledSerifWeb-RegularItalic.woff2", weight: "400", style: "italic" },
+    { path: "./fonts/UntitledSerifWeb-Medium.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/UntitledSerifWeb-MediumItalic.woff2", weight: "500", style: "italic" },
+  ],
+  variable: "--font-untitled",
+});
+
 
 const description =
   "Ali Ahunbáev is an artist, product designer, founder and director of Combat Créatif.";
@@ -59,7 +69,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${otto.variable} ${fraktion.variable} ${suisse.variable} h-full antialiased`}
+      className={`${otto.variable} ${untitled.variable} ${fraktion.variable} ${suisse.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <CursorLabel />

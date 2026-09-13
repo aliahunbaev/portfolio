@@ -142,7 +142,8 @@ export default function SketchGrid() {
               e.currentTarget.blur();
               step(-1);
             }}
-            className="absolute inset-y-0 left-0 w-1/2 cursor-w-resize outline-none"
+            data-cursor-label="Prev"
+            className="absolute inset-y-0 left-0 w-1/2 cursor-none outline-none"
           />
           <button
             type="button"
@@ -151,7 +152,8 @@ export default function SketchGrid() {
               e.currentTarget.blur();
               step(1);
             }}
-            className="absolute inset-y-0 right-0 w-1/2 cursor-e-resize outline-none"
+            data-cursor-label="Next"
+            className="absolute inset-y-0 right-0 w-1/2 cursor-none outline-none"
           />
           {/* The wall label — fixed to the bottom, centred, Renell-wise. */}
           <div className="flash-in-late pointer-events-none absolute inset-x-0 bottom-4 text-center text-body">

@@ -82,9 +82,7 @@ export default async function EssayPage({ params }: Params) {
           {/* The one place the site reads in serif: the prose itself.
               Title, rail, metadata and previous/next stay in the site
               sans, the same head as every other page. */}
-          {/* tracking-normal: the body tier's hair of letter-spacing is tuned for
-              Suisse at 14px; the serif carries its own fit at reading size. */}
-          <div className="font-serif tracking-normal space-y-[1.4em] md:text-[16px] leading-[1.6]">
+          <div className="font-serif space-y-[1.4em] md:text-[16px] leading-[1.6]">
             {groupParagraphs(essay.paragraphs).map((block, i) =>
               block.kind === "list" ? (
                 <ul key={i} className="list-disc space-y-2 pl-4">

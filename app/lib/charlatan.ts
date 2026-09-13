@@ -1,4 +1,4 @@
-// The Daily Charlatan — the ten most recent posts from Ali's first blog
+// The Daily Charlatan — the ten most recent posts from Ali’s first blog
 // (thedailycharlatan.godaddysites.com), recovered whole.
 
 import type { Essay } from "./writing";
@@ -174,7 +174,7 @@ export const charlatanEssays: Essay[] = [
       "Good Homies give you the treasure of freedom, inviting you to lay out the most incomprehensible, goofy, strange, childish sides of yourself.",
       "And even if they don’t understand all of it, they accept all of it.",
       "It’s a wonderful gift, but it does not come easily. The cost of freedom is vulnerability.",
-      "Oftentimes, it’s difficult to fully express oneself, even around friends. When you’re hurting, the basic instinct might be to hide it because you don't want to look like a bitch, or it’s not normal for the group to address negativity together.",
+      "Oftentimes, it’s difficult to fully express oneself, even around friends. When you’re hurting, the basic instinct might be to hide it because you don’t want to look like a bitch, or it’s not normal for the group to address negativity together.",
       "The same applies to positive emotions as well.",
       "You might avoid telling your friends you’re proud of them and appreciate them and love them, because it’s not “normal” to do this. You don’t want to weird the bros out.",
       "But in trying so hard to appear “normal,” all we’re doing is robbing ourselves!",
@@ -247,7 +247,7 @@ export const charlatanEssays: Essay[] = [
   {
     "slug": "enjoying-goals",
     "title": "Enjoying Goals",
-    "subtitle": "You don't have to choose between enjoying life and improving it.",
+    "subtitle": "You don’t have to choose between enjoying life and improving it.",
     "date": "February 4, 2024",
     "paragraphs": [
       "At first glance, it might seem that striving toward goals and appreciating life for what it is are two opposing processes. Goals push us to think of the future, while appreciation requires us to think in the present.",
@@ -303,7 +303,7 @@ export const charlatanEssays: Essay[] = [
       "Long Answer:",
       "You must understand that nobody is born knowing what they like or want or what makes them happy.",
       "There are some lucky nerds who say they want to be a doctor at 5 years old and at 40 when they’re a doctor they think, “Damn yeah I really like this shit.”",
-      "But for most people, they learn what they want through trying and investing in a lot of different things, some of which end up sucking, and this gives them an understanding of what makes them happy and what doesn't.",
+      "But for most people, they learn what they want through trying and investing in a lot of different things, some of which end up sucking, and this gives them an understanding of what makes them happy and what doesn’t.",
       "The cost of knowing is time.",
       "If you have two options, and you don’t have a strong idea of which one you prefer, then you invest time following one choice until you can comfortably say which one is right or wrong for you.",
       "Stay at your job or try something new?",
@@ -379,7 +379,7 @@ export const charlatanEssays: Essay[] = [
     "date": "January 5, 2024",
     "paragraphs": [
       "Film: Chungking Express",
-      "“If you're lonely when you're alone, you're in bad company.” -Jean-Paul Sartre",
+      "“If you’re lonely when you’re alone, you’re in bad company.” -Jean-Paul Sartre",
       "A common cycle of distress in many people’s lives is spending time around others (at parties, group hangouts, bars, etc.), feeling unfulfilled or upset with these connections, turning back to isolation, getting sad or bored in our own company, and turning back to socialization.",
       "Usually, the driving emotion behind this cycle is loneliness.",
       "Without the company of others, we feel a mix of sorrow and dullness (called  being lonely), and the natural instinct to combat loneliness is to seek out social situations.",
@@ -428,7 +428,7 @@ export const charlatanEssays: Essay[] = [
       "How can we respond to psychic unrest (AKA bullshit) in a healthier and more beneficial manner?",
       "Most of the harm from negative thoughts comes from how close we feel to them.",
       "The closer we feel, the more we accept whatever notion we have as reality. So when some shitty thought enters your mind, such as “life sucks” or “I’m unlovable”, it automatically feels true. But this is often not the case.",
-      "Think of your mind’s thoughts as a radio. It’s this constant system that spits out random ideas based on your experiences in life. Some ideas are accurate and helpful, and some aren't.",
+      "Think of your mind’s thoughts as a radio. It’s this constant system that spits out random ideas based on your experiences in life. Some ideas are accurate and helpful, and some aren’t.",
       "When they aren’t, having this image of a radio playing a terrible station can be helpful, because we see our thoughts as separate from ourselves/reality. We can’t turn the radio off, but we can leave it playing in the back of the room while we continue moving forward.",
       "How do we move forward?",
       "One helpful function of unpleasant thoughts is that they can often reveal something that we might want to improve in our lives.",

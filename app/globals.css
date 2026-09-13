@@ -39,6 +39,19 @@
   }
 }
 
+/* Serif reading faces carry their own fit: any serif utility zeroes
+   the sans tiers' letter-spacing automatically, so auditioning a serif
+   never inherits Suisse's tracking, and switching an element back to
+   sans restores it with no cleanup. font-reading is the second
+   serif, Untitled, for auditions. */
+.font-serif,
+.font-reading {
+  letter-spacing: 0;
+}
+.font-reading {
+  font-family: var(--font-untitled), Georgia, "Times New Roman", serif;
+}
+
 /* No rubber-band overscroll past the ends of a page. */
 html {
   overscroll-behavior: none;
