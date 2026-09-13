@@ -24,6 +24,7 @@ export default function VideoPlayer({
   const wrapRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const [near, setNear] = useState(false);
+  const [fs, setFs] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
   const [time, setTime] = useState(0);
@@ -61,6 +62,19 @@ export default function VideoPlayer({
     setPlaying(!v.paused);
   }, [near]);
 
+  // Fullscreen wraps the whole player, not the bare video element, so
+  // the text controls and scrubber stay ours instead of the browser's.
+  useEffect(() => {
+    const onChange = () => setFs(document.fullscreenElement === wrapRef.current);
+    document.addEventListener("fullscreenchange", onChange);
+    return () => document.removeEventListener("fullscreenchange", onChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    else wrapRef.current?.requestFullscreen().catch(() => {});
+  };
+
   const togglePlay = () => {
     const v = videoRef.current;
     if (!v) return;
@@ -86,19 +100,22 @@ export default function VideoPlayer({
   };
 
   return (
-    <div ref={wrapRef} className={`relative bg-black/[0.04] ${className}`}>
+    <div
+      ref={wrapRef}
+      className={`relative ${fs ? "flex items-center justify-center bg-black" : "bg-black/[0.04]"} ${className}`}
+    >
       <video
         ref={videoRef}
         src={near ? src : undefined}
         // Reserves layout space before metadata arrives; the video's own
         // proportions take over once known (that's what `auto` does).
-        style={{ aspectRatio: "auto 1350 / 1080" }}
+        style={fs ? undefined : { aspectRatio: "auto 1350 / 1080" }}
         autoPlay
         muted
         loop
         playsInline
         preload="metadata"
-        className="w-full"
+        className={fs ? "h-full w-full object-contain" : "w-full"}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
@@ -115,10 +132,10 @@ export default function VideoPlayer({
           </button>
           <button
             type="button"
-            onClick={() => videoRef.current?.requestFullscreen()}
+            onClick={toggleFullscreen}
             className="cursor-pointer hover:text-neutral-300 max-md:hidden"
           >
-            Fullscreen
+            {fs ? "Exit" : "Fullscreen"}
           </button>
           <button
             type="button"
