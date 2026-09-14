@@ -17,7 +17,7 @@ order: 3
 
 ## Every lame party | Background
 
-Growing up in Chicago, some of my biggest inspirations were music videos, Hype Williams shooting Jay-Z, and the movies of the mid nineties. That whole creative canon: parties full of beautiful girls and cool artists, great music playing, dancing, freestyling, so much swag and artistry in one room. I looked around and I didn't see that anywhere.
+Growing up in Chicago, some of my biggest inspirations were music videos, Pharrell's Frontin' with Jay-Z, and the movies of the mid nineties. That whole creative canon: parties full of beautiful girls and cool artists, great music playing, dancing, freestyling, so much swag and artistry in one room. I looked around and I didn't see that anywhere.
 
 In high school I didn't go to many parties. I was known as an old soul, reading, writing, working out, asleep early, awake early, and that became part of my identity to other people. But I never felt boring. It's that the parties I did go to were so lame. The music would be bad, nobody would be dancing, the people weren't interesting. It felt alienating: there's nothing here that sees my soul, and it isn't even fun. It was more fun to hang out with friends and work on something and dance in a living room. So at every one of those parties I would sit there and note what I would do differently. What songs I would play. What would have made this so much fun. I had all these ideas.
 
