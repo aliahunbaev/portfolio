@@ -69,13 +69,51 @@ If you blew Marble out to full scale, there would be gyms, running clubs, physic
 
 I like to give my products a reference object. If this were a physical thing, what would it be? Marble is a training journal. Often as I visit different gyms, I see a recurring archetype: the old-school boxer or bodybuilder, the gray-haired seventy-year-old in phenomenal shape who, though you've never met him, you imagine was a renowned athlete in his youth, with a coach who demanded a code of excellence and consistency that has never left him. They are usually pulling out a battered physical notebook to write down their sets, what felt wrong, what felt right. You don't open a notebook to find friends or play a game. It's a private, reflective object.
 
-The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
+The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. Three tabs: Train, Track, You. Train is where you write, Track is where you read back, You is the record.
 
-![](app-train.png) ![](dark-program.png)
+The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
 
-![loop](demo-workout.mp4)
+![](p-train.png) ![](dark-program.png)
 
-![](dark-workout.png) ![](clip-pill.mp4)
+A workout is a sheet: set, pounds, reps, one check. Your last numbers sit faint in the fields so you don't have to remember them, you just confirm or beat them. When you check a set, a rest timer drops in under it and counts down in place. It's a row in the sheet, not a popup, because you're between sets and the last thing you want is to be managed.
+
+![](p-workout.png) ![](dark-workout.png)
+
+Finishing is a small ceremony. One screen: a photo if you took one, a line about today. Then a page that says Recorded, with the date, and nothing else. No confetti, no summary card to share. The entry lands in your record, with the photo below the numbers.
+
+![](p-ritual.png) ![](p-recorded.png) ![](p-feed.png)
+
+Track is the reading side. The month you're in fills square by square, the lifts you care about sit as cards, and each one opens into best weight, estimated one-rep max, max volume, and the history underneath. Bodyweight gets the same treatment with a line instead of a list.
+
+![](p-track.png) ![](p-lift.png) ![](p-bodyweight.png)
+
+You holds the record and the gallery. Progress photos are attached to the workouts they came from, and you can put any two side by side. That's the closest Marble gets to a feature about looking good, and it's still just two dates and two photographs.
+
+![](p-gallery.png) ![](p-viewer.png) ![](p-compare.png)
+
+## Draft, look, refine | Process
+
+I sketched Marble in Figma in March, before I had written a line of Swift. The sketches settled the skeleton: three tabs, a start button above a grid of programs, the exercise lists in handwriting, the quote at the top of the day. They also carried things that didn't survive. The statue on the Train tab moved to the posters and the website, because the app wanted to be quieter than its identity. The serif and the dark version went too, for the same reason. Ink on paper, and the paper is white.
+
+![](sk-01.png) ![](sk-02.png) ![](sk-03.png)
+
+![](sk-04.png) ![](sk-05.png) ![](sk-06.png)
+
+Then the process was the one I described at the end: get a draft working, look at it, refine. Some of the looking is worth showing.
+
+The Train tab got its two defining pieces in the first week of April, the line for the day and the handwritten lists. At the end of May I standardized it. Square button, one type scale, everything on a system. It was correct and it was dead. It looked like every other app's settings screen. I reverted it the same day, and the capsule button and the big quote stayed.
+
+![](it-train-apr.png) ![](it-train-std.png) ![](it-train-rev.png)
+
+Track started in April with the lifts first and a dense twenty-six-week grid, the GitHub graph transplanted straight in. In May I tried a compact grid of glowing dots. What shipped is the month you're in, filled squares, with bodyweight at the top of the metrics. The long grid was for looking back. The month is where you actually are.
+
+![](it-track-apr.png) ![](it-track-dots.png) ![](p-track.png)
+
+The record feed was the hardest screen, because it's the one place the app has to hold a photograph and a set of numbers at the same time. On May 30 I built it six ways in one day: a plain list, an editorial page with the sets in handwriting, poster tiles, a set sheet, the Train tab's ghost rows, and cards. The editorial one was the most beautiful and the least usable. The cards were the only version where the photo and the numbers read as one object, so I kept the cards.
+
+![](it-feed-1.png) ![](it-feed-2.png) ![](it-feed-3.png)
+
+![](it-feed-4.png) ![](it-feed-5.png) ![](it-feed-6.png)
 
 ## Trust the user | Decisions
 
