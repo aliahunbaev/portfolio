@@ -36,17 +36,17 @@ const experience = [
   {
     title: "Verci",
     role: "Creative Director & Ideation Lead, 2026 to present",
-    note: "A creative members space in Flatiron. Content strategy, a weekly publishing rhythm, and a short-film format; grew Instagram by 10,000 with an editorial series on the creative communities of the past.",
+    note: "Verci is a creative members space in Flatiron. I run content strategy: a weekly publishing rhythm, a carousel system, and the brand deck. Grew Instagram by 10,000 followers with an editorial series on the creative communities of the past, researched, written, designed, and published. Recruited and directed videographers and editors for a new short-film format, working directly with the founder.",
   },
   {
     title: "Combat Créatif",
     role: "Cofounder & Creative Director, 2022 to present",
-    note: "A studio and brand: apparel, print, community events, and software. $30,000 in the first year, a 68-page print journal, and The Art Movement.",
+    note: "Combat is a studio and brand producing apparel, print, community events, and software. Shot campaigns and short-form content for a hoodie drop totaling $30,000 in revenue. Designed and sampled garments and published Combat Journal, a 68-page print magazine on the process behind each product. Produced and hosted The Art Movement, an exhibition and rooftop event in New York, 350 RSVPs and 250 guests.",
   },
   {
     title: "Independent Practice",
     role: "Freelance Designer & Developer, 2024 to 2025",
-    note: "Brands, websites, and online stores for clients, including the e-commerce and editorial site for Hardtokill after it crossed 400K followers.",
+    note: "Designed and built brands, websites, and online stores for clients, including an e-commerce and editorial site for Hardtokill, a social-media-born brand that needed a touchpoint to launch products after crossing 400K followers.",
   },
 ];
 
@@ -60,17 +60,22 @@ const education = [
 
 function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
-    <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-      <p className="font-normal">{label}</p>
-      <div className="grid gap-y-5">
-        {items.map((it) => (
-          <div key={it.title} className="grid leading-[1.3]">
+    <div className="grid gap-y-8">
+      {items.map((it, i) => (
+        <div
+          key={it.title}
+          className="grid gap-y-2 md:grid-cols-12 md:gap-x-gutter md:gap-y-0"
+        >
+          <p className="md:col-span-2">{i === 0 ? label : ""}</p>
+          <div className="leading-[1.3] md:col-span-3 md:col-start-3">
             <p>{it.title}</p>
             <p className="font-normal">{it.role}</p>
-            <p className="pt-1 font-normal">{it.note}</p>
           </div>
-        ))}
-      </div>
+          <p className="font-normal leading-[1.4] md:col-span-5 md:col-start-6 md:max-w-[32rem]">
+            {it.note}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
@@ -140,8 +145,6 @@ export default function InformationContent() {
           {/* Label left, list right — the record rows. Position does
               the separating, so the whole block holds one weight. */}
           <div className="grid gap-y-10 pt-16 max-md:hidden">
-            <Record label="Experience" items={experience} />
-            <Record label="Education" items={education} />
             <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
               <p className="font-normal">Contact</p>
               <div className="grid gap-y-1">
@@ -162,10 +165,6 @@ export default function InformationContent() {
           </div>
           {/* Mobile: the reach links in the monument register — big
               thumb targets, the footer's mobile idiom. */}
-          <div className="grid gap-y-10 pt-16 md:hidden">
-            <Record label="Experience" items={experience} />
-            <Record label="Education" items={education} />
-          </div>
           <div className="pt-16 md:hidden">
             <p className="font-normal">Contact</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
@@ -182,6 +181,12 @@ export default function InformationContent() {
             </div>
           </div>
         </div>
+      </div>
+      {/* The record, in the résumé's three columns on the site's grid:
+          section, then name over role, then what happened there. */}
+      <div className="grid gap-y-14 pt-24">
+        <Record label="Experience" items={experience} />
+        <Record label="Education" items={education} />
       </div>
     </main>
   );
