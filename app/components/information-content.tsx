@@ -36,33 +36,38 @@ const experience = [
   {
     title: "Verci",
     role: "Creative Director & Ideation Lead, 2026 to present",
+    note: "A creative members space in Flatiron. Content strategy, a weekly publishing rhythm, and a short-film format; grew Instagram by 10,000 with an editorial series on the creative communities of the past.",
   },
   {
     title: "Combat Créatif",
     role: "Cofounder & Creative Director, 2022 to present",
+    note: "A studio and brand: apparel, print, community events, and software. $30,000 in the first year, a 68-page print journal, and The Art Movement.",
   },
   {
     title: "Independent Practice",
     role: "Freelance Designer & Developer, 2024 to 2025",
+    note: "Brands, websites, and online stores for clients, including the e-commerce and editorial site for Hardtokill after it crossed 400K followers.",
   },
 ];
 
 const education = [
   {
     title: "New York University",
-    role: "B.S. Computer Science, 2025 to present, on leave Fall 2026",
+    role: "B.S. Computer Science, 2025 to present",
+    note: "Transferred from Harper College with a 4.0 and a full-tuition merit scholarship after a year of independent building and freelance work. On leave for Fall 2026.",
   },
 ];
 
 function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
     <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-      <p>{label}</p>
-      <div className="grid gap-y-4">
+      <p className="font-normal">{label}</p>
+      <div className="grid gap-y-5">
         {items.map((it) => (
           <div key={it.title} className="grid leading-[1.3]">
             <p>{it.title}</p>
-            <p>{it.role}</p>
+            <p className="font-normal">{it.role}</p>
+            <p className="pt-1 font-normal">{it.note}</p>
           </div>
         ))}
       </div>
@@ -95,7 +100,7 @@ export default function InformationContent() {
 
         {/* One column: the bio in medium body text, then the groups. */}
         <div className="max-md:pt-16 md:col-span-5 md:col-start-7 md:max-w-[32rem]">
-          <div className="space-y-4 leading-[1.3]">
+          <div className="font-serif font-normal space-y-[1.4em] text-[16px] leading-[1.6]">
             <p>
               Ali Ahunbáev is an artist and product designer based in New
               York. He works across product design, identity, film, and
@@ -138,7 +143,7 @@ export default function InformationContent() {
             <Record label="Experience" items={experience} />
             <Record label="Education" items={education} />
             <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-              <p>Contact</p>
+              <p className="font-normal">Contact</p>
               <div className="grid gap-y-1">
                 <EmailLine />
                 {contact.map(([label, href]) => (
@@ -147,7 +152,7 @@ export default function InformationContent() {
               </div>
             </div>
             <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-              <p>Links</p>
+              <p className="font-normal">Links</p>
               <div className="grid gap-y-1">
                 {elsewhere.map(([label, href]) => (
                   <ReachLink key={label} label={label} href={href} />
@@ -162,14 +167,14 @@ export default function InformationContent() {
             <Record label="Education" items={education} />
           </div>
           <div className="pt-16 md:hidden">
-            <p>Contact</p>
+            <p className="font-normal">Contact</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
               <EmailLine />
               {contact.map(([label, href]) => (
                 <ReachLink key={label} label={label} href={href} />
               ))}
             </div>
-            <p className="pt-12">Links</p>
+            <p className="pt-12 font-normal">Links</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
               {elsewhere.map(([label, href]) => (
                 <ReachLink key={label} label={label} href={href} />
