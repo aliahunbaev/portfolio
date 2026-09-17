@@ -58,9 +58,17 @@ const education = [
   },
 ];
 
-function Record({ label, items }: { label: string; items: typeof experience }) {
+function Record({
+  label,
+  items,
+  split = false,
+}: {
+  label: string;
+  items: typeof experience;
+  split?: boolean;
+}) {
   return (
-    <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
+    <div className={`grid gap-x-gutter ${split ? "grid-cols-2" : "gap-y-3 md:grid-cols-2"}`}>
       <p>{label}</p>
       <div className="grid gap-y-5">
         {items.map((it) => (
@@ -162,6 +170,10 @@ export default function InformationContent() {
           </div>
           {/* Mobile: the reach links in the monument register — big
               thumb targets, the footer's mobile idiom. */}
+          <div className="grid gap-y-10 pt-16 md:hidden">
+            <Record label="Experience" items={experience} split />
+            <Record label="Education" items={education} split />
+          </div>
           <div className="pt-16 md:hidden">
             <p>Contact</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
@@ -175,10 +187,6 @@ export default function InformationContent() {
               {elsewhere.map(([label, href]) => (
                 <ReachLink key={label} label={label} href={href} />
               ))}
-            </div>
-            <div className="grid gap-y-10 pt-12">
-              <Record label="Experience" items={experience} />
-              <Record label="Education" items={education} />
             </div>
           </div>
         </div>
