@@ -131,20 +131,23 @@ export default function InformationContent() {
             </p>
             <p>
               He grew up in Chicago drawing and painting, and planned on
-              architecture until every college he applied to said no. He
-              went to community college instead, taught himself to build
-              for the web, and started making his own things. Two years later
-              he transferred to NYU, moved to New York, and began working in
-              the city, where he produced The Art Movement, an exhibition and
-              rooftop party for 250 people, under Combat.
+              architecture until he read Paul Graham's Hackers and Painters
+              in high school and decided on computer science instead. He
+              applied to twenty schools with no experience in it and every
+              one said no. He went to community college, taught himself web
+              design, fell into code, and started making his own things.
+              After a year he transferred to NYU, moved to New York, and
+              began working in the city, where he produced The Art Movement,
+              an exhibition and rooftop party for 250 people, under Combat.
             </p>
             <p>
               The work spans disciplines because the pursuit does. He writes,
               films, illustrates, designs, and builds, and at some point those
               stopped being separate hobbies and became one practice of
               putting things into the world. What holds it together is not a
-              medium but a question he has carried since art school: what
-              happens when art meets money, business, and the practical world.
+              medium but a question he has carried since he was a kid with a
+              sketchbook: what happens when art meets money, business, and
+              the practical world.
               It can be the end of the art or the foundation of a more
               beautiful one. Combat is named for that struggle, and takes its
               spirit from hip-hop, jazz, and the blues, music born of pain
