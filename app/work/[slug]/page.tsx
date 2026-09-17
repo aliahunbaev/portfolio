@@ -220,11 +220,20 @@ function BlockView({
   }
   if (block.type === "row") {
     // Written side by side, shown side by side: widths in ratio so the
-    // row shares one height; loops and stills mix freely.
+    // row shares one height; loops and stills mix freely. On phones a
+    // pair of landscapes stacks, and anything wider than a pair folds
+    // into two columns so each piece stays legible.
+    const landscape = block.items.every((i) => (i.w ?? 1) >= (i.h ?? 1));
+    const mobile =
+      block.items.length === 2 && landscape
+        ? "flex max-md:flex-col max-md:gap-y-gutter"
+        : block.items.length > 2
+          ? "max-md:grid max-md:grid-cols-2 max-md:gap-y-gutter md:flex"
+          : "flex";
     return (
       <div
         id={anchorId}
-        className="flex scroll-mt-24 items-start gap-x-gutter lg:col-start-1 lg:col-span-8"
+        className={`${mobile} scroll-mt-24 items-start gap-x-gutter lg:col-start-1 lg:col-span-8`}
       >
         {block.items.map((item) =>
           item.type === "video" ? (
