@@ -99,21 +99,7 @@ I sketched Marble in Figma in March, before I had written a line of Swift. The s
 
 ![](sk-04.png) ![](sk-05.png) ![](sk-06.png)
 
-Then the process was the one I described at the end: get a draft working, look at it, refine. Some of the looking is worth showing.
-
-The Train tab got its two defining pieces in the first week of April, the line for the day and the handwritten lists. At the end of May I standardized it. Square button, one type scale, everything on a system. It was correct and it was dead. It looked like every other app's settings screen. I reverted it the same day, and the capsule button and the big quote stayed.
-
-![](it-train-apr.png) ![](it-train-std.png) ![](it-train-rev.png)
-
-Track started in April with the lifts first and a dense twenty-six-week grid, the GitHub graph transplanted straight in. In May I tried a compact grid of glowing dots. What shipped is the month you're in, filled squares, with bodyweight at the top of the metrics. The long grid was for looking back. The month is where you actually are.
-
-![](it-track-apr.png) ![](it-track-dots.png) ![](p-track.png)
-
-The record feed was the hardest screen, because it's the one place the app has to hold a photograph and a set of numbers at the same time. On May 30 I built it six ways in one day: a plain list, an editorial page with the sets in handwriting, poster tiles, a set sheet, the Train tab's ghost rows, and cards. The editorial one was the most beautiful and the least usable. The cards were the only version where the photo and the numbers read as one object, so I kept the cards.
-
-![](it-feed-1.png) ![](it-feed-2.png) ![](it-feed-3.png)
-
-![](it-feed-4.png) ![](it-feed-5.png) ![](it-feed-6.png)
+From there the process was the one I describe at the end: get a draft working, look at it, refine. Most of the refining was small and daily. Twice it wasn't. At the end of May I standardized the Train tab, square button, one type scale, everything on a system, and it was correct and dead. I reverted it the same day. A day later I built the record feed six ways in one afternoon, a plain list, an editorial page with the sets in handwriting, poster tiles, a set sheet, ghost rows, cards. The editorial one was the most beautiful and the least usable. The cards were the only version where the photo and the numbers read as one object, so the cards stayed.
 
 ## Trust the user | Decisions
 
