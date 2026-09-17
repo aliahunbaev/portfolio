@@ -61,7 +61,7 @@ const education = [
 function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
     <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-      <p className="font-normal">{label}</p>
+      <p>{label}</p>
       <div className="grid gap-y-5">
         {items.map((it) => (
           <div key={it.title} className="grid gap-y-0.5 leading-[1.3]">
@@ -141,7 +141,7 @@ export default function InformationContent() {
               the separating, so the whole block holds one weight. */}
           <div className="grid gap-y-10 pt-16 max-md:hidden">
             <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-              <p className="font-normal">Contact</p>
+              <p>Contact</p>
               <div className="grid gap-y-1">
                 <EmailLine />
                 {contact.map(([label, href]) => (
@@ -150,7 +150,7 @@ export default function InformationContent() {
               </div>
             </div>
             <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
-              <p className="font-normal">Links</p>
+              <p>Links</p>
               <div className="grid gap-y-1">
                 {elsewhere.map(([label, href]) => (
                   <ReachLink key={label} label={label} href={href} />
@@ -163,14 +163,14 @@ export default function InformationContent() {
           {/* Mobile: the reach links in the monument register — big
               thumb targets, the footer's mobile idiom. */}
           <div className="pt-16 md:hidden">
-            <p className="font-normal">Contact</p>
+            <p>Contact</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
               <EmailLine />
               {contact.map(([label, href]) => (
                 <ReachLink key={label} label={label} href={href} />
               ))}
             </div>
-            <p className="pt-12 font-normal">Links</p>
+            <p className="pt-12">Links</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
               {elsewhere.map(([label, href]) => (
                 <ReachLink key={label} label={label} href={href} />
