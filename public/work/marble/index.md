@@ -50,7 +50,7 @@ I often work this way: I need to see the feeling before I can build the thing, u
 
 If Marble existed hundreds of years ago, it would have been a bound notebook. Right now it's an iPhone app, because people carry their phones everywhere, including the gym, and if the form factor of software changes, it would change with it. That dialogue between something timeless and the moment we're in is why the website renders ancient statues as digitized halftone grids.
 
-[![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com)
+[![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com) ![](site-02.jpg) ![](site-03.jpg)
 
 ## The Venn diagram | Audience
 
