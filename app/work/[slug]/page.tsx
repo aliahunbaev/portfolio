@@ -228,7 +228,7 @@ function BlockView({
     const portraits = block.items.every((i) => (i.w ?? 1) < (i.h ?? 1));
     const mobile =
       block.items.length === 2 && !portraits
-        ? "flex max-md:flex-col max-md:gap-y-gutter"
+        ? "flex max-md:flex-col max-md:items-stretch max-md:gap-y-gutter"
         : block.items.length > 2
           ? "max-md:grid max-md:grid-cols-2 max-md:gap-y-gutter md:flex"
           : "flex";
