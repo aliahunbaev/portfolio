@@ -132,13 +132,14 @@ export default function InformationContent() {
             <p>
               He grew up in Chicago drawing and painting, and planned on
               architecture until he read Paul Graham's Hackers and Painters
-              in high school and decided on computer science instead. He
-              applied to twenty schools with no experience in it and every
-              one said no. He went to community college, taught himself web
-              design, fell into code, and started making his own things.
-              After a year he transferred to NYU, moved to New York, and
-              began working in the city, where he produced The Art Movement,
-              an exhibition and rooftop party for 250 people, under Combat.
+              in high school and decided on computer science instead. With no
+              experience in it, he applied to the top twenty programs in the
+              country and was rejected by all of them. He went to community
+              college, taught himself web design, fell into code, and
+              started making his own things. After a year he transferred to
+              NYU, moved to New York, and began working in the city, where he
+              produced The Art Movement, an exhibition and rooftop party for
+              250 people, under Combat.
             </p>
             <p>
               The work spans disciplines because the pursuit does. He writes,
