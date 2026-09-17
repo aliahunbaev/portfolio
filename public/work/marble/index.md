@@ -10,8 +10,8 @@ order: 1
 preview: preview.mp4
 overview: Marble is a training journal for iOS: programs, workouts, and a record of every session, stripped to the essential rhythm. I designed and built the whole thing alone in SwiftUI, and gave it an identity of posters, halftones, and a two-minute film. Live on the App Store since July 2026.
 tagline: Weaving timeless beauty into simple software.
-caseRow: demo-workout.mp4, p-feed.png, poster-02.jpg, dark-recorded.png
-homeRow: preview.mp4, dark-workout.png, poster-14.jpg, clip-tabs.mp4
+caseRow: m-workout.mp4, m-feed.png, poster-02.jpg, dark-recorded.png
+homeRow: preview.mp4, m-dark-program.png, poster-14.jpg, m-ritual.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
@@ -71,11 +71,11 @@ I like to give my products a reference object. If this were a physical thing, wh
 
 The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
 
-![](p-train.png) ![](dark-program.png)
+![](m-train.png) ![](m-dark-program.png)
 
-![loop](demo-workout.mp4)
+![loop](m-workout.mp4)
 
-![](detail-train.png) ![](clip-pill.mp4)
+![](m-detail-train.png) ![](m-dark-log.mp4)
 
 ## Trust the user | Decisions
 
@@ -85,11 +85,11 @@ Every fitness app has a feed and streaks and congratulations, and I find that a 
 
 The one piece I kept is a grid of your training days that fills in as you go, like GitHub's activity graph. It's the streak with the applause stripped out: you can see your consistency, but nothing celebrates it. It's expected. The work is the reward.
 
-![](p-track.png) ![](detail-track.png)
+![](m-track.png) ![](m-detail-track.png)
 
 You should use social media for social things, and this is not social media. It's a training tool.
 
-![](clip-tabs.mp4) ![](p-feed.png) ![](detail-feed.png)
+![](m-ritual.mp4) ![](m-feed.png) ![](m-detail-feed.png)
 
 ## The Sculptor, a campaign film | Film
 
