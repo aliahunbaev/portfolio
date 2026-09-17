@@ -10,7 +10,7 @@ order: 1
 preview: preview.mp4
 overview: Marble is a training journal for iOS: programs, workouts, and a record of every session, stripped to the essential rhythm. I designed and built the whole thing alone in SwiftUI, and gave it an identity of posters, halftones, and a two-minute film. Live on the App Store since July 2026.
 tagline: Weaving timeless beauty into simple software.
-caseRow: demo-workout.mp4, p-train.png, poster-02.jpg, dark-recorded.png
+caseRow: demo-workout.mp4, p-feed.png, poster-02.jpg, dark-recorded.png
 homeRow: preview.mp4, dark-workout.png, poster-14.jpg, clip-tabs.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
@@ -75,7 +75,7 @@ The app is that notebook in digital form. It's black and white throughout, refle
 
 ![loop](demo-workout.mp4)
 
-![](dark-workout.png) ![](clip-pill.mp4)
+![](detail-train.png) ![](clip-pill.mp4)
 
 ## Trust the user | Decisions
 
@@ -85,11 +85,11 @@ Every fitness app has a feed and streaks and congratulations, and I find that a 
 
 The one piece I kept is a grid of your training days that fills in as you go, like GitHub's activity graph. It's the streak with the applause stripped out: you can see your consistency, but nothing celebrates it. It's expected. The work is the reward.
 
-![](p-track.png) ![](p-feed.png)
+![](p-track.png) ![](detail-track.png)
 
 You should use social media for social things, and this is not social media. It's a training tool.
 
-![](clip-tabs.mp4) ![](dark-recorded.png)
+![](clip-tabs.mp4) ![](p-feed.png) ![](detail-feed.png)
 
 ## The Sculptor, a campaign film | Film
 
