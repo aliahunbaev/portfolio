@@ -93,7 +93,7 @@ There's a garment company called UVU whose campaign films stopped me in my track
 
 *The Sculptor* is my exercise in that process. I created a two-minute campaign film with my friend Jaden in front of the camera because he's the Venn diagram in person: a varsity basketball player and a model who's just as concerned with his inner life as with expressing it outwardly as he moves through the world. The film is a private portrait of a man training, fighting, running, reflecting, moving through a noisy New York, with glimpses of joy attained through difficult discipline. I would love to create more of these, capturing the same spirit in different contexts: perhaps a fighter, a swimmer, a Paralympian.
 
-![](text-14.jpg) ![](photo-0302.jpg) ![](photo-0273.jpg)
+![](photo-v-0402.jpg) ![](photo-v-0302.jpg) ![](photo-v-0204.jpg)
 
 ![](sculptor.mp4)
 
