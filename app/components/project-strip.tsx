@@ -86,9 +86,9 @@ export default function ProjectStrip({ project }: { project: Project }) {
   if (!items?.length) return <ProjectRow project={project} />;
 
   const href = `/work/${slugify(project.title)}`;
-  // Cards squeeze slightly toward portrait: the row runs taller, each
-  // cell trims a sliver off its sides via object-cover.
-  const SQUEEZE = 0.85;
+  // True proportions, no crop: the strip renders every asset exactly as
+  // the case-study overture does, widths in ratio so one height is shared.
+  const SQUEEZE = 1;
   const shaped = (item: { w: number; h: number }) =>
     (item.w / item.h) * SQUEEZE;
   const ratioSum = items.reduce((sum, item) => sum + shaped(item), 0);
