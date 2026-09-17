@@ -149,12 +149,13 @@ export default function InformationContent() {
               blues, pain turned into the most influential music alive.
             </p>
             <p>
-              He is looking to help build a beautiful company: a product
-              design or creative role on a team committed to design, serious
-              about excellence, and fun as hell to be part of, working on
-              things that help people reach their highest potential. He can
-              take an idea from concept to something real, and he is always
-              glad to hear from brilliant people.
+              I am looking to join a purpose-driven company, one committed to
+              beauty as much as to growth, with a culture of excellence and a
+              real love for the work. Product design is the role I want, and
+              I am open to whatever it takes to learn: research, prototyping,
+              identity, writing, film. The motivation is to grow in one
+              direction, building beautiful products and experiences that
+              bring out the best in us, alongside great people.
             </p>
           </div>
 
