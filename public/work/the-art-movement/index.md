@@ -58,10 +58,6 @@ It was my first time doing anything like this, and the night went about ninety-f
 
 What I took from it: along with creating cool objects, I can create cool experiences, and I learned viscerally that those are related. The process behind different mediums is related, and it translates. At least in my experience. I would love to continue.
 
-## Four artists downstairs | The night
-
-May 9th, 2026, at Verci in Flatiron. 350 people RSVP'd and 250 came. For the first hour or two the room was open and people talked. Then four artists across four disciplines, a photographer, a poet, a sculptor, and myself as a product designer, each took the room for ten minutes and shared their work and where it came from. The poet brought people to tears.
-
 ![](demo-intro.mp4)
 
 ![](IMG_5014.jpg) ![](IMG_5018.jpg)
@@ -93,10 +89,6 @@ May 9th, 2026, at Verci in Flatiron. 350 people RSVP'd and 250 came. For the fir
 ![](000157750024.jpg)
 
 ![](000157740021.jpg)
-
-## The roof, until late | The roof
-
-At nine the night moved to the roof. A DJ set moved through soul, jazz, R&B, and electronic, with open microphones and instruments. Freestyles, cyphers, dancing until late.
 
 ![](roof-atmosphere.mp4)
 
