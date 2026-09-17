@@ -8,7 +8,7 @@ cover: cover.jpg
 overview: A sixty-eight page magazine on Combat's first year: four garments, the stories behind them, and the people who wore them. Written, shot, and laid out start to finish, from a first year that grew to $30,000 in revenue with my best friend.
 tagline: Sixty-eight pages on making things with your friends.
 caseRow: page-05.jpg, page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg
-homeRow: page-01.jpg, page-18.jpg, page-50.jpg, page-11.jpg, page-34.jpg, page-59.jpg
+homeRow: strip-01.jpg, strip-02.jpg, strip-03.jpg, strip-04.jpg, strip-05.jpg, strip-06.jpg
 featured: true
 ---
 
