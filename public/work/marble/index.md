@@ -8,13 +8,21 @@ cover: cover-statue.jpg
 featured: true
 order: 1
 preview: preview.mp4
-overview: Marble is a training journal for iOS: programs, workouts, and a record of every session, stripped to the essential rhythm. I designed and built the whole thing alone in SwiftUI, and gave it an identity of posters, halftones, and a two-minute film. Live on the App Store since July 2026.
+overview: Marble is a training journal for iOS, an attempt at the most beautiful training app in existence. Programs, workouts, a rest timer, and a record of every session with a photo, stripped to the essential rhythm and set in black and white like ink on paper. I designed and built the whole thing alone in SwiftUI over six months, and gave it a world to live in, a name from Alexis Carrel, twenty-one posters, a website of halftone statues, and a two-minute campaign film. Live on the App Store since July 2026, about 800 downloads, paid from the first week.
 tagline: Weaving timeless beauty into simple software.
-caseRow: m-workout.mp4, m-feed.png, poster-02.jpg, dark-recorded.png
-homeRow: preview.mp4, m-dark-program.png, poster-14.jpg, m-ritual.mp4
+caseRow: photo-0402.jpg, m-feed.png, photo-0158.jpg
+homeRow: preview.mp4, text-15.jpg, m-dark-program.png
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
+
+![](text-14.jpg) ![](text-12.jpg)
+
+![](photo-0204.jpg) ![](photo-0302.jpg) ![](photo-0402.jpg)
+
+![](text-16.jpg) ![](photo-0273.jpg)
+
+![](m-train.png) ![loop](m-workout.mp4) ![](m-feed.png)
 
 ## No awe | Background
 
