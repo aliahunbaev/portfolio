@@ -14,14 +14,29 @@ export default function Arranger({ slug }: { slug: string }) {
   const [status, setStatus] = useState("");
   const [drag, setDrag] = useState<{ name: string; from?: string; index?: number } | null>(null);
 
-  useEffect(() => {
-    fetch(`/arrange/api?slug=${slug}`).then((r) => r.json()).then((d) => {
+  const [uploading, setUploading] = useState("");
+  function load() {
+    return fetch(`/arrange/api?slug=${slug}`).then((r) => r.json()).then((d) => {
       setAssets(d.assets ?? []);
       const next: Record<string, string[]> = {};
       for (const l of LANES) next[l.key] = (d.rows?.[l.key] ?? "").split(",").map((s: string) => s.trim()).filter(Boolean);
       setLanes(next);
     });
-  }, [slug]);
+  }
+  useEffect(() => { load(); }, [slug]);
+
+  async function upload(files: FileList | File[]) {
+    const list = [...files].filter((f) => /\.(jpe?g|png|mp4|mov)$/i.test(f.name));
+    if (!list.length) return;
+    setUploading(`Adding ${list.length} file${list.length > 1 ? "s" : ""}…`);
+    const fd = new FormData();
+    fd.append("slug", slug);
+    for (const f of list) fd.append("files", f);
+    const r = await fetch("/arrange/api", { method: "PUT", body: fd });
+    const d = await r.json();
+    setUploading(r.ok ? `Added ${(d.saved ?? []).join(", ")}` : "Upload failed.");
+    await load();
+  }
 
   const byName = Object.fromEntries(assets.map((a) => [a.name, a]));
   const ratioSum = (names: string[]) => names.reduce((n, x) => n + (byName[x] ? byName[x].w / byName[x].h : 0), 0);
@@ -105,8 +120,17 @@ export default function Arranger({ slug }: { slug: string }) {
       })}
 
       <section>
-        <div style={{ marginBottom: 8 }}><strong>Shelf</strong> <span style={{ color: "#777" }}>every asset in public/work/{slug}</span></div>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        <div style={{ marginBottom: 8, display: "flex", gap: 12, alignItems: "baseline" }}>
+          <strong>Shelf</strong> <span style={{ color: "#777" }}>every asset in public/work/{slug}. Drop photos or videos from the Desktop anywhere on the shelf to add them.</span>
+          <label style={{ marginLeft: "auto", padding: "6px 10px", border: "1px solid #bbb", borderRadius: 6, cursor: "pointer" }}>
+            Add files… <input type="file" multiple accept=".jpg,.jpeg,.png,.mp4,.mov" style={{ display: "none" }} onChange={(e) => e.target.files && upload(e.target.files)} />
+          </label>
+          <span style={{ color: "#777", minWidth: 160 }}>{uploading}</span>
+        </div>
+        <div
+          onDragOver={(e) => { if (e.dataTransfer.types.includes("Files")) e.preventDefault(); }}
+          onDrop={(e) => { if (e.dataTransfer.files.length) { e.preventDefault(); upload(e.dataTransfer.files); } }}
+          style={{ display: "flex", flexWrap: "wrap", gap: 8, padding: 8, border: "1px dashed #ddd", borderRadius: 8, minHeight: 140 }}>
           {assets.map((a) => (
             <div key={a.name} draggable onDragStart={() => setDrag({ name: a.name })} title={a.name} style={{ cursor: "grab" }}>
               {thumb(a, 96)}
