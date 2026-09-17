@@ -30,52 +30,47 @@ function EmailLine() {
   );
 }
 
-/* The record: what the résumé says, in the page's own rows. Name,
-   then role and years. The bio tells the story; these prove it. */
+/* The record, in the reach rows' own format: years, role, place.
+   Three short lines per entry; the bio carries the context. */
 const experience = [
   {
     title: "Verci",
-    role: "Creative Director & Ideation Lead, 2026 to present",
-    note: "Verci is a creative members space in Flatiron. I run content strategy: a weekly publishing rhythm, a carousel system, and the brand deck. Grew Instagram by 10,000 followers with an editorial series on the creative communities of the past, researched, written, designed, and published. Recruited and directed videographers and editors for a new short-film format, working directly with the founder.",
+    years: "2026 – Now",
+    role: "Creative Director & Ideation Lead",
   },
   {
     title: "Combat Créatif",
-    role: "Cofounder & Creative Director, 2022 to present",
-    note: "Combat is a studio and brand producing apparel, print, community events, and software. Shot campaigns and short-form content for a hoodie drop totaling $30,000 in revenue. Designed and sampled garments and published Combat Journal, a 68-page print magazine on the process behind each product. Produced and hosted The Art Movement, an exhibition and rooftop event in New York, 350 RSVPs and 250 guests.",
+    years: "2022 – Now",
+    role: "Cofounder & Creative Director",
   },
   {
     title: "Independent Practice",
-    role: "Freelance Designer & Developer, 2024 to 2025",
-    note: "Designed and built brands, websites, and online stores for clients, including an e-commerce and editorial site for Hardtokill, a social-media-born brand that needed a touchpoint to launch products after crossing 400K followers.",
+    years: "2024 – 2025",
+    role: "Freelance Designer & Developer",
   },
 ];
 
 const education = [
   {
     title: "New York University",
-    role: "B.S. Computer Science, 2025 to present",
-    note: "Transferred from Harper College with a 4.0 and a full-tuition merit scholarship after a year of independent building and freelance work. On leave for Fall 2026.",
+    years: "2025 – Now",
+    role: "B.S. Computer Science",
   },
 ];
 
 function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
-    <div className="grid gap-y-8">
-      {items.map((it, i) => (
-        <div
-          key={it.title}
-          className="grid gap-y-2 md:grid-cols-12 md:gap-x-gutter md:gap-y-0"
-        >
-          <p className="md:col-span-2">{i === 0 ? label : ""}</p>
-          <div className="leading-[1.3] md:col-span-3 md:col-start-3">
+    <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
+      <p className="font-normal">{label}</p>
+      <div className="grid gap-y-4">
+        {items.map((it) => (
+          <div key={it.title} className="grid leading-[1.3]">
+            <p className="font-normal">{it.years}</p>
+            <p>{it.role}</p>
             <p>{it.title}</p>
-            <p className="font-normal">{it.role}</p>
           </div>
-          <p className="font-normal leading-[1.4] md:col-span-5 md:col-start-6 md:max-w-[32rem]">
-            {it.note}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -105,7 +100,7 @@ export default function InformationContent() {
 
         {/* One column: the bio in medium body text, then the groups. */}
         <div className="max-md:pt-16 md:col-span-5 md:col-start-7 md:max-w-[32rem]">
-          <div className="font-serif font-normal space-y-[1.4em] text-[16px] leading-[1.6]">
+          <div className="space-y-4 leading-[1.3]">
             <p>
               Ali Ahunbáev is an artist and product designer based in New
               York. He works across product design, identity, film, and
@@ -162,6 +157,8 @@ export default function InformationContent() {
                 ))}
               </div>
             </div>
+            <Record label="Experience" items={experience} />
+            <Record label="Education" items={education} />
           </div>
           {/* Mobile: the reach links in the monument register — big
               thumb targets, the footer's mobile idiom. */}
@@ -179,14 +176,12 @@ export default function InformationContent() {
                 <ReachLink key={label} label={label} href={href} />
               ))}
             </div>
+            <div className="grid gap-y-10 pt-12">
+              <Record label="Experience" items={experience} />
+              <Record label="Education" items={education} />
+            </div>
           </div>
         </div>
-      </div>
-      {/* The record, in the résumé's three columns on the site's grid:
-          section, then name over role, then what happened there. */}
-      <div className="grid gap-y-14 pt-24">
-        <Record label="Experience" items={experience} />
-        <Record label="Education" items={education} />
       </div>
     </main>
   );
