@@ -7,12 +7,13 @@ description: Concepting, organizing, and hosting an art exhibition and rooftop p
 cover: 000157750001.jpg
 overview: The Art Movement was the first event by Combat Créatif, a one-night art exhibition and rooftop party at Verci in Flatiron on May 9th, 2026. I came up with the concept, chose the four artists, produced and hosted the night, designed every artifact from the deck to the invitations to the Instagram rollout, and shot the photographs on this page. 350 people RSVP'd and 250 came. Downstairs, a photographer, a poet, a sculptor, and I each showed our work and told the story behind it, and then the night moved to the roof, where a DJ set and open microphones ran until late.
 tagline: Inspiration handed directly from artist to audience.
-caseRow: 000157750012.jpg, IMG_5063.jpg, IMG_6156.jpg
+caseRow: preview.mp4, 000157750020.jpg, IMG_5014.jpg
 preview: preview.mp4
-homeRow: preview.mp4, 000157750008.jpg, 000157750024.jpg
+homeRow: preview.mp4, IMG_5014.jpg, 000157750020.jpg
 previewPoster: preview-poster.jpg
 featured: true
 order: 3
+caseRow2: post1-01.jpg, 000157750025.jpg, 000157740023.jpg
 ---
 
 ## Every lame party | Background
@@ -20,6 +21,8 @@ order: 3
 Growing up in Chicago, some of my biggest inspirations were music videos, Pharrell's Frontin' with Jay-Z, and the movies of the mid nineties. That whole creative canon: parties full of beautiful girls and cool artists, great music playing, dancing, freestyling, so much swag and artistry in one room. I looked around and I didn't see that anywhere.
 
 In high school I didn't go to many parties. I was known as an old soul, reading, writing, working out, asleep early, awake early, and that became part of my identity to other people. But I never felt boring. It's that the parties I did go to were so lame. The music would be bad, nobody would be dancing, the people weren't interesting. It felt alienating: there's nothing here that sees my soul, and it isn't even fun. It was more fun to hang out with friends and work on something and dance in a living room. So at every one of those parties I would sit there and note what I would do differently. What songs I would play. What would have made this so much fun. I had all these ideas.
+
+![My first trip to NYC at 16](highschool.jpg) ![Frontin' Music Video](frontin.mp4)
 
 ## Selfish and generous | Motivation
 

@@ -243,6 +243,7 @@ function BlockView({
               poster={item.poster}
               w={item.w}
               h={item.h}
+              caption={item.caption}
               style={{ flexGrow: ratio(item), flexBasis: 0 }}
             />
           ) : (

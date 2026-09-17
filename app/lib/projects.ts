@@ -27,6 +27,8 @@ export type Block =
       /** Silent app preview: plays as a chromeless loop, gif-fashion.
        *  Without it a lone video gets the full player (film, audio). */
       loop?: boolean;
+      /** Alt text on a video line becomes its caption. */
+      caption?: string;
     }
   | {
       /** Two or three pieces written on one line: shown side by side at
@@ -35,7 +37,7 @@ export type Block =
       type: "row";
       items: (
         | { type: "image"; image: string; caption?: string; w?: number; h?: number }
-        | { type: "video"; src: string; poster?: string; w?: number; h?: number }
+        | { type: "video"; src: string; poster?: string; w?: number; h?: number; caption?: string }
       )[];
     }
   | {

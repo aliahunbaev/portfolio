@@ -9,6 +9,7 @@ export default function LoopVideo({
   poster,
   w,
   h,
+  caption,
   className = "",
   style,
 }: {
@@ -16,6 +17,7 @@ export default function LoopVideo({
   poster?: string;
   w?: number;
   h?: number;
+  caption?: string;
   className?: string;
   style?: React.CSSProperties;
 }) {
@@ -27,6 +29,7 @@ export default function LoopVideo({
       >
         <PreviewVideo src={src} poster={poster} />
       </div>
+      {caption && <p className="pt-3 text-center">{caption}</p>}
     </div>
   );
 }
