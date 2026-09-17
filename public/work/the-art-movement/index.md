@@ -22,7 +22,7 @@ Growing up in Chicago, some of my biggest inspirations were music videos, Pharre
 
 In high school I didn't go to many parties. I was known as an old soul, reading, writing, working out, asleep early, awake early, and that became part of my identity to other people. But I never felt boring. It's that the parties I did go to were so lame. The music would be bad, nobody would be dancing, the people weren't interesting. It felt alienating: there's nothing here that sees my soul, and it isn't even fun. It was more fun to hang out with friends and work on something and dance in a living room. So at every one of those parties I would sit there and note what I would do differently. What songs I would play. What would have made this so much fun. I had all these ideas.
 
-![My first trip to NYC at 16](highschool.jpg) ![Frontin' Music Video](frontin.mp4)
+![My first trip to NYC at 16](highschool.jpg) ![player | Frontin' Music Video](frontin.mp4)
 
 ## Selfish and generous | Motivation
 

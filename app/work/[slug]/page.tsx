@@ -236,7 +236,12 @@ function BlockView({
         className={`${mobile} scroll-mt-24 items-start gap-x-gutter lg:col-start-1 lg:col-span-8`}
       >
         {block.items.map((item) =>
-          item.type === "video" ? (
+          item.type === "video" && item.player ? (
+            <div key={item.src} style={{ flexGrow: ratio(item), flexBasis: 0, minWidth: 0 }}>
+              <VideoPlayer src={item.src} />
+              {item.caption && <p className="pt-3 text-center">{item.caption}</p>}
+            </div>
+          ) : item.type === "video" ? (
             <LoopVideo
               key={item.src}
               src={item.src}

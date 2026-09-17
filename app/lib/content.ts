@@ -209,8 +209,14 @@ function parseBlocks(slug: string, body: string): Block[] {
                 src: url,
                 // `![loop](clip.mp4)` on its own line: chromeless silent
                 // loop instead of the full player.
+                // `![player | Caption](clip.mp4)` in a row: the full player
+                // with sound and controls instead of a silent loop.
                 ...(alt.trim() === "loop" ? { loop: true } : {}),
-                ...(alt.trim() && alt.trim() !== "loop" ? { caption: alt.trim() } : {}),
+                ...(/^player(\s*\||$)/i.test(alt.trim()) ? { player: true } : {}),
+                ...((() => {
+                  const c = alt.trim().replace(/^(loop|player)\s*(\|\s*)?/i, "").trim();
+                  return c ? { caption: c } : {};
+                })()),
                 ...posterFor(src),
               } as const)
             : ({

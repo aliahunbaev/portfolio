@@ -29,6 +29,8 @@ export type Block =
       loop?: boolean;
       /** Alt text on a video line becomes its caption. */
       caption?: string;
+      /** In a row, `player | Caption` asks for the full player. */
+      player?: boolean;
     }
   | {
       /** Two or three pieces written on one line: shown side by side at
@@ -37,7 +39,7 @@ export type Block =
       type: "row";
       items: (
         | { type: "image"; image: string; caption?: string; w?: number; h?: number }
-        | { type: "video"; src: string; poster?: string; w?: number; h?: number; caption?: string }
+        | { type: "video"; src: string; poster?: string; w?: number; h?: number; caption?: string; player?: boolean }
       )[];
     }
   | {
