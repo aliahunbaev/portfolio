@@ -10,19 +10,11 @@ order: 1
 preview: preview.mp4
 overview: Marble is a training journal for iOS, an attempt at the most beautiful training app in existence. Programs, workouts, a rest timer, and a record of every session with a photo, stripped to the essential rhythm and set in black and white like ink on paper. I designed and built the whole thing alone in SwiftUI over six months, and gave it a world to live in, a name from Alexis Carrel, twenty-one posters, a website of halftone statues, and a two-minute campaign film. Live on the App Store since July 2026, about 800 downloads, paid from the first week.
 tagline: Weaving timeless beauty into simple software.
-caseRow: photo-0402.jpg, m-feed.png, photo-0158.jpg
-homeRow: preview.mp4, text-15.jpg, m-dark-program.png
+caseRow: photo-0402.jpg, poster-11.jpg, m-feed.png, site-01-hero.jpg
+homeRow: preview.mp4, poster-06.jpg, m-workout.mp4, poster-01.jpg
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
-
-![](text-14.jpg) ![](text-12.jpg)
-
-![](photo-0204.jpg) ![](photo-0302.jpg) ![](photo-0402.jpg)
-
-![](text-16.jpg) ![](photo-0273.jpg)
-
-![](m-train.png) ![loop](m-workout.mp4) ![](m-feed.png)
 
 ## No awe | Background
 
@@ -100,6 +92,8 @@ You should use social media for social things, and this is not social media. It'
 There's a garment company called UVU whose campaign films stopped me in my tracks. They take an athlete, a runner or a martial artist, and shoot the most dramatic, emotional, almost melancholy portrait of them, which is not how athletes are usually shown. Their actual products are simple, running clothes with a logo on them. But they did the work of creating the story behind what the products represent, and now when you wear them and run, you see those images. The storytelling makes the product.
 
 *The Sculptor* is my exercise in that process. I created a two-minute campaign film with my friend Jaden in front of the camera because he's the Venn diagram in person: a varsity basketball player and a model who's just as concerned with his inner life as with expressing it outwardly as he moves through the world. The film is a private portrait of a man training, fighting, running, reflecting, moving through a noisy New York, with glimpses of joy attained through difficult discipline. I would love to create more of these, capturing the same spirit in different contexts: perhaps a fighter, a swimmer, a Paralympian.
+
+![](text-14.jpg) ![](photo-0302.jpg) ![](photo-0273.jpg)
 
 ![](sculptor.mp4)
 
