@@ -174,7 +174,7 @@ export default function InformationContent() {
             <Record label="Experience" items={experience} split />
             <Record label="Education" items={education} split />
           </div>
-          <div className="pt-16 md:hidden">
+          <div className="pt-24 md:hidden">
             <p>Contact</p>
             <div className="flex flex-col gap-y-1 pt-2 text-title">
               <EmailLine />
