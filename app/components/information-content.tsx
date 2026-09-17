@@ -110,38 +110,51 @@ export default function InformationContent() {
         <div className="max-md:pt-16 md:col-span-5 md:col-start-7 md:max-w-[32rem]">
           <div className="space-y-4 leading-[1.3]">
             <p>
-              Ali Ahunbáev is an artist and product designer based in New
-              York. He works across product design, identity, film, and
-              writing, with a focus on tools and stories that carry a
-              philosophy. His current work spans Marble, a training journal
-              for iOS, The Art Movement, a series of exhibitions and rooftop
-              gatherings for artists in New York, and{" "}
+              Ali Ahunbáev is a product designer and artist in New York. He
+              studies computer science at NYU, currently on leave, and works
+              in creative direction at Verci, a members space for creatives
+              in Flatiron. He is the founder and director of Combat Créatif, a
+              creative company that makes products and hosts events for
+              people in the creative disciplines: clothes, an app, a print
+              journal, a film, and an art exhibition so far.
+            </p>
+            <p>
+              He believes beauty and utility belong in the same object, and
+              that the best tools bring out the best in us. That is the outer
+              pursuit, making beautiful things. The inner one is a life that
+              feels like play. He writes about both at{" "}
               <InlineLink href="https://playfighter.substack.com">
                 Playfighter
               </InlineLink>
-              , a weekly writing practice.
+              .
             </p>
             <p>
-              He grew up in Chicago, started college at fifteen, and moved
-              to New York on a simple thesis, New York or nowhere. He
-              believes philosophy and beautiful utility belong in the same
-              object, and builds toward a life that feels like play.
+              He grew up in Chicago with a traditional art background, was
+              rejected from every college he applied to, and went to
+              community college instead, where he taught himself web design
+              and started building his own things. He transferred to NYU,
+              moved to New York, began creative work at Verci, and produced
+              The Art Movement, an exhibition and rooftop party for 250
+              people, under Combat.
             </p>
             <p>
-              Before New York there was Combat, the clothing brand he
-              started with his best friend, which grew a simple idea to
-              thirty thousand dollars in revenue and a printed journal, and taught him that
-              design, branding, and storytelling are one craft. It has
-              since become Combat Créatif, the studio that holds everything
-              he makes.
+              His work runs across disciplines because the pursuit does. He
+              writes, films, illustrates, designs, and builds, and those have
+              organized themselves into producing things in the world. What
+              unites the work is purpose rather than medium, and a fascination
+              with the place where art meets business, money, and the
+              practical world, which can be the death of it or the building
+              block of a more beautiful one. Combat is named for that
+              struggle, and takes its spirit from hip-hop, jazz, and the
+              blues, pain turned into the most influential music alive.
             </p>
             <p>
-              He starts every project by looking for the feeling, usually
-              with a name and a poster before anything is built, and he
-              works in public. The films, essays, and sketches on this site
-              are the record. The longer stories live in the{" "}
-              <InlineLink href="/writing">writing</InlineLink> and in each
-              project. He is always glad to hear from brilliant people.
+              He is looking to help build a beautiful company: a product
+              design or creative role on a team committed to design, serious
+              about excellence, and fun as hell to be part of, working on
+              things that help people reach their highest potential. He can
+              take an idea from concept to something real, and he is always
+              glad to hear from brilliant people.
             </p>
           </div>
 
