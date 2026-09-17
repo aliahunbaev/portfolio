@@ -30,31 +30,27 @@ function EmailLine() {
   );
 }
 
-/* The record: what the résumé says, in the page's own rows. Title,
-   role and years, then one line that carries the fact. */
+/* The record: what the résumé says, in the page's own rows. Name,
+   then role and years. The bio tells the story; these prove it. */
 const experience = [
   {
     title: "Verci",
     role: "Creative Director & Ideation Lead, 2026 to present",
-    note: "Content strategy and a short-film format for a creative members space in Flatiron; grew Instagram by 10,000 followers with an editorial series on creative communities of the past.",
   },
   {
     title: "Combat Créatif",
     role: "Cofounder & Creative Director, 2022 to present",
-    note: "A studio and brand producing apparel, print, community events, and software; $30,000 in revenue in the first year, a 68-page print journal, and The Art Movement.",
   },
   {
     title: "Independent Practice",
     role: "Freelance Designer & Developer, 2024 to 2025",
-    note: "Brands, websites, and online stores for clients, including an e-commerce and editorial site for Hardtokill after it crossed 400K followers.",
   },
 ];
 
 const education = [
   {
     title: "New York University",
-    role: "B.S. Computer Science, 2025 to present",
-    note: "Transferred from Harper College (4.0, full-tuition merit scholarship) after a year of independent building and freelance work. On leave for Fall 2026.",
+    role: "B.S. Computer Science, 2025 to present, on leave Fall 2026",
   },
 ];
 
@@ -62,12 +58,11 @@ function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
     <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
       <p>{label}</p>
-      <div className="grid gap-y-6">
+      <div className="grid gap-y-4">
         {items.map((it) => (
-          <div key={it.title} className="grid gap-y-1 leading-[1.3]">
+          <div key={it.title} className="grid leading-[1.3]">
             <p>{it.title}</p>
-            <p className="text-neutral-400">{it.role}</p>
-            <p>{it.note}</p>
+            <p>{it.role}</p>
           </div>
         ))}
       </div>
