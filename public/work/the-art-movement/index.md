@@ -5,7 +5,7 @@ medium: Event
 disciplines: Concept, Production, Photography
 description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York. One night at Verci: four artists downstairs, 250 guests, and a roof that went until late.
 cover: 000157750001.jpg
-overview: The first event by Combat Créatif: one night at Verci in Flatiron, May 9th, 2026, with 350 RSVPs and 250 guests. Four artists showed their work downstairs, then the night moved to the roof until late. I concepted, organized, and hosted it, designed every artifact of the night, and shot the photographs here.
+overview: The Art Movement was the first event by Combat Créatif, a one-night art exhibition and rooftop party at Verci in Flatiron on May 9th, 2026. I came up with the concept, chose the four artists, produced and hosted the night, designed every artifact from the deck to the invitations to the Instagram rollout, and shot the photographs on this page. 350 people RSVP'd and 250 came. Downstairs, a photographer, a poet, a sculptor, and I each showed our work and told the story behind it, and then the night moved to the roof, where a DJ set and open microphones ran until late.
 tagline: Inspiration handed directly from artist to audience.
 caseRow: 000157750012.jpg, IMG_5063.jpg, IMG_6156.jpg
 preview: preview.mp4
@@ -48,6 +48,12 @@ I did everything on this one: recruited friends, chose the artists, ran the room
 I asked Jaden Clemons to co-host. We had a conversation about the interconnectedness of a tree and a forest, I gave him the idea, and I edited the video of him talking about it as part of the rollout.
 
 ![](jaden-inspiration.mp4)
+
+## Impact
+
+It was my first time doing anything like this, and the night went about ninety-five percent aligned with the best case I was aiming for. Many people told me it was the best event they had been to in New York. Many friends were made, and what people kept saying was that they felt happy. It was beautiful.
+
+What I took from it: along with creating cool objects, I can create cool experiences, and I learned viscerally that those are related. The process behind different mediums is related, and it translates. At least in my experience. I would love to continue.
 
 ## Four artists downstairs | The night
 
@@ -108,9 +114,3 @@ At nine the night moved to the roof. A DJ set moved through soul, jazz, R&B, and
 ![](IMG_6158.jpg)
 
 ![](IMG_6156.jpg)
-
-## Impact
-
-It was my first time doing anything like this, and the night went about ninety-five percent aligned with the best case I was aiming for. Many people told me it was the best event they had been to in New York. Many friends were made, and what people kept saying was that they felt happy. It was beautiful.
-
-What I took from it: along with creating cool objects, I can create cool experiences, and I learned viscerally that those are related. The process behind different mediums is related, and it translates. At least in my experience. I would love to continue.

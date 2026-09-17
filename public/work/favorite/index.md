@@ -8,7 +8,7 @@ cover: site-0.jpg
 overview: Favorite is a library for everything you love, with your friends' walls beside yours. I came up with the concept and the name, Abdul engineered it, and we shaped the interface together. It's live at myfavoriteapp.com as an MVP, parked for now, and the reason it exists still holds.
 tagline: One beautiful home for everything you love.
 caseRow: site-1.jpg, site-3.jpg
-homeRow: intro.mp4, library-scroll.mp4
+homeRow: card.jpg, intro.mp4
 featured: true
 order: 2
 links: myfavoriteapp.com https://myfavoriteapp.com
