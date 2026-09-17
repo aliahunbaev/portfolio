@@ -8,11 +8,11 @@ cover: cover-statue.jpg
 featured: true
 order: 1
 preview: preview.mp4
-overview: Marble is a training journal for iOS, an attempt at the most beautiful training app in existence. Programs, workouts, a rest timer, and a record of every session with a photo, stripped to the essential rhythm and set in black and white like ink on paper. I designed and built the whole thing alone in SwiftUI over six months, and gave it a world to live in, a name from Alexis Carrel, twenty-one posters, a website of halftone statues, and a two-minute campaign film. Live on the App Store since July 2026, about 800 downloads, paid from the first week.
+overview: Marble is a training journal for iOS, made for people who view physical training as a spiritual and creative practice. It holds your programs, your workouts, a rest timer, and a record of every session with a photo, and it's set in black and white so it reads like ink on paper. I designed and built it alone in SwiftUI over six months, from the first Figma sketches to the App Store, and built a brand identity through posters, a website, and campaign film + photography. It has been live since July 2026, about 800 people have downloaded it, and it made money in its first week.
 tagline: Weaving timeless beauty into simple software.
-caseRow: preview.mp4, poster-11.jpg, m-dark-track.png, photo-0402.jpg
-caseRow2: poster-18.jpg, m-train.png, m-workout-close.mp4, m-feed.png, site-01-hero.jpg
-homeRow: preview.mp4, poster-14.jpg, m-dark-log.mp4, sculptor-cover.jpg
+caseRow: preview.mp4, guy.jpg, m-dark-log.mp4
+caseRow2: girl.jpg, m-ritual.mp4, site-01-hero.jpg
+homeRow: preview.mp4, guy.jpg, m-dark-log.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
@@ -50,7 +50,7 @@ I often work this way: I need to see the feeling before I can build the thing, u
 
 If Marble existed hundreds of years ago, it would have been a bound notebook. Right now it's an iPhone app, because people carry their phones everywhere, including the gym, and if the form factor of software changes, it would change with it. That dialogue between something timeless and the moment we're in is why the website renders ancient statues as digitized halftone grids.
 
-[![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com) ![](site-02.jpg) ![](site-03.jpg)
+[![marblejournal.com](site-01-hero.jpg)](https://marblejournal.com)
 
 ## The Venn diagram | Audience
 
@@ -72,9 +72,9 @@ I like to give my products a reference object. If this were a physical thing, wh
 
 The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
 
-![](m-train.png) ![loop](m-workout.mp4) ![](m-dark-program.png)
+![](m-train.png) ![](m-dark-program.png)
 
-![loop](m-dark-log.mp4) ![loop](m-ritual.mp4) ![](dark-recorded.png)
+![loop](m-dark-log.mp4) ![loop](m-ritual.mp4)
 
 ## Trust the user | Decisions
 
@@ -84,7 +84,7 @@ Every fitness app has a feed and streaks and congratulations, and I find that a 
 
 The one piece I kept is a grid of your training days that fills in as you go, like GitHub's activity graph. It's the streak with the applause stripped out: you can see your consistency, but nothing celebrates it. It's expected. The work is the reward.
 
-![](m-track.png) ![](m-dark-track.png) ![](m-feed.png)
+![](m-track.png) ![](m-feed.png)
 
 You should use social media for social things, and this is not social media. It's a training tool.
 
@@ -94,7 +94,7 @@ There's a garment company called UVU whose campaign films stopped me in my track
 
 *The Sculptor* is my exercise in that process. I created a two-minute campaign film with my friend Jaden in front of the camera because he's the Venn diagram in person: a varsity basketball player and a model who's just as concerned with his inner life as with expressing it outwardly as he moves through the world. The film is a private portrait of a man training, fighting, running, reflecting, moving through a noisy New York, with glimpses of joy attained through difficult discipline. I would love to create more of these, capturing the same spirit in different contexts: perhaps a fighter, a swimmer, a Paralympian.
 
-![](photo-0204.jpg) ![](photo-0302.jpg) ![](photo-0185.jpg)
+![](photo-0204.jpg) ![](photo-0302.jpg)
 
 ![](sculptor.mp4)
 
