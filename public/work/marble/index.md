@@ -10,7 +10,7 @@ order: 1
 preview: preview.mp4
 overview: Marble is a training journal for iOS: programs, workouts, and a record of every session, stripped to the essential rhythm. I designed and built the whole thing alone in SwiftUI, and gave it an identity of posters, halftones, and a two-minute film. Live on the App Store since July 2026.
 tagline: Weaving timeless beauty into simple software.
-caseRow: demo-workout.mp4, app-train.png, poster-02.jpg, dark-recorded.png
+caseRow: demo-workout.mp4, p-train.png, poster-02.jpg, dark-recorded.png
 homeRow: preview.mp4, dark-workout.png, poster-14.jpg, clip-tabs.mp4
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
@@ -69,37 +69,13 @@ If you blew Marble out to full scale, there would be gyms, running clubs, physic
 
 I like to give my products a reference object. If this were a physical thing, what would it be? Marble is a training journal. Often as I visit different gyms, I see a recurring archetype: the old-school boxer or bodybuilder, the gray-haired seventy-year-old in phenomenal shape who, though you've never met him, you imagine was a renowned athlete in his youth, with a coach who demanded a code of excellence and consistency that has never left him. They are usually pulling out a battered physical notebook to write down their sets, what felt wrong, what felt right. You don't open a notebook to find friends or play a game. It's a private, reflective object.
 
-The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. Three tabs: Train, Track, You. Train is where you write, Track is where you read back, You is the record.
-
-The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
+The app is that notebook in digital form. It's black and white throughout, reflecting ink on paper. The workout templates are called Programs, because that's what I'd call my own training and what I see in the lexicon of old-school athletes. The exercise list in a program preview is set in a handwritten font, so it reads like a journal page. Each day opens with a meditation, one line from Marcus Aurelius or Mishima or Muhammad Ali, cycling daily to put you in the right headspace before the first set.
 
 ![](p-train.png) ![](dark-program.png)
 
-A workout is a sheet: set, pounds, reps, one check. Your last numbers sit faint in the fields so you don't have to remember them, you just confirm or beat them. When you check a set, a rest timer drops in under it and counts down in place. It's a row in the sheet, not a popup, because you're between sets and the last thing you want is to be managed.
+![loop](demo-workout.mp4)
 
-![](p-workout.png) ![](dark-workout.png)
-
-Finishing is a small ceremony. One screen: a photo if you took one, a line about today. Then a page that says Recorded, with the date, and nothing else. No confetti, no summary card to share. The entry lands in your record, with the photo below the numbers.
-
-![](p-ritual.png) ![](p-recorded.png) ![](p-feed.png)
-
-Track is the reading side. The month you're in fills square by square, the lifts you care about sit as cards, and each one opens into best weight, estimated one-rep max, max volume, and the history underneath. Bodyweight gets the same treatment with a line instead of a list.
-
-![](p-track.png) ![](p-lift.png) ![](p-bodyweight.png)
-
-You holds the record and the gallery. Progress photos are attached to the workouts they came from, and you can put any two side by side. That's the closest Marble gets to a feature about looking good, and it's still just two dates and two photographs.
-
-![](p-gallery.png) ![](p-viewer.png) ![](p-compare.png)
-
-## Draft, look, refine | Process
-
-I sketched Marble in Figma in March, before I had written a line of Swift. The sketches settled the skeleton: three tabs, a start button above a grid of programs, the exercise lists in handwriting, the quote at the top of the day. They also carried things that didn't survive. The statue on the Train tab moved to the posters and the website, because the app wanted to be quieter than its identity. The serif and the dark version went too, for the same reason. Ink on paper, and the paper is white.
-
-![](sk-01.png) ![](sk-02.png) ![](sk-03.png)
-
-![](sk-04.png) ![](sk-05.png) ![](sk-06.png)
-
-From there the process was the one I describe at the end: get a draft working, look at it, refine. Most of the refining was small and daily. Twice it wasn't. At the end of May I standardized the Train tab, square button, one type scale, everything on a system, and it was correct and dead. I reverted it the same day. A day later I built the record feed six ways in one afternoon, a plain list, an editorial page with the sets in handwriting, poster tiles, a set sheet, ghost rows, cards. The editorial one was the most beautiful and the least usable. The cards were the only version where the photo and the numbers read as one object, so the cards stayed.
+![](dark-workout.png) ![](clip-pill.mp4)
 
 ## Trust the user | Decisions
 
@@ -109,7 +85,7 @@ Every fitness app has a feed and streaks and congratulations, and I find that a 
 
 The one piece I kept is a grid of your training days that fills in as you go, like GitHub's activity graph. It's the streak with the applause stripped out: you can see your consistency, but nothing celebrates it. It's expected. The work is the reward.
 
-![](app-track.png) ![](app-you.png)
+![](p-track.png) ![](p-feed.png)
 
 You should use social media for social things, and this is not social media. It's a training tool.
 
