@@ -62,12 +62,12 @@ function Record({ label, items }: { label: string; items: typeof experience }) {
   return (
     <div className="grid gap-y-3 md:grid-cols-2 md:gap-x-gutter">
       <p className="font-normal">{label}</p>
-      <div className="grid gap-y-4">
+      <div className="grid gap-y-5">
         {items.map((it) => (
-          <div key={it.title} className="grid leading-[1.3]">
-            <p className="font-normal">{it.years}</p>
-            <p>{it.role}</p>
+          <div key={it.title} className="grid gap-y-0.5 leading-[1.3]">
             <p>{it.title}</p>
+            <p className="text-neutral-400">{it.role}</p>
+            <p className="text-neutral-400">{it.years}</p>
           </div>
         ))}
       </div>
