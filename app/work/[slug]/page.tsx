@@ -223,9 +223,11 @@ function BlockView({
     // row shares one height; loops and stills mix freely. On phones a
     // pair of landscapes stacks, and anything wider than a pair folds
     // into two columns so each piece stays legible.
-    const landscape = block.items.every((i) => (i.w ?? 1) >= (i.h ?? 1));
+    // Two portraits (phones, pages) stay side by side on phones; any
+    // other pair stacks so a landscape isn't squeezed to half width.
+    const portraits = block.items.every((i) => (i.w ?? 1) < (i.h ?? 1));
     const mobile =
-      block.items.length === 2 && landscape
+      block.items.length === 2 && !portraits
         ? "flex max-md:flex-col max-md:gap-y-gutter"
         : block.items.length > 2
           ? "max-md:grid max-md:grid-cols-2 max-md:gap-y-gutter md:flex"
