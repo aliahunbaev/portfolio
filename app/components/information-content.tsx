@@ -110,52 +110,53 @@ export default function InformationContent() {
         <div className="max-md:pt-16 md:col-span-5 md:col-start-7 md:max-w-[32rem]">
           <div className="space-y-4 leading-[1.3]">
             <p>
-              Ali Ahunbáev is a product designer and artist in New York. He
-              studies computer science at NYU, currently on leave, and works
-              in creative direction at Verci, a members space for creatives
-              in Flatiron. He is the founder and director of Combat Créatif, a
-              creative company that makes products and hosts events for
-              people in the creative disciplines: clothes, an app, a print
-              journal, a film, and an art exhibition so far.
+              Ali Ahunbáev is a product designer in New York. He studies
+              computer science at NYU, on leave this fall, and works in
+              creative direction at Verci, a members space for creatives in
+              Flatiron. He is the founder of Combat Créatif, a creative
+              company that makes products and holds events for people who
+              make things. So far that has meant clothes, a training app, a
+              print journal, a short film, and an art exhibition on a roof.
             </p>
             <p>
-              He believes beauty and utility belong in the same object, and
-              that the best tools bring out the best in us. That is the outer
-              pursuit, making beautiful things. The inner one is a life that
-              feels like play. He writes about both at{" "}
+              The idea underneath all of it is simple: beauty and utility
+              belong in the same object. The tools worth making are the ones
+              that bring out the best in the people who use them. That is the
+              outward pursuit. The inward one is a life that feels like
+              play, which he writes about weekly at{" "}
               <InlineLink href="https://playfighter.substack.com">
                 Playfighter
               </InlineLink>
               .
             </p>
             <p>
-              He grew up in Chicago with a traditional art background, was
-              rejected from every college he applied to, and went to
-              community college instead, where he taught himself web design
-              and started building his own things. He transferred to NYU,
-              moved to New York, began creative work at Verci, and produced
-              The Art Movement, an exhibition and rooftop party for 250
-              people, under Combat.
+              He grew up in Chicago drawing and painting, and planned on
+              architecture until every college he applied to said no. He
+              went to community college instead, taught himself to build
+              for the web, and started making his own things. Two years later
+              he transferred to NYU, moved to New York, and began working in
+              the city, where he produced The Art Movement, an exhibition and
+              rooftop party for 250 people, under Combat.
             </p>
             <p>
-              His work runs across disciplines because the pursuit does. He
-              writes, films, illustrates, designs, and builds, and those have
-              organized themselves into producing things in the world. What
-              unites the work is purpose rather than medium, and a fascination
-              with the place where art meets business, money, and the
-              practical world, which can be the death of it or the building
-              block of a more beautiful one. Combat is named for that
-              struggle, and takes its spirit from hip-hop, jazz, and the
-              blues, pain turned into the most influential music alive.
+              The work spans disciplines because the pursuit does. He writes,
+              films, illustrates, designs, and builds, and at some point those
+              stopped being separate hobbies and became one practice of
+              putting things into the world. What holds it together is not a
+              medium but a question he has carried since art school: what
+              happens when art meets money, business, and the practical world.
+              It can be the end of the art or the foundation of a more
+              beautiful one. Combat is named for that struggle, and takes its
+              spirit from hip-hop, jazz, and the blues, music born of pain
+              and turned into the most influential sound of the last century.
             </p>
             <p>
-              I am looking to join a purpose-driven company, one committed to
-              beauty as much as to growth, with a culture of excellence and a
-              real love for the work. Product design is the role I want, and
-              I am open to whatever it takes to learn: research, prototyping,
-              identity, writing, film. The motivation is to grow in one
-              direction, building beautiful products and experiences that
-              bring out the best in us, alongside great people.
+              He is looking to join a company that is as committed to beauty
+              as it is to growth, with a culture of excellence and a real
+              love for the work, in a product design role, or any role that
+              lets him learn in that direction: building beautiful products
+              and experiences that bring out the best in us, with great
+              people.
             </p>
           </div>
 
