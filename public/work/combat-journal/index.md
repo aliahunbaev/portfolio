@@ -7,7 +7,8 @@ description: Wrote and designed a magazine on making things with your friends: f
 cover: cover.jpg
 overview: A sixty-eight page magazine on Combat's first year: four garments, the stories behind them, and the people who wore them. Written, shot, and laid out start to finish, from a first year that grew to $30,000 in revenue with my best friend.
 tagline: Sixty-eight pages on making things with your friends.
-caseRow: page-05.jpg, page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg
+caseRow: strip-01.jpg, strip-02.jpg, bro.mp4, strip-04.jpg, strip-05.jpg, strip-06.jpg
+caseRow2: page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg, page-50.jpg
 homeRow: strip-01.jpg, strip-02.jpg, bro.mp4, strip-04.jpg, strip-05.jpg
 featured: true
 ---
