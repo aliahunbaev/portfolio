@@ -10,8 +10,9 @@ order: 1
 preview: preview.mp4
 overview: Marble is a training journal for iOS, an attempt at the most beautiful training app in existence. Programs, workouts, a rest timer, and a record of every session with a photo, stripped to the essential rhythm and set in black and white like ink on paper. I designed and built the whole thing alone in SwiftUI over six months, and gave it a world to live in, a name from Alexis Carrel, twenty-one posters, a website of halftone statues, and a two-minute campaign film. Live on the App Store since July 2026, about 800 downloads, paid from the first week.
 tagline: Weaving timeless beauty into simple software.
-caseRow: photo-0402.jpg, poster-11.jpg, m-feed.png, site-01-hero.jpg
-homeRow: preview.mp4, poster-06.jpg, m-workout.mp4, poster-01.jpg
+caseRow: preview.mp4, poster-18.jpg, m-feed.png, photo-0402.jpg
+caseRow2: photo-0158.jpg, m-dark-track.png, poster-01.jpg, m-ritual.mp4
+homeRow: preview.mp4, poster-14.jpg, m-dark-log.mp4, sculptor-cover.jpg
 previewPoster: preview-poster.jpg
 links: App Store https://apps.apple.com/us/app/marble-training-journal/id6779775636, marblejournal.com https://marblejournal.com
 ---
@@ -93,7 +94,7 @@ There's a garment company called UVU whose campaign films stopped me in my track
 
 *The Sculptor* is my exercise in that process. I created a two-minute campaign film with my friend Jaden in front of the camera because he's the Venn diagram in person: a varsity basketball player and a model who's just as concerned with his inner life as with expressing it outwardly as he moves through the world. The film is a private portrait of a man training, fighting, running, reflecting, moving through a noisy New York, with glimpses of joy attained through difficult discipline. I would love to create more of these, capturing the same spirit in different contexts: perhaps a fighter, a swimmer, a Paralympian.
 
-![](photo-v-0402.jpg) ![](photo-v-0302.jpg) ![](photo-v-0204.jpg)
+![](photo-0204.jpg) ![](photo-0302.jpg) ![](photo-0185.jpg)
 
 ![](sculptor.mp4)
 

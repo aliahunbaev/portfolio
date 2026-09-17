@@ -401,7 +401,12 @@ export default async function WorkPage({ params }: Params) {
 
   // The overture media, regrouped for mobile the way the body flows:
   // landscape items run full width, portraits pair up side by side.
-  const heroItems = [...(work.homeRow ?? []), ...(work.caseRow ?? [])];
+  // caseRow (+ caseRow2) is the study's own overture when set; otherwise
+  // the homepage strip opens the page.
+  const strips = work.caseRow2?.length
+    ? [work.caseRow, work.caseRow2]
+    : [work.homeRow, work.caseRow];
+  const heroItems = strips.flatMap((r) => r ?? []);
   const heroGroups: (typeof heroItems)[] = [];
   {
     let pair: typeof heroItems = [];
@@ -481,7 +486,7 @@ export default async function WorkPage({ params }: Params) {
             </div>
           </div>
         </div>
-        {[work.homeRow, work.caseRow]
+        {strips
           .filter((r) => r && r.length)
           .map((row, ri) => (
             <div

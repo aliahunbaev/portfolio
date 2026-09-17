@@ -291,6 +291,7 @@ function readFolder(slug: string): Project | undefined {
     // (or a "-poster" sibling); files without a knowable size are dropped.
     // caseRow is the case-study overture's second row, same rules.
     caseRow: parseMediaRow(slug, meta.caseRow),
+    caseRow2: parseMediaRow(slug, meta.caseRow2),
     homeRow: meta.homeRow
       ? meta.homeRow
           .split(",")

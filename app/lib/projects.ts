@@ -93,6 +93,16 @@ export type Project = {
     w: number;
     h: number;
   }[];
+  /** Optional second case-study strip (frontmatter: caseRow2). When
+   *  caseRow is set, the study opens with caseRow then caseRow2 and the
+   *  homepage strip stays on the homepage. */
+  caseRow2?: {
+    type: "image" | "video";
+    src: string;
+    poster?: string;
+    w: number;
+    h: number;
+  }[];
   /** Curated homepage strip (frontmatter: homeRow): 2–4 assets shown
    *  side by side at natural proportions on desktop, widths in ratio so
    *  the strip shares one height. The first entry should be the same
