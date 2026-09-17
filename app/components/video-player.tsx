@@ -98,6 +98,20 @@ export default function VideoPlayer({
     };
   }, [fs]);
 
+  // In fullscreen the film answers the keyboard: space toggles play,
+  // Escape is the browser's own exit.
+  useEffect(() => {
+    if (!fs) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.code === "Space" || e.key === " ") {
+        e.preventDefault();
+        togglePlay();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [fs]);
+
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
     else wrapRef.current?.requestFullscreen().catch(() => {});
@@ -143,7 +157,9 @@ export default function VideoPlayer({
         loop
         playsInline
         preload="metadata"
-        className={fs ? "h-full w-full object-contain" : "w-full"}
+        className={`${fs ? "h-full w-full object-contain" : "w-full"} ${fs && idle ? "" : "cursor-pointer"}`}
+        // The picture itself is the biggest play/pause button.
+        onClick={togglePlay}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
