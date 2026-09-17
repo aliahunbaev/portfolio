@@ -8,7 +8,7 @@ cover: cover.jpg
 overview: A sixty-eight page magazine on Combat's first year: four garments, the stories behind them, and the people who wore them. Written, shot, and laid out start to finish, from a first year that grew to $30,000 in revenue with my best friend.
 tagline: Sixty-eight pages on making things with your friends.
 caseRow: page-05.jpg, page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg
-homeRow: strip-01.jpg, strip-02.jpg, strip-03.jpg, strip-04.jpg, strip-05.jpg, strip-06.jpg
+homeRow: strip-01.jpg, strip-02.jpg, bro.mp4, strip-04.jpg, strip-05.jpg
 featured: true
 ---
 
@@ -19,6 +19,8 @@ The Combat Journal is a magazine about the first year of Combat Créatif: four g
 ## A $30,000 first year
 
 Combat is the clothing company I started with my best friend Abdul. We taught ourselves graphic design, built the store, and grew a simple idea to $30,000 in revenue. The journal is the record of that year: the garments, the references, and the people who wore them.
+
+![Abdul and me, outside the library](bro2.mp4)
 
 ## Four garments
 
