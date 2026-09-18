@@ -74,8 +74,9 @@ function Record({
         {items.map((it) => (
           <div key={it.title} className="grid gap-y-0.5 leading-[1.3]">
             <p>{it.title}</p>
-            <p className="font-normal">{it.role}</p>
-            <p className="font-normal">{it.years}</p>
+            <p className="font-normal">
+              {it.role}, {it.years}
+            </p>
           </div>
         ))}
       </div>
