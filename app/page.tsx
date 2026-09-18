@@ -20,13 +20,12 @@ export default function Home() {
           className="text-title text-balance font-medium leading-[1.1] md:col-span-12 md:max-w-(--blurb)"
           style={{ "--blurb": BLURB_MAX_WIDTH } as React.CSSProperties}
         >
-          Ali Ahunbáev is an artist and product designer, creative director
+          Ali Ahunbáev is a product designer and artist, creative director
           at <InlineLink href="https://instagram.com/vercinyc">Verci</InlineLink>, and
           founder of{" "}
           <InlineLink href="https://instagram.com/combatcreatif">Combat Créatif</InlineLink>.
-          Currently on leave from New York University, focused on doing
-          great work and connecting with brilliant people. His focus is on a
-          mix of philosophy and beautiful utility.
+          Currently on leave from New York University, he makes products,
+          films, and events that mix philosophy with beautiful utility.
         </h1>
       </div>
       <div className="flex flex-col gap-40 pt-40 max-md:gap-24 max-md:pt-24">
