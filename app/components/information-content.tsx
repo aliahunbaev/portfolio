@@ -112,56 +112,53 @@ export default function InformationContent() {
           <div className="space-y-4 leading-[1.3]">
             <p>
               Ali Ahunbáev is a product designer in New York. He studies
-              computer science at NYU, on leave this fall, and works in
-              creative direction at Verci, a members space for creatives in
-              Flatiron. He is the founder of Combat Créatif, a creative
-              company that makes products and holds events for people who
-              make things. So far that has meant clothes, a training app, a
-              print journal, a short film, and an art exhibition on a roof.
+              computer science at NYU, on leave this fall, and does creative
+              direction at Verci, a members space for creatives in Flatiron.
+              He also runs Combat Créatif, a studio for people who treat
+              their craft with discipline. So far that has meant clothes, a
+              training app, a print journal, a short film, and an art show on
+              a roof.
             </p>
             <p>
-              The idea underneath all of it is simple: beauty and utility
-              belong in the same object. The tools worth making are the ones
-              that bring out the best in the people who use them. That is the
-              outward pursuit. The inward one is a life that feels like
-              play, which he writes about weekly at{" "}
+              He believes beauty and utility belong in the same object, and
+              that the tools worth making are the ones that bring out the
+              best in whoever uses them. The other half of the project is a
+              life that feels like play. He writes about both every week at{" "}
               <InlineLink href="https://playfighter.substack.com">
                 Playfighter
               </InlineLink>
               .
             </p>
             <p>
-              He grew up in Chicago drawing and painting, and planned on
-              architecture until he read Paul Graham's Hackers and Painters
-              in high school and decided on computer science instead. With no
-              experience in it, he applied to the top twenty programs in the
-              country and was rejected by all of them. He went to community
-              college, taught himself web design, fell into code, and
-              started making his own things. After a year he transferred to
-              NYU, moved to New York, and began working in the city, where he
-              produced The Art Movement, an exhibition and rooftop party for
-              250 people, under Combat.
+              He grew up in Chicago drawing and painting and planned on
+              architecture, until he read Hackers and Painters in high
+              school and switched to computer science. With no experience in
+              it, he applied to the top twenty programs in the country and
+              was rejected by all of them, so he went to community college,
+              taught himself web design, got into code, and started making
+              his own things. After a year he transferred to NYU and moved
+              to New York, where he produced The Art Movement, an exhibition
+              and rooftop party for 250 people, under Combat.
             </p>
             <p>
-              The work spans disciplines because the pursuit does. He writes,
-              films, illustrates, designs, and builds, and at some point those
-              stopped being separate hobbies and became one practice of
-              putting things into the world. What holds it together is not a
-              medium but a question he has carried since he was a kid with a
-              sketchbook: what happens when art meets money, business, and
-              the practical world.
-              It can be the end of the art or the foundation of a more
-              beautiful one. Combat is named for that struggle, and takes its
-              spirit from hip-hop, jazz, and the blues, music born of pain
-              and turned into the most influential sound of the last century.
+              He writes, films, illustrates, designs, and builds, and at some
+              point those stopped being separate and became one practice of
+              putting things into the world. What ties it together is not a
+              medium. It is a question he has had since he was a kid with a
+              sketchbook: what happens when art meets money and the practical
+              world. That meeting can kill the art or build something more
+              beautiful than either. Combat is named for the fight, and takes
+              its spirit from hip-hop, jazz, and the blues, music made from
+              pain that became the most influential sound of the last
+              century.
             </p>
             <p>
-              He is looking to join a company that is as committed to beauty
-              as it is to growth, with a culture of excellence and a real
-              love for the work, in a product design role, or any role that
-              lets him learn in that direction: building beautiful products
-              and experiences that bring out the best in us, with great
-              people.
+              He wants to help build a company as committed to beauty as it
+              is to growth, with a culture of excellence and real love for
+              the work. Product design is the role, and he is glad to learn
+              whatever sits next to it, as long as it points the same way:
+              beautiful products that bring out the best in people, made
+              with great people.
             </p>
           </div>
 
