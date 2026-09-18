@@ -10,7 +10,9 @@ export default function Home() {
     <main className="px-gutter pb-gutter max-md:pb-16">
       <div className="pt-30 md:grid md:grid-cols-12 md:gap-x-gutter">
         <h1 className="text-title font-medium leading-[1.1] md:col-span-8">
-          Ali Ahunbáev is an artist, product designer, founder and director of{" "}
+          Ali Ahunbáev is an artist and product designer, creative director
+          at <InlineLink href="https://verci.com">Verci</InlineLink>, and
+          founder of{" "}
           <InlineLink href="https://combatcreatif.com">Combat Créatif</InlineLink>.
           Currently on leave from New York University, focused on doing
           great work and connecting with brilliant people. His focus is on a
