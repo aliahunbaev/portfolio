@@ -136,14 +136,13 @@ export default function InformationContent() {
               Movement, an exhibition and rooftop party for 250 people.
             </p>
             <p>
-              Across mediums, his practice is organized less by discipline
-              than by a question he has carried since childhood: what
-              becomes of art when it meets money, business, and the practical
-              world. That meeting can be the end of the art or the ground of
-              something more beautiful than either, and Combat is named for
-              the struggle between the two. It takes its spirit from hip-hop,
-              jazz, and the blues, music made from pain that became the most
-              influential sound of the last century. He writes weekly at{" "}
+              Dancing across mediums, his practice is organized less by
+              discipline than by a pull toward building beautiful things,
+              whatever form they need to take. Combat is named for the
+              creative struggle, the war of art he sees as the foundation of
+              a life, and it takes its spirit from hip-hop, jazz, and the
+              blues, music made from pain that became the most influential
+              sound of the last century. He writes weekly at{" "}
               <InlineLink href="https://playfighter.substack.com">
                 Playfighter
               </InlineLink>{" "}
