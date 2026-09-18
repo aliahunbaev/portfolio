@@ -35,26 +35,26 @@ function EmailLine() {
 const experience = [
   {
     title: "Verci",
-    years: "2026 – Now",
-    role: "Creative Director & Ideation Lead",
+    years: "2026 – Now",
+    role: "Creative Direction",
   },
   {
     title: "Combat Créatif",
-    years: "2022 – Now",
-    role: "Cofounder & Creative Director",
+    years: "2022 – Now",
+    role: "Cofounder",
   },
   {
     title: "Independent Practice",
-    years: "2024 – 2025",
-    role: "Freelance Designer & Developer",
+    years: "2024 – 2025",
+    role: "Freelance Design & Development",
   },
 ];
 
 const education = [
   {
     title: "New York University",
-    years: "2025 – Now",
-    role: "B.S. Computer Science",
+    years: "2025 – Now",
+    role: "Computer Science",
   },
 ];
 
@@ -75,7 +75,7 @@ function Record({
           <div key={it.title} className="grid gap-y-0.5 leading-[1.3]">
             <p>{it.title}</p>
             <p className="font-normal">
-              {it.role}, {it.years}
+              {it.role}, <span className="whitespace-nowrap">{it.years}</span>
             </p>
           </div>
         ))}
