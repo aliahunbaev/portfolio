@@ -74,6 +74,9 @@ export type Project = {
   previewVideo?: string;
   /** First frame of previewVideo, shown until playback starts. */
   previewPoster?: string;
+  /** The full film behind the preview (frontmatter: film). When set, the
+   *  preview tile in the case-study overture opens it, with sound. */
+  film?: string;
   /** Outbound links shown under the title (frontmatter: links). */
   links?: { label: string; url: string }[];
   /** What was actually done, named plainly (frontmatter: disciplines):

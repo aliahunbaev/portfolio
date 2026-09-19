@@ -8,6 +8,7 @@ cover: cover-statue.jpg
 featured: true
 order: 1
 preview: preview.mp4
+film: sculptor.mp4
 overview: Marble is a training journal for iOS, made for people who view physical training as a spiritual and creative practice. It holds your programs, your workouts, a rest timer, and a record of every session with a photo, and it's set in black and white so it reads like ink on paper. I designed and built it alone in SwiftUI over six months, from the first Figma sketches to the App Store, and built a brand identity through posters, a website, and campaign film + photography. It has been live since July 2026, about 800 people have downloaded it, and it made money in its first week.
 tagline: Weaving timeless beauty into simple software.
 caseRow: preview.mp4, guy.jpg, m-dark-log.mp4

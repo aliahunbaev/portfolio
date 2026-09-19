@@ -7,6 +7,7 @@ import FadeImage from "../../components/fade-image";
 import GalleryBlock from "../../components/gallery-block";
 import LoopVideo from "../../components/loop-video";
 import StripVideo from "../../components/strip-video";
+import FilmDoor from "../../components/film-door";
 import PreviewVideo from "../../components/preview-video";
 import VideoPlayer from "../../components/video-player";
 import { getWorks, imageSize } from "../../lib/content";
@@ -521,7 +522,13 @@ export default async function WorkPage({ params }: Params) {
                     className="relative w-full overflow-hidden bg-black/[0.04]"
                     style={{ aspectRatio: `${item.w} / ${item.h}` }}
                   >
-                    {item.type === "video" ? (
+                    {item.type === "video" &&
+                    work.film &&
+                    item.src === work.previewVideo ? (
+                      <FilmDoor film={work.film}>
+                        <StripVideo src={item.src} poster={item.poster} />
+                      </FilmDoor>
+                    ) : item.type === "video" ? (
                       <StripVideo src={item.src} poster={item.poster} />
                     ) : (
                       <FadeImage
@@ -557,7 +564,13 @@ export default async function WorkPage({ params }: Params) {
                       className="relative w-full overflow-hidden bg-black/[0.04]"
                       style={{ aspectRatio: `${item.w} / ${item.h}` }}
                     >
-                      {item.type === "video" ? (
+                      {item.type === "video" &&
+                      work.film &&
+                      item.src === work.previewVideo ? (
+                        <FilmDoor film={work.film}>
+                          <StripVideo src={item.src} poster={item.poster} />
+                        </FilmDoor>
+                      ) : item.type === "video" ? (
                         <StripVideo src={item.src} poster={item.poster} />
                       ) : (
                         <FadeImage

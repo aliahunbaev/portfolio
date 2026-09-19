@@ -287,6 +287,7 @@ function readFolder(slug: string): Project | undefined {
     featured: meta.featured === "true",
     order: meta.order ? Number(meta.order) : undefined,
     previewVideo: meta.preview ? resolveSrc(slug, meta.preview) : undefined,
+    film: meta.film ? resolveSrc(slug, meta.film) : undefined,
     previewPoster: meta.previewPoster
       ? resolveSrc(slug, meta.previewPoster)
       : undefined,

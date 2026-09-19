@@ -16,19 +16,30 @@ const fmt = (s: number) => {
 export default function VideoPlayer({
   src,
   className = "",
+  eager = false,
+  sound = false,
+  fill = false,
 }: {
   src: string;
   className?: string;
+  /** Attach the file at once instead of waiting for the viewport. */
+  eager?: boolean;
+  /** Start with sound. Only honoured when the player is opened by a
+   *  click; if the browser refuses, it falls back to muted. */
+  sound?: boolean;
+  /** Fill the parent like fullscreen does: black, contained, controls
+   *  fading when idle. Used by the film lightbox. */
+  fill?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const [near, setNear] = useState(false);
+  const [near, setNear] = useState(eager);
   const [fs, setFs] = useState(false);
   const [idle, setIdle] = useState(false);
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [playing, setPlaying] = useState(true);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(!sound);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
@@ -36,7 +47,7 @@ export default function VideoPlayer({
   // page of many videos doesn't fetch them all up front.
   useEffect(() => {
     const el = wrapRef.current;
-    if (!el) return;
+    if (!el || eager) return;
     if (typeof IntersectionObserver === "undefined") {
       setNear(true);
       return;
@@ -59,10 +70,16 @@ export default function VideoPlayer({
     const v = videoRef.current;
     if (!v || !near) return;
     if (v.duration) setDuration(v.duration);
-    v.muted = true;
-    if (v.paused) v.play().catch(() => {});
+    v.muted = !sound;
+    if (v.paused)
+      v.play().catch(() => {
+        // Sound refused without a gesture: play silently instead.
+        v.muted = true;
+        setMuted(true);
+        v.play().catch(() => {});
+      });
     setPlaying(!v.paused);
-  }, [near]);
+  }, [near, sound]);
 
   // Fullscreen wraps the whole player, not the bare video element, so
   // the text controls and scrubber stay ours instead of the browser's.
@@ -72,11 +89,13 @@ export default function VideoPlayer({
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
 
+  const immersive = fs || fill;
+
   // In fullscreen the controls step aside: they fade after a still
   // moment and any pointer movement brings them back. A paused film
   // keeps them up.
   useEffect(() => {
-    if (!fs) {
+    if (!immersive) {
       setIdle(false);
       return;
     }
@@ -96,12 +115,12 @@ export default function VideoPlayer({
       el?.removeEventListener("pointermove", wake);
       el?.removeEventListener("pointerdown", wake);
     };
-  }, [fs]);
+  }, [immersive]);
 
   // In fullscreen the film answers the keyboard: space toggles play,
   // Escape is the browser's own exit.
   useEffect(() => {
-    if (!fs) return;
+    if (!immersive) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.code === "Space" || e.key === " ") {
         e.preventDefault();
@@ -110,7 +129,7 @@ export default function VideoPlayer({
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [fs]);
+  }, [immersive]);
 
   const toggleFullscreen = () => {
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
@@ -144,20 +163,20 @@ export default function VideoPlayer({
   return (
     <div
       ref={wrapRef}
-      className={`relative ${fs ? "flex items-center justify-center bg-black" : "bg-black/[0.04]"} ${fs && idle ? "cursor-none" : ""} ${className}`}
+      className={`relative ${immersive ? "flex items-center justify-center bg-black" : "bg-black/[0.04]"} ${immersive && idle ? "cursor-none" : ""} ${className}`}
     >
       <video
         ref={videoRef}
         src={near ? src : undefined}
         // Reserves layout space before metadata arrives; the video's own
         // proportions take over once known (that's what `auto` does).
-        style={fs ? undefined : { aspectRatio: "auto 1350 / 1080" }}
+        style={immersive ? undefined : { aspectRatio: "auto 1350 / 1080" }}
         autoPlay
-        muted
+        muted={!sound}
         loop
         playsInline
         preload="metadata"
-        className={`${fs ? "h-full w-full object-contain" : "w-full"} ${fs && idle ? "" : "cursor-pointer"}`}
+        className={`${immersive ? "h-full w-full object-contain" : "w-full"} ${immersive && idle ? "" : "cursor-pointer"}`}
         // The picture itself is the biggest play/pause button.
         onClick={togglePlay}
         onPlay={() => setPlaying(true)}
@@ -169,7 +188,7 @@ export default function VideoPlayer({
           whatever plays behind them, so they read on any frame. In
           fullscreen they fade with the idle cursor. */}
       <div
-        className={`absolute inset-x-0 bottom-0 flex items-center justify-between gap-8 px-3 pb-2.5 text-body font-medium text-white mix-blend-difference transition-opacity duration-300 ${fs && idle ? "pointer-events-none opacity-0" : "opacity-100"}`}
+        className={`absolute inset-x-0 bottom-0 flex items-center justify-between gap-8 px-3 pb-2.5 text-body font-medium text-white mix-blend-difference transition-opacity duration-300 ${immersive && idle ? "pointer-events-none opacity-0" : "opacity-100"}`}
       >
         <div className="flex items-baseline gap-4">
           <button
