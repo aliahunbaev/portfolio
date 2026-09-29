@@ -12,7 +12,7 @@ preview: preview.mp4
 homeRow: preview.mp4, IMG_5014.jpg, 000157750020.jpg
 previewPoster: preview-poster.jpg
 featured: true
-order: 3
+order: 2
 caseRow2: post1-01.jpg, 000157750025.jpg, 000157740023.jpg
 ---
 

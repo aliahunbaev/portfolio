@@ -110,6 +110,12 @@ export type Project = {
     w: number;
     h: number;
   }[];
+  /** Homepage caption side (frontmatter: homeAlign). Rows alternate
+   *  left/right by default; set it to pin one. */
+  homeAlign?: "left" | "right";
+  /** Homepage width (frontmatter: homeSpan). "half" lets two projects
+   *  share one row, each with its own strip and caption. */
+  homeSpan?: "full" | "half";
   /** Curated homepage strip (frontmatter: homeRow): 2–4 assets shown
    *  side by side at natural proportions on desktop, widths in ratio so
    *  the strip shares one height. The first entry should be the same

@@ -81,48 +81,54 @@ const firstSentence = (s: string) => {
   return i === -1 ? s : s.slice(0, i + 1);
 };
 
-export default function ProjectStrip({ project }: { project: Project }) {
+export default function ProjectStrip({
+  project,
+  align = "left",
+}: {
+  project: Project;
+  /** Which half of the grid the caption occupies on desktop. */
+  align?: "left" | "right";
+}) {
   const items = project.homeRow;
   if (!items?.length) return <ProjectRow project={project} />;
 
   const href = `/work/${slugify(project.title)}`;
-  // True proportions, no crop: the strip renders every asset exactly as
-  // the case-study overture does, widths in ratio so one height is shared.
-  const SQUEEZE = 1;
-  const shaped = (item: { w: number; h: number }) =>
-    (item.w / item.h) * SQUEEZE;
+  // True proportions, no crop: widths in ratio so one height is shared.
+  const shaped = (item: { w: number; h: number }) => item.w / item.h;
   const ratioSum = items.reduce((sum, item) => sum + shaped(item), 0);
+  const half = project.homeSpan === "half";
+  const disciplines = project.disciplines
+    ?.split(",")
+    .map((d) => d.trim())
+    .join(" · ");
 
   return (
     <article>
-      {/* Desktop: the caption line, then the full-width strip. */}
-      <div className="grid grid-cols-12 gap-x-gutter text-body max-md:hidden">
-        {/* Three columns, one job each: when · what it is + what was
-            done · what happened. Disciplines interpunct-separated, the
-            essay-rail metadata grammar. */}
-        <div className="col-span-2 space-y-1">
-          <p className="font-medium">{project.date}</p>
-          <p>{project.category}</p>
+      {/* Desktop caption: title and disciplines, then one line. It sits
+          in the left or right half of the grid so rows alternate; a
+          half-width project's caption fills its own column. */}
+      <div
+        className={`grid gap-x-gutter text-body max-md:hidden ${
+          half
+            ? "grid-cols-6"
+            : `grid-cols-12 ${align === "right" ? "[&>*]:col-start-7" : ""}`
+        }`}
+      >
+        <div className={`${half ? "col-span-6" : "col-span-6"} grid grid-cols-6 gap-x-gutter`}>
+          <div className="col-span-2 space-y-1">
+            <p className="font-medium">{project.title}</p>
+            {disciplines && <p>{disciplines}</p>}
+          </div>
+          <p className="col-span-4 leading-[1.4]">{project.description}</p>
         </div>
-        <div className="col-span-4 col-start-3 space-y-1">
-          <p className="font-medium">{project.title}</p>
-          {project.disciplines && (
-            <p>
-              {project.disciplines
-                .split(",")
-                .map((d) => d.trim())
-                .join(" · ")}
-            </p>
-          )}
-        </div>
-        <p className="col-span-4 col-start-7 leading-[1.4]">
-          {project.description}
-        </p>
       </div>
+      {/* Half-width strips share one fixed shape so a pair sits level;
+          tiles fill the height and trim a sliver if their sum differs. */}
       <Link
         href={href}
         data-cursor-label="View Project"
         className="mt-8 flex cursor-none items-stretch gap-x-gutter max-md:hidden"
+        style={half ? { aspectRatio: "2.2 / 1" } : undefined}
       >
         {items.map((item) => {
           const ratio = shaped(item);
@@ -133,7 +139,7 @@ export default function ProjectStrip({ project }: { project: Project }) {
             >
               <div
                 className="relative w-full overflow-hidden bg-black/[0.04]"
-                style={{ aspectRatio: `${ratio} / 1` }}
+                style={half ? { height: "100%" } : { aspectRatio: `${ratio} / 1` }}
               >
                 {item.type === "video" ? (
                   <StripVideo src={item.src} poster={item.poster} />
@@ -177,19 +183,8 @@ export default function ProjectStrip({ project }: { project: Project }) {
         )}
       </Link>
       <div className="pt-4 text-body md:hidden">
-        {/* Two rows, a small gap between: title/date up top, then the
-            blurb in a narrower column with the medium at the right.
-            Disciplines stay a desktop detail. */}
-        <div className="flex items-baseline justify-between gap-x-gutter">
-          <p className="font-medium">{project.title}</p>
-          <p className="text-right font-medium">{project.date}</p>
-        </div>
-        <div className="flex items-baseline justify-between gap-x-gutter pt-4">
-          <p className="w-2/3 leading-[1.4]">
-            {firstSentence(project.description)}
-          </p>
-          <p className="text-right">{project.category}</p>
-        </div>
+        <p className="font-medium">{project.title}</p>
+        <p className="pt-2 leading-[1.4]">{firstSentence(project.description)}</p>
       </div>
     </article>
   );
