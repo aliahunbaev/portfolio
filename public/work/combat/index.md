@@ -9,7 +9,7 @@ overview: Combat is the clothing company I started with my best friend Abdul. We
 tagline: A studio for people who treat their craft with discipline.
 caseRow: soldier-hero.jpg, playfight-knit.jpg, bro.mp4, neighborhood-hero.jpg
 caseRow2: workshirt-pocket.jpg, soldier-tag.jpg, neighborhood-back.jpg
-homeRow: soldier-hero.jpg, playfight-knit.jpg, bro.mp4, neighborhood-hero.jpg
+homeRow: soldier-hero.jpg, playfight-knit.jpg, bro.mp4, workshirt-pocket.jpg
 featured: true
 order: 2
 links: Instagram https://instagram.com/combatcreatif
