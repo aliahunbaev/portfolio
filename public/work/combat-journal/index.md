@@ -10,7 +10,7 @@ tagline: Sixty-eight pages on making things with your friends.
 caseRow: strip-01.jpg, strip-02.jpg, bro.mp4, strip-04.jpg, strip-05.jpg, strip-06.jpg
 caseRow2: page-21.jpg, page-26.jpg, page-29.jpg, page-38.jpg, page-08.jpg, page-50.jpg
 homeRow: strip-01.jpg, strip-02.jpg, bro.mp4, strip-04.jpg, strip-05.jpg
-featured: true
+featured: false
 ---
 
 ## Stories deserve pages
