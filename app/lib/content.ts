@@ -300,11 +300,6 @@ function readFolder(slug: string): Project | undefined {
     // caseRow is the case-study overture's second row, same rules.
     caseRow: parseMediaRow(slug, meta.caseRow),
     caseRow2: parseMediaRow(slug, meta.caseRow2),
-    homeAlign:
-      meta.homeAlign === "left" || meta.homeAlign === "right"
-        ? meta.homeAlign
-        : undefined,
-    homeSpan: meta.homeSpan === "half" ? "half" : undefined,
     homeRow: meta.homeRow
       ? meta.homeRow
           .split(",")

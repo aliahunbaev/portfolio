@@ -11,7 +11,7 @@ caseRow: soldier-hero.jpg, playfight-knit.jpg, bro.mp4, neighborhood-hero.jpg
 caseRow2: workshirt-pocket.jpg, soldier-tag.jpg, neighborhood-back.jpg
 homeRow: soldier-hero.jpg, playfight-knit.jpg, bro.mp4, neighborhood-hero.jpg
 featured: true
-order: 3
+order: 2
 links: Instagram https://instagram.com/combatcreatif
 ---
 

@@ -22,31 +22,9 @@ export default function Home() {
         </h1>
       </div>
       <div className="flex flex-col gap-40 pt-40 max-md:gap-24 max-md:pt-24">
-        {(() => {
-          // Full-width projects take a row each, captions alternating
-          // sides; consecutive half-width projects pair up in one row.
-          const projects = getFeatured();
-          const rows: React.ReactNode[] = [];
-          let side: "left" | "right" = "right";
-          for (let i = 0; i < projects.length; i++) {
-            const p = projects[i];
-            const next = projects[i + 1];
-            if (p.homeSpan === "half" && next?.homeSpan === "half") {
-              rows.push(
-                <div key={i} className="grid gap-x-gutter max-md:gap-y-24 md:grid-cols-2">
-                  <ProjectStrip project={p} />
-                  <ProjectStrip project={next} />
-                </div>,
-              );
-              i++;
-              continue;
-            }
-            const align: "left" | "right" = p.homeAlign ?? side;
-            side = align === "left" ? "right" : "left";
-            rows.push(<ProjectStrip key={i} project={p} align={align} />);
-          }
-          return rows;
-        })()}
+        {getFeatured().map((project, i) => (
+          <ProjectStrip key={i} project={project} />
+        ))}
       </div>
     </main>
   );
