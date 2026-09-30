@@ -6,8 +6,6 @@ description: My journey from community college, with no network, connections, or
 cover: cover.jpg
 overview: A video detailing my journey in community college, trying to progress toward a creative life without any network, connections, or mentorship, to working in startups and brands. I just started building cool shit in public, and this became my framework for learning, connecting, making meaning, and moving toward the creative life I wanted.
 tagline: Making a creative life from nothing, on camera.
-homeRow: build-cool-shit.mp4
-featured: false
 ---
 
 ![](build-cool-shit.mp4)
