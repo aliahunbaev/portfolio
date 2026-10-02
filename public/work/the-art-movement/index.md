@@ -2,10 +2,10 @@
 title: The Art Movement
 date: May 2026
 medium: Event
-disciplines: Concept, Production, Photography
+disciplines: Concept, Production, Design
 description: Concepting, organizing, and hosting an art exhibition and rooftop party for dope artists in New York. One night at Verci: four artists downstairs, 250 guests, and a roof that went until late.
 cover: 000157750001.jpg
-overview: The Art Movement was the first event by Combat Créatif, a one-night art exhibition and rooftop party at Verci in Flatiron on May 9th, 2026. I came up with the concept, chose the four artists, produced and hosted the night, designed every artifact from the deck to the invitations to the Instagram rollout, and shot the photographs on this page. 350 people RSVP'd and 250 came. Downstairs, a photographer, a poet, a sculptor, and I each showed our work and told the story behind it, and then the night moved to the roof, where a DJ set and open microphones ran until late.
+overview: The Art Movement was the first event by Combat Créatif, a one-night art exhibition and rooftop party at Verci in Flatiron on May 9th, 2026. I came up with the concept, chose the four artists, and planned and designed the night, from the deck to the invitations to the Instagram rollout, and I hosted it with my friend Jaden Clemons. 350 people RSVP'd and 250 came. Downstairs, a photographer, a poet, a sculptor, and I each showed our work and told the story behind it, and then the night moved to the roof, where a DJ set and open microphones ran until late.
 tagline: Inspiration handed directly from artist to audience.
 caseRow: preview.mp4, 000157750020.jpg, IMG_5014.jpg
 preview: preview.mp4
@@ -38,7 +38,7 @@ It's also a play on words, because the night itself moves. It runs in two halves
 
 ## Paper before party | Design
 
-I did everything on this one: recruited friends, chose the artists, ran the room, and designed every artifact of the night. Before it was a night, it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves. Each featured artist received a three-page invitation laying out the format, the audience, and what we would provide. The announcement ran as two carousels on Instagram, and I shot the photographs on this page.
+My part was the planning and the paper: recruiting friends, choosing the artists, and designing the documents for the night. Before it was a night, it was a deck, a program, and an hour-by-hour rundown of the room. The deck framed the two halves. Each featured artist received a three-page invitation laying out the format, the audience, and what we would provide. The announcement ran as two carousels on Instagram.
 
 ![Deck](slideshow-1.jpg) ![](slideshow-2.jpg) ![](slideshow-3.jpg) ![](slideshow-4.jpg) ![](slideshow-5.jpg) ![](slideshow-6.jpg) ![](slideshow-7.jpg) ![](slideshow-8.jpg) ![](slideshow-9.jpg)
 
@@ -48,7 +48,7 @@ I did everything on this one: recruited friends, chose the artists, ran the room
 
 ![Second Carousel](post2-01.jpg) ![](post2-02.jpg) ![](post2-03.jpg) ![](post2-04.jpg) ![](post2-05.jpg) ![](post2-06.jpg) ![](post2-07.jpg) ![](post2-08.jpg) ![](post2-09.jpg) ![](post2-10.jpg) ![](post2-11.jpg)
 
-I asked Jaden Clemons to co-host. We had a conversation about the interconnectedness of a tree and a forest, I gave him the idea, and I edited the video of him talking about it as part of the rollout.
+I asked Jaden Clemons to co-host the night with me. We had a conversation about the interconnectedness of a tree and a forest, and he made this beautiful video out of it for the rollout. I believe his energy and love are a fundamental reason the night was such a success.
 
 ![](jaden-inspiration.mp4)
 
