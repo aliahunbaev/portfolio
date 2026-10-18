@@ -13,6 +13,6 @@ export const contact: [string, string][] = [
 export const elsewhere: [string, string][] = [
   ["YouTube", "https://youtube.com/@playfighter"],
   ["Substack", "https://playfighter.substack.com"],
-  ["Playfighter", "https://instagram.com/play.fighter"],
+  ["Playfighter", "https://instagram.com/playfighter_"],
   ["Combat Créatif", "https://instagram.com/combatcreatif"],
 ];
