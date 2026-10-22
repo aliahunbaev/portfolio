@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { slugify } from "../lib/projects";
 
 const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
 
@@ -38,6 +39,33 @@ export default function GalleryBlock({
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const stripRef = useRef<HTMLDivElement>(null);
+  // The reader has an address: /work/<slug>#<title> opens it, and
+  // #<title>-<n> opens it on page n, so the whole artifact can be
+  // linked and shared. The hash follows the reader while it is open and
+  // leaves with it; nothing is pushed into history.
+  const id = slugify(title);
+  const startPage = useRef(0);
+
+  const close = useCallback(() => {
+    setOpen(false);
+    if (typeof window !== "undefined" && window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+  }, []);
+
+  useEffect(() => {
+    const m = window.location.hash.match(/^#(.+?)(?:-(\d+))?$/);
+    if (m && m[1] === id) {
+      startPage.current = m[2] ? Math.max(0, Number(m[2]) - 1) : 0;
+      setOpen(true);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (!open) return;
+    const page = index + 1;
+    history.replaceState(null, "", `#${id}${page > 1 ? `-${page}` : ""}`);
+  }, [open, index, id]);
 
   const tile = images.find((m) => !isVideo(m.src)) ?? images[0];
   const backTile =
@@ -79,8 +107,16 @@ export default function GalleryBlock({
   }, []);
 
   useLayoutEffect(() => {
-    if (open) setIndex(0);
+    if (open) setIndex(startPage.current);
   }, [open]);
+
+  // A deep link lands on its page before the first paint settles.
+  useEffect(() => {
+    if (!open || !startPage.current) return;
+    const page = startPage.current;
+    startPage.current = 0;
+    requestAnimationFrame(() => goTo(page, false));
+  }, [open, goTo]);
 
   // Every page's display width is pure CSS from its known dimensions,
   // so the strip lays out correctly before any image loads and tracks
@@ -111,7 +147,7 @@ export default function GalleryBlock({
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
       if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
         // Own the arrows fully — otherwise the browser also scrolls the
         // focused page into view and the two motions fight.
@@ -129,10 +165,10 @@ export default function GalleryBlock({
       window.removeEventListener("keydown", onKey);
       document.body.classList.remove("overflow-hidden");
     };
-  }, [open, index, images.length, goTo]);
+  }, [open, index, images.length, goTo, close]);
 
   return (
-    <div className={className} style={style}>
+    <div id={id} className={`scroll-mt-24 ${className}`} style={style}>
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -195,7 +231,7 @@ export default function GalleryBlock({
               </Link>
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={close}
                 className="cursor-pointer hover:text-neutral-400"
               >
                 Close
@@ -206,7 +242,7 @@ export default function GalleryBlock({
               onScroll={onScroll}
               onClick={(e) => {
                 // Empty veil closes; pages handle their own clicks.
-                if (e.target === stripRef.current) setOpen(false);
+                if (e.target === stripRef.current) close();
               }}
               style={{
                 paddingLeft: endPad(images[0]),
